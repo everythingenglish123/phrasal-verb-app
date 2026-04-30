@@ -7736,12 +7736,12 @@ const NOTE_50VERBS1 = {
       newsSnippet: 'On the International Space Station, astronauts follow a strict daily routine to stay focused. Their alarm clocks play a different song each morning. Most crew members [[wake up]] earlier than they would on Earth because of their packed schedule. The first hour is usually spent on exercise, since muscles weaken quickly in zero gravity. Mission control then sends the day\\\'s tasks to the crew.',
       newsWords: [{w:"astronauts",d:"people who travel into space"}, {w:"strict",d:"firm and not easily changed"}, {w:"packed",d:"very full and busy"}, {w:"weaken",d:"to become less strong"}, {w:"mission control",d:"the team on Earth that directs space flights"}],
       convoChoices:{prompt:'I keep sleeping through my alarm and being late for work. Any tips?',choices:[{text:'Try to wake up at the same time every day, even on weekends.',correct:true,feedback:'Correct! \'Wake up\' means to stop sleeping and become alert.'},{text:'Try to wake on at the same time every day.',correct:false,feedback:'The particle is \'up,\' not \'on.\' Say \'wake up at the same time.\''},{text:'Try to wake yourself up the alarm every day.',correct:false,feedback:'You wake up by yourself, not the alarm. Say \'wake up at the same time.\''}]},
-      videoExamples:[{videoId:"5MuIMqhT8DM",start:860,end:875,sourceChannel:"TED",sourceSpeaker:"Matt Walker",sourceTitle:"Sleep is your superpower"}]                },
+      videoExamples:[{videoId:"5MuIMqhT8DM",start:860,end:880,sourceChannel:"TED",sourceSpeaker:"Matt Walker",sourceTitle:"Sleep is your superpower"}]                },
     { verb: "get up", defn: "To rise from bed.", separable: true, fillParts: ["get","up"], flashExample: "I find it hard to get up on weekends.", fillSentence: "I find it hard to ___ myself ___ on weekdays.", hint: "Starts with G · 2 words · Rise from bed", dialogue: "A: Why are you so tired?\nB: I had to get up really early today.", situations: ["A man pulls back the covers and stands up out of bed at 7am.", "A woman finally rises from bed after hitting snooze twice.", "A student forces himself to stand up even though he wants to stay in bed."],
       newsSnippet: 'A fitness coach in Denver has shared a five-step routine she swears makes mornings easier. The trick, she says, is to [[get up]] the moment your alarm rings rather than hitting snooze. After that, ten minutes of stretching and one glass of cold water sets the tone for the day. She has filmed her own morning for a free YouTube series. Many viewers say the simple change has helped them stay consistent.',
       newsWords: [{w:"routine",d:"the regular order of things you do"}, {w:"swears",d:"strongly believes"}, {w:"snooze",d:"a short extra sleep after the alarm"}, {w:"stretching",d:"making your muscles longer"}, {w:"consistent",d:"acting the same way regularly"}],
       convoChoices:{prompt:'I always feel slow and groggy in the morning. How do you handle it?',choices:[{text:'Try to get up as soon as your alarm rings, instead of hitting snooze.',correct:true,feedback:'Correct! \'Get up\' means to rise from bed after sleeping.'},{text:'Try to get the bed up as soon as your alarm rings.',correct:false,feedback:'\'Get up\' is not separable. Don\'t put a noun between \'get\' and \'up.\' Just say \'get up.\''},{text:'Try to get up of bed as soon as your alarm rings.',correct:false,feedback:'\'Get up of\' is wrong. Say \'get up\' alone, or \'get out of bed.\''}]},
-      videoExamples:[{videoId:"D-RGg4puMOM",start:30,end:45,sourceChannel:"TEDx",sourceSpeaker:"Zibby Lindholm",sourceTitle:"How to Get Up in the Morning"}]                },
+      videoExamples:[{videoId:"D-RGg4puMOM",start:30,end:50,sourceChannel:"TEDx",sourceSpeaker:"Zibby Lindholm",sourceTitle:"How to Get Up in the Morning"}]                },
     { verb: "come back", defn: "To return to a place.", separable: false, flashExample: "They're coming back from their vacation tomorrow.", fillSentence: "I'll ___ as soon as I finish my errands.", hint: "Starts with C · 2 words · Return", dialogue: "A: When will you be back from your trip?\nB: I'll come back on Sunday.", situations: ["A man returns home after six months working abroad.", "A woman comes home after three weeks visiting family overseas.", "A traveler arrives back in her home city after a long trip."],
       newsSnippet: 'A small island off the coast of Maine has become a popular stop for birdwatchers each spring. Researchers say the species [[came back]] earlier than usual due to warmer winds. Volunteers track the timing and number of every species that passes through. Last year, several rare warblers were spotted for the first time in over a decade. New cameras will help map next year\\\'s migration in much greater detail.',
       newsWords: [{w:"birdwatchers",d:"people who watch wild birds as a hobby"}, {w:"species",d:"a particular type of plant or animal"}, {w:"warblers",d:"small singing birds"}, {w:"map",d:"to record the location of things"}, {w:"migration",d:"the seasonal movement of animals from one area to another"}],
@@ -13027,10 +13027,8 @@ function showVideoExample(){
             autoplay: 1,
             rel: 0,
             modestbranding: 1,
-            controls: 0,
+            controls: 1,
             playsinline: 1,
-            disablekb: 1,
-            fs: 0,
             cc_load_policy: 1,    // captions on by default, no toggle popup
             cc_lang_pref: 'en',
             hl: 'en',
@@ -13039,15 +13037,6 @@ function showVideoExample(){
           },
           events: {
             onStateChange: function(e){
-              // Keep the Pause/Play button label in sync with the player.
-              const pBtn = document.getElementById('video-pause-btn');
-              if (pBtn) {
-                if (e.data === YT.PlayerState.PLAYING) {
-                  pBtn.textContent = '⏸ Pause';
-                } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
-                  pBtn.textContent = '▶ Play';
-                }
-              }
               // When the clip reaches the configured end, loop back to start.
               // This means the user never sees YouTube's "replay from 0" overlay
               // because we beat it to the punch and reposition at the clip start.
@@ -13073,7 +13062,6 @@ function showVideoExample(){
         + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.9">0.9x</button>'
         + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.95">0.95x</button>'
         + '<span class="ctrl-divider"></span>'
-        + '<button type="button" class="ctrl-btn" id="video-pause-btn" title="Pause / play">⏸ Pause</button>'
         + '<button type="button" class="ctrl-btn" id="video-replay-btn" title="Replay clip from start">↻ Replay</button>';
       // Insert directly after the frame
       if (card && frame.nextSibling) {
@@ -13093,17 +13081,6 @@ function showVideoExample(){
           } catch(_){}
           ctrl.querySelectorAll('.speed-btn').forEach(function(b){ b.classList.remove('active'); });
           tgt.classList.add('active');
-        } else if (tgt.id === 'video-pause-btn') {
-          try {
-            if (!_ytPlayer || typeof _ytPlayer.getPlayerState !== 'function') return;
-            const state = _ytPlayer.getPlayerState();
-            // YT.PlayerState.PLAYING === 1
-            if (state === 1) {
-              _ytPlayer.pauseVideo();
-            } else {
-              _ytPlayer.playVideo();
-            }
-          } catch(_){}
         } else if (tgt.id === 'video-replay-btn') {
           try {
             if (_ytPlayer) {
