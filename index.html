@@ -13027,8 +13027,10 @@ function showVideoExample(){
             autoplay: 1,
             rel: 0,
             modestbranding: 1,
-            controls: 1,
+            controls: 0,
             playsinline: 1,
+            disablekb: 1,
+            fs: 0,
             cc_load_policy: 1,    // captions on by default, no toggle popup
             cc_lang_pref: 'en',
             hl: 'en',
@@ -13037,6 +13039,15 @@ function showVideoExample(){
           },
           events: {
             onStateChange: function(e){
+              // Keep the Pause/Play button label in sync with the player.
+              const pBtn = document.getElementById('video-pause-btn');
+              if (pBtn) {
+                if (e.data === YT.PlayerState.PLAYING) {
+                  pBtn.textContent = '⏸ Pause';
+                } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+                  pBtn.textContent = '▶ Play';
+                }
+              }
               // When the clip reaches the configured end, loop back to start.
               // This means the user never sees YouTube's "replay from 0" overlay
               // because we beat it to the punch and reposition at the clip start.
@@ -13062,6 +13073,7 @@ function showVideoExample(){
         + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.9">0.9x</button>'
         + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.95">0.95x</button>'
         + '<span class="ctrl-divider"></span>'
+        + '<button type="button" class="ctrl-btn" id="video-pause-btn" title="Pause / play">⏸ Pause</button>'
         + '<button type="button" class="ctrl-btn" id="video-replay-btn" title="Replay clip from start">↻ Replay</button>';
       // Insert directly after the frame
       if (card && frame.nextSibling) {
@@ -13081,6 +13093,17 @@ function showVideoExample(){
           } catch(_){}
           ctrl.querySelectorAll('.speed-btn').forEach(function(b){ b.classList.remove('active'); });
           tgt.classList.add('active');
+        } else if (tgt.id === 'video-pause-btn') {
+          try {
+            if (!_ytPlayer || typeof _ytPlayer.getPlayerState !== 'function') return;
+            const state = _ytPlayer.getPlayerState();
+            // YT.PlayerState.PLAYING === 1
+            if (state === 1) {
+              _ytPlayer.pauseVideo();
+            } else {
+              _ytPlayer.playVideo();
+            }
+          } catch(_){}
         } else if (tgt.id === 'video-replay-btn') {
           try {
             if (_ytPlayer) {
