@@ -536,6 +536,51 @@
   body.dark .srs-btn.b-think  { background: #1d4ed8; }
   body.dark .srs-btn.b-got    { background: #15803d; }
   body.dark .learned-track    { background: #334155; }
+  /* ── ORDER TOGGLE PILL ── */
+  .fc-order-row { display:flex; justify-content:flex-end; margin: 0 0 12px; }
+  .fc-order-pill { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; border:1.5px solid #e5e7eb; background:#fff; color:var(--ink); font-size:12px; font-weight:700; cursor:pointer; transition:all .12s; }
+  .fc-order-pill:hover { border-color:var(--accent); background:#f0f7ff; }
+  .fc-order-pill.is-ordered { background:#fff7ed; border-color:#fb923c; color:#9a3412; }
+  body.dark .fc-order-pill { background:#1e293b; border-color:#334155; color:#e2e8f0; }
+  body.dark .fc-order-pill:hover { background:#1e3a5f; border-color:#60a5fa; }
+  body.dark .fc-order-pill.is-ordered { background:#451a03; border-color:#c2410c; color:#fdba74; }
+  /* ── DECK MODE BAR ── */
+  .fc-deck-bar { display:flex; align-items:center; gap:10px; margin: 0 0 10px; padding:8px 14px; background:linear-gradient(90deg,#eff6ff,#fff); border:1px solid #dbeafe; border-radius:10px; }
+  .fc-deck-label { font-size:12px; font-weight:800; color:#1d4ed8; letter-spacing:.02em; text-transform:uppercase; }
+  .fc-deck-topic { font-size:13px; font-weight:700; color:var(--ink-soft); margin-left:auto; }
+  body.dark .fc-deck-bar { background:linear-gradient(90deg,#172554,#1e293b); border-color:#1e3a8a; }
+  body.dark .fc-deck-label { color:#93c5fd; }
+  body.dark .fc-deck-topic { color:#cbd5e1; }
+  /* ── DECKS PAGE: STUDY-ALL BUTTONS ── */
+  .decks-section-cta { margin-top:8px; margin-bottom:16px; }
+  .decks-study-all-btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:14px 18px; background:linear-gradient(135deg,#2563eb,#1d4ed8); color:#fff; border:none; border-radius:12px; font-size:15px; font-weight:800; cursor:pointer; transition:all .15s; box-shadow:0 4px 12px rgba(37,99,235,.25); }
+  .decks-study-all-btn:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(37,99,235,.35); }
+  .decks-study-all-btn:active { transform:scale(.98); }
+  .decks-study-all-btn.b-got { background:linear-gradient(135deg,#16a34a,#15803d); box-shadow:0 4px 12px rgba(22,163,74,.25); }
+  .decks-study-all-btn.b-got:hover { box-shadow:0 6px 18px rgba(22,163,74,.35); }
+  .decks-topic-cta { display:inline-flex; align-items:center; gap:6px; margin-left:auto; padding:5px 11px; border-radius:999px; border:1.5px solid #c7d2fe; background:#eef2ff; color:#4338ca; font-size:12px; font-weight:700; cursor:pointer; transition:all .12s; }
+  .decks-topic-cta:hover { background:#e0e7ff; border-color:#818cf8; }
+  .decks-topic-cta.b-got { border-color:#bbf7d0; background:#f0fdf4; color:#15803d; }
+  .decks-topic-cta.b-got:hover { background:#dcfce7; border-color:#4ade80; }
+  body.dark .decks-topic-cta { background:#1e1b4b; border-color:#3730a3; color:#c7d2fe; }
+  body.dark .decks-topic-cta:hover { background:#312e81; border-color:#6366f1; }
+  body.dark .decks-topic-cta.b-got { background:#052e16; border-color:#15803d; color:#86efac; }
+  body.dark .decks-topic-cta.b-got:hover { background:#14532d; border-color:#22c55e; }
+  /* ── DECK SUMMARY SCREEN ── */
+  .deck-summary { background:#fff; border-radius:18px; padding:28px 24px; box-shadow:0 4px 14px rgba(31,41,55,.06); border:1px solid #e5e7eb; }
+  .deck-summary-emoji { font-size:48px; text-align:center; margin-bottom:8px; }
+  .deck-summary-title { font-size:22px; font-weight:800; text-align:center; color:var(--ink); margin-bottom:6px; }
+  .deck-summary-sub { font-size:14px; text-align:center; color:var(--ink-soft); margin-bottom:22px; }
+  .deck-summary-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:22px; }
+  .deck-summary-stat { padding:14px; border-radius:12px; background:#f9fafb; border:1px solid #e5e7eb; text-align:center; }
+  .deck-summary-stat-num { font-size:24px; font-weight:800; color:var(--ink); }
+  .deck-summary-stat-lbl { font-size:12px; color:var(--ink-soft); margin-top:4px; }
+  .deck-summary-stat.s-got .deck-summary-stat-num { color:#16a34a; }
+  .deck-summary-stat.s-need .deck-summary-stat-num { color:#dc2626; }
+  body.dark .deck-summary { background:#1e293b; border-color:#334155; }
+  body.dark .deck-summary-stat { background:#0f172a; border-color:#334155; }
+  body.dark .deck-summary-stat-num { color:#f1f5f9; }
+  body.dark .deck-summary-stat-lbl { color:#94a3b8; }
 
   /* ================= QUESTION CARD ================= */
   .qcard {
@@ -2122,6 +2167,18 @@
     <div id="savedwords-content"></div>
   </section>
 
+  <!-- ====== DECK SESSION SUMMARY ====== -->
+  <section id="screen-deck-summary" class="screen">
+    <div class="breadcrumb">
+      <a onclick="goToNotes()">Phrasal Verbs</a>
+      <span class="sep">›</span>
+      <a onclick="exitDeckSession()">Decks</a>
+      <span class="sep">›</span>
+      <span>Session Summary</span>
+    </div>
+    <div id="deck-summary-content"></div>
+  </section>
+
   <!-- ====== NOTE DETAIL (activity picker) ====== -->
   <section id="screen-note" class="screen">
     <div class="breadcrumb">
@@ -2199,7 +2256,7 @@
   <!-- ====== FLASHCARDS ====== -->
   <section id="screen-flashcards" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+      <button class="back-btn" onclick="exitFlashcards()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -2214,6 +2271,16 @@
       <div class="counter"><span id="fc-known-count">0</span> / <span id="fc-total">18</span> learned</div>
     </div>
     <div class="learned-track"><div class="learned-fill" id="fc-known-fill"></div></div>
+    <div id="fc-deck-bar" class="fc-deck-bar" style="display:none;">
+      <span class="fc-deck-label" id="fc-deck-label"></span>
+      <span class="fc-deck-topic" id="fc-deck-topic"></span>
+    </div>
+    <div class="fc-order-row">
+      <button type="button" class="fc-order-pill" id="fc-order-pill" onclick="toggleFCOrder()" title="Toggle flashcard order">
+        <span id="fc-order-icon">⇅</span>
+        <span id="fc-order-text">Random</span>
+      </button>
+    </div>
 
     <div class="flashcard-wrap">
       <div class="flashcard" id="flashcard" onclick="flipCard()">
@@ -2553,8 +2620,8 @@ const NOTE_WORK = {
       flashExample: "The grammar was confusing at first, but she kept at it.",
       fillSentence: "Don't give up, just ___ and your English will improve.",
       hint: "Starts with K · 3 words · Keep trying", dialogue: "A: I've been trying to learn coding, but it's tough.\nB: Don't get discouraged. The key is to do it consistently, like learning a language.\nA: That's good advice, thanks!\nB: Keep at it! You'll be able to do it!", situations: ["A guitarist practices the same difficult chord every evening even though progress feels very slow.", "A runner doesn't quit the race despite feeling exhausted at the halfway point.", "A student continues studying Spanish every night even though she makes many mistakes."], excludeFromBank: [], fillFeedback: {'work towards': 'means to aim for a goal.', 'get ahead': 'means to advance or succeed.', 'take on': 'means to accept a task.', 'step down': 'means to resign.', 'branch out': 'means to expand into new areas.', 'tie up': 'means to be very busy.', 'slave away': 'means to work very hard.'} ,
-      newsSnippet: 'An online learning platform has published a collection of inspiring stories about late-career students. The most popular story features a 62-year-old grandmother who managed to [[keep at it]] for two years until she finished a coding course. She has now built a website to sell her knitting. The platform says steady daily practice, even just fifteen minutes, is the real key to success. Many users wrote in to say her journey gave them fresh motivation.',
-      newsWords: [{w:"inspiring",d:"making you feel excited and full of new ideas"}, {w:"grandmother",d:"the mother of a parent"}, {w:"coding",d:"writing instructions for computers"}, {w:"steady",d:"continuing without big changes"}, {w:"motivation",d:"a reason to do something with energy"}],
+      newsSnippet: 'A new survey on career change has been published this month. The most surprising finding: workers who [[keep at it]] for at least six months in a tough new role are far more likely to succeed long term. Researchers say small daily improvements add up faster than people expect. The study followed two thousand professionals for three years. Many readers say the findings have given them fresh motivation.',
+      newsWords: [{w:"survey",d:"a study that asks people questions"}, {w:"finding",d:"a result of research"}, {w:"role",d:"a job position"}, {w:"professionals",d:"workers in skilled jobs"}, {w:"motivation",d:"a reason to do something with energy"}],
       convoChoices:{prompt:'My presentations are still really bad after months of practice. Should I just give up?',choices:[{text:'Keep at it, every speaker improves with time.',correct:true,feedback:'Correct! \'Keep at it\' means to keep trying at something difficult.'},{text:'Keep on it, every speaker improves with time.',correct:false,feedback:'The expression is \'keep at it,\' not \'keep on it.\''},{text:'Keep at them, every speaker improves with time.',correct:false,feedback:'\'Keep at it\' is a fixed phrase. Don\'t change \'it\' to another pronoun.'}]} },
     { verb: "get ahead", defn: "To progress, advance, or succeed, especially at work or in life.",
       flashExample: "Many people move to big cities hoping to get ahead.",
@@ -9141,7 +9208,9 @@ const state = {
   resumeFrom: null,  // { activity, noteId, idx }, set when jumping from activity → flashcard
   savedWords: [],    // [{ key, w, d, snippet, noteId, verbName, savedAt }]
   activitySaves: {}, // { "<noteId>::<activity>": { order, idx, correct, total, ts, extras } }
-  sectionHints: {}   // { "<noteId>::spelling": { used, budget } }  — persists across Continue, only Start Over clears
+  sectionHints: {},  // { "<noteId>::spelling": { used, budget } }  — persists across Continue, only Start Over clears
+  fcOrder: 'random', // 'random' | 'ordered' — flashcard study order preference (sticky in localStorage)
+  deckSession: null  // when non-null, flashcards run from a custom queue: { queue:[{noteId,verbIdx,verbName,noteEmoji,noteTitle}], total, source, label, ratingTally }
 };
 // Load persisted progress or init fresh
 (function(){
@@ -9155,7 +9224,9 @@ const state = {
   try { const sw = localStorage.getItem('eewj_phrasal_saved_words'); if(sw) state.savedWords = JSON.parse(sw) || []; } catch(e){}
   try { const aps = localStorage.getItem('eewj_phrasal_activity_saves'); if(aps) state.activitySaves = JSON.parse(aps) || {}; } catch(e){}
   try { const sh = localStorage.getItem('eewj_phrasal_section_hints'); if(sh) state.sectionHints = JSON.parse(sh) || {}; } catch(e){}
+  try { const fo = localStorage.getItem('eewj_phrasal_fc_order'); if (fo === 'ordered' || fo === 'random') state.fcOrder = fo; } catch(e){}
 })();
+function _saveFCOrder(){ try { localStorage.setItem('eewj_phrasal_fc_order', state.fcOrder); } catch(e){} }
 function _sectionHintKey(noteId){ return noteId + '::spelling'; }
 function _saveSectionHints(){
   try{ localStorage.setItem('eewj_phrasal_section_hints', JSON.stringify(state.sectionHints)); }catch(e){}
@@ -9740,8 +9811,13 @@ function renderDecks(){
   let html = '';
   if (stats.needCount > 0) {
     html += '<div class="decks-section"><div class="decks-section-head"><span class="decks-section-emoji">📝</span><span class="decks-section-title">Need More Practice</span><span class="decks-section-count">' + stats.needCount + '</span></div>';
+    html += '<div class="decks-section-cta"><button class="decks-study-all-btn" onclick="startDeckSession({type:\'section-need\'})">▶ Study all ' + stats.needCount + ' verb' + (stats.needCount===1?'':'s') + '</button></div>';
     stats.needTopics.forEach(t => {
-      html += '<div class="decks-topic"><div class="decks-topic-name">' + t.note.emoji + ' ' + escapeHtml(t.note.title) + '</div><div class="decks-verb-list">';
+      const tcount = t.verbs.length;
+      html += '<div class="decks-topic"><div class="decks-topic-name" style="display:flex;align-items:center;gap:6px;">'
+            + '<span>' + t.note.emoji + ' ' + escapeHtml(t.note.title) + '</span>'
+            + '<button class="decks-topic-cta" onclick="event.stopPropagation();startDeckSession({type:\'topic-need\',noteId:\'' + t.note.id.replace(/'/g, "\\'") + '\'})">▶ Study these ' + tcount + '</button>'
+            + '</div><div class="decks-verb-list">';
       t.verbs.forEach(vi => {
         const m = _ratingMeta(vi.rating);
         html += '<div class="decks-verb-chip" onclick="openFlashcardsForVerb(\'' + t.note.id + '\',' + vi.verbIdx + ',\'decks\')"><span class="dvc-rating" title="' + m.label + '">' + m.emoji + '</span><span>' + escapeHtml(vi.verbName) + '</span></div>';
@@ -9752,8 +9828,13 @@ function renderDecks(){
   }
   if (stats.gotCount > 0) {
     html += '<div class="decks-section"><div class="decks-section-head"><span class="decks-section-emoji">✅</span><span class="decks-section-title">Got It!</span><span class="decks-section-count">' + stats.gotCount + '</span></div>';
+    html += '<div class="decks-section-cta"><button class="decks-study-all-btn b-got" onclick="startDeckSession({type:\'section-got\'})">▶ Study all ' + stats.gotCount + ' verb' + (stats.gotCount===1?'':'s') + '</button></div>';
     stats.gotTopics.forEach(t => {
-      html += '<div class="decks-topic"><div class="decks-topic-name">' + t.note.emoji + ' ' + escapeHtml(t.note.title) + '</div><div class="decks-verb-list">';
+      const tcount = t.verbs.length;
+      html += '<div class="decks-topic"><div class="decks-topic-name" style="display:flex;align-items:center;gap:6px;">'
+            + '<span>' + t.note.emoji + ' ' + escapeHtml(t.note.title) + '</span>'
+            + '<button class="decks-topic-cta b-got" onclick="event.stopPropagation();startDeckSession({type:\'topic-got\',noteId:\'' + t.note.id.replace(/'/g, "\\'") + '\'})">▶ Study these ' + tcount + '</button>'
+            + '</div><div class="decks-verb-list">';
       t.verbs.forEach(vi => {
         html += '<div class="decks-verb-chip" onclick="openFlashcardsForVerb(\'' + t.note.id + '\',' + vi.verbIdx + ',\'decks\')"><span class="dvc-rating">✅</span><span>' + escapeHtml(vi.verbName) + '</span></div>';
       });
@@ -10069,22 +10150,225 @@ function openActivity(name) {
    FLASHCARDS
 ========================================================================= */
 function startFlashcards() {
+  // Leaving deck mode if we entered via "Back to activities" then re-clicked flashcards
+  state.deckSession = null;
   state.lastActivity = "flashcards";
   setLastSession(state.currentNoteId, "flashcards");
   const verbs = currentNote().verbs;
-  state.fc.line    = shuffle(verbs.map((_, i) => i));
+  const indices = verbs.map((_, i) => i);
+  state.fc.line    = (state.fcOrder === 'ordered') ? indices : shuffle(indices);
   state.fc.known    = new Set();
   state.fc.firstTry = {};
   state.fc.seen     = new Set();
   state.fc.history  = [];
   state.fc.flipped  = false;
   state.fc.total    = verbs.length;
+  _updateFCOrderPill();
+  _updateFCDeckBar();
   updateFCProgress();
   renderCard();
   showScreen("flashcards");
 }
 function currentFCVerb() {
+  if (state.deckSession) return _deckCurrentVerbObj();
   return currentNote().verbs[state.fc.line[0]];
+}
+// Deck mode helpers ----------------------------------------------------------
+function _deckCurrentItem(){
+  if (!state.deckSession) return null;
+  const qi = state.fc.line[0];
+  return state.deckSession.queue[qi] || null;
+}
+function _deckCurrentVerbObj(){
+  const item = _deckCurrentItem();
+  if (!item) return null;
+  const note = NOTES.find(n => n.id === item.noteId);
+  if (!note) return null;
+  return note.verbs[item.verbIdx];
+}
+function _deckNoteForItem(item){
+  return NOTES.find(n => n.id === item.noteId) || null;
+}
+function _updateFCOrderPill(){
+  const pill = document.getElementById('fc-order-pill');
+  const txt  = document.getElementById('fc-order-text');
+  const ico  = document.getElementById('fc-order-icon');
+  if (!pill || !txt || !ico) return;
+  if (state.fcOrder === 'ordered') {
+    pill.classList.add('is-ordered');
+    txt.textContent = 'In order';
+    ico.textContent = '1→2→3';
+  } else {
+    pill.classList.remove('is-ordered');
+    txt.textContent = 'Random';
+    ico.textContent = '⇅';
+  }
+}
+function _updateFCDeckBar(){
+  const bar = document.getElementById('fc-deck-bar');
+  if (!bar) return;
+  if (!state.deckSession) { bar.style.display = 'none'; return; }
+  bar.style.display = '';
+  const lbl = document.getElementById('fc-deck-label');
+  const top = document.getElementById('fc-deck-topic');
+  if (lbl) lbl.textContent = state.deckSession.label || 'Deck';
+  if (top) {
+    const item = _deckCurrentItem();
+    if (item) {
+      top.textContent = (item.noteEmoji || '') + ' ' + (item.noteTitle || '');
+    } else {
+      top.textContent = '';
+    }
+  }
+}
+function toggleFCOrder(){
+  state.fcOrder = (state.fcOrder === 'ordered') ? 'random' : 'ordered';
+  _saveFCOrder();
+  _updateFCOrderPill();
+  // Restart whichever flashcard session is active so the new order takes effect cleanly
+  if (state.deckSession) {
+    // Rebuild the deck queue from the original source list
+    _restartDeckSession();
+  } else if (state.currentNoteId && state.currentNoteId !== '__mixed__') {
+    // Fresh start: clear any saved progress for this section's flashcards so the user gets a clean run
+    if (typeof clearActivityState === 'function') {
+      try { clearActivityState(state.currentNoteId, 'flashcards'); } catch(e){}
+    }
+    startFlashcards();
+  }
+}
+// ---------- DECK SESSIONS ----------
+// Build a queue from the current cardRatings + scope. Scope is one of:
+//   { type:'section-need' }                 → all 'Need More Practice' verbs across all topics
+//   { type:'section-got'  }                 → all 'Got It!' verbs across all topics
+//   { type:'topic-need',  noteId:'<id>' }   → just that topic's 'Need More Practice' verbs
+//   { type:'topic-got',   noteId:'<id>' }   → just that topic's 'Got It!' verbs
+function _buildDeckQueue(scope){
+  const stats = _collectDeckStats();
+  let topics;
+  let wantNeed = (scope.type === 'section-need' || scope.type === 'topic-need');
+  if (scope.type.startsWith('topic-')) {
+    topics = (wantNeed ? stats.needTopics : stats.gotTopics).filter(t => t.note.id === scope.noteId);
+  } else {
+    topics = wantNeed ? stats.needTopics : stats.gotTopics;
+  }
+  const queue = [];
+  topics.forEach(t => {
+    t.verbs.forEach(vi => {
+      queue.push({
+        noteId: t.note.id,
+        verbIdx: vi.verbIdx,
+        verbName: vi.verbName,
+        noteEmoji: t.note.emoji,
+        noteTitle: t.note.title
+      });
+    });
+  });
+  return queue;
+}
+function _deckLabelFor(scope){
+  if (scope.type === 'section-need') return '📝 Studying: Need More Practice';
+  if (scope.type === 'section-got')  return '✅ Studying: Got It!';
+  if (scope.type === 'topic-need')   return '📝 Topic deck';
+  if (scope.type === 'topic-got')    return '✅ Topic deck';
+  return 'Custom deck';
+}
+function startDeckSession(scope){
+  const queue = _buildDeckQueue(scope);
+  if (!queue || queue.length === 0) return;
+  // Order: respect user preference. 'random' = shuffle, 'ordered' = group by topic in source order
+  const queueIndices = queue.map((_, i) => i);
+  const lineOrder = (state.fcOrder === 'ordered') ? queueIndices : shuffle(queueIndices);
+  state.deckSession = {
+    scope: scope,
+    queue: queue,
+    label: _deckLabelFor(scope),
+    ratingTally: {1:0,2:0,3:0,4:0},
+    totalRatings: 0
+  };
+  state.currentNoteId = '__deck__'; // sentinel so other code paths skip persistence
+  state.lastActivity = 'flashcards';
+  state.fc.line     = lineOrder;
+  state.fc.known    = new Set();
+  state.fc.firstTry = {};
+  state.fc.seen     = new Set();
+  state.fc.history  = [];
+  state.fc.flipped  = false;
+  state.fc.total    = queue.length;
+  // Don't pollute lastSession (decks are ephemeral browse-and-study)
+  clearResume();
+  _updateFCOrderPill();
+  _updateFCDeckBar();
+  updateFCProgress();
+  renderCard();
+  showScreen('flashcards');
+}
+function _restartDeckSession(){
+  if (!state.deckSession) return;
+  // Rebuild queue from current ratings (in case the user rated cards mid-session)
+  const scope = state.deckSession.scope;
+  const queue = _buildDeckQueue(scope);
+  if (!queue || queue.length === 0) {
+    // Nothing left in this deck — go back to decks page
+    state.deckSession = null;
+    goToDecks();
+    return;
+  }
+  const queueIndices = queue.map((_, i) => i);
+  const lineOrder = (state.fcOrder === 'ordered') ? queueIndices : shuffle(queueIndices);
+  state.deckSession.queue = queue;
+  state.deckSession.ratingTally = {1:0,2:0,3:0,4:0};
+  state.deckSession.totalRatings = 0;
+  state.fc.line     = lineOrder;
+  state.fc.known    = new Set();
+  state.fc.firstTry = {};
+  state.fc.seen     = new Set();
+  state.fc.history  = [];
+  state.fc.flipped  = false;
+  state.fc.total    = queue.length;
+  _updateFCDeckBar();
+  updateFCProgress();
+  renderCard();
+}
+function exitDeckSession(){
+  state.deckSession = null;
+  state.currentNoteId = null;
+  goToDecks();
+}
+function exitFlashcards(){
+  if (state.deckSession) { exitDeckSession(); return; }
+  goToNote();
+}
+function _showDeckSummary(){
+  const tally = (state.deckSession && state.deckSession.ratingTally) || {1:0,2:0,3:0,4:0};
+  const got    = tally[4] || 0;
+  const think  = tally[3] || 0;
+  const almost = tally[2] || 0;
+  const noidea = tally[1] || 0;
+  const total  = got + think + almost + noidea;
+  const pct = total ? Math.round((got / total) * 100) : 0;
+  const trophy = pct === 100 ? '🏆' : pct >= 70 ? '🎉' : pct >= 40 ? '💪' : '📚';
+  const title  = pct === 100 ? 'Perfect deck run!' : pct >= 70 ? 'Strong session' : pct >= 40 ? 'Solid practice' : 'Keep going';
+  const sub    = 'You finished ' + total + ' card' + (total===1?'':'s') + ' in this deck.';
+  const html = '' +
+    '<div class="deck-summary">' +
+      '<div class="deck-summary-emoji">' + trophy + '</div>' +
+      '<div class="deck-summary-title">' + title + '</div>' +
+      '<div class="deck-summary-sub">' + sub + '</div>' +
+      '<div class="deck-summary-stats">' +
+        '<div class="deck-summary-stat s-got"><div class="deck-summary-stat-num">' + got + '</div><div class="deck-summary-stat-lbl">✅ Got It!</div></div>' +
+        '<div class="deck-summary-stat"><div class="deck-summary-stat-num">' + think + '</div><div class="deck-summary-stat-lbl">🤔 I think so</div></div>' +
+        '<div class="deck-summary-stat"><div class="deck-summary-stat-num">' + almost + '</div><div class="deck-summary-stat-lbl">😬 Almost</div></div>' +
+        '<div class="deck-summary-stat s-need"><div class="deck-summary-stat-num">' + noidea + '</div><div class="deck-summary-stat-lbl">🤯 No idea</div></div>' +
+      '</div>' +
+      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">' +
+        '<button class="btn primary" onclick="_restartDeckSession()">🔁 Study this deck again</button>' +
+        '<button class="btn" onclick="exitDeckSession()">📚 Back to decks</button>' +
+      '</div>' +
+    '</div>';
+  const root = document.getElementById('deck-summary-content');
+  if (root) { root.innerHTML = html; showScreen('deck-summary'); }
+  else { exitDeckSession(); }
 }
 function updateFCProgress() {
   const total = state.fc.total;
@@ -10095,9 +10379,16 @@ function updateFCProgress() {
 }
 function renderCard() {
   state.fc.flipped = false;
-  const verbs = currentNote().verbs;
-  const vi    = state.fc.line[0];
-  const v     = verbs[vi];
+  let v;
+  if (state.deckSession) {
+    v = _deckCurrentVerbObj();
+    if (!v) { return; }
+  } else {
+    const verbs = currentNote().verbs;
+    const vi    = state.fc.line[0];
+    v = verbs[vi];
+  }
+  _updateFCDeckBar();
   if (typeof streakRecordVerb === 'function') streakRecordVerb(v.verb);
   document.getElementById("fc-front-verb").textContent  = v.verb;
   document.getElementById("fc-back-defn").textContent   = v.defn;
@@ -10163,7 +10454,15 @@ function flipCard() {
     const vi = state.fc.line[0];
     if (!state.fc.seen.has(vi)) state.fc.seen.add(vi);
     updateFCProgress();
-    const _v = currentNote().verbs[state.fc.line[0]];
+    let _v, _nid;
+    if (state.deckSession) {
+      _v = _deckCurrentVerbObj();
+      const _it = _deckCurrentItem();
+      _nid = _it ? _it.noteId : state.currentNoteId;
+    } else {
+      _v = currentNote().verbs[state.fc.line[0]];
+      _nid = state.currentNoteId;
+    }
     const _nc = document.getElementById("fc-news-card");
     if (_v && _v.newsSnippet) {
       let _t = _v.newsSnippet;
@@ -10176,7 +10475,6 @@ function flipCard() {
       _t = _t.replace(/\x00VERB\x00(.+?)\x00ENDVERB\x00/g, '<strong class="news-verb">$1</strong>');
       document.getElementById("fc-news-text").innerHTML = _t;
       const ul = document.getElementById("fc-news-vocab");
-      const _nid = state.currentNoteId;
       const _vname = _v.verb;
       const _snip = _v.newsSnippet || '';
       ul.innerHTML = (_v.newsWords || []).map(w => {
@@ -10206,18 +10504,18 @@ function nextCard() {
   if (state.fc.line.length > 1) {
     const vi = state.fc.line.shift();
     state.fc.history.push(vi);
-    saveActivityState(state.currentNoteId, 'flashcards');
+    if (!state.deckSession) saveActivityState(state.currentNoteId, 'flashcards');
     renderCard();
   } else if (state.fc.line.length === 1) {
     // Reached the last card, clear save so a fresh start happens next time
-    clearActivityState(state.currentNoteId, 'flashcards');
+    if (!state.deckSession) clearActivityState(state.currentNoteId, 'flashcards');
   }
 }
 function prevCard() {
   if (state.fc.history.length === 0) return;
   const vi = state.fc.history.pop();
   state.fc.line.unshift(vi);
-  saveActivityState(state.currentNoteId, 'flashcards');
+  if (!state.deckSession) saveActivityState(state.currentNoteId, 'flashcards');
   renderCard();
 }
 function shuffleCards() {
@@ -10230,7 +10528,14 @@ function rateCard(rating) {
   const vi = state.fc.line.shift();
   state.fc.history.push(vi);
   // Persist this rating across sessions (skip mixed-review pseudo-note)
-  if (state.currentNoteId && state.currentNoteId !== "__mixed__") {
+  if (state.deckSession) {
+    const item = state.deckSession.queue[vi];
+    if (item && item.verbName) setCardRating(item.noteId, item.verbName, rating);
+    // Track tally for end-of-deck summary
+    if (!state.deckSession.ratingTally) state.deckSession.ratingTally = {1:0,2:0,3:0,4:0};
+    state.deckSession.ratingTally[rating] = (state.deckSession.ratingTally[rating] || 0) + 1;
+    state.deckSession.totalRatings = (state.deckSession.totalRatings || 0) + 1;
+  } else if (state.currentNoteId && state.currentNoteId !== "__mixed__") {
     const v = currentNote().verbs[vi];
     if (v && v.verb) setCardRating(state.currentNoteId, v.verb, rating);
   }
@@ -10248,6 +10553,13 @@ function rateCard(rating) {
   }
   updateFCProgress();
   if (state.fc.known.size === state.fc.total) {
+    if (state.deckSession) {
+      // Deck mode: show deck-summary screen instead of normal completeActivity
+      document.getElementById("fc-known-fill").style.width = "100%";
+      document.getElementById("fc-known-count").textContent = state.fc.total + " / " + state.fc.total;
+      _showDeckSummary();
+      return;
+    }
     if (state.currentNoteId !== "__mixed__") {
       state.progress[state.currentNoteId].flashcards = true; saveProgress();
     }
@@ -10264,7 +10576,7 @@ function rateCard(rating) {
     completeActivity(trophy + " " + title, msg);
     return;
   }
-  saveActivityState(state.currentNoteId, 'flashcards');
+  if (!state.deckSession) saveActivityState(state.currentNoteId, 'flashcards');
   const bar = document.getElementById("fc-srs-bar");
   bar.style.opacity = "0.3";
   setTimeout(() => { bar.style.opacity = ""; renderCard(); }, 180);
