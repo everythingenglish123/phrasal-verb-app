@@ -1742,45 +1742,45 @@
   .vid-example-btn {
     display: none;
     align-items: center;
-    gap: 6px;
-    margin: 10px 0 4px;
-    padding: 5px 10px;
-    background: transparent;
-    color: #dc2626;
-    border: 1px solid #fecaca;
-    border-radius: 999px;
-    font-weight: 500;
-    font-size: 12px;
+    gap: 10px;
+    margin: 14px auto 6px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
     text-align: left;
     cursor: pointer;
-    transition: background 0.12s ease, border-color 0.12s ease;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
-  .vid-example-btn.show { display: inline-flex; }
-  .vid-example-btn:hover { background: #fef2f2; border-color: #fca5a5; }
-  body.dark .vid-example-btn { color: #f87171; border-color: #7f1d1d; }
-  body.dark .vid-example-btn:hover { background: #1f1517; border-color: #ef4444; }
+  .vid-example-btn.show { display: flex; width: fit-content; max-width: 100%; }
+  .vid-example-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+  }
   .vid-example-btn .vid-icon {
     flex-shrink: 0;
-    width: 16px; height: 16px;
+    width: 24px; height: 24px;
     border-radius: 50%;
-    background: rgba(220, 38, 38, 0.12);
+    background: rgba(255,255,255,0.22);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
-    color: #dc2626;
+    font-size: 11px;
   }
-  body.dark .vid-example-btn .vid-icon { background: rgba(248, 113, 113, 0.18); color: #f87171; }
   .vid-example-btn .vid-label {
-    line-height: 1.2;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    line-height: 1.25;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
   .vid-example-btn .vid-source {
-    font-size: 11px;
-    font-weight: 400;
-    opacity: 0.7;
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.85;
   }
 
   .video-modal-backdrop {
