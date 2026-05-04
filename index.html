@@ -14907,6 +14907,7 @@ function showVideoExample(idx){
       }
 
 
+
       // Static caption (Option A): show the Filmot snippet under the video, verb highlighted
       const _oldCap = document.getElementById('video-modal-caption');
       if (_oldCap && _oldCap.parentNode) _oldCap.parentNode.removeChild(_oldCap);
@@ -14939,12 +14940,11 @@ function showVideoExample(idx){
       }
 
       // Clip-tab strip — shown when there are multiple clips for this verb,
-      // OR when we're in Listening Practice mode (then we use the strip to
-      // host the "Study this verb" / "New clip" action buttons on the right).
+      // or in Listening Practice mode (so it can host the NEXT VERB pill on the
+      // right, lined up vertically above Replay in the controls bar below).
       const _oldClipTabs = document.getElementById('video-modal-cliptabs');
       if (_oldClipTabs && _oldClipTabs.parentNode) _oldClipTabs.parentNode.removeChild(_oldClipTabs);
-      const _showActions = !!state.listeningPracticeMode;
-      if (list.length > 1 || _showActions) {
+      if (list.length > 1 || state.listeningPracticeMode) {
         const tabs = document.createElement('div');
         tabs.id = 'video-modal-cliptabs';
         tabs.className = 'video-modal-controls';
@@ -14968,19 +14968,21 @@ function showVideoExample(idx){
         }
         tabs.appendChild(leftGroup);
 
-        // Right group — Listening Practice "New clip" action, same size/style
-        // as the other player controls so it stays uniform; just the position
-        // (far right, away from clip numbers) makes it stand out.
-        if (_showActions){
+        // Right group — NEXT VERB pill in Listening Practice mode. Sits at the
+        // far right of this row so it lines up vertically with the right-aligned
+        // Replay button in the controls bar below.
+        if (state.listeningPracticeMode){
           const rightGroup = document.createElement('div');
           rightGroup.style.display = 'flex';
           rightGroup.style.alignItems = 'center';
-          rightGroup.style.gap = '6px';
-          rightGroup.style.flexWrap = 'wrap';
           rightGroup.innerHTML =
               '<button type="button" class="ctrl-btn" id="video-newclip-btn" '
             + 'onclick="startListeningPractice()" '
-            + 'title="Pick a new random clip">🔀 New clip</button>';
+            + 'title="Skip to a different verb\'s clip" '
+            + 'style="background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border:none;'
+            + 'font-weight:800;letter-spacing:.6px;text-transform:uppercase;'
+            + 'box-shadow:0 2px 8px rgba(124,58,237,.30);">'
+            + '🔀 NEXT VERB</button>';
           tabs.appendChild(rightGroup);
         }
 
