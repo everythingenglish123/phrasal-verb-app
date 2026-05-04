@@ -336,19 +336,33 @@
   .screen.active { display: block; }
 
   .back-btn {
-    background: transparent;
-    border: none;
+    background: var(--brand-soft);
+    border: 2px solid var(--accent);
     color: var(--accent);
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    padding: 6px 0;
+    padding: 10px 20px;
     margin-bottom: 0;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    border-radius: 999px;
+    line-height: 1;
+    transition: all .15s ease;
+    box-shadow: 0 1px 3px rgba(124,58,237,.12);
   }
+  .back-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateX(-2px);
+    box-shadow: 0 4px 12px rgba(124,58,237,.28);
+    text-decoration: none;
+  }
+  .back-btn:active { transform: translateX(-1px) scale(.97); }
+  body.dark .back-btn { background: rgba(124,58,237,.18); border-color: #a78bfa; color: #c4b5fd; }
+  body.dark .back-btn:hover { background: #a78bfa; color: #0f172a; }
   .activity-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-  .back-btn:hover { text-decoration: underline; }
 
   .activity-header {
     display: flex;
@@ -739,6 +753,103 @@
   .dlg-verb { color: #16a34a; font-weight: 700; }
   body.dark .dlg-verb { color: #4ade80; }
   .news-vocab-hl { font-weight: 700; }
+  /* ── Mini audio player (bottom-fixed) ── */
+  .mini-player {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    bottom: 14px;
+    width: min(640px, calc(100% - 24px));
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 14px;
+    box-shadow: 0 10px 32px rgba(0,0,0,.30), 0 2px 6px rgba(0,0,0,.20);
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    transition: transform .25s ease, opacity .2s ease;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 13px;
+  }
+  .mini-player.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mp-play {
+    flex: 0 0 auto;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: #dc2626;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .15s ease, transform .15s ease;
+  }
+  .mp-play:hover { background: #b91c1c; }
+  .mp-play:active { transform: scale(.94); }
+  .mp-time { flex: 0 0 auto; font-variant-numeric: tabular-nums; font-size: 12px; color: #cbd5e1; min-width: 38px; text-align: center; }
+  .mp-scrub-wrap { flex: 1 1 auto; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .mp-scrub {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: #334155;
+    border-radius: 999px;
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+  }
+  .mp-scrub::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #f8fafc;
+    cursor: pointer;
+    border: 2px solid #dc2626;
+  }
+  .mp-scrub::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #f8fafc;
+    cursor: pointer;
+    border: 2px solid #dc2626;
+  }
+  .mp-label {
+    font-size: 11px;
+    color: #94a3b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .mp-close {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid #334155;
+    color: #cbd5e1;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all .15s ease;
+  }
+  .mp-close:hover { background: #1e293b; color: #fff; border-color: #475569; }
+  body.dark .mini-player { background: #1e293b; }
+  @media (max-width: 480px) {
+    .mini-player { padding: 8px 10px; gap: 8px; bottom: 10px; }
+    .mp-play { width: 34px; height: 34px; font-size: 13px; }
+    .mp-close { width: 28px; height: 28px; font-size: 13px; }
+    .mp-time { font-size: 11px; min-width: 34px; }
+  }
+
   .news-audio-btn {
     background: #475569;
     color: #fff;
@@ -1073,6 +1184,7 @@
   .hbtn-yt svg{width:14px;height:14px;display:block;}
   .theme-toggle{background:none;border:1.5px solid #e5e7eb;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px;display:inline-flex;align-items:center;justify-content:center;transition:all .15s;color:var(--ink);}
   .theme-toggle:hover{border-color:var(--accent);background:#f0f7ff;}
+
 
   /* ── SPLASH ── */
   .splash{text-align:center;margin:8px 0 28px;padding:18px 16px 24px;background:linear-gradient(180deg,#fff,#f8fafc);border-radius:14px;border:1px solid #e5e7eb;position:relative;}
@@ -13016,13 +13128,16 @@ function _isPerfectContext(sentence) {
   return w === 'have' || w === 'has' || w === 'had' || w === 'been';
 }
 function getVerbDisplay(v, sentence) {
-  if (needsGerund(sentence)) return verbToGerund(v.verb);
+  // Strip parenthetical context like "set off (a bomb)" → "set off"
+  const _baseVerb = String(v.verb || '').replace(/\s*\([^)]*\)\s*/g, ' ').trim();
+  const _v = (v && _baseVerb !== v.verb) ? { ...v, verb: _baseVerb } : v;
+  if (needsGerund(sentence)) return verbToGerund(_v.verb);
   if (needsPastTense(sentence)) {
-    if (_isPerfectContext(sentence)) return verbToPastParticiple(v.verb);
-    return verbToPast(v.verb);
+    if (_isPerfectContext(sentence)) return verbToPastParticiple(_v.verb);
+    return verbToPast(_v.verb);
   }
-  if (needs3rdPersonS(sentence)) return conjugateVerb(v.verb);
-  return v.verb;
+  if (needs3rdPersonS(sentence)) return conjugateVerb(_v.verb);
+  return _v.verb;
 }
 
 function getFillPartsDisplay(v, sentence) {
@@ -13315,18 +13430,31 @@ function renderSituation() {
   // Build choices: correct + 3 distractors from same note
   // Respect excludeFromBank so the Find-the-Correct-Verb activity also avoids
   // any other section verb that's semantically valid for the same situations.
-  const _sitExclude = (v.excludeFromBank || []).map(x => String(x).toLowerCase());
-  const pool = verbs.map(vv => vv.verb)
-    .filter(vv => vv !== v.verb)
-    .filter(vv => !_sitExclude.includes(String(vv).toLowerCase()));
+  // Strip parenthetical context (e.g., "set off (a bomb)" → "set off") and
+  // dedupe by base verb name so variants don't appear multiple times.
+  const _sitBaseName = (s) => String(s || '').replace(/\s*\([^)]*\)\s*/g, ' ').trim();
+  const _sitExclude = (v.excludeFromBank || []).map(x => _sitBaseName(x).toLowerCase());
+  const correctBase = _sitBaseName(v.verb);
+  const correctBaseLower = correctBase.toLowerCase();
+  const seenBases = new Set([correctBaseLower]);
+  const pool = [];
+  for (const vv of verbs) {
+    const base = _sitBaseName(vv.verb);
+    const baseLower = base.toLowerCase();
+    if (baseLower === correctBaseLower) continue;
+    if (_sitExclude.includes(baseLower)) continue;
+    if (seenBases.has(baseLower)) continue;
+    seenBases.add(baseLower);
+    pool.push(base);
+  }
   const shuffled = shuffle(pool);
   const distractors = shuffled.slice(0, 3);
-  const options = shuffle([v.verb, ...distractors]);
+  const options = shuffle([correctBase, ...distractors]);
 
   const choicesEl = document.getElementById("sit-choices");
   choicesEl.innerHTML = options.map(opt => {
     const safe = opt.replace(/'/g, "\\'");
-    const correctSafe = v.verb.replace(/'/g, "\\'");
+    const correctSafe = correctBase.replace(/'/g, "\\'");
     return `<button class="sit-choice-btn" onclick="chooseSituation(this, '${safe}', '${correctSafe}')">${opt}</button>`;
   }).join('');
 
@@ -13733,8 +13861,7 @@ function startMixedNews(){
 }
 
 function exitMixedNews(){
-  const a = document.getElementById('nd-news-audio');
-  if (a) { try { a.pause(); } catch(_){} }
+  // Audio keeps playing in the mini player (persists across screens)
   showScreen('notes');
 }
 
@@ -13748,10 +13875,12 @@ function _setNDAudioBtnState(playing){
 }
 function resetNDAudioBtn(){ _setNDAudioBtnState(false); }
 function toggleNDAudio(){
-  const audio = document.getElementById('nd-news-audio');
-  if (!audio || !audio.src) return;
-  if (audio.paused) { audio.play().then(function(){ _setNDAudioBtnState(true); }).catch(function(_){}); }
-  else { audio.pause(); _setNDAudioBtnState(false); }
+  const btn = document.getElementById('nd-news-audio-btn');
+  if (!btn) return;
+  const src = btn.dataset.audioSrc || '';
+  const label = btn.dataset.audioLabel || 'News article';
+  if (!src) return;
+  MiniPlayer.play(src, label, btn);
 }
 
 function renderNDCard(){
@@ -13766,18 +13895,25 @@ function renderNDCard(){
   document.getElementById('nd-source-pill').textContent = (item.noteEmoji || '') + ' ' + (item.noteTitle || '');
   document.getElementById('nd-verb').textContent = v.verb;
   const btn = document.getElementById('nd-news-audio-btn');
-  const audio = document.getElementById('nd-news-audio');
-  try { audio.pause(); } catch(_){}
-  _setNDAudioBtnState(false);
   if (v.newsAudio) {
-    audio.src = v.newsAudio;
-    audio.currentTime = 0;
+    btn.dataset.audioSrc = v.newsAudio;
+    btn.dataset.audioLabel = '📰 ' + (v.verb || 'News article');
     btn.setAttribute('data-has-audio', 'true');
     btn.style.removeProperty('display');
+    MiniPlayer.registerButton(btn, v.newsAudio);
+    // Mirror current playback state for this card so the button matches the player
+    const a = document.getElementById('mp-audio');
+    const norm = MiniPlayer._normSrc(v.newsAudio);
+    if (a && a.src && a.src === norm && !a.paused) {
+      MiniPlayer._sync(true);
+    } else {
+      _setNDAudioBtnState(false);
+    }
   } else {
-    audio.removeAttribute('src');
-    try { audio.load(); } catch(_){}
+    delete btn.dataset.audioSrc;
+    delete btn.dataset.audioLabel;
     btn.removeAttribute('data-has-audio');
+    _setNDAudioBtnState(false);
   }
   let _t = v.newsSnippet || '';
   _t = _t.replace(/\[\[(.+?)\]\]/g, '\x00VERB\x00$1\x00ENDVERB\x00');
@@ -14156,6 +14292,164 @@ window.addEventListener('resize', function(){
 loadStreak();
 
 /* =========================================================================
+   GLOBAL MINI AUDIO PLAYER
+   - Single shared <audio id="mp-audio"> persists across all screens
+   - Bottom-fixed bar with play/pause, scrubber, current time, duration, close
+   - Per-screen Listen buttons register here so their visual state stays in sync
+========================================================================= */
+const MiniPlayer = {
+  _registered: [],   // [{btn, src}] — buttons that need play-state syncing
+  _curSrc: null,
+  _curLabel: '',
+  _scrubbing: false,
+
+  _audio(){ return document.getElementById('mp-audio'); },
+  _bar(){ return document.getElementById('mini-player'); },
+
+  // Normalize a possibly-relative URL to its absolute form, matching what
+  // the browser stores in <audio>.src after assignment.
+  _normSrc(s){
+    try { return s ? new URL(s, document.baseURI).href : ''; } catch(_) { return s || ''; }
+  },
+
+  init(){
+    const a = this._audio();
+    if (!a || a.__mpInited) return;
+    a.__mpInited = true;
+    a.addEventListener('play',    () => this._sync(true));
+    a.addEventListener('pause',   () => this._sync(false));
+    a.addEventListener('ended',   () => { this._sync(false); /* keep bar visible so user can replay */ });
+    a.addEventListener('loadedmetadata', () => this._renderTimes());
+    a.addEventListener('timeupdate', () => {
+      if (this._scrubbing) return;
+      const dur = a.duration || 0;
+      const cur = a.currentTime || 0;
+      const scrub = document.getElementById('mp-scrub');
+      if (scrub && dur > 0) scrub.value = String((cur / dur) * 100);
+      this._renderTimes();
+    });
+    const scrub = document.getElementById('mp-scrub');
+    if (scrub) {
+      const seek = () => {
+        const dur = a.duration || 0;
+        if (dur > 0) a.currentTime = (parseFloat(scrub.value) / 100) * dur;
+      };
+      scrub.addEventListener('input',  () => { this._scrubbing = true; this._renderTimes(); });
+      scrub.addEventListener('change', () => { seek(); this._scrubbing = false; });
+      scrub.addEventListener('mouseup',() => { seek(); this._scrubbing = false; });
+      scrub.addEventListener('touchend',() => { seek(); this._scrubbing = false; });
+    }
+  },
+
+  _fmt(s){
+    s = Math.max(0, Math.floor(s || 0));
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return m + ':' + (r < 10 ? '0' + r : r);
+  },
+
+  _renderTimes(){
+    const a = this._audio();
+    if (!a) return;
+    const cur = document.getElementById('mp-current-time');
+    const dur = document.getElementById('mp-duration');
+    if (cur) cur.textContent = this._fmt(a.currentTime);
+    if (dur) dur.textContent = this._fmt(a.duration);
+  },
+
+  registerButton(btn, src){
+    if (!btn) return;
+    // Remove any prior entry for this btn to avoid leaks
+    this._registered = this._registered.filter(r => r.btn !== btn);
+    this._registered.push({ btn, src: this._normSrc(src) });
+  },
+
+  _sync(playing){
+    const a = this._audio();
+    const playBtn = document.getElementById('mp-play-btn');
+    if (playBtn) playBtn.textContent = playing ? '⏸' : '▶';
+    // Update every registered per-screen Listen button:
+    // mark the one that matches the current src as playing, others reset.
+    const curSrc = a ? a.src : '';
+    this._registered.forEach(r => {
+      const btn = r.btn;
+      if (!btn || !btn.isConnected) return;
+      const ic = btn.querySelector('.news-audio-icon');
+      const lb = btn.querySelector('.news-audio-label');
+      const isCur = r.src && curSrc && r.src === curSrc;
+      if (isCur && playing) {
+        btn.classList.add('playing');
+        if (ic) ic.textContent = '⏸';
+        if (lb) lb.textContent = 'Pause';
+      } else {
+        btn.classList.remove('playing');
+        if (ic) ic.textContent = '▶';
+        if (lb) lb.textContent = 'Listen';
+      }
+    });
+  },
+
+  show(){ const b = this._bar(); if (b) b.classList.add('visible'); },
+  hide(){ const b = this._bar(); if (b) b.classList.remove('visible'); },
+
+  setLabel(text){
+    this._curLabel = text || '';
+    const lab = document.getElementById('mp-label');
+    if (lab) lab.textContent = this._curLabel || 'Audio';
+  },
+
+  // Play (or toggle) a given source. If src is a new source, switch to it & play.
+  // If it's the current source and currently playing, pause. Otherwise play.
+  play(src, label, btn){
+    this.init();
+    const a = this._audio();
+    if (!a || !src) return;
+    const normalizedSrc = this._normSrc(src);
+    if (btn) this.registerButton(btn, src);
+    if (a.src !== normalizedSrc) {
+      try { a.pause(); } catch(_){}
+      a.src = src;
+      try { a.currentTime = 0; } catch(_){}
+      this._curSrc = normalizedSrc;
+      this.setLabel(label || 'News article');
+      this.show();
+      const p = a.play();
+      if (p && p.catch) p.catch(()=>{});
+    } else {
+      this.setLabel(label || this._curLabel || 'News article');
+      this.show();
+      if (a.paused) {
+        const p = a.play();
+        if (p && p.catch) p.catch(()=>{});
+      } else {
+        a.pause();
+      }
+    }
+  },
+
+  toggle(){
+    this.init();
+    const a = this._audio();
+    if (!a || !a.src) return;
+    if (a.paused) { const p = a.play(); if (p && p.catch) p.catch(()=>{}); }
+    else { a.pause(); }
+  },
+
+  close(){
+    const a = this._audio();
+    if (a) {
+      try { a.pause(); } catch(_){}
+    }
+    this.hide();
+    // Reset all registered buttons to idle look
+    this._sync(false);
+  },
+};
+document.addEventListener('DOMContentLoaded', () => MiniPlayer.init());
+// Try to init immediately as well in case DOMContentLoaded already fired
+MiniPlayer.init();
+
+/* =========================================================================
    NEWS ARTICLE AUDIO PLAYER (per-verb MP3 voiceover)
 ========================================================================= */
 function _setNewsAudioBtnState(playing){
@@ -14175,32 +14469,35 @@ function _setNewsAudioBtnState(playing){
 }
 function resetNewsAudioBtn(){ _setNewsAudioBtnState(false); }
 function toggleNewsAudio(){
-  const audio = document.getElementById('fc-news-audio');
-  if (!audio || !audio.src) return;
-  if (audio.paused) {
-    audio.play().then(function(){ _setNewsAudioBtnState(true); }).catch(function(_){});
-  } else {
-    audio.pause();
-    _setNewsAudioBtnState(false);
-  }
+  const btn = document.getElementById('fc-news-audio-btn');
+  if (!btn) return;
+  const src = btn.dataset.audioSrc || '';
+  const label = btn.dataset.audioLabel || 'News article';
+  if (!src) return;
+  MiniPlayer.play(src, label, btn);
 }
 function setupNewsAudioForVerb(v){
   const btn = document.getElementById('fc-news-audio-btn');
-  const audio = document.getElementById('fc-news-audio');
-  if (!btn || !audio) return;
-  // Always stop any in-flight playback when the card switches
-  try { audio.pause(); } catch(_){}
+  if (!btn) return;
   if (v && v.newsAudio) {
-    audio.src = v.newsAudio;
-    audio.currentTime = 0;
+    btn.dataset.audioSrc = v.newsAudio;
+    btn.dataset.audioLabel = '📰 ' + (v.verb || 'News article');
     btn.setAttribute('data-has-audio', 'true');
     btn.style.removeProperty('display');
+    MiniPlayer.registerButton(btn, v.newsAudio);
+    // Reflect playback state for this card immediately (in case the same audio is currently playing)
+    const a = document.getElementById('mp-audio');
+    const norm = MiniPlayer._normSrc(v.newsAudio);
+    if (a && a.src && a.src === norm && !a.paused) {
+      MiniPlayer._sync(true);
+    } else {
+      MiniPlayer._sync(false);
+    }
   } else {
-    audio.removeAttribute('src');
-    try { audio.load(); } catch(_){}
+    delete btn.dataset.audioSrc;
+    delete btn.dataset.audioLabel;
     btn.removeAttribute('data-has-audio');
   }
-  _setNewsAudioBtnState(false);
 }
 
 /* =========================================================================
@@ -14547,5 +14844,19 @@ function closeVideoModal(){
     <button class="celeb-btn" onclick="celebClose()">Keep going →</button>
   </div>
 </div>
+
+<!-- Mini audio player (bottom-fixed, persists across screens) -->
+<div class="mini-player" id="mini-player" role="region" aria-label="Audio player">
+  <button class="mp-play" id="mp-play-btn" type="button" onclick="MiniPlayer.toggle()" aria-label="Play / pause">▶</button>
+  <span class="mp-time" id="mp-current-time">0:00</span>
+  <div class="mp-scrub-wrap">
+    <input type="range" id="mp-scrub" class="mp-scrub" min="0" max="100" step="0.1" value="0" aria-label="Scrub audio" />
+    <span class="mp-label" id="mp-label">News article</span>
+  </div>
+  <span class="mp-time" id="mp-duration">0:00</span>
+  <button class="mp-close" id="mp-close-btn" type="button" onclick="MiniPlayer.close()" aria-label="Close player">✕</button>
+  <audio id="mp-audio" preload="none"></audio>
+</div>
+
 </body>
 </html>
