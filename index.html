@@ -14044,7 +14044,20 @@ function startListeningPractice(){
     else alert('No video clips available yet.');
     return;
   }
-  const pick = pool[Math.floor(Math.random() * pool.length)];
+  // Try to pick a clip different from the one currently showing
+  let pick = pool[Math.floor(Math.random() * pool.length)];
+  if (state._lpLast && pool.length > 1){
+    let attempts = 0;
+    while (pick.noteId === state._lpLast.noteId
+        && pick.verbIdx === state._lpLast.verbIdx
+        && pick.exIdx === state._lpLast.exIdx
+        && attempts < 8){
+      pick = pool[Math.floor(Math.random() * pool.length)];
+      attempts++;
+    }
+  }
+  state._lpLast = pick;
+  state.listeningPracticeMode = true;
   // showVideoExample reads the verb from currentNote().verbs[state.fc.line[0]],
   // so stage those before opening the modal.
   state.currentNoteId = pick.noteId;
@@ -14865,6 +14878,33 @@ function showVideoExample(idx){
         card.appendChild(ctrl);
       }
 
+      // In Listening Practice mode, drop a "New clip" pill in its own row above
+      // the player controls. Right-aligned, styled to pop so it doesn't blend in.
+      const _oldNewClipRow = document.getElementById('video-modal-newclip-row');
+      if (_oldNewClipRow && _oldNewClipRow.parentNode) _oldNewClipRow.parentNode.removeChild(_oldNewClipRow);
+      if (state.listeningPracticeMode) {
+        const newClipRow = document.createElement('div');
+        newClipRow.id = 'video-modal-newclip-row';
+        newClipRow.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:10px 0 4px;';
+        newClipRow.innerHTML =
+            '<button type="button" id="video-newclip-btn" '
+          + 'onclick="startListeningPractice()" '
+          + 'style="background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border:none;'
+          + 'border-radius:999px;padding:9px 18px;font-size:14px;font-weight:800;cursor:pointer;'
+          + 'box-shadow:0 4px 12px rgba(124,58,237,.35);display:inline-flex;align-items:center;'
+          + 'gap:8px;transition:transform .15s ease, box-shadow .15s ease;" '
+          + 'onmouseover="this.style.transform=\'translateY(-1px) scale(1.03)\';this.style.boxShadow=\'0 6px 18px rgba(124,58,237,.45)\';" '
+          + 'onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 12px rgba(124,58,237,.35)\';" '
+          + 'title="Pick a new random clip">'
+          + '<span style="font-size:16px;">🔀</span>'
+          + '<span>New clip</span>'
+          + '</button>';
+        // Insert just before the controls bar so it's visually separated above the player controls
+        if (ctrl && ctrl.parentNode) {
+          ctrl.parentNode.insertBefore(newClipRow, ctrl);
+        }
+      }
+
       // Static caption (Option A): show the Filmot snippet under the video, verb highlighted
       const _oldCap = document.getElementById('video-modal-caption');
       if (_oldCap && _oldCap.parentNode) _oldCap.parentNode.removeChild(_oldCap);
@@ -14995,6 +15035,8 @@ function closeVideoModal(){
   const m = document.getElementById('video-modal');
   if (m) m.classList.remove('show');
   _destroyYTPlayer();
+  // Leave Listening Practice mode whenever the modal closes
+  state.listeningPracticeMode = false;
   const f = document.getElementById('video-modal-frame');
   if (f) f.innerHTML = '';   // removes the iframe so the video stops playing
   // Tear down dynamic controls + dynamic fallback link so the next open is clean
@@ -15002,6 +15044,8 @@ function closeVideoModal(){
   if (ctrl && ctrl.parentNode) ctrl.parentNode.removeChild(ctrl);
   const fb = document.getElementById('video-modal-fallback-link');
   if (fb && fb.parentNode) fb.parentNode.removeChild(fb);
+  const ncRow = document.getElementById('video-modal-newclip-row');
+  if (ncRow && ncRow.parentNode) ncRow.parentNode.removeChild(ncRow);
 }
 
 </script>
