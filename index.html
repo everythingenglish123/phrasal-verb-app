@@ -2001,28 +2001,6 @@
   .video-modal-caption mark { background: #FAC775; color: #412402; padding: 1px 4px; border-radius: 3px; font-weight: 500; }
   body.dark .video-modal-caption { background: #1e293b; color: #e2e8f0; border-color: #475569; }
 
-
-  .fc-yt-below {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 14px auto 0;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background: #ff0000;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    max-width: 280px;
-    transition: background 0.15s ease;
-  }
-  .fc-yt-below:hover { background: #cc0000; }
-  .fc-yt-below .fc-yt-icon { font-size: 16px; }
-  @media (max-width: 560px) {
-    .fc-yt-below { font-size: 13px; padding: 9px 16px; }
-  }
 </style>
 </head>
 <body>
@@ -2363,22 +2341,18 @@
           <div class="defn" id="fc-back-defn">...</div>
           <div class="example" id="fc-back-example">...</div>
           <div class="fc-dialogue" id="fc-back-dialogue" style="display:none"></div>
-          <button class="vid-example-btn" id="fc-vid-btn" onclick="event.stopPropagation();showVideoExample();">
-            <span class="vid-icon">▶</span>
-            <span class="vid-label">
-              <span>See "<span id="fc-vid-verb">...</span>" in real English</span>
-              <span class="vid-source" id="fc-vid-source"></span>
-            </span>
-          </button>
           <div class="tap-hint" id="fc-back-hint">Tap to flip back</div>
         </div>
       </div>
     </div>
 
-    <a class="fc-yt-below" id="fc-yt-below" href="#" target="_blank" rel="noopener">
-      <span class="fc-yt-icon">▶</span>
-      <span>Watch on YouTube</span>
-    </a>
+    <button class="vid-example-btn vid-example-btn-below" id="fc-vid-btn" onclick="showVideoExample();">
+      <span class="vid-icon">▶</span>
+      <span class="vid-label">
+        <span>See "<span id="fc-vid-verb">...</span>" in real English</span>
+        <span class="vid-source" id="fc-vid-source"></span>
+      </span>
+    </button>
 
     <div class="news-card" id="fc-news-card">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
@@ -10689,12 +10663,7 @@ function openActivity(name) {
     if (_url) { btn.href = _url; btn.style.display = "inline-flex"; }
     else { btn.style.display = "none"; }
   });
-  // Also set the persistent YouTube link below the flashcard
-  const _ytBelow = document.getElementById("fc-yt-below");
-  if (_ytBelow) {
-    if (_url) { _ytBelow.href = _url; _ytBelow.style.display = "flex"; }
-    else { _ytBelow.style.display = "none"; }
-  }
+
   if (state.currentNoteId !== '__mixed__' && hasResumableActivity(state.currentNoteId, name)) {
     showResumeModal(name);
   } else {
