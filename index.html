@@ -2471,7 +2471,7 @@
   <!-- ====== FLASHCARDS ====== -->
   <section id="screen-flashcards" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="exitFlashcards()">← Back</button>
+      <button class="back-btn" id="fc-back-btn" onclick="exitFlashcards()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -10314,10 +10314,17 @@ function showResumeBanner(){
   if (!banner) return;
   banner.style.display = '';
   document.getElementById('rb-activity').textContent = _activityLabel(state.resumeFrom.activity);
+  // When reviewing from an activity, hide the regular Back pill on the flashcards
+  // screen — the resume banner ("Back to [activity]") is the right exit.
+  const fcBack = document.getElementById('fc-back-btn');
+  if (fcBack) fcBack.style.display = 'none';
 }
 function hideResumeBanner(){
   const banner = document.getElementById('resume-banner');
   if (banner) banner.style.display = 'none';
+  // Restore the regular Back pill on flashcards
+  const fcBack = document.getElementById('fc-back-btn');
+  if (fcBack) fcBack.style.removeProperty('display');
 }
 function clearResume(){
   state.resumeFrom = null;
