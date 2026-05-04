@@ -336,32 +336,32 @@
   .screen.active { display: block; }
 
   .back-btn {
-    background: var(--brand-soft);
+    background: var(--accent-soft);
     border: 2px solid var(--accent);
     color: var(--accent);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 8px 16px;
     margin-bottom: 0;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     border-radius: 999px;
     line-height: 1;
     transition: all .15s ease;
-    box-shadow: 0 1px 3px rgba(124,58,237,.12);
+    box-shadow: 0 1px 3px rgba(37,99,235,.12);
   }
   .back-btn:hover {
     background: var(--accent);
     color: #fff;
     transform: translateX(-2px);
-    box-shadow: 0 4px 12px rgba(124,58,237,.28);
+    box-shadow: 0 4px 12px rgba(37,99,235,.28);
     text-decoration: none;
   }
   .back-btn:active { transform: translateX(-1px) scale(.97); }
-  body.dark .back-btn { background: rgba(124,58,237,.18); border-color: #a78bfa; color: #c4b5fd; }
-  body.dark .back-btn:hover { background: #a78bfa; color: #0f172a; }
+  body.dark .back-btn { background: rgba(37,99,235,.18); border-color: #60a5fa; color: #bfdbfe; }
+  body.dark .back-btn:hover { background: #60a5fa; color: #0f172a; }
   .activity-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
 
   .activity-header {
@@ -2395,6 +2395,7 @@
 
   <!-- ====== NOTE DETAIL (activity picker) ====== -->
   <section id="screen-note" class="screen">
+    <button class="back-btn" onclick="goToNotes()" style="margin-bottom:14px">← Back</button>
     <div class="breadcrumb">
       <a onclick="goToNotes()">Phrasal Verbs</a>
       <span class="sep">›</span>
@@ -2570,7 +2571,7 @@
   <!-- ====== SPELLING (letter tiles) ====== -->
   <section id="screen-spelling" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+      <button class="back-btn" onclick="goToNote()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -2610,7 +2611,7 @@
   <!-- ====== FILL IN THE BLANK ====== -->
   <section id="screen-fill" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+      <button class="back-btn" onclick="goToNote()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -2642,7 +2643,7 @@
 
   <!-- ====== MIXED FILL IN THE BLANK ====== -->
   <section id="screen-mfill" class="screen">
-    <button class="back-btn" onclick="goToNotes()">← Back to home</button>
+    <button class="back-btn" onclick="goToNotes()">← Back</button>
     <div class="activity-header">
       <h2 class="activity-title">📝 Mixed Fill in the Blank</h2>
       <div class="counter"><span id="mf-current">1</span> / <span id="mf-total">30</span></div>
@@ -2669,7 +2670,7 @@
   <!-- ====== SENTENCE BUILDER ====== -->
   <section id="screen-builder" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+      <button class="back-btn" onclick="goToNote()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -2708,7 +2709,7 @@
   <!-- ====== FIND THE CORRECT VERB ====== -->
   <section id="screen-situation" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+      <button class="back-btn" onclick="goToNote()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -2736,7 +2737,7 @@
 
   <section id="screen-convo" class="screen">
     <div class="activity-nav">
-      <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+      <button class="back-btn" onclick="goToNote()">← Back</button>
       <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
@@ -2800,7 +2801,7 @@
 
   <!-- ====== COMPLETE ====== -->
   <section id="screen-complete" class="screen">
-    <button class="back-btn" onclick="goToNote()">← Back to activities</button>
+    <button class="back-btn" onclick="goToNote()">← Back</button>
     <div class="complete-card">
       <div class="trophy">🎉</div>
       <h3 id="complete-title">Nice work!</h3>
