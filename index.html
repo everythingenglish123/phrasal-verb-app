@@ -14027,6 +14027,17 @@ function startMixedConvo(){
    LISTENING PRACTICE — Mixed Challenge: pick a random YouTube clip
    from any verb's videoExamples and open it in the existing video modal.
    ========================================================================= */
+// Listening Practice → "Study this verb": close the video and open that verb on
+// its flashcard. The Listening Practice flag is cleared via closeVideoModal.
+function lpOpenFlashcardForCurrent(){
+  const noteId = state.currentNoteId;
+  const verbIdx = (state.fc && state.fc.line && state.fc.line.length) ? state.fc.line[0] : 0;
+  if (typeof closeVideoModal === 'function') closeVideoModal();
+  if (typeof openFlashcardsForVerb === 'function'){
+    openFlashcardsForVerb(noteId, verbIdx);
+  }
+}
+
 function startListeningPractice(){
   if (typeof clearForwardTarget === 'function') clearForwardTarget();
   const pool = [];
@@ -14788,6 +14799,23 @@ function showVideoExample(idx){
     if (ex.sourceSpeaker) srcLabel.push(ex.sourceSpeaker);
     if (ex.sourceTitle) srcLabel.push("“" + ex.sourceTitle + "”");
     document.getElementById('video-modal-source').textContent = "Source: " + srcLabel.join(" · ");
+
+    // Study-this-verb action — appears in Listening Practice mode so the user
+    // can jump from a random clip straight to that verb's flashcard.
+    // Uses the same .review-btn styling as the "Review on flashcard" buttons in
+    // other activities so it feels familiar.
+    const _srcEl = document.getElementById('video-modal-source');
+    const _oldStudyRow = document.getElementById('video-modal-studyrow');
+    if (_oldStudyRow && _oldStudyRow.parentNode) _oldStudyRow.parentNode.removeChild(_oldStudyRow);
+    if (state.listeningPracticeMode && _srcEl){
+      const studyRow = document.createElement('div');
+      studyRow.id = 'video-modal-studyrow';
+      studyRow.style.cssText = 'margin:6px 0 12px;';
+      const _verbName = (v && v.verb) ? String(v.verb).replace(/"/g, '&quot;') : '';
+      studyRow.innerHTML = '<button class="review-btn" onclick="lpOpenFlashcardForCurrent()" '
+        + 'title="Open this verb on its flashcard">📖 Study “' + _verbName + '” on its flashcard</button>';
+      _srcEl.parentNode.insertBefore(studyRow, _srcEl.nextSibling);
+    }
     // Always-reliable timestamped YouTube short URL
     const directUrl = 'https://youtu.be/' + encodeURIComponent(ex.videoId)
               + '?t=' + encodeURIComponent(ex.start);
@@ -14878,32 +14906,6 @@ function showVideoExample(idx){
         card.appendChild(ctrl);
       }
 
-      // In Listening Practice mode, drop a "New clip" pill in its own row above
-      // the player controls. Right-aligned, styled to pop so it doesn't blend in.
-      const _oldNewClipRow = document.getElementById('video-modal-newclip-row');
-      if (_oldNewClipRow && _oldNewClipRow.parentNode) _oldNewClipRow.parentNode.removeChild(_oldNewClipRow);
-      if (state.listeningPracticeMode) {
-        const newClipRow = document.createElement('div');
-        newClipRow.id = 'video-modal-newclip-row';
-        newClipRow.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:10px 0 4px;';
-        newClipRow.innerHTML =
-            '<button type="button" id="video-newclip-btn" '
-          + 'onclick="startListeningPractice()" '
-          + 'style="background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border:none;'
-          + 'border-radius:999px;padding:9px 18px;font-size:14px;font-weight:800;cursor:pointer;'
-          + 'box-shadow:0 4px 12px rgba(124,58,237,.35);display:inline-flex;align-items:center;'
-          + 'gap:8px;transition:transform .15s ease, box-shadow .15s ease;" '
-          + 'onmouseover="this.style.transform=\'translateY(-1px) scale(1.03)\';this.style.boxShadow=\'0 6px 18px rgba(124,58,237,.45)\';" '
-          + 'onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 12px rgba(124,58,237,.35)\';" '
-          + 'title="Pick a new random clip">'
-          + '<span style="font-size:16px;">🔀</span>'
-          + '<span>New clip</span>'
-          + '</button>';
-        // Insert just before the controls bar so it's visually separated above the player controls
-        if (ctrl && ctrl.parentNode) {
-          ctrl.parentNode.insertBefore(newClipRow, ctrl);
-        }
-      }
 
       // Static caption (Option A): show the Filmot snippet under the video, verb highlighted
       const _oldCap = document.getElementById('video-modal-caption');
@@ -14936,23 +14938,57 @@ function showVideoExample(idx){
         }
       }
 
-      // If there are multiple clips, add a clip-tab strip above the controls bar
-      if (list.length > 1) {
-        const _oldClipTabs = document.getElementById('video-modal-cliptabs');
-        if (_oldClipTabs && _oldClipTabs.parentNode) _oldClipTabs.parentNode.removeChild(_oldClipTabs);
+      // Clip-tab strip — shown when there are multiple clips for this verb,
+      // OR when we're in Listening Practice mode (then we use the strip to
+      // host the "Study this verb" / "New clip" action buttons on the right).
+      const _oldClipTabs = document.getElementById('video-modal-cliptabs');
+      if (_oldClipTabs && _oldClipTabs.parentNode) _oldClipTabs.parentNode.removeChild(_oldClipTabs);
+      const _showActions = !!state.listeningPracticeMode;
+      if (list.length > 1 || _showActions) {
         const tabs = document.createElement('div');
         tabs.id = 'video-modal-cliptabs';
         tabs.className = 'video-modal-controls';
-        let html = '<span class="speed-label">Clip</span>';
-        for (let i = 0; i < list.length; i++) {
-          const active = (i === _curIdx) ? ' active' : '';
-          html += '<button type="button" class="ctrl-btn cliptab-btn' + active + '" data-clip-idx="' + i + '">' + (i+1) + '</button>';
+        // Flex layout: clip numbers on the left, action buttons pinned to the right
+        tabs.style.justifyContent = 'space-between';
+        tabs.style.flexWrap = 'wrap';
+
+        // Left group — clip-number tabs (only when there are multiple clips)
+        const leftGroup = document.createElement('div');
+        leftGroup.style.display = 'flex';
+        leftGroup.style.alignItems = 'center';
+        leftGroup.style.gap = '6px';
+        leftGroup.style.flexWrap = 'wrap';
+        if (list.length > 1) {
+          let leftHtml = '<span class="speed-label">Clip</span>';
+          for (let i = 0; i < list.length; i++) {
+            const active = (i === _curIdx) ? ' active' : '';
+            leftHtml += '<button type="button" class="ctrl-btn cliptab-btn' + active + '" data-clip-idx="' + i + '">' + (i+1) + '</button>';
+          }
+          leftGroup.innerHTML = leftHtml;
         }
-        tabs.innerHTML = html;
+        tabs.appendChild(leftGroup);
+
+        // Right group — Listening Practice "New clip" action, same size/style
+        // as the other player controls so it stays uniform; just the position
+        // (far right, away from clip numbers) makes it stand out.
+        if (_showActions){
+          const rightGroup = document.createElement('div');
+          rightGroup.style.display = 'flex';
+          rightGroup.style.alignItems = 'center';
+          rightGroup.style.gap = '6px';
+          rightGroup.style.flexWrap = 'wrap';
+          rightGroup.innerHTML =
+              '<button type="button" class="ctrl-btn" id="video-newclip-btn" '
+            + 'onclick="startListeningPractice()" '
+            + 'title="Pick a new random clip">🔀 New clip</button>';
+          tabs.appendChild(rightGroup);
+        }
+
         if (card && ctrl.parentNode) {
           card.insertBefore(tabs, ctrl);
         }
-        tabs.addEventListener('click', function(evt){
+        // Delegated click for clip-number tabs
+        leftGroup.addEventListener('click', function(evt){
           const tgt = evt.target.closest('button.cliptab-btn');
           if (!tgt) return;
           const ni = parseInt(tgt.getAttribute('data-clip-idx'), 10);
@@ -15046,6 +15082,8 @@ function closeVideoModal(){
   if (fb && fb.parentNode) fb.parentNode.removeChild(fb);
   const ncRow = document.getElementById('video-modal-newclip-row');
   if (ncRow && ncRow.parentNode) ncRow.parentNode.removeChild(ncRow);
+  const studyRow = document.getElementById('video-modal-studyrow');
+  if (studyRow && studyRow.parentNode) studyRow.parentNode.removeChild(studyRow);
 }
 
 </script>
