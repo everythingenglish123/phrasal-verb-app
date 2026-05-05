@@ -298,6 +298,29 @@
     border: 2px solid transparent;
   }
   .activity-card:hover { transform: translateY(-1px); border-color: var(--accent-soft); }
+
+  /* Glowing pulse for the bonus "Listen to the News" activity card */
+  .listen-news-card {
+    border-color: rgba(245, 158, 11, 0.55) !important;
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45);
+    animation: ln-pulse 2.2s ease-in-out infinite;
+  }
+  .listen-news-card:hover {
+    border-color: rgba(245, 158, 11, 0.85) !important;
+    transform: translateY(-1px);
+  }
+  .listen-news-card .icon { color: #d97706; }
+  .listen-news-card .step {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+  }
+  @keyframes ln-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(245, 158, 11, 0.40); }
+    60%  { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(245, 158, 11, 0); }
+  }
+  body.dark .listen-news-card { border-color: rgba(245, 158, 11, 0.65) !important; }
   .activity-card .icon {
     font-size: 34px;
     width: 56px;
@@ -493,6 +516,20 @@
     background: linear-gradient(180deg, #ffffff, #f9fafb);
     border-color: var(--accent-soft);
   }
+  /* Small position badge in upper-left of each card face */
+  .fc-num-badge {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--soft);
+    letter-spacing: .3px;
+    opacity: .75;
+    pointer-events: none;
+    user-select: none;
+  }
+  body.dark .fc-num-badge { color: #94a3b8; }
   .flashcard .tag {
     font-size: 11px;
     text-transform: uppercase;
@@ -2527,6 +2564,14 @@
         </div>
         <div class="chev">›</div>
       </div>
+      <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
+        <div class="icon">📰</div>
+        <div class="body">
+          <div class="name">Listen to the News <span class="step">BONUS</span></div>
+          <div class="desc">Play every news article in this section back-to-back.</div>
+        </div>
+        <div class="chev">›</div>
+      </div>
     </div>
   </section>
 
@@ -2545,7 +2590,11 @@
 
     <div class="activity-header">
       <h2 class="activity-title">🃏 Flashcards</h2>
-      <div class="counter"><span id="fc-known-count">0</span> / <span id="fc-total">18</span> learned</div>
+      <div class="counter">
+        Card <span id="fc-card-num">1</span> / <span id="fc-total-disp">18</span>
+        <span style="opacity:.55;margin:0 4px">·</span>
+        <span id="fc-known-count">0</span> / <span id="fc-total">18</span> learned
+      </div>
     </div>
     <div class="learned-track"><div class="learned-fill" id="fc-known-fill"></div></div>
     <div id="fc-deck-bar" class="fc-deck-bar" style="display:none;">
@@ -2562,12 +2611,14 @@
     <div class="flashcard-wrap">
       <div class="flashcard" id="flashcard" onclick="flipCard()">
         <div class="face front">
+          <div class="fc-num-badge" id="fc-front-num"></div>
           <div class="tag">Phrasal Verb</div>
           <div class="verb" id="fc-front-verb">...</div>
           <div class="defn" id="fc-front-defn" style="display:none"></div>
           <div class="tap-hint" id="fc-front-hint">Tap the card to reveal the definition, then rate yourself</div>
         </div>
         <div class="face back">
+          <div class="fc-num-badge" id="fc-back-num"></div>
           <div class="tag" id="fc-back-tag">Meaning &amp; Example</div>
           <div class="defn" id="fc-back-defn">...</div>
           <div class="example" id="fc-back-example">...</div>
@@ -4174,7 +4225,7 @@ const NOTE_UBER = {
       fillSentence: "Could you ___ me ___ at the corner by the coffee shop?",
       hint: "Starts with D · 2 words · Leave a passenger", dialogue: "A: How are you getting home after the party?\nB: I scheduled an Uber.\nA: That's a good option, especially at night.\nB: Yeah, it can pick me up here and drop me off at my house. Perfect!", situations: ["A driver leaves a passenger at the entrance of the shopping center.", "A father leaves his child at the school gates before driving to work.", "A taxi stops at the hotel door so the passenger can get out with her luggage."], excludeFromBank: [], fillFeedback: {'pick up': 'means to take from a place.', 'type in': 'means to enter text.', 'look out for': 'means to watch carefully.', 'flag down': 'means to signal a vehicle.', 'track down': 'means to locate.', 'circle around': 'means to drive around.', 'get in': 'means to enter the car.', 'fill up': 'means to fill the tank.', 'speed up': 'means to go faster.', 'slow down': 'means to go slower.'},
       newsSnippet: 'A new ride-share rule was announced this morning by the transport office. Drivers will now be required to [[drop off]] passengers only in clearly marked safe zones near busy public buildings. Officials say the change should improve safety for everyone. Several big airports tested the system last year with very positive results. The rule will take effect across the country starting next month.',
-      newsWords: [{w:"announced",d:"said publicly"}, {w:"required",d:"made necessary by rules"}, {w:"zones",d:"particular areas"}, {w:"officials",d:"people in positions of authority"}, {w:"airports",d:"places where planes take off and land"}],
+      newsWords: [{w:"announced",d:"said publicly"}, {w:"required",d:"made necessary by rules"}, {w:"zones",d:"particular areas"}, {w:"officials",d:"people in positions of authority"}, {w:"take effect",d:"to start being used or to begin to apply"}],
       newsAudio: 'audio/11 - uber/06-drop-off.mp3',
       convoChoices:{prompt:'I\'m your Uber driver and I just picked you up. Where do you want me to take you?',choices:[{text:'Drop me off at the corner.',correct:true,feedback:'Correct! \'Drop off\' means to leave a passenger somewhere.'},{text:'Drop off of me at the corner.',correct:false,feedback:'\'Drop off of\' is wrong. Just say \'drop me off.\''},{text:'Drop me off the corner.',correct:false,feedback:'\'Off the corner\' is wrong. Say \'drop me off at the corner.\''}]},
       videoExamples:[{videoId:"EHmC2D0_Hdg",start:35,end:46,sourceChannel:"TEDx",sourceSpeaker:"TEDx",sourceTitle:"Escaping video game addiction: Cam Adair at TEDxBoulder",caption:"every morning at 7 a m my dad would drop me off at the restaurant"},{videoId:"Eupk56SG76M",start:108,end:119,sourceChannel:"TEDx",sourceSpeaker:"Portia Jackson-Preston",sourceTitle:"The Missing Ingredient in Self Care | Portia Jackson-Preston | TEDxCrenshaw",caption:"asked my manager to drop me off at the emergency room on her way to work"},{videoId:"wf0wGAChKFQ",start:255,end:266,sourceChannel:"TEDx",sourceSpeaker:"Matthew Luhn",sourceTitle:"Creating a Feeling | Matthew Luhn | TEDxUCSB",caption:"my mom would drop me off at school at 11 a m in the morning"},{videoId:"wdrpvWTiE48",start:107,end:118,sourceChannel:"TEDx",sourceSpeaker:"TEDx",sourceTitle:"What day of the week is someday?: Todd Reubold at TEDxUMN",caption:"my mom offered to drop me off at the light rail to catch the train to the airport"},{videoId:"vcFp8Od1rgc",start:347,end:358,sourceChannel:"TEDx",sourceSpeaker:"Limmor Kfiri",sourceTitle:"Autonomous ride towards a new reality | Limmor Kfiri | TEDxTelAviv",caption:"just tell the car drop me off at TEDx Tel Aviv and go find parking"}]                },
@@ -11473,6 +11524,51 @@ function renderCard() {
     dlgEl.innerHTML = ""; dlgEl.style.display = "none";
   }
   document.getElementById("fc-total").textContent = state.fc.total;
+  // Update the verb's natural-position badge on each card face. Uses the
+  // verb's index in its source note's verbs array (1-based), so it stays
+  // stable regardless of shuffle order or deck/mixed mode.
+  (function _updateNumBadge(){
+    let total = 0;
+    let pos = 0;
+    if (state.deckSession) {
+      const item = _deckCurrentItem();
+      if (item) {
+        const note = NOTES.find(n => n.id === item.noteId);
+        if (note && note.verbs) {
+          total = note.verbs.length;
+          const idx = note.verbs.findIndex(x => x.verb === item.verbName);
+          if (idx >= 0) pos = idx + 1;
+        }
+      }
+    } else if (state.currentNoteId && state.currentNoteId !== '__mixed__') {
+      const note = currentNote();
+      if (note && note.verbs) {
+        total = note.verbs.length;
+        const vi = state.fc.line[0];
+        if (typeof vi === 'number') pos = vi + 1;
+      }
+    }
+    const label = (pos && total) ? (pos + ' / ' + total) : '';
+    const f = document.getElementById('fc-front-num');
+    const b = document.getElementById('fc-back-num');
+    if (f) f.textContent = label;
+    if (b) b.textContent = label;
+  })();
+  // Update the "Card X / Y" position counter. Counts distinct cards reached:
+  // seen.size + 1 if the current card is new, otherwise seen.size (revisits).
+  (function _updateCardPos(){
+    const totalEl = document.getElementById("fc-total-disp");
+    const numEl = document.getElementById("fc-card-num");
+    if (!numEl || !totalEl) return;
+    const total = state.fc.total || 0;
+    const curIdx = state.fc.line[0];
+    const seenN = state.fc.seen.size;
+    const curIsSeen = state.fc.seen.has(curIdx);
+    let pos = curIsSeen ? Math.max(1, seenN) : seenN + 1;
+    pos = Math.min(total || pos, Math.max(1, pos));
+    numEl.textContent = pos;
+    totalEl.textContent = total;
+  })();
   const fcEl = document.getElementById("flashcard");
   fcEl.classList.remove("flipped"); fcEl.style.minHeight = "";
   document.getElementById("fc-prev").disabled = state.fc.history.length === 0;
@@ -11599,6 +11695,14 @@ function shuffleCards() {
   state.fc.line.unshift(current);
 }
 function rateCard(rating) {
+  // Stop any news audio that's playing — moving to the next card means we're
+  // done with this verb's article, regardless of where in it the audio was.
+  (function _stopAudioOnRate(){
+    const a = document.getElementById('mp-audio');
+    if (a && !a.paused) { try { a.pause(); } catch(_){} }
+    if (typeof MiniPlayer !== 'undefined' && MiniPlayer.hide) MiniPlayer.hide();
+    if (typeof MiniPlayer !== 'undefined' && MiniPlayer._sync) MiniPlayer._sync(false);
+  })();
   const vi = state.fc.line.shift();
   state.fc.history.push(vi);
   // Persist this rating across sessions (skip mixed-review pseudo-note)
@@ -14197,6 +14301,66 @@ function lpOpenFlashcardForCurrent(){
   if (typeof showResumeBanner === 'function') showResumeBanner();
 }
 
+/* =========================================================================
+   LISTEN TO THE NEWS — bonus activity that plays every news article in the
+   current section back-to-back with a short pause between tracks.
+========================================================================= */
+let _lnQueue = [];
+let _lnIdx = 0;
+let _lnTimer = null;
+let _lnEndedHandler = null;
+
+function _lnStop(){
+  _lnQueue = [];
+  _lnIdx = 0;
+  if (_lnTimer) { clearTimeout(_lnTimer); _lnTimer = null; }
+  const a = document.getElementById('mp-audio');
+  if (a && _lnEndedHandler) {
+    try { a.removeEventListener('ended', _lnEndedHandler); } catch(_){}
+    _lnEndedHandler = null;
+  }
+}
+
+function startListenToNews(){
+  _lnStop();
+  if (!state.currentNoteId || state.currentNoteId === '__mixed__') return;
+  const note = currentNote();
+  if (!note || !note.verbs) return;
+  _lnQueue = note.verbs
+    .filter(v => v && v.newsAudio)
+    .map((v, i) => ({ src: v.newsAudio, label: '📰 ' + (v.verb || ('Article ' + (i+1))) }));
+  if (!_lnQueue.length) {
+    if (typeof alert === 'function') alert('No news audio available in this section yet.');
+    return;
+  }
+  _lnIdx = 0;
+  _lnPlayCurrent();
+}
+
+function _lnPlayCurrent(){
+  if (_lnIdx >= _lnQueue.length) { _lnStop(); return; }
+  const item = _lnQueue[_lnIdx];
+  // Hand off to the mini player so the existing scrubber/play UI works
+  if (typeof MiniPlayer !== 'undefined') {
+    MiniPlayer.play(item.src, item.label, null);
+  }
+  // Wire an "ended" handler that advances after a short pause
+  const a = document.getElementById('mp-audio');
+  if (!a) return;
+  // Clear any prior listener so we don't stack handlers across queue items
+  if (_lnEndedHandler) {
+    try { a.removeEventListener('ended', _lnEndedHandler); } catch(_){}
+  }
+  _lnEndedHandler = () => {
+    _lnIdx++;
+    if (_lnIdx >= _lnQueue.length) { _lnStop(); return; }
+    // 2.5 second gap between articles
+    if (_lnTimer) clearTimeout(_lnTimer);
+    _lnTimer = setTimeout(_lnPlayCurrent, 2500);
+  };
+  a.addEventListener('ended', _lnEndedHandler);
+}
+
 function startListeningPractice(){
   if (typeof clearForwardTarget === 'function') clearForwardTarget();
   const pool = [];
@@ -14736,9 +14900,26 @@ const MiniPlayer = {
       // as the audio plays (not just the thumb position).
       scrub.style.setProperty('--mp-progress', pct + '%');
     };
-    a.addEventListener('play',    () => this._sync(true));
-    a.addEventListener('pause',   () => this._sync(false));
-    a.addEventListener('ended',   () => { this._sync(false); /* keep bar visible so user can replay */ });
+    // Polling fallback — some browsers fire timeupdate inconsistently after
+    // a source switch or while the tab is backgrounded. Poll while playing
+    // so the scrubber always animates.
+    let _pollId = null;
+    const startPoll = () => {
+      if (_pollId) return;
+      _pollId = setInterval(() => {
+        if (a.paused || a.ended) { stopPoll(); return; }
+        if (this._scrubbing) return;
+        updateScrub();
+        this._renderTimes();
+      }, 200);
+    };
+    const stopPoll = () => {
+      if (_pollId) { clearInterval(_pollId); _pollId = null; }
+    };
+    a.addEventListener('play',    () => { this._sync(true); startPoll(); updateScrub(); });
+    a.addEventListener('playing', () => { startPoll(); updateScrub(); });
+    a.addEventListener('pause',   () => { this._sync(false); stopPoll(); });
+    a.addEventListener('ended',   () => { this._sync(false); stopPoll(); /* keep bar visible so user can replay */ });
     a.addEventListener('loadedmetadata', () => { this._renderTimes(); updateScrub(); });
     a.addEventListener('durationchange', () => { this._renderTimes(); updateScrub(); });
     a.addEventListener('seeking', () => { this._renderTimes(); updateScrub(); });
@@ -14868,6 +15049,8 @@ const MiniPlayer = {
   },
 
   close(){
+    // Stop any "Listen to the News" queue progression first
+    if (typeof _lnStop === 'function') _lnStop();
     const a = this._audio();
     if (a) {
       try { a.pause(); } catch(_){}
