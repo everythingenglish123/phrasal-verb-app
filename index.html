@@ -2567,7 +2567,7 @@
       <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
         <div class="icon">📰</div>
         <div class="body">
-          <div class="name">Listen to the News <span class="step">BONUS</span></div>
+          <div class="name">Listen to the News</div>
           <div class="desc">Play every news article in this section back-to-back.</div>
         </div>
         <div class="chev">›</div>
@@ -2735,7 +2735,7 @@
     <div class="progress-track"><div class="progress-fill" id="fb-progress"></div></div>
 
     <div class="qcard">
-      <div class="prompt-label">Complete the sentence</div>
+      <div class="prompt-label">Find the best verb to complete the sentence</div>
       <div class="prompt" id="fb-prompt">...</div>
       <div class="bank-label">Word bank · tap your answer</div>
       <div class="word-bank" id="fb-bank"></div>
@@ -2764,7 +2764,7 @@
     <div class="progress-track"><div class="progress-fill" id="mf-progress"></div></div>
 
     <div class="qcard">
-      <div class="prompt-label">Complete the sentence</div>
+      <div class="prompt-label">Find the best verb to complete the sentence</div>
       <div class="prompt" id="mf-prompt">...</div>
       <div class="bank-label">Choose the correct phrasal verb</div>
       <div class="word-bank" id="mf-bank"></div>
@@ -2837,7 +2837,7 @@
       <div id="sit-situations"></div>
     </div>
 
-    <div class="sit-q-label">Which phrasal verb fits all three situations?</div>
+    <div class="sit-q-label">Find the best verb to describe the situations</div>
     <div class="sit-choices" id="sit-choices"></div>
 
     <div class="sit-result" id="sit-result"></div>
@@ -4360,9 +4360,9 @@ const NOTE_STUDENT_LIFE = {
       convoChoices:{prompt:'I just realized I left my notes in the library when I came back to my dorm. What should I do?',choices:[{text:'You\'ll have to go back and grab them before someone takes them.',correct:true,feedback:'Correct! \'Go back\' means to return to a place you came from.'},{text:'You\'ll have to return back and grab them before someone takes them.',correct:false,feedback:'\'Return\' already means \'go back,\' so \'return back\' is redundant. Use one or the other.'},{text:'You\'ll have to go back to grab them before someone takes them.',correct:false,feedback:'After \'go back,\' use \'and\' instead of \'to\' when describing two actions in sequence: \'go back and grab them.\''}]},
       videoExamples:[{videoId:"vY7vbqbNrRM",start:259,end:270,sourceChannel:"Late Show",sourceSpeaker:"The Time Woody",sourceTitle:"The Time Woody Harrelson Nearly Ruined A Grateful Dead Concert",caption:"uh I realize uh anyway we go back we go back to to talk to uh everybody"},{videoId:"DtJ28qOEG1g",start:72,end:83,sourceChannel:"Conan",sourceSpeaker:"Conan",sourceTitle:"\"The Simpsons\" Writers Reunion -- Serious Jibber-Jabber with Conan O\'Brien | CONAN on TBS",caption:"what I\'m trying to do is go back to a time when it was"},{videoId:"tiH7T6HsaxM",start:234,end:245,sourceChannel:"TEDx",sourceSpeaker:"Jamie Denyer",sourceTitle:"One Punch Murder | Jamie Denyer | TEDxHolyhead",caption:"all we\'ve got to do is go back to basics remember how stuff was"},{videoId:"yYnoEFcvwAQ",start:335,end:346,sourceChannel:"Late Show",sourceSpeaker:"Late Show",sourceTitle:"“The Most Magnificent Monsters On TV” - John Oliver On “The Real Housewives of Salt Lake City”",caption:"want to know more about that? Go back to the start Go back to"},{videoId:"3f0cyQzOK-A",start:1306,end:1317,sourceChannel:"Conan",sourceSpeaker:"Greg Daniels",sourceTitle:"Greg Daniels (FULL EPISODE) | Conan O\'Brien Needs A Friend",caption:"to try to time travel and go back to you had a kick once"}]                },
     { verb: "sign up", defn: "To register or enroll.",
-      separable: true, fillParts: ["sign", "up"],
+      separable: false, fillParts: ["sign", "up"],
       flashExample: "He signed up for a computer science course last semester.",
-      fillSentence: "I need to ___ the form ___ for courses before they fill up.",
+      fillSentence: "I need to ___ ___ for courses before they fill up.",
       hint: "Starts with S · 2 words · Register or enrolll", dialogue: "A: Did you choose your classes for next semester?\nB: Not yet, I should get on that soon. Classes are filling up fast.\nA: Make sure you do it soon!\nB: I'll sign up tonight so I can get my spots.", situations: ["A student registers for an elective photography course at the start of the semester.", "A man puts his name down for a student volunteering program.", "A woman registers for a language exchange program offered by the university."], excludeFromBank: [], fillFeedback: {'go back': 'means to return.', 'drop out': 'means to leave a course.', 'meet up with': 'means to gather with someone.', 'get together': 'means to meet socially.', 'write up': 'means to write down formally.', 'brush up on': 'means to review skills.', 'study up on': 'means to prepare by studying.', 'pick up': 'means to acquire skills.'},
       newsSnippet: 'A free coding class is making headlines at a local university this term. More than three thousand students have already [[signed up]] for the new program. The course teaches basic programming skills in just six weeks. Many students hope it will help them find better jobs after they finish their main studies. The university says the strong response shows there is real demand for short, practical courses.',
       newsWords: [{w:"response",d:"a reaction or answer"}, {w:"headlines",d:"front-page news; major attention"}, {w:"term",d:"a part of the school or university year"}, {w:"demand",d:"the desire of people for something"}, {w:"practical",d:"useful in real situations"}],
@@ -4431,7 +4431,7 @@ const NOTE_STUDENT_LIFE = {
       newsSnippet: 'A college freshman has gone viral online with an honest post about his year. In it, he explains how he [[scraped through]] his exams while working two part-time jobs to pay rent. He barely had any time to study. His story has helped many other students realize they are not alone. Several universities have praised his openness about the challenges of student life.',
       newsWords: [{w:"freshman",d:"a first-year student"}, {w:"honest",d:"truthful"}, {w:"barely",d:"only just; almost not"}, {w:"challenges",d:"difficult things to deal with"}, {w:"openness",d:"the quality of being honest about feelings"}],
       newsAudio: 'audio/12 - studentlife/09-scrape-through.mp3',
-      convoChoices:{prompt:'I had three jobs this semester and barely had time to study. How did I do on my final exams?',choices:[{text:'I just scraped through with all C minuses.',correct:true,feedback:'Correct! \'Scrape through\' means to barely succeed at something difficult.'},{text:'I just scraped over with all C minuses.',correct:false,feedback:'The particle is \'through,\' not \'over.\' Say \'scrape through.\''},{text:'I just scraped through of with all C minuses.',correct:false,feedback:'Don\'t add \'of\' — just say \'scraped through.\''}]},
+      convoChoices:{prompt:'I heard your semester was brutal — three jobs while taking classes! How did your final exams go?',choices:[{text:'I just scraped through with all C minuses.',correct:true,feedback:'Correct! \'Scrape through\' means to barely succeed at something difficult.'},{text:'I just scraped over with all C minuses.',correct:false,feedback:'The particle is \'through,\' not \'over.\' Say \'scrape through.\''},{text:'I just scraped through of with all C minuses.',correct:false,feedback:'Don\'t add \'of\' — just say \'scraped through.\''}]},
       videoExamples:[{videoId:"RcdVpDbCup0",start:66,end:77,sourceChannel:"TEDx",sourceSpeaker:"Reynold Poernomo",sourceTitle:"The art and science of dessert-making | Reynold Poernomo | TEDxUniMelb",caption:"fast as possible and try to scrape through the surface and just little little"},{videoId:"SSaLJV3qC6c",start:168,end:179,sourceChannel:"TEDx",sourceSpeaker:"Hayley Teasdale",sourceTitle:"Your wonderful plastic brain! | Hayley Teasdale | TEDxCanberra",caption:"attend class but I managed to scrape through by using new and innovative ways"},{videoId:"7tixeeXDuUo",start:542,end:553,sourceChannel:"TEDx",sourceSpeaker:"Eternal Minds",sourceTitle:"Eternal Minds: How AI Can Immortalize Human Legacy | R Ramakrishnan | TEDxAmbazariLake",caption:"I can just with this capability scrape through the internet and read a book"},{videoId:"ZuX89b-XAJc",start:207,end:218,sourceChannel:"TEDx",sourceSpeaker:"Serena Mak",sourceTitle:"Exposing music exams and the distinction delusion (with Auslan) | Serena Mak | TEDxUQ",caption:"this if he only managed to scrape through with the bare minimum pass mark"},{videoId:"Hh5F-0fICAk",start:164,end:175,sourceChannel:"TEDx",sourceSpeaker:"An Ocean Rower\'s Perspective",sourceTitle:"An Ocean Rower\'s Perspective: Roz Savage at TEDxYale",caption:"wanted I just about managed to scrape through my degree because I was so"}]                },
     { verb: "pick up", defn: "To learn or understand something quickly.",
       separable: true, fillParts: ["pick", "up"],
