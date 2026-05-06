@@ -1021,6 +1021,21 @@
   }
   .mp-play:hover { background: #b91c1c; }
   .mp-play:active { transform: scale(.94); }
+  .mp-nav {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid #334155;
+    color: #cbd5e1;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all .15s ease;
+  }
+  .mp-nav:hover:not(:disabled) { background: #1e293b; color: #fff; border-color: #475569; }
+  .mp-nav:active:not(:disabled) { transform: scale(.94); }
+  .mp-nav:disabled { opacity: 0.3; cursor: not-allowed; }
   .mp-time { flex: 0 0 auto; font-variant-numeric: tabular-nums; font-size: 12px; color: #cbd5e1; min-width: 38px; text-align: center; }
   .mp-scrub-wrap { flex: 1 1 auto; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .mp-scrub {
@@ -1489,6 +1504,24 @@
   /* ── CONTINUE BANNER + MY DECKS BUTTON ── */
   .continue-row{display:flex;flex-direction:column;gap:10px;margin:0 0 16px;}
   .continue-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 8px rgba(37,99,235,.18);min-height:0;}
+  .wotd-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 8px rgba(245,158,11,.22);min-height:0;margin-top:8px;}
+  .wotd-banner:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(245,158,11,.32);}
+  .wotd-banner .wb-icon{font-size:22px;flex-shrink:0;line-height:1;}
+  .wotd-banner .wb-body{flex:1;min-width:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .wotd-banner .wb-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;opacity:.9;font-weight:700;}
+  .wotd-banner .wb-title{font-size:14px;font-weight:800;line-height:1.3;}
+  .wotd-banner .wb-defn{font-size:12px;opacity:.92;}
+  .wotd-banner .wb-arrow{font-size:14px;flex-shrink:0;opacity:.9;}
+  body.dark .wotd-banner{background:linear-gradient(135deg,#b45309,#78350f);}
+  /* Review-due card on Decks page */
+  .review-due-card{background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff;border-radius:16px;padding:18px 22px;margin:0 0 18px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 14px rgba(124,58,237,.22);}
+  .review-due-card .rd-icon{font-size:32px;flex-shrink:0;}
+  .review-due-card .rd-body{flex:1;min-width:0;}
+  .review-due-card .rd-title{font-size:16px;font-weight:800;}
+  .review-due-card .rd-sub{font-size:13px;opacity:.9;margin-top:2px;}
+  .review-due-card .rd-cta{background:#fff;color:#5b21b6;border:none;padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;transition:transform .15s;flex-shrink:0;}
+  .review-due-card .rd-cta:hover{transform:translateY(-1px);}
+  body.dark .review-due-card{background:linear-gradient(135deg,#5b21b6,#2e1065);}
   .continue-banner:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.28);}
   .continue-banner .cb-icon{font-size:20px;flex-shrink:0;line-height:1;}
   .continue-banner .cb-body{flex:1;min-width:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
@@ -2454,6 +2487,16 @@
       <h1 class="splash-title">📘 A Phrasal Verb Study App</h1>
       <p class="splash-sub">Sound Like a Native Speaker!</p>
       <p class="splash-note">🇺🇸 American English. Some phrasal verbs are used differently in British, Australian, or other varieties of English.</p>
+    </div>
+
+    <div class="wotd-banner" id="wotd-banner" style="display:none;" onclick="openWordOfTheDay()">
+      <span class="wb-icon">🌟</span>
+      <div class="wb-body">
+        <span class="wb-label">Word of the day:</span>
+        <span class="wb-title" id="wotd-title">...</span>
+        <span class="wb-defn" id="wotd-defn">...</span>
+      </div>
+      <span class="wb-arrow">→</span>
     </div>
 
     <div class="welcome-line" id="welcome-line"></div>
@@ -11314,6 +11357,8 @@ const state = {
   mf: { pool: [], idx: 0, answered: false, correct: 0, selectedChip: null, bankForQ: [] },
   progress: {},
   cardRatings: {},   // { "<noteId>::<verbName>": 1|2|3|4 }
+  srs: {},           // { "<noteId>::<verbName>": { interval, ease, due, last, reps } }
+  wotd: null,        // { dateKey, noteId, verbName }
   lastSession: null, // { noteId, activity }
   resumeFrom: null,  // { activity, noteId, idx }, set when jumping from activity → flashcard
   forwardTo: null,   // { kind: 'note'|'activity'|'mixedNews', noteId?, activity? }, set by Back to enable redoing
@@ -11331,6 +11376,8 @@ const state = {
     state.progress[n.id] = saved[n.id] || { flashcards: false, builder: false, fill: false, spelling: false, situation: false, particle: false };
   });
   try { const r = localStorage.getItem('eewj_phrasal_card_ratings'); if(r) state.cardRatings = JSON.parse(r) || {}; } catch(e){}
+  try { const s = localStorage.getItem('eewj_phrasal_srs'); if(s) state.srs = JSON.parse(s) || {}; } catch(e){}
+  try { const w = localStorage.getItem('eewj_phrasal_wotd'); if(w) state.wotd = JSON.parse(w) || null; } catch(e){}
   try { const ls = localStorage.getItem('eewj_phrasal_last_session'); if(ls) state.lastSession = JSON.parse(ls); } catch(e){}
   try { const sw = localStorage.getItem('eewj_phrasal_saved_words'); if(sw) state.savedWords = JSON.parse(sw) || []; } catch(e){}
   try { const aps = localStorage.getItem('eewj_phrasal_activity_saves'); if(aps) state.activitySaves = JSON.parse(aps) || {}; } catch(e){}
@@ -11535,9 +11582,117 @@ function setCardRating(noteId, verbName, rating){
   if (!noteId || noteId === '__mixed__' || !verbName) return;
   state.cardRatings[noteId + '::' + verbName] = rating;
   saveCardRatings();
+  srsUpdate(noteId, verbName, rating);
 }
 function getCardRating(noteId, verbName){
   return state.cardRatings[noteId + '::' + verbName];
+}
+
+/* =========================================================================
+   SPACED REPETITION (simplified SM-2)
+   - Each verb gets metadata: { interval (days), ease, due (ms), last (ms), reps }
+   - Rating 1 (No Idea):       reset, due in 10 minutes
+   - Rating 2 (Almost):        interval = 1 day,  ease -= 0.15
+   - Rating 3 (I Think So):    1d → 3d → prev * ease
+   - Rating 4 (Got It!):       1d → 4d → prev * ease, ease += 0.05
+   - Ease clamped to [1.3, 2.8]
+   - "Due" verbs are those whose due <= now
+========================================================================= */
+const SRS_DAY_MS = 24 * 60 * 60 * 1000;
+function srsKey(noteId, verbName){ return noteId + '::' + verbName; }
+function srsSave(){
+  try { localStorage.setItem('eewj_phrasal_srs', JSON.stringify(state.srs)); } catch(e){}
+}
+function srsUpdate(noteId, verbName, rating){
+  if (!noteId || noteId === '__mixed__' || !verbName) return;
+  const k = srsKey(noteId, verbName);
+  const now = Date.now();
+  const prev = state.srs[k] || { interval: 0, ease: 2.5, due: 0, last: 0, reps: 0 };
+  let { interval, ease, reps } = prev;
+  if (rating === 1) {
+    // No idea: review again very soon
+    interval = 10 / (60 * 24); // 10 minutes in day units
+    reps = 0;
+    ease = Math.max(1.3, ease - 0.2);
+  } else if (rating === 2) {
+    interval = 1;
+    reps = 1;
+    ease = Math.max(1.3, ease - 0.15);
+  } else if (rating === 3) {
+    if (reps === 0) interval = 1;
+    else if (reps === 1) interval = 3;
+    else interval = Math.round(interval * ease * 10) / 10;
+    reps++;
+  } else if (rating === 4) {
+    if (reps === 0) interval = 1;
+    else if (reps === 1) interval = 4;
+    else interval = Math.round(interval * ease * 10) / 10;
+    ease = Math.min(2.8, ease + 0.05);
+    reps++;
+  }
+  state.srs[k] = {
+    interval: interval,
+    ease: ease,
+    due: now + interval * SRS_DAY_MS,
+    last: now,
+    reps: reps
+  };
+  srsSave();
+}
+function srsIsDue(noteId, verbName){
+  const k = srsKey(noteId, verbName);
+  const e = state.srs[k];
+  if (!e) return false; // never reviewed yet — not "due", just unseen
+  return e.due <= Date.now();
+}
+function srsCollectDue(){
+  const out = [];
+  NOTES.forEach(note => {
+    note.verbs.forEach((v, idx) => {
+      if (!v.verb) return;
+      if (srsIsDue(note.id, v.verb)) {
+        out.push({ noteId: note.id, noteEmoji: note.emoji, noteTitle: note.title, verbIdx: idx, verbName: v.verb });
+      }
+    });
+  });
+  return out;
+}
+
+/* =========================================================================
+   WORD OF THE DAY
+   - Picks one random verb per calendar day, deterministic (date-seeded)
+   - Stays the same for 24 hours; rotates next day automatically
+========================================================================= */
+function _wotdDateKey(){
+  const d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+}
+function _hashStr(s){
+  let h = 0;
+  for (let i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; }
+  return Math.abs(h);
+}
+function getWordOfTheDay(){
+  const today = _wotdDateKey();
+  if (state.wotd && state.wotd.dateKey === today) {
+    // Validate the verb still exists
+    const note = NOTES.find(n => n.id === state.wotd.noteId);
+    if (note && note.verbs.some(v => v.verb === state.wotd.verbName)) {
+      return state.wotd;
+    }
+  }
+  // Build a flat pool of all verbs
+  const pool = [];
+  NOTES.forEach(note => {
+    note.verbs.forEach((v, idx) => {
+      if (v.verb && v.defn) pool.push({ noteId: note.id, noteEmoji: note.emoji, noteTitle: note.title, verbIdx: idx, verbName: v.verb });
+    });
+  });
+  if (!pool.length) return null;
+  const i = _hashStr(today + '_eewj') % pool.length;
+  state.wotd = Object.assign({ dateKey: today }, pool[i]);
+  try { localStorage.setItem('eewj_phrasal_wotd', JSON.stringify(state.wotd)); } catch(e){}
+  return state.wotd;
 }
 function setLastSession(noteId, activity){
   if (!noteId || noteId === '__mixed__') return;
@@ -12090,6 +12245,32 @@ function renderHomeBanners(){
   if (!showCb) cb.style.display = 'none';
   const hasDecks = stats.needCount + stats.gotCount > 0;
   row.style.display = (showCb || hasDecks) ? '' : 'none';
+
+  // Word of the Day
+  const wb = document.getElementById('wotd-banner');
+  if (wb) {
+    const wotd = getWordOfTheDay();
+    if (wotd) {
+      const note = NOTES.find(n => n.id === wotd.noteId);
+      const v = note && note.verbs[wotd.verbIdx];
+      if (v) {
+        document.getElementById('wotd-title').textContent = v.verb;
+        document.getElementById('wotd-defn').textContent = '· ' + (v.defn || '');
+        wb.style.display = '';
+      } else {
+        wb.style.display = 'none';
+      }
+    } else {
+      wb.style.display = 'none';
+    }
+  }
+}
+function openWordOfTheDay(){
+  const wotd = getWordOfTheDay();
+  if (!wotd) return;
+  if (typeof openFlashcardsForVerb === 'function') {
+    openFlashcardsForVerb(wotd.noteId, wotd.verbIdx, 'wotd');
+  }
 }
 function resumeLastSession(){
   if (!state.lastSession) return;
@@ -12178,6 +12359,18 @@ function renderDecks(){
     return;
   }
   let html = '';
+  // Ready to Review (spaced repetition): show only when there are verbs ready
+  const dueCount = srsCollectDue().length;
+  if (dueCount > 0) {
+    html += '<div class="review-due-card">'
+          + '<div class="rd-icon">🔁</div>'
+          + '<div class="rd-body">'
+          + '<div class="rd-title">Ready to Review</div>'
+          + '<div class="rd-sub">' + dueCount + ' phrasal verb' + (dueCount === 1 ? '' : 's') + ' to practice today</div>'
+          + '</div>'
+          + '<button class="rd-cta" onclick="startDeckSession({type:\'review-due\'})">▶ Start</button>'
+          + '</div>';
+  }
   // Deck resume banner, appears when a deck session was exited mid-run
   if (hasResumableDeck()) {
     const d = loadDeckState();
@@ -12201,7 +12394,7 @@ function renderDecks(){
       const tcount = t.verbs.length;
       html += '<div class="decks-topic"><div class="decks-topic-name" style="display:flex;align-items:center;gap:6px;">'
             + '<span>' + t.note.emoji + ' ' + escapeHtml(t.note.title) + '</span>'
-            + '<button class="decks-topic-cta" onclick="event.stopPropagation();startDeckSession({type:\'topic-need\',noteId:\'' + t.note.id.replace(/'/g, "\\'") + '\'})">▶ Study these ' + tcount + '</button>'
+            + '<button class="decks-topic-cta" onclick="event.stopPropagation();startDeckSession({type:\'topic-need\',noteId:\'' + t.note.id.replace(/'/g, "\\'") + '\'})">▶ Study ' + (tcount === 1 ? 'this 1' : 'these ' + tcount) + '</button>'
             + '</div><div class="decks-verb-list">';
       t.verbs.forEach(vi => {
         const m = _ratingMeta(vi.rating);
@@ -12218,7 +12411,7 @@ function renderDecks(){
       const tcount = t.verbs.length;
       html += '<div class="decks-topic"><div class="decks-topic-name" style="display:flex;align-items:center;gap:6px;">'
             + '<span>' + t.note.emoji + ' ' + escapeHtml(t.note.title) + '</span>'
-            + '<button class="decks-topic-cta b-got" onclick="event.stopPropagation();startDeckSession({type:\'topic-got\',noteId:\'' + t.note.id.replace(/'/g, "\\'") + '\'})">▶ Study these ' + tcount + '</button>'
+            + '<button class="decks-topic-cta b-got" onclick="event.stopPropagation();startDeckSession({type:\'topic-got\',noteId:\'' + t.note.id.replace(/'/g, "\\'") + '\'})">▶ Study ' + (tcount === 1 ? 'this 1' : 'these ' + tcount) + '</button>'
             + '</div><div class="decks-verb-list">';
       t.verbs.forEach(vi => {
         html += '<div class="decks-verb-chip" onclick="openFlashcardsForVerb(\'' + t.note.id + '\',' + vi.verbIdx + ',\'decks\')"><span class="dvc-rating">✅</span><span>' + escapeHtml(vi.verbName) + '</span></div>';
@@ -12665,6 +12858,10 @@ function toggleFCOrder(){
 //   { type:'topic-need',  noteId:'<id>' }   → just that topic's 'Need More Practice' verbs
 //   { type:'topic-got',   noteId:'<id>' }   → just that topic's 'Got It!' verbs
 function _buildDeckQueue(scope){
+  // SRS-based "Ready to Review" deck
+  if (scope.type === 'review-due') {
+    return srsCollectDue();
+  }
   const stats = _collectDeckStats();
   let topics;
   let wantNeed = (scope.type === 'section-need' || scope.type === 'topic-need');
@@ -12688,6 +12885,7 @@ function _buildDeckQueue(scope){
   return queue;
 }
 function _deckLabelFor(scope){
+  if (scope.type === 'review-due')   return '🔁 Ready to Review';
   if (scope.type === 'section-need') return '📝 Studying: Need More Practice';
   if (scope.type === 'section-got')  return '✅ Studying: Got It!';
   if (scope.type === 'topic-need')   return '📝 Topic deck';
@@ -16534,6 +16732,7 @@ const MiniPlayer = {
     const a = this._audio();
     const playBtn = document.getElementById('mp-play-btn');
     if (playBtn) playBtn.textContent = playing ? '⏸' : '▶';
+    this._updateNavButtons();
     // Update every registered per-screen Listen button:
     // mark the one that matches the current src as playing, others reset.
     const curSrc = a ? a.src : '';
@@ -16614,6 +16813,62 @@ const MiniPlayer = {
     if (!a || !a.src) return;
     if (a.paused) { const p = a.play(); if (p && p.catch) p.catch(()=>{}); }
     else { a.pause(); }
+  },
+
+  // Build a deduped, ordered list of tracks from registered Listen buttons.
+  // Returns [{ src, label, btn }] in DOM order so prev/next behave intuitively.
+  _trackList(){
+    const seen = new Set();
+    const list = [];
+    this._registered.forEach(r => {
+      if (!r.btn || !r.btn.isConnected || !r.src) return;
+      if (seen.has(r.src)) return;
+      seen.add(r.src);
+      const lab = r.btn.dataset.audioLabel || this._curLabel || 'Audio';
+      list.push({ src: r.src, label: lab, btn: r.btn });
+    });
+    // Sort by DOM document order so navigation matches what the user sees on screen.
+    list.sort((a, b) => {
+      if (a.btn === b.btn) return 0;
+      const pos = a.btn.compareDocumentPosition(b.btn);
+      if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+      if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+      return 0;
+    });
+    return list;
+  },
+
+  _curIndex(list){
+    if (!this._curSrc) return -1;
+    return list.findIndex(t => t.src === this._curSrc);
+  },
+
+  prev(){
+    this.init();
+    const list = this._trackList();
+    if (!list.length) return;
+    const i = this._curIndex(list);
+    const target = (i <= 0) ? list[0] : list[i - 1];
+    if (target) this.play(target.src, target.label, target.btn);
+  },
+
+  next(){
+    this.init();
+    const list = this._trackList();
+    if (!list.length) return;
+    const i = this._curIndex(list);
+    const target = (i < 0 || i >= list.length - 1) ? list[list.length - 1] : list[i + 1];
+    if (target) this.play(target.src, target.label, target.btn);
+  },
+
+  _updateNavButtons(){
+    const list = this._trackList();
+    const i = this._curIndex(list);
+    const prevBtn = document.getElementById('mp-prev-btn');
+    const nextBtn = document.getElementById('mp-next-btn');
+    const hasList = list.length > 1;
+    if (prevBtn) prevBtn.disabled = !hasList || i <= 0;
+    if (nextBtn) nextBtn.disabled = !hasList || i < 0 || i >= list.length - 1;
   },
 
   close(){
@@ -17199,7 +17454,9 @@ function closeVideoModal(){
 
 <!-- Mini audio player (bottom-fixed, persists across screens) -->
 <div class="mini-player" id="mini-player" role="region" aria-label="Audio player">
+  <button class="mp-nav" id="mp-prev-btn" type="button" onclick="MiniPlayer.prev()" aria-label="Previous track" title="Previous">⏮</button>
   <button class="mp-play" id="mp-play-btn" type="button" onclick="MiniPlayer.toggle()" aria-label="Play / pause">▶</button>
+  <button class="mp-nav" id="mp-next-btn" type="button" onclick="MiniPlayer.next()" aria-label="Next track" title="Next">⏭</button>
   <span class="mp-time" id="mp-current-time">0:00</span>
   <div class="mp-scrub-wrap">
     <input type="range" id="mp-scrub" class="mp-scrub" min="0" max="100" step="0.1" value="0" aria-label="Scrub audio" />
