@@ -11512,6 +11512,7 @@ function toggleSavedWord(noteId, verbName, w, d, snippet, btn){
   } else {
     addSavedWord(noteId, verbName, w, d, snippet);
     if (btn) { btn.classList.add('saved'); btn.textContent = '★'; btn.title = 'Remove from saved'; }
+    if (typeof playSave === 'function') playSave();
   }
 }
 // Read params from button data attributes, robust against any quote/escape edge cases
@@ -13802,8 +13803,10 @@ function completeActivity(title, score) {
   document.getElementById("complete-score").textContent = score;
   showScreen("complete");
   updateNoteProgress();
-  // Celebration sound
-  if (typeof playComplete === 'function') playComplete();
+  // Celebration sound — perfect fanfare if 100%, otherwise standard complete
+  const isPerfect = /\b100\s*%/.test(String(score)) || /Perfect/i.test(String(title));
+  if (isPerfect && typeof playPerfect === 'function') playPerfect();
+  else if (typeof playComplete === 'function') playComplete();
 }
 function restartActivity() {
   // Resume whichever activity we just finished
@@ -15448,7 +15451,7 @@ function checkParticle() {
     fb.classList.add('show', isCorrect ? 'good' : 'bad');
     document.getElementById('pt-check').textContent = (ptState.current === verbs.length - 1) ? 'Finish' : 'Next →';
     document.getElementById('pt-check').disabled = false;
-    if (isCorrect) playGoodSound(); else playBadSound();
+    if (isCorrect && typeof playCorrect === 'function') playCorrect();
   } else {
     if (ptState.current < verbs.length - 1) {
       ptState.current++;
@@ -15492,6 +15495,8 @@ function showParticleComplete() {
     `You got ${ptState.correct} out of ${total} correct (${pct}%)`;
   document.querySelector('#screen-complete .trophy').textContent = trophy;
   showScreen('complete');
+  if (pct === 100 && typeof playPerfect === 'function') playPerfect();
+  else if (typeof playComplete === 'function') playComplete();
 }
 
 /* =========================================================================
@@ -15587,6 +15592,26 @@ function playComplete(){
   _tone(1047, 0.50, t + 0.33, 'triangle', 0.24);  // C6 (held longer)
   // Add a high sparkle on top
   _tone(1568, 0.45, t + 0.40, 'sine',     0.10);  // G6
+}
+// Perfect-100% fanfare — fuller than complete, resolves on E6 with a sparkle
+function playPerfect(){
+  if(!soundEnabled) return;
+  const ctx = _getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  _tone(523,  0.12, t,        'triangle', 0.20);  // C5
+  _tone(659,  0.12, t + 0.10, 'triangle', 0.20);  // E5
+  _tone(784,  0.12, t + 0.20, 'triangle', 0.20);  // G5
+  _tone(1047, 0.18, t + 0.30, 'triangle', 0.22);  // C6
+  _tone(1319, 0.55, t + 0.42, 'triangle', 0.24);  // E6 (held)
+  _tone(2093, 0.60, t + 0.48, 'sine',     0.09);  // C7 sparkle
+}
+// Save-word ping — quiet single A5 sine note
+function playSave(){
+  if(!soundEnabled) return;
+  const ctx = _getAudioCtx();
+  if(!ctx) return;
+  _tone(880, 0.18, ctx.currentTime, 'sine', 0.16); // A5
 }
 function loadSoundPref(){
   try{
