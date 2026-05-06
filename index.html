@@ -2378,6 +2378,8 @@
         </button>
         <button class="theme-toggle" id="saved-words-btn" onclick="goToSavedWords()" title="Saved words" aria-label="Saved words">★</button>
         <button class="theme-toggle" id="decks-btn-mini" onclick="goToDecks()" title="My Decks" aria-label="My Decks">📚</button>
+      </div>
+      <div class="ha-group ha-group-mid">
         <div class="me-menu-wrap">
           <button class="theme-toggle" id="me-menu-btn" onclick="toggleMasterEnglishMenu(event)" title="Master English" aria-label="Master English">👨🏻‍🏫</button>
           <div class="me-menu" id="me-menu" role="menu" aria-hidden="true">
@@ -2402,8 +2404,6 @@
             </a>
           </div>
         </div>
-      </div>
-      <div class="ha-group ha-group-mid">
         <button class="theme-toggle" id="sound-toggle" onclick="toggleSound()" title="Toggle sound" aria-label="Toggle sound">🔊</button>
         <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
       </div>
@@ -3686,7 +3686,7 @@ const NOTE_EMOTIONS = {
       flashExample: "She doesn't have anything against him; she's just busy.",
       fillSentence: "Do you ___ me? You've been cold all week.",
       hint: "Starts with H · 3 words · Negative feeling toward", dialogue: "A: Why don't you ever talk to Jess at work?\nB: We just don't have much in common.\nA: She thinks you don't like her.\nB: I don't have anything against her, we're just different people.", situations: ["A manager always criticizes one particular employee's ideas, even when they are good.", "A woman seems to dislike a new neighbor for no obvious reason and avoids him completely.", "A student doesn't understand why his teacher gives him low grades no matter how hard he tries."], excludeFromBank: [], fillFeedback: {'turn against': 'means to begin opposing.', 'not care for': 'means to dislike something.', 'feel up to': 'means to feel ready for something.', 'shake up': 'means to disturb or shock.', 'snap out of': 'means to recover from a mood.', 'bottle up': 'means to hide feelings inside.', 'fight back': 'means to hold in tears.', 'pour out': 'means to express openly.'},
-      findParticle: { correct: "something", wrong: ["nothing", "anything", "one"] },
+      findParticle: { correct: "against", wrong: ["for", "with", "on"] },
       newsSnippet: 'A retired sports coach has shared a thoughtful interview about modern youth training. He explained why he [[has something against]] young athletes practicing for too many hours each day. He believes rest and recovery are just as important as hard work. Several youth clubs have started shorter daily sessions after reading his comments. The coach has also been invited to give talks at sports academies.',
       newsWords: [{w:"retired",d:"no longer working because of age"}, {w:"athletes",d:"people who do sports professionally"}, {w:"recovery",d:"the time the body needs to heal and rest"}, {w:"sessions",d:"periods of time spent training or working"}, {w:"academies",d:"schools that teach a specific subject"}],
       newsAudio: 'audio/5 - emotions/15-have-something-against.mp3',
@@ -9224,7 +9224,7 @@ const NOTE_50VERBS1 = {
       convoChoices:{prompt:'You look surprised. Did something happen at the supermarket?',choices:[{text:'I ran into my high school teacher in the cereal aisle!',correct:true,feedback:'Correct! \'Run into\' means to meet someone unexpectedly.'},{text:'I ran on my high school teacher in the cereal aisle!',correct:false,feedback:'The preposition is \'into,\' not \'on.\' Say \'ran into.\''},{text:'I ran into with my high school teacher in the cereal aisle!',correct:false,feedback:'Don\'t add \'with.\' Just say \'ran into\' followed by the person.'}]},
       videoExamples:[{videoId:"JG9_EWoX1Cc",start:1911,end:1922,sourceChannel:"BBC News",sourceSpeaker:"BBC News",sourceTitle:"Trump: The Comeback? - BBC News",caption:"wall Stripes but Joe Biden has run into problems"},{videoId:"-_OYsH0HeuA",start:685,end:696,sourceChannel:"BBC News",sourceSpeaker:"BBC News",sourceTitle:"Global flight chaos: 200,000 passengers stranded as power failure shuts Heathrow Airport  | BBC News",caption:"of today\'s disruption is expected to run into millions of pounds"},{videoId:"EKrqDAE-HZY",start:3,end:14,sourceChannel:"TEDx",sourceSpeaker:"Kim Walton",sourceTitle:"Accessible Accessibility | Kim Walton | TEDxTwinFalls",caption:"So I ran into an old friend the other day and I"},{videoId:"5t2Sn2jOkDg",start:113,end:124,sourceChannel:"TEDx",sourceSpeaker:"Linsey Hughes",sourceTitle:"How to Get What You Want at Work | Linsey Hughes | TEDxDuke",caption:"On hedge funds where we talk a lot about that world but"},{videoId:"c8O4Vd7eE_c",start:28,end:39,sourceChannel:"TEDx",sourceSpeaker:"TEDx",sourceTitle:"TEDxMalmoe - Patrick O'Casey - 02/02/10",caption:"Was in London last year I was making pretty pictures for the"}]                },
     { verb: "take care of", defn: "To handle or deal with something.", separable: false, flashExample: "Take care of your health by exercising.", fillSentence: "He's responsible for ___ his chores.", hint: "Starts with T · 3 words · Handle or deal with", dialogue: "A: Who's going to take care of the bills?\nB: I'll handle them.", situations: ["A nurse tends to patients throughout the night in the hospital ward.", "A man handles all the travel arrangements for the team.", "A daughter takes care of her elderly father after his surgery."], excludeFromBank: ['look after'], fillFeedback: {'deal with situation': 'means to handle.', 'go through': 'means to experience hardship.', 'look into': 'means to investigate.', 'put up with': 'means to tolerate.', 'hand in': 'means to officially submit.', 'set up': 'means to prepare or arrange.', 'get together': 'means to meet socially.', 'come up with': 'means to think of an idea.'},
-      findParticle: { correct: "care", wrong: ["hold", "stock", "note"] },
+      findParticle: { correct: "of", wrong: ["to", "with", "for"] },
       newsSnippet: 'A free urban gardening program has spread from Detroit to dozens of other cities. Volunteers turn empty city lots into small vegetable gardens. Local families work in teams and [[take care of]] the plants together throughout the season. The harvest is shared, and any extra is donated to neighbors. The program leaders are now writing a beginner\'s handbook.',
       newsWords: [{w:"urban",d:"connected with a city or town"}, {w:"donated",d:"given for free, especially to help others"}, {w:"throughout",d:"during the whole period of time"}, {w:"harvest",d:"the time when crops are gathered"}, {w:"handbook",d:"a small book giving useful information"}],
       newsAudio: "audio/1 - 50verbs1/47-take-care-of.mp3",
@@ -14614,14 +14614,22 @@ function startParticle() {
 
 // Display the verb with the missing particle as a blank.
 // For 2-part verbs ("wake up"): show "wake ___"
-// For 3-part verbs ("look forward to"): show "look ___ to" (middle is blank)
-// For "take care of": show "take ___ of" (middle word is the answer)
+// For 3-part verbs the blank goes wherever the correct particle sits:
+//   "look forward to" + correct="forward" → "look ___ to"
+//   "take care of"    + correct="care"    → "take ___ of"
+//   "not care for"    + correct="for"     → "not care ___"
 function _ptVerbDisplay(verbName, correctParticle) {
   const parts = verbName.split(' ');
   if (parts.length === 2) {
     return `<span>${parts[0]}</span><span class="pt-blank empty"></span>`;
   } else if (parts.length === 3) {
-    return `<span>${parts[0]}</span><span class="pt-blank empty"></span><span>${parts[2]}</span>`;
+    // Locate which slot the correct particle occupies. Default to middle (the most common case).
+    const blankIdx = (correctParticle && parts[2] === correctParticle) ? 2
+                    : (correctParticle && parts[0] === correctParticle) ? 0
+                    : 1;
+    return parts.map((p, i) =>
+      i === blankIdx ? `<span class="pt-blank empty"></span>` : `<span>${p}</span>`
+    ).join('');
   }
   // Fallback: show the verb's first word and a blank.
   return `<span>${parts[0]}</span><span class="pt-blank empty"></span>`;
