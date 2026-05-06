@@ -612,22 +612,66 @@
   }
 
   /* ===== LANGUAGE PICKER ===== */
-.lang-picker { display: flex; align-items: center; gap: 6px; margin: 8px 0 14px; flex-wrap: wrap; font-size: 12px; }
-.lang-picker-label { color: var(--ink-soft); font-weight: 600; margin-right: 4px; }
-.lang-pill {
-  padding: 4px 10px;
+.lang-picker-wrap { position: relative; display: inline-block; margin: 8px 0 14px; }
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
   border: 1.5px solid var(--ink-soft);
-  background: transparent;
-  color: var(--ink-soft);
-  border-radius: 999px;
-  font-size: 11px;
+  background: #fff;
+  color: var(--ink);
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all .12s ease;
 }
-.lang-pill:hover { background: rgba(0,0,0,.05); }
-.lang-pill.active { background: #f59e0b; color: #fff; border-color: #f59e0b; }
-body.dark .lang-pill.active { background: #d97706; border-color: #d97706; }
+.lang-trigger:hover { background: rgba(0,0,0,.04); }
+.lang-trigger.active { background: #fef3c7; color: #92400e; border-color: #f59e0b; }
+.lang-current { font-weight: 700; }
+.lang-caret { font-size: 10px; opacity: .7; }
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  padding: 6px;
+  min-width: 200px;
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+.lang-menu.open { display: block; }
+.lang-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+.lang-menu-item:hover { background: rgba(0,0,0,.05); }
+.lang-menu-item.selected { background: #fef3c7; color: #92400e; font-weight: 700; }
+.lang-menu-flag { font-size: 18px; flex-shrink: 0; }
+body.dark .lang-trigger { background: #1e293b; border-color: #334155; color: #f1f5f9; }
+body.dark .lang-trigger:hover { background: #334155; }
+body.dark .lang-trigger.active { background: #422006; color: #fde68a; border-color: #d97706; }
+body.dark .lang-menu { background: #1e293b; border-color: #334155; }
+body.dark .lang-menu-item { color: #f1f5f9; }
+body.dark .lang-menu-item:hover { background: #334155; }
+body.dark .lang-menu-item.selected { background: #422006; color: #fde68a; }
 
   /* ===== TRANSLATION IN FLASHCARD ===== */
 .fc-translate-btn {
@@ -2884,12 +2928,13 @@ body.dark .fc-translate-btn.active { background: #422006; color: #fde68a; border
       <span class="rb-arrow">→</span>
     </div>
 
-    <div class="lang-picker" id="lang-picker">
-      <span class="lang-picker-label">🌐 Translation:</span>
-      <button class="lang-pill active" data-lang="off" onclick="setTranslateLang('off')">Off</button>
-      <button class="lang-pill" data-lang="es" onclick="setTranslateLang('es')">🇪🇸 ES</button>
-      <button class="lang-pill" data-lang="pt" onclick="setTranslateLang('pt')">🇧🇷 PT</button>
-      <button class="lang-pill" data-lang="fr" onclick="setTranslateLang('fr')">🇫🇷 FR</button>
+    <div class="lang-picker-wrap" id="lang-picker-wrap">
+      <button class="lang-trigger" id="lang-trigger" type="button" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false">
+        <span>🌐 Translation:</span>
+        <span class="lang-current" id="lang-current">Off</span>
+        <span class="lang-caret">▾</span>
+      </button>
+      <div class="lang-menu" id="lang-menu" role="menu" aria-hidden="true"></div>
     </div>
 
     <div class="activity-header">
@@ -11735,24 +11780,92 @@ function _hashStr(s){
   for (let i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; }
   return Math.abs(h);
 }
-// Translation language picker
+// Translation language picker — extend this list as you add translations
+const TRANSLATE_LANGS = [
+  { code: 'off', flag: '🚫', label: 'Off (English only)' },
+  { code: 'es',  flag: '🇪🇸', label: 'Spanish' },
+  { code: 'pt',  flag: '🇧🇷', label: 'Portuguese' },
+  { code: 'fr',  flag: '🇫🇷', label: 'French' }
+];
+function _langMeta(code){
+  return TRANSLATE_LANGS.find(l => l.code === code) || TRANSLATE_LANGS[0];
+}
+function _langShortLabel(code){
+  if (code === 'off') return 'Off';
+  const m = _langMeta(code);
+  return m.flag + ' ' + code.toUpperCase();
+}
+function buildLangMenu(){
+  const menu = document.getElementById('lang-menu');
+  if (!menu) return;
+  const cur = state.translateLang || 'off';
+  menu.innerHTML = TRANSLATE_LANGS.map(l => {
+    const sel = l.code === cur ? ' selected' : '';
+    return '<button class="lang-menu-item' + sel + '" data-lang="' + l.code + '" onclick="setTranslateLang(\'' + l.code + '\')">'
+         + '<span class="lang-menu-flag">' + l.flag + '</span>'
+         + '<span>' + l.label + '</span>'
+         + '</button>';
+  }).join('');
+}
+function toggleLangMenu(ev){
+  if (ev) ev.stopPropagation();
+  const menu = document.getElementById('lang-menu');
+  const trig = document.getElementById('lang-trigger');
+  if (!menu || !trig) return;
+  const open = menu.classList.toggle('open');
+  trig.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) buildLangMenu();
+}
+function closeLangMenu(){
+  const menu = document.getElementById('lang-menu');
+  const trig = document.getElementById('lang-trigger');
+  if (menu) menu.classList.remove('open');
+  if (trig) trig.setAttribute('aria-expanded', 'false');
+}
+// Click-outside / Escape close
+document.addEventListener('click', (e) => {
+  const wrap = document.getElementById('lang-picker-wrap');
+  if (wrap && !wrap.contains(e.target)) closeLangMenu();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLangMenu(); });
+
 function setTranslateLang(lang){
   state.translateLang = lang;
   try { localStorage.setItem('eewj_phrasal_translate_lang', lang); } catch(e){}
-  // Update pill UI
-  document.querySelectorAll('.lang-pill').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
-  // Re-render the current flashcard so the 🌐 button appears/disappears
-  if (typeof renderCard === 'function') {
-    try { renderCard(); } catch(e){}
+  applyTranslateLangUi();
+  closeLangMenu();
+  // Just refresh the translate UI on the current flashcard
+  // (do NOT call renderCard — it would reset the flip state)
+  refreshFlashTranslateUi();
+}
+function refreshFlashTranslateUi(){
+  const tBtn = document.getElementById('fc-translate-btn');
+  const tBox = document.getElementById('fc-back-translation');
+  if (!tBtn || !tBox) return;
+  let v = null;
+  try {
+    if (state.deckSession) v = (typeof _deckCurrentVerbObj === 'function') ? _deckCurrentVerbObj() : null;
+    else if (state.fc && state.fc.line && currentNote && currentNote().verbs) v = currentNote().verbs[state.fc.line[0]];
+  } catch(_) {}
+  const lang = state.translateLang || 'off';
+  const hasT = v && v.flashExampleTranslations && v.flashExampleTranslations[lang];
+  if (hasT && lang !== 'off') {
+    tBtn.style.display = '';
+    tBtn.classList.remove('active');
+    tBtn.textContent = '🌐 Translate';
+    tBox.style.display = 'none';
+    tBox.textContent = '';
+  } else {
+    tBtn.style.display = 'none';
+    tBox.style.display = 'none';
   }
 }
 function applyTranslateLangUi(){
   const lang = state.translateLang || 'off';
-  document.querySelectorAll('.lang-pill').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
+  const cur = document.getElementById('lang-current');
+  if (cur) cur.textContent = _langShortLabel(lang);
+  const trig = document.getElementById('lang-trigger');
+  if (trig) trig.classList.toggle('active', lang !== 'off');
 }
 function toggleFlashTranslation(){
   const tBtn = document.getElementById('fc-translate-btn');
@@ -12374,7 +12487,8 @@ function openWordOfTheDay(){
   const wotd = getWordOfTheDay();
   if (!wotd) return;
   if (typeof openFlashcardsForVerb === 'function') {
-    openFlashcardsForVerb(wotd.noteId, wotd.verbIdx, 'wotd');
+    // No fromContext — WOTD is a banner, not an activity to return to
+    openFlashcardsForVerb(wotd.noteId, wotd.verbIdx);
   }
 }
 function resumeLastSession(){
