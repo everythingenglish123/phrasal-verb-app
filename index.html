@@ -308,16 +308,7 @@
   }
   .activity-card:hover { transform: translateY(-1px); border-color: var(--accent-soft); }
 
-  /* Listen to the News stays as a wide row underneath the grid */
-  .activity-card.listen-news-card {
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
-    min-height: 0;
-    padding: 12px 16px;
-  }
-
-  /* Glowing pulse for the bonus "Listen to the News" activity card */
+  /* Glowing pulse for the "Listen to the News" activity card (now in grid as STEP 6) */
   .listen-news-card {
     border-color: rgba(245, 158, 11, 0.55) !important;
     box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45);
@@ -373,27 +364,11 @@
     flex-shrink: 0;
     line-height: 1;
   }
-  /* In the wide bonus row, restore a larger icon */
-  .activity-card.listen-news-card .icon {
-    font-size: 30px;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: var(--accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .activity-card .body { flex: 1; min-width: 0; }
   .activity-card .name {
     font-weight: 700;
     font-size: 15px;
     line-height: 1.25;
-  }
-  .activity-card.listen-news-card { padding: 12px 16px; }
-  .activity-card.listen-news-card .name {
-    font-size: 16px;
-    display: flex; align-items: center; gap: 8px;
   }
   /* Step badge anchored to the bottom-right corner of grid cards */
   .activity-card .step {
@@ -408,18 +383,11 @@
     border-radius: 10px;
     letter-spacing: 0.3px;
   }
-  /* In the wide bonus row, the step pill (if used) flows inline, not absolute */
-  .activity-card.listen-news-card .step {
-    position: static;
-    right: auto;
-    bottom: auto;
-  }
   .activity-card .desc {
     color: var(--ink-soft);
     font-size: 13px;
     line-height: 1.4;
   }
-  .activity-card.listen-news-card .desc { font-size: 13px; }
   .activity-card .chev { font-size: 20px; color: var(--ink-soft); flex-shrink: 0; }
   .activity-card.done .icon { background: var(--correct-soft); }
   .activity-card.done .step { background: var(--correct-soft); color: #166534; }
@@ -2576,7 +2544,7 @@
       <h2 id="note-title">...</h2>
       <div class="sub" id="note-sub">...</div>
       <div class="topic-progress">
-        <span id="note-progress-label">0 of 6 activities complete</span>
+        <span id="note-progress-label">0 of 5 activities complete</span>
       </div>
       <div>
         <a id="note-video-link" class="video-btn" href="#" target="_blank" rel="noopener" style="display:none;">
@@ -2627,22 +2595,14 @@
           <div class="desc">Choose the correct phrasal verb which matches the situations.</div>
           <span class="step">STEP 5</span>
         </div>
-        <div class="activity-card" data-activity="convo" onclick="openActivity('convo')">
+        <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
           <div class="top-row">
-            <div class="icon">💬</div>
-            <div class="name">Practice Conversation</div>
+            <div class="icon">📰</div>
+            <div class="name">Listen to the News</div>
           </div>
-          <div class="desc">Choose the correct answer and then repeat.</div>
+          <div class="desc">Listen to all news articles from this unit.</div>
           <span class="step">STEP 6</span>
         </div>
-      </div>
-      <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
-        <div class="icon">📰</div>
-        <div class="body">
-          <div class="name">Listen to the News</div>
-          <div class="desc">Listen to all news articles from this unit.</div>
-        </div>
-        <div class="chev">›</div>
       </div>
     </div>
   </section>
@@ -10222,7 +10182,7 @@ const state = {
   let saved = {};
   try { const raw = localStorage.getItem('eewj_phrasal_progress'); if(raw) saved = JSON.parse(raw)||{}; } catch(e){}
   NOTES.forEach((n) => {
-    state.progress[n.id] = saved[n.id] || { flashcards: false, builder: false, fill: false, spelling: false, situation: false, convo: false };
+    state.progress[n.id] = saved[n.id] || { flashcards: false, builder: false, fill: false, spelling: false, situation: false };
   });
   try { const r = localStorage.getItem('eewj_phrasal_card_ratings'); if(r) state.cardRatings = JSON.parse(r) || {}; } catch(e){}
   try { const ls = localStorage.getItem('eewj_phrasal_last_session'); if(ls) state.lastSession = JSON.parse(ls); } catch(e){}
@@ -11115,7 +11075,7 @@ function resetAllProgress(){
   state.activitySaves = {};
   state.cardRatings = {};
   state.lastSession = null;
-  NOTES.forEach((n) => { state.progress[n.id] = { flashcards: false, builder: false, fill: false, spelling: false, situation: false, convo: false }; });
+  NOTES.forEach((n) => { state.progress[n.id] = { flashcards: false, builder: false, fill: false, spelling: false, situation: false }; });
   goToNotes();
 }
 
@@ -11165,7 +11125,7 @@ function updateNoteProgress() {
   const p = state.progress[state.currentNoteId];
   const count = Object.values(p).filter(Boolean).length;
   document.getElementById("note-progress-label").textContent =
-    count + " of 6 activities complete";
+    count + " of 5 activities complete";
   document.querySelectorAll("#screen-note .activity-card").forEach((c) => {
     const a = c.dataset.activity;
     c.classList.toggle("done", !!p[a]);
