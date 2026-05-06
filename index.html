@@ -611,6 +611,56 @@
     width: 0%;
   }
 
+  /* ===== LANGUAGE PICKER ===== */
+.lang-picker { display: flex; align-items: center; gap: 6px; margin: 8px 0 14px; flex-wrap: wrap; font-size: 12px; }
+.lang-picker-label { color: var(--ink-soft); font-weight: 600; margin-right: 4px; }
+.lang-pill {
+  padding: 4px 10px;
+  border: 1.5px solid var(--ink-soft);
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .12s ease;
+}
+.lang-pill:hover { background: rgba(0,0,0,.05); }
+.lang-pill.active { background: #f59e0b; color: #fff; border-color: #f59e0b; }
+body.dark .lang-pill.active { background: #d97706; border-color: #d97706; }
+
+  /* ===== TRANSLATION IN FLASHCARD ===== */
+.fc-translate-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1.5px solid var(--ink-soft);
+  color: var(--ink-soft);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .12s ease;
+}
+.fc-translate-btn:hover { background: rgba(0,0,0,.05); color: var(--ink); }
+.fc-translate-btn.active { background: #fef3c7; color: #92400e; border-color: #f59e0b; }
+.fc-translation {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: #78350f;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+body.dark .fc-translation { background: #422006; color: #fde68a; border-left-color: #d97706; }
+body.dark .fc-translate-btn.active { background: #422006; color: #fde68a; border-color: #d97706; }
+
   /* ===== DIALOGUE IN FLASHCARD ===== */
 .fc-dialogue {
   width: 100%;
@@ -2834,6 +2884,14 @@
       <span class="rb-arrow">→</span>
     </div>
 
+    <div class="lang-picker" id="lang-picker">
+      <span class="lang-picker-label">🌐 Translation:</span>
+      <button class="lang-pill active" data-lang="off" onclick="setTranslateLang('off')">Off</button>
+      <button class="lang-pill" data-lang="es" onclick="setTranslateLang('es')">🇪🇸 ES</button>
+      <button class="lang-pill" data-lang="pt" onclick="setTranslateLang('pt')">🇧🇷 PT</button>
+      <button class="lang-pill" data-lang="fr" onclick="setTranslateLang('fr')">🇫🇷 FR</button>
+    </div>
+
     <div class="activity-header">
       <h2 class="activity-title">🃏 Flashcards</h2>
       <div class="counter">
@@ -2868,6 +2926,8 @@
           <div class="tag" id="fc-back-tag">Meaning &amp; Example</div>
           <div class="defn" id="fc-back-defn">...</div>
           <div class="example" id="fc-back-example">...</div>
+          <button class="fc-translate-btn" id="fc-translate-btn" type="button" onclick="event.stopPropagation();toggleFlashTranslation();" style="display:none;">🌐 Translate</button>
+          <div class="fc-translation" id="fc-back-translation" style="display:none;"></div>
           <div class="fc-dialogue" id="fc-back-dialogue" style="display:none"></div>
           <div class="tap-hint" id="fc-back-hint">Tap to flip back</div>
         </div>
@@ -6704,6 +6764,7 @@ const NOTE_ROUTINES = {
   verbs: [
     { verb: "wake up", defn: "To stop sleeping.",
       flashExample: "I suddenly woke up during the dream.",
+      flashExampleTranslations: { es: "Me desperté de repente en medio del sueño.", pt: "Acordei de repente durante o sonho.", fr: "Je me suis soudainement réveillé pendant le rêve." },
       fillSentence: "She always ___ with a smile on her face, even on Mondays.",
       hint: "Starts with W · 2 words · Stop sleeping", dialogue: "A: I had the strangest dream last night!\nB: Tell me about it.\nA: Well, I was flying over a city, and then suddenly I woke up.\nB: Sounds like you woke up at the best part!", situations: ["A man's alarm rings and he opens his eyes at 6:30 every morning.", "A woman stops sleeping and becomes conscious after her neighbor's dog barks.", "A child becomes alert and gets out of his dream when his mother calls him."], excludeFromBank: ['get up'], fillFeedback: {'sleep in': 'means to sleep late.', 'put on': 'means to wear clothes.', 'take off': 'means to remove clothing.', 'meet up': 'means to gather with someone.', 'eat out': 'means to dine at restaurants.', 'stay up': 'means to stay awake late.'},
       findParticle: { correct: "up", wrong: ["out", "in", "off"] },
@@ -11359,6 +11420,7 @@ const state = {
   cardRatings: {},   // { "<noteId>::<verbName>": 1|2|3|4 }
   srs: {},           // { "<noteId>::<verbName>": { interval, ease, due, last, reps } }
   wotd: null,        // { dateKey, noteId, verbName }
+  translateLang: 'off', // 'off' | 'es' | 'pt' | 'fr'
   lastSession: null, // { noteId, activity }
   resumeFrom: null,  // { activity, noteId, idx }, set when jumping from activity → flashcard
   forwardTo: null,   // { kind: 'note'|'activity'|'mixedNews', noteId?, activity? }, set by Back to enable redoing
@@ -11378,6 +11440,7 @@ const state = {
   try { const r = localStorage.getItem('eewj_phrasal_card_ratings'); if(r) state.cardRatings = JSON.parse(r) || {}; } catch(e){}
   try { const s = localStorage.getItem('eewj_phrasal_srs'); if(s) state.srs = JSON.parse(s) || {}; } catch(e){}
   try { const w = localStorage.getItem('eewj_phrasal_wotd'); if(w) state.wotd = JSON.parse(w) || null; } catch(e){}
+  try { const tl = localStorage.getItem('eewj_phrasal_translate_lang'); if(tl) state.translateLang = tl; } catch(e){}
   try { const ls = localStorage.getItem('eewj_phrasal_last_session'); if(ls) state.lastSession = JSON.parse(ls); } catch(e){}
   try { const sw = localStorage.getItem('eewj_phrasal_saved_words'); if(sw) state.savedWords = JSON.parse(sw) || []; } catch(e){}
   try { const aps = localStorage.getItem('eewj_phrasal_activity_saves'); if(aps) state.activitySaves = JSON.parse(aps) || {}; } catch(e){}
@@ -11672,6 +11735,48 @@ function _hashStr(s){
   for (let i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; }
   return Math.abs(h);
 }
+// Translation language picker
+function setTranslateLang(lang){
+  state.translateLang = lang;
+  try { localStorage.setItem('eewj_phrasal_translate_lang', lang); } catch(e){}
+  // Update pill UI
+  document.querySelectorAll('.lang-pill').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // Re-render the current flashcard so the 🌐 button appears/disappears
+  if (typeof renderCard === 'function') {
+    try { renderCard(); } catch(e){}
+  }
+}
+function applyTranslateLangUi(){
+  const lang = state.translateLang || 'off';
+  document.querySelectorAll('.lang-pill').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+}
+function toggleFlashTranslation(){
+  const tBtn = document.getElementById('fc-translate-btn');
+  const tBox = document.getElementById('fc-back-translation');
+  if (!tBtn || !tBox) return;
+  // Find the current verb
+  let v;
+  if (state.deckSession) v = (typeof _deckCurrentVerbObj === 'function') ? _deckCurrentVerbObj() : null;
+  else { const verbs = currentNote().verbs; v = verbs[state.fc.line[0]]; }
+  if (!v || !v.flashExampleTranslations) return;
+  const lang = state.translateLang || 'off';
+  const text = v.flashExampleTranslations[lang];
+  if (!text) return;
+  if (tBox.style.display === 'none' || !tBox.textContent) {
+    tBox.textContent = text;
+    tBox.style.display = '';
+    tBtn.classList.add('active');
+  } else {
+    tBox.style.display = 'none';
+    tBox.textContent = '';
+    tBtn.classList.remove('active');
+  }
+}
+
 function getWordOfTheDay(){
   const today = _wotdDateKey();
   if (state.wotd && state.wotd.dateKey === today) {
@@ -13020,6 +13125,23 @@ function renderCard() {
   document.getElementById("fc-front-verb").textContent  = v.verb;
   document.getElementById("fc-back-defn").textContent   = v.defn;
   document.getElementById("fc-back-example").textContent = "\u201c" + v.flashExample + "\u201d";
+  // Translation toggle: only show button if (a) verb has translations and (b) a language is selected
+  const tBtn = document.getElementById('fc-translate-btn');
+  const tBox = document.getElementById('fc-back-translation');
+  if (tBtn && tBox) {
+    const lang = state.translateLang || 'off';
+    const hasT = v.flashExampleTranslations && v.flashExampleTranslations[lang];
+    if (hasT && lang !== 'off') {
+      tBtn.style.display = '';
+      tBtn.classList.remove('active');
+      tBtn.textContent = '\ud83c\udf10 Translate';
+      tBox.style.display = 'none';
+      tBox.textContent = '';
+    } else {
+      tBtn.style.display = 'none';
+      tBox.style.display = 'none';
+    }
+  }
   const dlgEl = document.getElementById("fc-back-dialogue");
   if (v.dialogue) {
     const _verbRe = _pvVerbRegex(v);
@@ -16284,6 +16406,7 @@ function prevNDCard(){
 
 loadTheme();
 loadSoundPref();
+if (typeof applyTranslateLangUi === 'function') { try { applyTranslateLangUi(); } catch(e){} }
 renderHomeBanners();
 loadName();
 renderNotes();
