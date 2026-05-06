@@ -288,14 +288,15 @@
   .activity-list { margin-bottom: 28px; }
   .activity-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 10px;
   }
   .activity-card {
+    position: relative;
     background: var(--card);
     border-radius: var(--radius);
-    padding: 12px 14px;
+    padding: 12px 14px 32px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -303,7 +304,7 @@
     box-shadow: var(--shadow);
     transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
     border: 2px solid transparent;
-    min-height: 130px;
+    min-height: 120px;
   }
   .activity-card:hover { transform: translateY(-1px); border-color: var(--accent-soft); }
 
@@ -339,39 +340,38 @@
   }
   body.dark .listen-news-card { border-color: rgba(245, 158, 11, 0.65) !important; }
 
-  /* Glowing pulse for the Flashcards "start here" card (blue) */
+  /* Glowing pulse for the Flashcards "start here" card (blue, more pronounced) */
   .flashcards-card {
-    border-color: rgba(59, 130, 246, 0.55) !important;
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.45);
-    animation: fc-pulse 2.2s ease-in-out infinite;
+    border-color: rgba(59, 130, 246, 0.85) !important;
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.55);
+    animation: fc-pulse 1.6s ease-in-out infinite;
   }
   .flashcards-card:hover {
-    border-color: rgba(59, 130, 246, 0.9) !important;
+    border-color: rgba(59, 130, 246, 1) !important;
     transform: translateY(-1px);
   }
-  @keyframes fc-pulse {
-    0%   { box-shadow: 0 0 0 0   rgba(59, 130, 246, 0.40); }
-    60%  { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-    100% { box-shadow: 0 0 0 0   rgba(59, 130, 246, 0); }
+  .flashcards-card .step {
+    background: linear-gradient(135deg, #60a5fa, #2563eb) !important;
+    color: #fff !important;
+    border-color: transparent !important;
   }
-  body.dark .flashcards-card { border-color: rgba(96, 165, 250, 0.65) !important; }
+  @keyframes fc-pulse {
+    0%   { box-shadow: 0 0 0 0    rgba(59, 130, 246, 0.65); }
+    50%  { box-shadow: 0 0 0 14px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0    rgba(59, 130, 246, 0); }
+  }
+  body.dark .flashcards-card { border-color: rgba(96, 165, 250, 0.95) !important; }
 
+  /* Top row inside grid card: emoji + title side-by-side */
   .activity-card .top-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
   }
   .activity-card .icon {
-    font-size: 24px;
-    width: 36px;
-    height: 36px;
+    font-size: 22px;
     flex-shrink: 0;
-    background: var(--accent-soft);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 1;
   }
   /* In the wide bonus row, restore a larger icon */
   .activity-card.listen-news-card .icon {
@@ -379,18 +379,27 @@
     width: 48px;
     height: 48px;
     border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .activity-card .body { flex: 1; min-width: 0; }
   .activity-card .name {
     font-weight: 700;
-    font-size: 14px;
-    line-height: 1.3;
+    font-size: 15px;
+    line-height: 1.25;
   }
+  .activity-card.listen-news-card { padding: 12px 16px; }
   .activity-card.listen-news-card .name {
     font-size: 16px;
     display: flex; align-items: center; gap: 8px;
   }
+  /* Step badge anchored to the bottom-right corner of grid cards */
   .activity-card .step {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
     background: var(--accent-soft);
     color: var(--accent-dark);
     font-size: 10px;
@@ -398,12 +407,17 @@
     padding: 2px 7px;
     border-radius: 10px;
     letter-spacing: 0.3px;
-    flex-shrink: 0;
+  }
+  /* In the wide bonus row, the step pill (if used) flows inline, not absolute */
+  .activity-card.listen-news-card .step {
+    position: static;
+    right: auto;
+    bottom: auto;
   }
   .activity-card .desc {
     color: var(--ink-soft);
-    font-size: 12px;
-    line-height: 1.35;
+    font-size: 13px;
+    line-height: 1.4;
   }
   .activity-card.listen-news-card .desc { font-size: 13px; }
   .activity-card .chev { font-size: 20px; color: var(--ink-soft); flex-shrink: 0; }
@@ -2576,62 +2590,50 @@
         <div class="activity-card flashcards-card" data-activity="flashcards" onclick="openActivity('flashcards')">
           <div class="top-row">
             <div class="icon">🃏</div>
-            <span class="step">STEP 1</span>
-          </div>
-          <div class="body">
             <div class="name">Flashcards</div>
-            <div class="desc">Start studying here! Learn the meanings and practice!</div>
           </div>
+          <div class="desc">Start studying here! Learn the meanings and practice!</div>
+          <span class="step">STEP 1</span>
         </div>
         <div class="activity-card" data-activity="builder" onclick="openActivity('builder')">
           <div class="top-row">
             <div class="icon">🧱</div>
-            <span class="step">STEP 2</span>
-          </div>
-          <div class="body">
             <div class="name">Sentence Builder</div>
-            <div class="desc">Put the words in the correct order to form sentences.</div>
           </div>
+          <div class="desc">Put the words in the correct order to form sentences.</div>
+          <span class="step">STEP 2</span>
         </div>
         <div class="activity-card" data-activity="spelling" onclick="openActivity('spelling')">
           <div class="top-row">
             <div class="icon">✏️</div>
-            <span class="step">STEP 3</span>
-          </div>
-          <div class="body">
             <div class="name">Spelling Practice</div>
-            <div class="desc">Train your mind to recognize phrasal verbs.</div>
           </div>
+          <div class="desc">Train your mind to recognize phrasal verbs.</div>
+          <span class="step">STEP 3</span>
         </div>
         <div class="activity-card" data-activity="fill" onclick="openActivity('fill')">
           <div class="top-row">
             <div class="icon">📝</div>
-            <span class="step">STEP 4</span>
-          </div>
-          <div class="body">
             <div class="name">Fill in the Blank</div>
-            <div class="desc">Can you choose the phrasal verb which fits?</div>
           </div>
+          <div class="desc">Can you choose the phrasal verb which fits?</div>
+          <span class="step">STEP 4</span>
         </div>
         <div class="activity-card" data-activity="situation" onclick="openActivity('situation')">
           <div class="top-row">
             <div class="icon">✅</div>
-            <span class="step">STEP 5</span>
-          </div>
-          <div class="body">
             <div class="name">Find the Correct Verb</div>
-            <div class="desc">Choose the correct phrasal verb which matches the situations.</div>
           </div>
+          <div class="desc">Choose the correct phrasal verb which matches the situations.</div>
+          <span class="step">STEP 5</span>
         </div>
         <div class="activity-card" data-activity="convo" onclick="openActivity('convo')">
           <div class="top-row">
             <div class="icon">💬</div>
-            <span class="step">STEP 6</span>
-          </div>
-          <div class="body">
             <div class="name">Practice Conversation</div>
-            <div class="desc">Choose the correct answer and then repeat.</div>
           </div>
+          <div class="desc">Choose the correct answer and then repeat.</div>
+          <span class="step">STEP 6</span>
         </div>
       </div>
       <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
