@@ -284,20 +284,37 @@
     margin-top: 10px;
   }
 
-  .activity-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  /* ============ ACTIVITIES GRID (3 x 2 + bonus row) ============ */
+  .activity-list { margin-bottom: 28px; }
+  .activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
   .activity-card {
     background: var(--card);
     border-radius: var(--radius);
-    padding: 20px;
+    padding: 12px 14px;
     display: flex;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    gap: 6px;
     cursor: pointer;
     box-shadow: var(--shadow);
     transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
     border: 2px solid transparent;
+    min-height: 130px;
   }
   .activity-card:hover { transform: translateY(-1px); border-color: var(--accent-soft); }
+
+  /* Listen to the News stays as a wide row underneath the grid */
+  .activity-card.listen-news-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    min-height: 0;
+    padding: 12px 16px;
+  }
 
   /* Glowing pulse for the bonus "Listen to the News" activity card */
   .listen-news-card {
@@ -321,36 +338,75 @@
     100% { box-shadow: 0 0 0 0   rgba(245, 158, 11, 0); }
   }
   body.dark .listen-news-card { border-color: rgba(245, 158, 11, 0.65) !important; }
+
+  /* Glowing pulse for the Flashcards "start here" card (blue) */
+  .flashcards-card {
+    border-color: rgba(59, 130, 246, 0.55) !important;
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.45);
+    animation: fc-pulse 2.2s ease-in-out infinite;
+  }
+  .flashcards-card:hover {
+    border-color: rgba(59, 130, 246, 0.9) !important;
+    transform: translateY(-1px);
+  }
+  @keyframes fc-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(59, 130, 246, 0.40); }
+    60%  { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(59, 130, 246, 0); }
+  }
+  body.dark .flashcards-card { border-color: rgba(96, 165, 250, 0.65) !important; }
+
+  .activity-card .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
   .activity-card .icon {
-    font-size: 34px;
-    width: 56px;
-    height: 56px;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
     background: var(--accent-soft);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .activity-card .body { flex: 1; }
+  /* In the wide bonus row, restore a larger icon */
+  .activity-card.listen-news-card .icon {
+    font-size: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .activity-card .body { flex: 1; min-width: 0; }
   .activity-card .name {
     font-weight: 700;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  .activity-card.listen-news-card .name {
+    font-size: 16px;
+    display: flex; align-items: center; gap: 8px;
   }
   .activity-card .step {
     background: var(--accent-soft);
     color: var(--accent-dark);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    padding: 2px 8px;
+    padding: 2px 7px;
     border-radius: 10px;
     letter-spacing: 0.3px;
+    flex-shrink: 0;
   }
-  .activity-card .desc { color: var(--ink-soft); font-size: 13px; margin-top: 2px; }
-  .activity-card .chev { font-size: 20px; color: var(--ink-soft); }
+  .activity-card .desc {
+    color: var(--ink-soft);
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .activity-card.listen-news-card .desc { font-size: 13px; }
+  .activity-card .chev { font-size: 20px; color: var(--ink-soft); flex-shrink: 0; }
   .activity-card.done .icon { background: var(--correct-soft); }
   .activity-card.done .step { background: var(--correct-soft); color: #166534; }
 
@@ -2502,7 +2558,7 @@
     </div>
 
     <div class="topic-hero">
-      <div class="crumb-label">Topic</div>
+      <div class="crumb-label">Unit</div>
       <h2 id="note-title">...</h2>
       <div class="sub" id="note-sub">...</div>
       <div class="topic-progress">
@@ -2516,59 +2572,73 @@
     </div>
 
     <div class="activity-list">
-      <div class="activity-card" data-activity="flashcards" onclick="openActivity('flashcards')">
-        <div class="icon">🃏</div>
-        <div class="body">
-          <div class="name">Flashcards <span class="step">STEP 1</span></div>
-          <div class="desc">Tap to flip, learn the meaning and see an example.</div>
+      <div class="activity-grid">
+        <div class="activity-card flashcards-card" data-activity="flashcards" onclick="openActivity('flashcards')">
+          <div class="top-row">
+            <div class="icon">🃏</div>
+            <span class="step">STEP 1</span>
+          </div>
+          <div class="body">
+            <div class="name">Flashcards</div>
+            <div class="desc">Start studying here! Learn the meanings and practice!</div>
+          </div>
         </div>
-        <div class="chev">›</div>
-      </div>
-      <div class="activity-card" data-activity="builder" onclick="openActivity('builder')">
-        <div class="icon">🧱</div>
-        <div class="body">
-          <div class="name">Sentence Builder <span class="step">STEP 2</span></div>
-          <div class="desc">Tap the scrambled words in order to rebuild the example sentence.</div>
+        <div class="activity-card" data-activity="builder" onclick="openActivity('builder')">
+          <div class="top-row">
+            <div class="icon">🧱</div>
+            <span class="step">STEP 2</span>
+          </div>
+          <div class="body">
+            <div class="name">Sentence Builder</div>
+            <div class="desc">Put the words in the correct order to form sentences.</div>
+          </div>
         </div>
-        <div class="chev">›</div>
-      </div>
-      <div class="activity-card" data-activity="spelling" onclick="openActivity('spelling')">
-        <div class="icon">✏️</div>
-        <div class="body">
-          <div class="name">Spelling Practice <span class="step">STEP 3</span></div>
-          <div class="desc">Tap the letters to spell the phrasal verb from the definition.</div>
+        <div class="activity-card" data-activity="spelling" onclick="openActivity('spelling')">
+          <div class="top-row">
+            <div class="icon">✏️</div>
+            <span class="step">STEP 3</span>
+          </div>
+          <div class="body">
+            <div class="name">Spelling Practice</div>
+            <div class="desc">Train your mind to recognize phrasal verbs.</div>
+          </div>
         </div>
-        <div class="chev">›</div>
-      </div>
-      <div class="activity-card" data-activity="fill" onclick="openActivity('fill')">
-        <div class="icon">📝</div>
-        <div class="body">
-          <div class="name">Fill in the Blank <span class="step">STEP 4</span></div>
-          <div class="desc">Pick the right phrasal verb from the word bank.</div>
+        <div class="activity-card" data-activity="fill" onclick="openActivity('fill')">
+          <div class="top-row">
+            <div class="icon">📝</div>
+            <span class="step">STEP 4</span>
+          </div>
+          <div class="body">
+            <div class="name">Fill in the Blank</div>
+            <div class="desc">Can you choose the phrasal verb which fits?</div>
+          </div>
         </div>
-        <div class="chev">›</div>
-      </div>
-      <div class="activity-card" data-activity="situation" onclick="openActivity('situation')">
-        <div class="icon">✅</div>
-        <div class="body">
-          <div class="name">Find the Correct Verb <span class="step">STEP 5</span></div>
-          <div class="desc">Read three real-world situations and pick the phrasal verb that fits.</div>
+        <div class="activity-card" data-activity="situation" onclick="openActivity('situation')">
+          <div class="top-row">
+            <div class="icon">✅</div>
+            <span class="step">STEP 5</span>
+          </div>
+          <div class="body">
+            <div class="name">Find the Correct Verb</div>
+            <div class="desc">Choose the correct phrasal verb which matches the situations.</div>
+          </div>
         </div>
-        <div class="chev">›</div>
-      </div>
-      <div class="activity-card" data-activity="convo" onclick="openActivity('convo')">
-        <div class="icon">💬</div>
-        <div class="body">
-          <div class="name">Practice Conversation <span class="step">STEP 6</span></div>
-          <div class="desc">Speak out loud, real-world scenarios with sample answers.</div>
+        <div class="activity-card" data-activity="convo" onclick="openActivity('convo')">
+          <div class="top-row">
+            <div class="icon">💬</div>
+            <span class="step">STEP 6</span>
+          </div>
+          <div class="body">
+            <div class="name">Practice Conversation</div>
+            <div class="desc">Choose the correct answer and then repeat.</div>
+          </div>
         </div>
-        <div class="chev">›</div>
       </div>
       <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
         <div class="icon">📰</div>
         <div class="body">
           <div class="name">Listen to the News</div>
-          <div class="desc">Play every news article in this section back-to-back.</div>
+          <div class="desc">Listen to all news articles from this unit.</div>
         </div>
         <div class="chev">›</div>
       </div>
@@ -2938,7 +3008,7 @@
 
 const NOTE_WORK = {
   id: "work",
-  title: "Advanced Phrasal Verbs for Work",
+  title: "Work",
   emoji: "💼",
   subtitle: "Talk about the workplace, meetings, and careers.",
   videoUrl: "https://youtu.be/CbO1AuHHbx8",
@@ -3113,7 +3183,7 @@ const NOTE_WORK = {
 
 const NOTE_TIME = {
   id: "time",
-  title: "Advanced Phrasal Verbs for Time",
+  title: "Time",
   emoji: "⏰",
   subtitle: "Talk about schedules, planning, and the passage of time.",
   videoUrl: "https://youtu.be/fOmbmS7cNvY",
@@ -3286,7 +3356,7 @@ const NOTE_TIME = {
 
 const NOTE_EMOTIONS = {
   id: "emotions",
-  title: "Advanced Phrasal Verbs for Emotions",
+  title: "Emotions",
   emoji: "❤️",
   subtitle: "Talk about feelings, moods, and emotional reactions.",
   videoUrl: "https://youtu.be/Iwtb3Dksm0Q",
@@ -3459,7 +3529,7 @@ const NOTE_EMOTIONS = {
 
 const NOTE_PERSONAL = {
   id: "personal",
-  title: "Phrasal Verbs for Personal Development",
+  title: "Personal Development",
   emoji: "🌱",
   subtitle: "Talk about growth, habits, and becoming a better version of yourself.",
   videoUrl: "https://youtu.be/MFjhLwc9BBQ",
@@ -3635,7 +3705,7 @@ const NOTE_PERSONAL = {
 
 const NOTE_CLOTHES = {
   id: "clothes",
-  title: "Phrasal Verbs for Clothes",
+  title: "Clothes",
   emoji: "👕",
   subtitle: "Talk about putting on, taking off, and wearing clothes.",
   videoUrl: "https://youtu.be/gFmsEwIqaRc",
@@ -3816,7 +3886,7 @@ const NOTE_CLOTHES = {
 
 const NOTE_SOCIAL = {
   id: "social",
-  title: "Phrasal Verbs for Social Media",
+  title: "Social Media",
   emoji: "📱",
   subtitle: "Scroll, post, and connect, phrasal verbs for the online world.",
   videoUrl: "https://youtu.be/rjRGLmEIkH4",
@@ -3900,7 +3970,7 @@ const NOTE_SOCIAL = {
 
 const NOTE_CAUSE = {
   id: "cause",
-  title: "Phrasal Verbs for Cause and Effect",
+  title: "Cause and Effect",
   emoji: "⚡",
   subtitle: "Talk about what makes things happen and the results that follow.",
   videoUrl: "https://youtu.be/yA0nxUeHuws",
@@ -3987,7 +4057,7 @@ const NOTE_CAUSE = {
 
 const NOTE_TRANSPORT = {
   id: "transport",
-  title: "Phrasal Verbs for Transportation",
+  title: "Transportation",
   emoji: "🚗",
   subtitle: "Drive, ride, and travel, phrasal verbs for cars, bikes, and the road.",
   videoUrl: "https://youtu.be/axKHu-kkVMA",
@@ -4165,7 +4235,7 @@ const NOTE_TRANSPORT = {
 
 const NOTE_UBER = {
   id: "uber",
-  title: "Phrasal Verbs for Uber",
+  title: "Uber",
   emoji: "🚕",
   subtitle: "Book a ride, get in, and enjoy the trip, phrasal verbs for Uber and rideshares.",
   videoUrl: "https://youtu.be/T43fKehJ4Ms",
@@ -4345,7 +4415,7 @@ const NOTE_UBER = {
 
 const NOTE_STUDENT_LIFE = {
   id: "studentlife",
-  title: "Phrasal Verbs for Student Life",
+  title: "Student Life",
   emoji: "🎓",
   subtitle: "Classes, study groups, and campus life, phrasal verbs for being a student.",
   videoUrl: "https://youtu.be/YpR9ddRBpCI",
@@ -4448,7 +4518,7 @@ const NOTE_STUDENT_LIFE = {
 
 const NOTE_CLASSROOM = {
   id: "classroom",
-  title: "Phrasal Verbs for The Classroom",
+  title: "The Classroom",
   emoji: "📚",
   subtitle: "Assignments, notes, and lessons, phrasal verbs you'll hear in every classroom.",
   videoUrl: "https://youtu.be/SrDMJrKl64E",
@@ -4635,7 +4705,7 @@ const NOTE_CLASSROOM = {
 
 const NOTE_GYM = {
   id: "gym",
-  title: "Phrasal Verbs for The Gym",
+  title: "The Gym",
   emoji: "💪",
   subtitle: "Warm up, push through, and cool down, phrasal verbs for exercising and fitness.",
   videoUrl: "https://youtu.be/jb_anbwmMDk",
@@ -4798,7 +4868,7 @@ const NOTE_GYM = {
 
 const NOTE_CRIME = {
   id: "crime",
-  title: "Phrasal Verbs for Crime",
+  title: "Crime",
   emoji: "🚨",
   subtitle: "Robberies, chases, and arrests, phrasal verbs for criminals and police.",
   videoUrl: "https://youtu.be/365-jx-Oo2A",
@@ -4960,7 +5030,7 @@ const NOTE_CRIME = {
 
 const NOTE_NEWS = {
   id: "news",
-  title: "Phrasal Verbs for The News",
+  title: "The News",
   emoji: "📰",
   subtitle: "Report, investigate, and broadcast, phrasal verbs for journalism and the news.",
   videoUrl: "https://youtu.be/W_G1Zw9B_-Q",
@@ -5053,7 +5123,7 @@ const NOTE_NEWS = {
 
 const NOTE_GOVERNMENT = {
   id: "govt",
-  title: "Phrasal Verbs for Government",
+  title: "Government",
   emoji: "🏛️",
   subtitle: "Swear in, step down, and push through, phrasal verbs for politics and power.",
   videoUrl: "https://youtu.be/ylTiFgofjC4",
@@ -5215,7 +5285,7 @@ const NOTE_GOVERNMENT = {
 
 const NOTE_ELECTIONS = {
   id: "elections",
-  title: "Phrasal Verbs for Elections and Voting",
+  title: "Elections and Voting",
   emoji: "🗳️",
   subtitle: "Run for office, tally up votes, and swear in winners, phrasal verbs for election day.",
   videoUrl: "https://youtu.be/9wY3boz3kfQ",
@@ -5361,7 +5431,7 @@ const NOTE_ELECTIONS = {
 
 const NOTE_CORRUPTION = {
   id: "corrupt",
-  title: "Phrasal Verbs for Corruption",
+  title: "Corruption",
   emoji: "🕵️",
   subtitle: "Cover ups, pay offs, and crack downs, phrasal verbs for crime and corruption.",
   videoUrl: "https://youtu.be/vDS5TThj4sg",
@@ -5432,7 +5502,7 @@ const NOTE_CORRUPTION = {
 
 const NOTE_IMMIGRATION = {
   id: "immigration",
-  title: "Phrasal Verbs for Immigration",
+  title: "Immigration",
   emoji: "✈️",
   subtitle: "Cross over, settle in, and blend in, phrasal verbs for life in a new country.",
   videoUrl: "https://youtu.be/UaTgyaLFqTU",
@@ -5575,7 +5645,7 @@ const NOTE_IMMIGRATION = {
 
 const NOTE_SMALLTALK = {
   id: "smalltalk",
-  title: "Phrasal Verbs for Small Talk",
+  title: "Small Talk",
   emoji: "💬",
   subtitle: "Catch up, run into, and drop by, phrasal verbs for everyday social conversations.",
   videoUrl: "https://youtu.be/2tOkHaA34zk",
@@ -5644,7 +5714,7 @@ const NOTE_SMALLTALK = {
 
 const NOTE_CONVERSATIONS = {
   id: "convo",
-  title: "Phrasal Verbs for Conversations",
+  title: "Conversations",
   emoji: "🗨️",
   subtitle: "Bring up, cut off, and wrap up, phrasal verbs for how we talk to each other.",
   videoUrl: "https://youtu.be/uiicVXjcHww",
@@ -5790,7 +5860,7 @@ const NOTE_CONVERSATIONS = {
 
 const NOTE_ANIMALS = {
   id: "animals",
-  title: "Phrasal Verbs, Animals",
+  title: "Animals",
   emoji: "🐾",
   subtitle: "Bug out, pig out, and bear with us, phrasal verbs inspired by the animal kingdom.",
   videoUrl: "https://youtu.be/7565g6yprtQ",
@@ -5930,7 +6000,7 @@ const NOTE_ANIMALS = {
 
 const NOTE_STRANGE = {
   id: "strange",
-  title: "Strange Phrasal Verbs",
+  title: "Strange",
   emoji: "🤔",
   subtitle: "Flip out, beef up, and egg someone on, phrasal verbs that sound strange but are totally normal in English.",
   videoUrl: "https://youtu.be/1Z5rp1GhEUk",
@@ -6077,7 +6147,7 @@ const NOTE_STRANGE = {
 
 const NOTE_ROUTINES = {
   id: "routines",
-  title: "Phrasal Verbs for Daily Routines",
+  title: "Daily Routines",
   emoji: "⏰",
   subtitle: "Wake up, eat out, and stay up, phrasal verbs for everything you do in a day.",
   videoUrl: "https://youtu.be/l680CgA5SFo",
@@ -6145,7 +6215,7 @@ const NOTE_ROUTINES = {
 
 const NOTE_EATING = {
   id: "eating",
-  title: "Phrasal Verbs for Eating and Drinking",
+  title: "Eating and Drinking",
   emoji: "🍽️",
   subtitle: "Dig in, sip on, and wolf it down, phrasal verbs for every way we eat and drink.",
   videoUrl: "https://youtu.be/xIsRuuGIz2E",
@@ -10511,10 +10581,16 @@ function _pvVerbRegex(v) {
 }
 
 function showScreen(id) {
+  // Reset scroll BEFORE swapping screens so the user never sees the bottom of the new screen.
+  // Use instant scroll (not smooth) and cover both window + document elements for browser quirks.
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
   document.getElementById("screen-" + id).classList.add("active");
   state.screen = id;
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Reset again AFTER the screen swap in case any layout/reflow shifted things.
+  window.scrollTo(0, 0);
   refreshForwardButtons();
 }
 
