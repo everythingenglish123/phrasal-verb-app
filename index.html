@@ -204,18 +204,22 @@
   .breadcrumb .sep { color: #cbd5e1; }
 
   /* ================= NOTES PICKER ================= */
+  /* Regular sections (the long list): 4 columns on desktop, 2 on mobile. */
   .note-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 14px;
   }
+  @media(max-width:768px){.note-grid{grid-template-columns:repeat(2, 1fr);gap:10px;}}
+
+  /* The "50 important phrasal verbs" featured section: 2 columns on both desktop and mobile. */
   .note-grid-featured {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
     margin-bottom: 18px;
   }
-  @media(max-width:520px){.note-grid-featured{grid-template-columns:1fr;}}
+  @media(max-width:520px){.note-grid-featured{gap:10px;}}
   .note-grid-featured .note-card{
     background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(124,58,237,.08));
     border: 2px solid rgba(37,99,235,.25);
@@ -1392,6 +1396,29 @@
   .theme-toggle{background:none;border:1.5px solid #e5e7eb;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px;display:inline-flex;align-items:center;justify-content:center;transition:all .15s;color:var(--ink);}
   .theme-toggle:hover{border-color:var(--accent);background:#f0f7ff;}
 
+  /* Master English popover anchored to its button in the menu bar */
+  .me-menu-wrap{position:relative;display:inline-flex;}
+  .me-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:280px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,.12);padding:10px;display:none;z-index:1000;}
+  .me-menu.open{display:block;}
+  .me-menu-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);padding:6px 10px 8px;}
+  .me-menu-link{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;text-decoration:none;color:var(--ink);transition:background .12s;}
+  .me-menu-link:hover{background:#f1f5f9;}
+  .me-menu-link.cl-primary{background:linear-gradient(135deg,#dbeafe,#eff6ff);}
+  .me-menu-link.cl-primary:hover{background:linear-gradient(135deg,#bfdbfe,#dbeafe);}
+  .me-menu-link.cl-money{background:linear-gradient(135deg,#dcfce7,#f0fdf4);}
+  .me-menu-link.cl-money:hover{background:linear-gradient(135deg,#bbf7d0,#dcfce7);}
+  .me-menu-icon{font-size:22px;flex-shrink:0;width:32px;text-align:center;}
+  .me-menu-text{display:flex;flex-direction:column;font-size:13px;line-height:1.3;}
+  .me-menu-text b{font-weight:700;}
+  .me-menu-text span{font-size:11px;color:var(--ink-soft);}
+  body.dark .me-menu{background:#1e293b;border-color:#334155;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+  body.dark .me-menu-link:hover{background:#334155;}
+  body.dark .me-menu-link.cl-primary{background:linear-gradient(135deg,#1e3a8a,#1e40af);}
+  body.dark .me-menu-link.cl-primary:hover{background:linear-gradient(135deg,#1e40af,#2563eb);}
+  body.dark .me-menu-link.cl-money{background:linear-gradient(135deg,#14532d,#166534);}
+  body.dark .me-menu-link.cl-money:hover{background:linear-gradient(135deg,#166534,#15803d);}
+  @media(max-width:480px){.me-menu{position:fixed;top:64px;right:8px;left:8px;min-width:0;}}
+
 
   /* ── SPLASH ── */
   .splash{text-align:center;margin:8px 0 28px;padding:18px 16px 24px;background:linear-gradient(180deg,#fff,#f8fafc);border-radius:14px;border:1px solid #e5e7eb;position:relative;}
@@ -1438,15 +1465,15 @@
   body.dark .verb-result .vr-name{color:#f1f5f9;}
 
   /* ── CONTINUE BANNER + MY DECKS BUTTON ── */
-  .continue-row{display:flex;flex-direction:column;gap:10px;margin:0 0 22px;}
-  .continue-banner{display:flex;align-items:center;gap:14px;padding:14px 18px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:14px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 14px rgba(37,99,235,.25);}
-  .continue-banner:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,99,235,.35);}
-  .continue-banner .cb-icon{font-size:28px;flex-shrink:0;}
-  .continue-banner .cb-body{flex:1;min-width:0;}
-  .continue-banner .cb-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;opacity:.85;font-weight:700;margin-bottom:2px;}
-  .continue-banner .cb-title{font-size:15px;font-weight:800;line-height:1.3;}
-  .continue-banner .cb-sub{font-size:12px;opacity:.85;margin-top:2px;}
-  .continue-banner .cb-arrow{font-size:18px;flex-shrink:0;opacity:.85;}
+  .continue-row{display:flex;flex-direction:column;gap:10px;margin:0 0 16px;}
+  .continue-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 8px rgba(37,99,235,.18);min-height:0;}
+  .continue-banner:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.28);}
+  .continue-banner .cb-icon{font-size:20px;flex-shrink:0;line-height:1;}
+  .continue-banner .cb-body{flex:1;min-width:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .continue-banner .cb-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;opacity:.85;font-weight:700;}
+  .continue-banner .cb-title{font-size:13px;font-weight:700;line-height:1.3;}
+  .continue-banner .cb-sub{font-size:12px;opacity:.85;}
+  .continue-banner .cb-arrow{font-size:14px;flex-shrink:0;opacity:.85;}
   .decks-button{display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1.5px solid #e5e7eb;border-radius:14px;cursor:pointer;transition:all .15s ease;}
   .decks-button:hover{border-color:#2563eb;background:#f0f7ff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.12);}
   .decks-button .db-icon{font-size:24px;flex-shrink:0;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:#f3f4f6;border-radius:10px;}
@@ -2351,6 +2378,30 @@
         </button>
         <button class="theme-toggle" id="saved-words-btn" onclick="goToSavedWords()" title="Saved words" aria-label="Saved words">★</button>
         <button class="theme-toggle" id="decks-btn-mini" onclick="goToDecks()" title="My Decks" aria-label="My Decks">📚</button>
+        <div class="me-menu-wrap">
+          <button class="theme-toggle" id="me-menu-btn" onclick="toggleMasterEnglishMenu(event)" title="Master English" aria-label="Master English">👨🏻‍🏫</button>
+          <div class="me-menu" id="me-menu" role="menu" aria-hidden="true">
+            <div class="me-menu-title">Master English</div>
+            <a class="me-menu-link cl-primary" href="https://everythingenglishreserve.as.me/schedule/b7675465/appointment/81951259/calendar/3953794?appointmentTypeIds[]=81951259" target="_blank" rel="noopener">
+              <span class="me-menu-icon">📅</span><span class="me-menu-text"><b>Schedule a lesson</b><span>1-on-1 with John</span></span>
+            </a>
+            <a class="me-menu-link cl-money" href="https://www.italki.com/affshare?ref=EverythingEnglishwithJohn" target="_blank" rel="noopener">
+              <span class="me-menu-icon">💰</span><span class="me-menu-text"><b>$10 FREE to study</b><span>italki sign-up bonus</span></span>
+            </a>
+            <a class="me-menu-link" href="https://www.italki.com/en/teacher/5138727" target="_blank" rel="noopener">
+              <span class="me-menu-icon">👨🏻‍🏫</span><span class="me-menu-text"><b>Meet me on italki</b><span>Book a lesson with me</span></span>
+            </a>
+            <a class="me-menu-link" href="https://youtu.be/oGrd0xxk4oc" target="_blank" rel="noopener">
+              <span class="me-menu-icon">🔥</span><span class="me-menu-text"><b>1,000 Phrasal Verbs</b><span>Free YouTube series</span></span>
+            </a>
+            <a class="me-menu-link" href="https://www.youtube.com/playlist?list=PLFmInC8__4Ud-TijvXbz0zqY4bYhcyaxz" target="_blank" rel="noopener">
+              <span class="me-menu-icon">📚</span><span class="me-menu-text"><b>Secrets Playlist</b><span>English tips on YouTube</span></span>
+            </a>
+            <a class="me-menu-link" href="https://everythingenglishwithjohn.com/" target="_blank" rel="noopener">
+              <span class="me-menu-icon">🌐</span><span class="me-menu-text"><b>Learn about your teacher</b><span>Visit the website</span></span>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="ha-group ha-group-mid">
         <button class="theme-toggle" id="sound-toggle" onclick="toggleSound()" title="Toggle sound" aria-label="Toggle sound">🔊</button>
@@ -2393,11 +2444,11 @@
 
     <div class="continue-row" id="continue-row" style="display:none;">
       <div class="continue-banner" id="continue-banner" style="display:none;" onclick="resumeLastSession()">
-        <span class="cb-icon">▶️</span>
+        <span class="cb-icon" id="cb-icon">▶️</span>
         <div class="cb-body">
-          <div class="cb-label">Continue where you left off</div>
-          <div class="cb-title" id="cb-title">...</div>
-          <div class="cb-sub" id="cb-sub">...</div>
+          <span class="cb-label">Continue:</span>
+          <span class="cb-title" id="cb-title">...</span>
+          <span class="cb-sub" id="cb-sub">...</span>
         </div>
         <span class="cb-arrow">→</span>
       </div>
@@ -2409,7 +2460,7 @@
     <div id="verb-results-list" class="verb-results-list"></div>
 
     <div class="home-rowlet">
-    <div class="connect-card collapsed" id="cc-connect">
+    <div class="connect-card collapsed" id="cc-connect" style="display:none;">
       <div class="collapse-head" onclick="toggleCollapse('cc-connect')">
         <span class="collapse-emoji">👨🏻‍🏫</span>
         <span class="collapse-title">Master English</span>
@@ -11108,12 +11159,39 @@ function toggleCollapse(id){
 /* =========================================================================
    REVIEW VERB ON FLASHCARD + RESUME
 ========================================================================= */
-function reviewVerbOnFlashcard(noteId, verbIdx, fromActivity, fromIdx){
-  // Persist the source activity's current state so we can fully restore on resume
-  if (fromActivity && noteId && noteId !== '__mixed__') {
-    try { saveActivityState(noteId, fromActivity); } catch(e){}
+// Find a verb's home note (used when a Mixed activity hands us a verb).
+function findHomeNoteForVerb(verbObj){
+  if (!verbObj) return null;
+  for (const n of NOTES){
+    const idx = n.verbs.findIndex(v => v === verbObj || (v.verb === verbObj.verb && v.defn === verbObj.defn));
+    if (idx >= 0) return { noteId: n.id, verbIdx: idx };
   }
-  state.resumeFrom = { activity: fromActivity, noteId: noteId, idx: fromIdx };
+  return null;
+}
+
+function reviewVerbOnFlashcard(noteId, verbIdx, fromActivity, fromIdx){
+  // Mixed mode: look up the verb's home unit and resolve the real noteId/verbIdx.
+  if (noteId === '__mixed__'){
+    const mixedVerb = (state._mixedNote && state._mixedNote.verbs) ? state._mixedNote.verbs[verbIdx] : null;
+    // mfill stores its pool as { verb, noteId, verbIdx } objects, not raw verbs.
+    const mfEntry = (state.mf && state.mf.pool && fromActivity === 'fill') ? state.mf.pool[fromIdx] : null;
+    let target;
+    if (mfEntry && mfEntry.noteId){
+      target = { noteId: mfEntry.noteId, verbIdx: mfEntry.verbIdx };
+    } else if (mixedVerb){
+      target = findHomeNoteForVerb(mixedVerb);
+    }
+    if (!target) return;
+    state.resumeFrom = { activity: 'mixed', mixedActivity: fromActivity };
+    noteId = target.noteId;
+    verbIdx = target.verbIdx;
+  } else {
+    // Persist the source activity's current state so we can fully restore on resume.
+    if (fromActivity && noteId){
+      try { saveActivityState(noteId, fromActivity); } catch(e){}
+    }
+    state.resumeFrom = { activity: fromActivity, noteId: noteId, idx: fromIdx };
+  }
   // Open flashcards focused on this single verb
   const note = NOTES.find(n => n.id === noteId);
   if (!note) return;
@@ -11167,6 +11245,21 @@ function resumeActivity(){
   // Special destinations that aren't a per-note activity
   if (r.activity === 'decks') { goToDecks(); return; }
   if (r.activity === 'savedwords') { goToSavedWords(); return; }
+  // Mixed Practice — restart the same mixed activity.
+  if (r.activity === 'mixed' && r.mixedActivity) {
+    const mixedFnMap = {
+      'flashcards': typeof startMixedReview === 'function' ? startMixedReview : null,
+      'builder':    typeof startMixedBuilder === 'function' ? startMixedBuilder : null,
+      'spelling':   typeof startMixedSpelling === 'function' ? startMixedSpelling : null,
+      'fill':       typeof startMixedFill === 'function' ? startMixedFill : null,
+      'situation':  typeof startMixedSituation === 'function' ? startMixedSituation : null,
+      'particle':   typeof startMixedParticle === 'function' ? startMixedParticle : null,
+    };
+    const fn = mixedFnMap[r.mixedActivity];
+    if (fn) { fn(); return; }
+    // Fallback: send them to the home page.
+    goToNotes(); return;
+  }
   // Listening Practice: re-open the exact same video clip the user was watching
   if (r.activity === 'listening'){
     state.currentNoteId = r.noteId;
@@ -11215,9 +11308,11 @@ function resumeActivity(){
    MY DECKS (learned / needs practice)
 ========================================================================= */
 function _activityLabel(act){
+  if (act === 'mixed') return 'Mixed Challenge';
   return ({
     flashcards:'Flashcards', spelling:'Spelling Practice', fill:'Fill in the Blank',
     builder:'Sentence Builder', situation:'Find the Correct Verb', convo:'Practice Conversation',
+    particle:'Find the Particle',
     decks:'My Decks', savedwords:'Saved Words', listening:'Listening Practice'
   })[act] || act || 'Activity';
 }
@@ -11261,8 +11356,10 @@ function renderHomeBanners(){
   if (state.lastSession && state.lastSession.noteId && state.lastSession.activity) {
     const note = NOTES.find(n => n.id === state.lastSession.noteId);
     if (note) {
+      const cbIcon = document.getElementById('cb-icon');
+      if (cbIcon) cbIcon.textContent = note.emoji || '▶️';
       document.getElementById('cb-title').textContent = note.title;
-      document.getElementById('cb-sub').textContent = _activityLabel(state.lastSession.activity);
+      document.getElementById('cb-sub').textContent = '· ' + _activityLabel(state.lastSession.activity);
       cb.style.display = '';
       showCb = true;
     }
@@ -14250,6 +14347,9 @@ function checkMixedFill() {
     fb.innerHTML = "❌ The correct answer is <strong>" + getVerbDisplay(correct, state.mf.pool[state.mf.idx].verb.fillSentence || '') + "</strong>.";
   }
 
+  // Review-on-flashcard link, regardless of right/wrong.
+  fb.innerHTML += '<button class="review-btn" onclick="reviewVerbOnFlashcard(\'__mixed__\',' + state.mf.idx + ',\'fill\',' + state.mf.idx + ')">📖 Review on flashcard</button>';
+
   state.mf.answered = true;
   document.getElementById("mf-check").disabled = false;
   document.getElementById("mf-check").textContent =
@@ -14609,9 +14709,10 @@ function checkParticle() {
     const exampleHtml = v.flashExample
       ? `<div style="margin-top:10px;padding:10px 14px;background:rgba(0,0,0,0.04);border-radius:8px;font-style:italic;font-size:14px;line-height:1.45;"><span style="font-weight:700;font-style:normal;color:var(--ink-soft);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:4px;">Example</span>${escapeHtml(v.flashExample)}</div>`
       : '';
+    const reviewBtn = `<button class="review-btn" onclick="reviewVerbOnFlashcard('${state.currentNoteId}',${verbIdx},'particle',${ptState.current})">📖 Review on flashcard</button>`;
     fb.innerHTML = (isCorrect
       ? `<div>✅ Correct! The phrasal verb is <strong>${v.verb}</strong>.</div>`
-      : `<div>❌ Not quite. The correct particle is <strong>${fp.correct}</strong>, making it <strong>${v.verb}</strong>.</div>`) + exampleHtml;
+      : `<div>❌ Not quite. The correct particle is <strong>${fp.correct}</strong>, making it <strong>${v.verb}</strong>.</div>`) + exampleHtml + reviewBtn;
     fb.classList.add('show', isCorrect ? 'good' : 'bad');
     document.getElementById('pt-check').textContent = (ptState.current === verbs.length - 1) ? 'Finish' : 'Next →';
     document.getElementById('pt-check').disabled = false;
@@ -14679,6 +14780,29 @@ function toggleTheme(){
   try{ localStorage.setItem('eewj_phrasal_theme', darkMode ? 'dark' : 'light'); }catch(e){}
   applyTheme();
 }
+
+/* Master English popover (teacher emoji button in the menu bar) */
+function toggleMasterEnglishMenu(ev){
+  if (ev) { ev.stopPropagation(); }
+  const m = document.getElementById('me-menu');
+  if (!m) return;
+  const isOpen = m.classList.toggle('open');
+  m.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+}
+document.addEventListener('click', function(ev){
+  const m = document.getElementById('me-menu');
+  const btn = document.getElementById('me-menu-btn');
+  if (!m || !m.classList.contains('open')) return;
+  if (m.contains(ev.target) || (btn && btn.contains(ev.target))) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden', 'true');
+});
+document.addEventListener('keydown', function(ev){
+  if (ev.key === 'Escape') {
+    const m = document.getElementById('me-menu');
+    if (m && m.classList.contains('open')) { m.classList.remove('open'); m.setAttribute('aria-hidden', 'true'); }
+  }
+});
 
 /* =========================================================================
    SOUND EFFECTS (synthesized via Web Audio API)
