@@ -14773,9 +14773,10 @@ function renderProgressDashboard(){
   setText('pd-leg-2', counts[2] + ' Almost');
   setText('pd-leg-1', counts[1] + ' No idea');
 
-  // Per-unit progress — show every NOTE that has at least one rating, in the
-  // curriculum order they appear in NOTES (50VERBS1 → 50VERBS2 → WORK → ...
-  // → SPRING). NOTES.forEach already walks in that order so we just append.
+  // Per-unit progress — show every NOTE that has at least one rating, sorted by:
+  //   1. Most mastered (rating 4) first
+  //   2. Tiebreak by total reviewed
+  //   3. Then alphabetical by title
   const unitRows = [];
   NOTES.forEach(note => {
     let m4 = 0, m3 = 0, m2 = 0, m1 = 0;
@@ -14790,6 +14791,11 @@ function renderProgressDashboard(){
     const reviewed = m1 + m2 + m3 + m4;
     if (reviewed === 0) return;
     unitRows.push({ note, m1, m2, m3, m4, reviewed, total: note.verbs.length });
+  });
+  unitRows.sort((a, b) => {
+    if (b.m4 !== a.m4) return b.m4 - a.m4;
+    if (b.reviewed !== a.reviewed) return b.reviewed - a.reviewed;
+    return String(a.note.title).localeCompare(String(b.note.title));
   });
 
   const list = document.getElementById('pd-units-list');
