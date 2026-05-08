@@ -3237,9 +3237,8 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     <div class="activity-header">
       <h2 class="activity-title">🃏 Flashcards</h2>
       <div class="counter">
-        <!-- "Card X / Y" position counter intentionally removed — the same
-             position is shown on the card itself via the .fc-num-badge in the
-             upper-left corner of the flashcard, and showing it twice was noisy. -->
+        Card <span id="fc-card-num">1</span> / <span id="fc-total-disp">18</span>
+        <span style="opacity:.55;margin:0 4px">·</span>
         <span id="fc-known-count">0</span> / <span id="fc-total">18</span> learned
       </div>
     </div>
