@@ -1490,44 +1490,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .complete-card .complete-tough-btn:hover{background:rgba(220,38,38,.06);border-color:rgba(220,38,38,.65);}
   body.dark .complete-card .complete-tough-btn{background:transparent;color:#fca5a5;border-color:rgba(248,113,113,.45);}
   body.dark .complete-card .complete-tough-btn:hover{background:rgba(248,113,113,.10);}
-  /* Time spent line — small, subtle, sits between the score and the action buttons. */
-  .complete-card .complete-time{font-size:13px;color:var(--soft);margin:-6px 0 14px;font-variant-numeric:tabular-nums;}
-  .complete-card .complete-time .ct-num{color:var(--ink);font-weight:700;}
-  body.dark .complete-card .complete-time .ct-num{color:#f1f5f9;}
-
-  /* Skip-ahead chip row — six little buttons (one per activity) below the
-     primary continue/tough buttons. Tapping a chip jumps to that activity in
-     the current unit. Completed activities get a green dot. */
-  .complete-card .complete-skip-row{margin:14px auto 6px;width:100%;max-width:380px;text-align:center;}
-  .complete-card .complete-skip-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);font-weight:700;margin-bottom:8px;}
-  .complete-card .complete-skip-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;}
-  .complete-card .complete-skip-chip{display:inline-flex;align-items:center;gap:5px;padding:6px 10px;font-size:12px;border:1px solid #e5e7eb;border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;transition:background .12s,border-color .12s,transform .12s;}
-  .complete-card .complete-skip-chip:hover{background:#f8fafc;border-color:#cbd5e1;transform:translateY(-1px);}
-  .complete-card .complete-skip-chip.done{background:#ecfdf5;border-color:#86efac;color:#065f46;}
-  .complete-card .complete-skip-chip.done:hover{background:#d1fae5;}
-  .complete-card .complete-skip-chip.current{background:#fff7ed;border-color:#fdba74;color:#9a3412;font-weight:700;cursor:default;}
-  .complete-card .complete-skip-chip.current:hover{transform:none;}
-  .complete-card .complete-skip-chip .csc-emoji{font-size:13px;line-height:1;}
-  body.dark .complete-card .complete-skip-chip{background:#1e293b;border-color:#334155;color:#f1f5f9;}
-  body.dark .complete-card .complete-skip-chip:hover{background:#162033;border-color:#475569;}
-  body.dark .complete-card .complete-skip-chip.done{background:rgba(16,185,129,.12);border-color:rgba(110,231,183,.4);color:#6ee7b7;}
-  body.dark .complete-card .complete-skip-chip.current{background:rgba(249,115,22,.14);border-color:rgba(253,186,116,.4);color:#fdba74;}
-
-  /* Share button — text-style, sits right below the skip chips. Pulses green
-     briefly when "Copied!" is shown. */
-  .complete-card .complete-share-btn{display:flex;width:100%;max-width:340px;margin:6px auto 0;justify-content:center;font-size:14px;padding:11px 16px;background:transparent;color:var(--accent);border:1px dashed rgba(37,99,235,.35);}
-  .complete-card .complete-share-btn:hover{background:rgba(37,99,235,.06);border-color:rgba(37,99,235,.55);}
-  .complete-card .complete-share-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.55);color:#065f46;}
-  body.dark .complete-card .complete-share-btn{color:#93c5fd;border-color:rgba(147,197,253,.35);}
-  body.dark .complete-card .complete-share-btn:hover{background:rgba(147,197,253,.10);}
-  body.dark .complete-card .complete-share-btn.copied{background:rgba(16,185,129,.18);color:#6ee7b7;border-color:rgba(110,231,183,.5);}
-
-  /* Visual separator between the Continue/Tough action pair and the secondary
-     Do it again / Back to activities row below. */
-  .complete-card .complete-divider{border:none;border-top:1px solid #e5e7eb;margin:18px auto 14px;width:100%;max-width:340px;}
-  .complete-card .complete-divider-label{display:block;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--soft);font-weight:600;margin:-8px auto 12px;background:linear-gradient(180deg,transparent 0%,transparent 49%,#fff 50%,transparent 51%);padding:0 8px;width:fit-content;}
-  body.dark .complete-card .complete-divider{border-color:#334155;}
-  body.dark .complete-card .complete-divider-label{background:linear-gradient(180deg,transparent 0%,transparent 49%,#1e293b 50%,transparent 51%);}
   .complete-card .buttons {
     display: flex;
     gap: 10px;
@@ -1624,12 +1586,9 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   body.dark .splash{background:linear-gradient(180deg,#1f2937,#111827);border-color:#374151;}
 
   /* ── WELCOME LINE ── */
-  /* Welcome line — sits at the very top of the home screen, above search.
-     Bigger than the previous 17px so the user's name reads clearly. */
-  .welcome-line{text-align:center;font-size:24px;color:var(--soft);margin:4px 0 22px;font-weight:600;line-height:1.25;}
-  .welcome-line b{color:var(--ink);font-weight:800;}
-  .welcome-line .change{color:var(--accent);cursor:pointer;text-decoration:underline;font-size:13px;margin-left:8px;font-weight:500;}
-  @media(max-width:520px){.welcome-line{font-size:20px;margin:2px 0 16px;}}
+  .welcome-line{text-align:center;font-size:17px;color:var(--soft);margin:-4px 0 18px;font-weight:500;}
+  .welcome-line b{color:var(--ink);font-weight:700;}
+  .welcome-line .change{color:var(--accent);cursor:pointer;text-decoration:underline;font-size:12px;margin-left:6px;font-weight:400;}
 
   /* ── SEARCH ── */
   .search-wrap{margin:0 0 20px;position:relative;}
@@ -1762,30 +1721,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .home-rowlet{display:flex;gap:10px;align-items:stretch;margin:0 0 12px;flex-wrap:wrap;}
   .home-rowlet > *{flex:1 1 calc(50% - 5px);min-width:0;margin-bottom:0 !important;display:flex;flex-direction:column;}
   .home-rowlet > * > .collapse-head{flex:1;}
-
-  /* 3-card home row: WOTD · Mixed Challenge · My Progress.
-     Three equal columns at desktop widths; stacks under 760px so each card
-     remains tappable. When any child is expanded (a collapsible card opens),
-     the row stacks vertically so the expanded body has full width. */
-  .home-row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch;margin:0 0 24px;}
-  .home-row3 > *{margin:0 !important;min-width:0;display:flex;flex-direction:column;}
-  .home-row3 > * > .collapse-head{flex:1;}
-  .home-row3.row-stacked{grid-template-columns:1fr;}
-  @media(max-width:760px){.home-row3{grid-template-columns:1fr;}}
-
-  /* Word-of-the-Day tile — vertical card form so it fits a 3-up grid. The
-     single-banner version is still styled below for legacy paths. */
-  .wotd-tile{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:18px 14px;background:#fff;color:var(--ink);border:1px solid #bfdbfe;border-radius:18px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 0 0 3px rgba(96,165,250,.18),0 4px 14px rgba(37,99,235,.18);animation:wotdGlow 2.4s ease-in-out infinite;min-height:118px;}
-  .wotd-tile:hover{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(96,165,250,.28),0 8px 22px rgba(37,99,235,.28);border-color:#93c5fd;}
-  .wotd-tile .wt-icon{font-size:30px;line-height:1;margin-bottom:6px;}
-  .wotd-tile .wt-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:800;color:var(--accent);margin-bottom:4px;}
-  .wotd-tile .wt-title{font-size:17px;font-weight:800;line-height:1.2;color:var(--ink);margin-bottom:2px;}
-  .wotd-tile .wt-defn{font-size:12px;color:var(--soft);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-  body.dark .wotd-tile{background:#1e293b;border-color:#1e40af;box-shadow:0 0 0 3px rgba(96,165,250,.22),0 4px 14px rgba(37,99,235,.32);}
-  body.dark .wotd-tile:hover{border-color:#3b82f6;}
-  body.dark .wotd-tile .wt-label{color:#60a5fa;}
-  body.dark .wotd-tile .wt-title{color:#f1f5f9;}
-  body.dark .wotd-tile .wt-defn{color:#94a3b8;}
   /* When one is expanded, both go full width (stacked) */
   .home-rowlet.row-stacked{flex-direction:column;}
   .home-rowlet.row-stacked > *{flex:1 1 100%;width:100%;}
@@ -2737,10 +2672,18 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <p class="splash-note">🇺🇸 American English. Some phrasal verbs are used differently in British, Australian, or other varieties of English.</p>
     </div>
 
-    <!-- Welcome line — bigger, sits at the very top of home above search. -->
     <div class="welcome-line" id="welcome-line"></div>
 
-    <!-- Search bar — second row -->
+    <div class="wotd-banner" id="wotd-banner" style="display:none;" onclick="openWordOfTheDay()">
+      <span class="wb-icon">🌟</span>
+      <div class="wb-body">
+        <span class="wb-label">Word of the day:</span>
+        <span class="wb-title" id="wotd-title">...</span>
+        <span class="wb-defn" id="wotd-defn">...</span>
+      </div>
+      <span class="wb-arrow">→</span>
+    </div>
+
     <div class="search-wrap">
       <span class="search-icon">🔎</span>
       <input type="text" class="search-input" id="search-input" placeholder="Search for a phrasal verb" oninput="filterUnits()">
@@ -2764,22 +2707,8 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     <div id="verb-results-header" class="search-section-header">Phrasal verbs · <span id="verb-results-count">0</span> matches</div>
     <div id="verb-results-list" class="verb-results-list"></div>
 
-    <!-- Three-card home row: WOTD · Mixed Challenge · My Progress -->
-    <div class="home-row3" id="home-row3">
-
-    <!-- Word of the Day tile (vertical card form so it fits the 3-up grid).
-         Keeps the original wotd-banner id so renderHomeBanners() / showWotd()
-         logic continues to work without modification. -->
-    <div class="wotd-tile" id="wotd-banner" style="display:none;" onclick="openWordOfTheDay()">
-      <div class="wt-icon">🌟</div>
-      <div class="wt-label">Word of the day</div>
-      <div class="wt-title" id="wotd-title">...</div>
-      <div class="wt-defn" id="wotd-defn">...</div>
-    </div>
-
-    <!-- Master English connect card was here. It moved to the menu bar; keep
-         the markup hidden but inert so any leftover JS calls still resolve. -->
-    <div class="connect-card collapsed" id="cc-connect" style="display:none !important;">
+    <div class="home-rowlet">
+    <div class="connect-card collapsed" id="cc-connect" style="display:none;">
       <div class="collapse-head" onclick="toggleCollapse('cc-connect')">
         <span class="collapse-emoji">👨🏻‍🏫</span>
         <span class="collapse-title">Master English</span>
@@ -2881,9 +2810,9 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       </div>
       </div>
     </div>
+    </div>
 
-    <!-- Progress Dashboard — moved INSIDE home-row3 so it sits as the third
-         tile alongside WOTD and Mixed Challenge. -->
+    <!-- Progress Dashboard — collapsible, mirrors Mixed Challenge / Connect card pattern -->
     <div class="progress-section collapsed" id="cc-progress">
       <div class="collapse-head" onclick="toggleCollapse('cc-progress'); renderProgressDashboard();">
         <span class="collapse-emoji">📊</span>
@@ -2922,8 +2851,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         </div>
       </div>
     </div>
-
-    </div> <!-- /home-row3 — closes the 3-tile grid (WOTD · Mixed · Progress) -->
 
     <div id="topics-section-header" class="search-section-header">Topics · <span id="topics-count">0</span> matches</div>
     <div id="note-grid-featured" class="note-grid-featured"></div>
@@ -3513,26 +3440,12 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <div class="trophy">🎉</div>
       <h3 id="complete-title">Nice work!</h3>
       <div class="score" id="complete-score">You finished the activity.</div>
-      <!-- Time spent — populated by _populateCompletionSuggestions from
-           state.activityStartTs. Hidden when the start timestamp wasn't set. -->
-      <div class="complete-time" id="complete-time" style="display:none;">⏱ <span class="ct-num" id="complete-time-num">0s</span> on this activity</div>
       <!-- Suggest re-running tough cards (rating 1 or 2) when there are any.
            Populated by completeActivity, hidden when the rating tally is all 3s/4s. -->
       <button class="btn complete-tough-btn" id="complete-tough-btn" onclick="reviewToughCardsFromComplete()" style="display:none;">🔥 Review tough cards (<span id="complete-tough-count">0</span>)</button>
-      <!-- Suggest the next activity (or next unit) so the learner has somewhere to go after a deck.
-           Populated by completeActivity, hidden when there is no next target. -->
+      <!-- Suggest the next unit in NOTES order so the learner has somewhere to go after a deck.
+           Populated by completeActivity, hidden when there is no next unit. -->
       <button class="btn primary complete-next-btn" id="complete-next-btn" onclick="continueToNextUnitFromComplete()" style="display:none;">Continue to <span id="complete-next-title">next unit</span> →</button>
-      <!-- Skip-ahead chip row — jump to any activity in the current unit.
-           Populated by _populateCompletionSuggestions. Hidden in mixed/deck mode. -->
-      <div class="complete-skip-row" id="complete-skip-row" style="display:none;">
-        <div class="complete-skip-label">Skip to another activity</div>
-        <div class="complete-skip-chips" id="complete-skip-chips"></div>
-      </div>
-      <!-- Share button — copies a small progress summary to clipboard. -->
-      <button class="btn complete-share-btn" id="complete-share-btn" onclick="shareProgressFromComplete()">📋 Share my progress</button>
-      <!-- Visual divider separates the primary continuation buttons above
-           from the secondary "do it again / back" pair below. -->
-      <hr class="complete-divider">
       <div class="buttons">
         <button class="btn" onclick="restartActivity()">🔁 Do it again</button>
         <button class="btn" onclick="goToNote()">Back to activities</button>
@@ -13220,13 +13133,10 @@ function toggleCollapse(id){
   const el = document.getElementById(id);
   if (!el) return;
   el.classList.toggle('collapsed');
-  // If this card lives in a side-by-side row, stack the row when any child is
-  // expanded so the open content has full width. Supports both the legacy
-  // .home-rowlet and the new .home-row3 (3-up grid: WOTD · Mixed · Progress).
-  const row = el.closest('.home-row3, .home-rowlet');
+  // If this card lives in a side-by-side row, stack the row when any child is expanded
+  const row = el.closest('.home-rowlet');
   if (row) {
-    // Ignore always-collapsed/hidden children (like the retired Master English card)
-    const anyExpanded = !!row.querySelector(':scope > :not(.collapsed):not(#cc-connect)');
+    const anyExpanded = !!row.querySelector(':scope > :not(.collapsed)');
     row.classList.toggle('row-stacked', anyExpanded);
   }
 }
@@ -14085,7 +13995,6 @@ function startFlashcards() {
   // Leaving deck mode if we entered via "Back to activities" then re-clicked flashcards
   state.deckSession = null;
   state.lastActivity = "flashcards";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "flashcards");
   const verbs = currentNote().verbs;
   const indices = verbs.map((_, i) => i);
@@ -14609,7 +14518,6 @@ function _spHintBudgetFor(verbCount){
 }
 function startSpelling() {
   state.lastActivity = "spelling";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "spelling");
   const verbs = currentNote().verbs;
   state.sp.order = shuffle(verbs.map((_, i) => i));
@@ -15087,7 +14995,6 @@ function skipSpelling() {
 ========================================================================= */
 function startFill() {
   state.lastActivity = "fill";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "fill");
   const verbs = currentNote().verbs;
   state.fb.order = shuffle(verbs.map((_, i) => i));
@@ -15334,51 +15241,12 @@ function completeActivity(title, score) {
   if (isPerfect && typeof playPerfect === 'function') playPerfect();
   else if (typeof playComplete === 'function') playComplete();
 }
-// Activity sequence within a unit. The "Continue" button on the completion
-// screen advances along this chain — flashcards → particle → spelling → fill →
-// builder → situation. After situation finishes, we advance to the NEXT note's
-// flashcards so the learner moves through the curriculum without bouncing home.
-const ACTIVITY_SEQUENCE = ['flashcards', 'particle', 'spelling', 'fill', 'builder', 'situation'];
-// Lightweight metadata for the skip-ahead chips on the completion screen.
-const ACTIVITY_META = {
-  flashcards: { emoji: '🃏', label: 'Flashcards' },
-  particle:   { emoji: '🧠', label: 'Find the Particle' },
-  spelling:   { emoji: '😈', label: 'Spelling' },
-  fill:       { emoji: '📝', label: 'Fill in the Blank' },
-  builder:    { emoji: '🧱', label: 'Sentence Builder' },
-  situation:  { emoji: '✅', label: 'Find the Correct Verb' },
-};
-// Mark the start of an activity so we can display elapsed time on completion.
-// Called from each start* function. The timestamp lives on state but is not
-// persisted; resuming a saved activity resets it (a fresh "session" timer).
-function _markActivityStart(){ state.activityStartTs = Date.now(); }
-// Format milliseconds as a short human string: "42s", "3m 04s", "1h 12m".
-function _formatElapsed(ms){
-  if (!ms || ms < 0) return '';
-  const s = Math.floor(ms / 1000);
-  if (s < 60) return s + 's';
-  const m = Math.floor(s / 60);
-  const rs = s % 60;
-  if (m < 60) return m + 'm ' + String(rs).padStart(2, '0') + 's';
-  const h = Math.floor(m / 60);
-  const rm = m % 60;
-  return h + 'h ' + String(rm).padStart(2, '0') + 'm';
-}
-function _nextActivityAfter(act){
-  const i = ACTIVITY_SEQUENCE.indexOf(act);
-  if (i < 0) return null;
-  if (i + 1 < ACTIVITY_SEQUENCE.length) return ACTIVITY_SEQUENCE[i + 1];
-  return null; // end of sequence — caller should jump to next unit
-}
 // Decide which post-completion suggestions to surface based on what the user
 // just finished. Two buttons are conditional:
 //   • "Review tough cards (X)" — visible only if the just-finished unit has any
 //     verbs rated 1 (No idea) or 2 (Almost). Tapping re-runs flashcards on those.
-//     Only shown after a flashcards run since that's the only activity that
-//     produces 1/2/3/4 ratings.
-//   • "Continue to <label>" — advances along ACTIVITY_SEQUENCE inside the same
-//     unit, then to the next unit's flashcards once situation is done. Hidden
-//     during mixed/deck pseudo-notes.
+//   • "Continue to <next unit>" — visible only when there's a next NOTE in the
+//     curriculum order. Tapping opens its flashcards. Hidden during mixed/deck.
 function _populateCompletionSuggestions(){
   const toughBtn = document.getElementById('complete-tough-btn');
   const toughCount = document.getElementById('complete-tough-count');
@@ -15392,146 +15260,28 @@ function _populateCompletionSuggestions(){
   if (!noteId || noteId === '__mixed__' || noteId === '__deck__') return;
   const note = NOTES.find(n => n.id === noteId);
   if (!note) return;
-  const act = state.lastActivity || 'flashcards';
 
-  // Tough cards: only meaningful right after flashcards (the activity that
-  // assigns 1/2/3/4 ratings). Counts verbs in this note rated 1 or 2.
-  if (act === 'flashcards') {
-    let tough = 0;
-    note.verbs.forEach(v => {
-      if (!v || !v.verb) return;
-      const r = state.cardRatings[noteId + '::' + v.verb];
-      if (r === 1 || r === 2) tough++;
-    });
-    if (tough > 0 && toughBtn && toughCount) {
-      toughCount.textContent = tough;
-      toughBtn.style.display = '';
-    }
+  // Tough cards: any verb in this note rated 1 or 2 in state.cardRatings
+  let tough = 0;
+  note.verbs.forEach(v => {
+    if (!v || !v.verb) return;
+    const r = state.cardRatings[noteId + '::' + v.verb];
+    if (r === 1 || r === 2) tough++;
+  });
+  if (tough > 0 && toughBtn && toughCount) {
+    toughCount.textContent = tough;
+    toughBtn.style.display = '';
   }
 
-  // Continue button: figure out next activity in this unit, or fall through to
-  // the next unit's flashcards.
-  if (nextBtn && nextTitle) {
-    const nextAct = _nextActivityAfter(act);
-    if (nextAct) {
-      nextBtn.dataset.target = 'activity';
-      nextBtn.dataset.targetActivity = nextAct;
-      nextBtn.dataset.targetNoteId = noteId;
-      nextTitle.textContent = _activityLabel(nextAct);
-      nextBtn.style.display = '';
-    } else {
-      // End of activity sequence — advance to next note in NOTES order
-      const idx = NOTES.findIndex(n => n.id === noteId);
-      if (idx >= 0 && idx + 1 < NOTES.length) {
-        const next = NOTES[idx + 1];
-        const emoji = next.emoji ? next.emoji + ' ' : '';
-        nextBtn.dataset.target = 'note';
-        nextBtn.dataset.targetNoteId = next.id;
-        nextTitle.textContent = emoji + next.title;
-        nextBtn.style.display = '';
-      }
-    }
+  // Next unit: walk NOTES forward from this one
+  const idx = NOTES.findIndex(n => n.id === noteId);
+  if (idx >= 0 && idx + 1 < NOTES.length && nextBtn && nextTitle) {
+    const next = NOTES[idx + 1];
+    const emoji = next.emoji ? next.emoji + ' ' : '';
+    nextTitle.textContent = emoji + next.title;
+    nextBtn.dataset.nextNoteId = next.id;
+    nextBtn.style.display = '';
   }
-
-  // Time spent — only show if we have a start timestamp for this activity.
-  const timeEl = document.getElementById('complete-time');
-  const timeNum = document.getElementById('complete-time-num');
-  if (timeEl && timeNum) {
-    if (state.activityStartTs) {
-      timeNum.textContent = _formatElapsed(Date.now() - state.activityStartTs);
-      timeEl.style.display = '';
-    } else {
-      timeEl.style.display = 'none';
-    }
-  }
-
-  // Skip-ahead chips — render one per activity in this unit. Show progress
-  // dots for completed activities (state.progress[noteId][act]) and highlight
-  // the activity we just finished.
-  const skipRow = document.getElementById('complete-skip-row');
-  const skipChips = document.getElementById('complete-skip-chips');
-  if (skipRow && skipChips) {
-    const progress = (state.progress && state.progress[noteId]) || {};
-    const html = ACTIVITY_SEQUENCE.map(a => {
-      const meta = ACTIVITY_META[a] || { emoji: '•', label: a };
-      const isCurrent = a === act;
-      const isDone = !!progress[a];
-      const cls = isCurrent ? 'complete-skip-chip current' : (isDone ? 'complete-skip-chip done' : 'complete-skip-chip');
-      const tick = (isDone && !isCurrent) ? ' ✓' : '';
-      const star = isCurrent ? ' ★' : '';
-      const onclick = isCurrent ? '' : ' onclick="_skipToActivityFromComplete(\'' + a + '\')"';
-      return '<span class="' + cls + '"' + onclick + '><span class="csc-emoji">' + meta.emoji + '</span>' + meta.label + star + tick + '</span>';
-    }).join('');
-    skipChips.innerHTML = html;
-    skipRow.style.display = '';
-  }
-}
-// Jump to a specific activity in the CURRENT unit (called from the completion
-// screen's skip chips). Reuses the same routing as the Continue button.
-function _skipToActivityFromComplete(act){
-  if (!ACTIVITY_SEQUENCE.includes(act)) return;
-  // Make sure currentNoteId is still pointing at the current unit (it should be)
-  if (!state.currentNoteId || state.currentNoteId === '__mixed__' || state.currentNoteId === '__deck__') return;
-  _startActivityByName(act);
-}
-// Build a short, brag-worthy summary of the user's progress and either copy
-// it to the clipboard (with visual feedback) or hand it to the native share
-// sheet on platforms that support navigator.share. Stays cute and short so
-// it's easy to paste into a chat.
-function shareProgressFromComplete(){
-  const btn = document.getElementById('complete-share-btn');
-  if (!btn) return;
-  const noteId = state.currentNoteId;
-  const note = NOTES.find(n => n.id === noteId);
-  const title = note ? note.title : 'this set';
-  const ratings = state.cardRatings || {};
-  const totalReviewed = Object.keys(ratings).length;
-  let mastered = 0;
-  Object.values(ratings).forEach(r => { if (r === 4) mastered++; });
-  let streak = 0;
-  try { if (streakData) streak = streakData.currentStreak || 0; } catch(e) {}
-  const lines = [
-    'Just finished ' + title + ' on Everything English with John 🎉',
-    '📚 ' + totalReviewed + ' phrasal verbs reviewed · ✅ ' + mastered + ' mastered',
-  ];
-  if (streak > 0) lines.push('🔥 ' + streak + '-day study streak');
-  lines.push('Practice with me at https://everythingenglish123.github.io/phrasal-verb-app/');
-  const shareText = lines.join('\n');
-  // Prefer native share where possible (mobile)
-  if (typeof navigator !== 'undefined' && navigator.share) {
-    navigator.share({ title: 'Everything English with John', text: shareText })
-      .catch(() => _copyShareToClipboard(shareText, btn));
-    return;
-  }
-  _copyShareToClipboard(shareText, btn);
-}
-function _copyShareToClipboard(shareText, btn){
-  const flash = (ok) => {
-    if (!btn) return;
-    const original = btn.innerHTML;
-    btn.innerHTML = ok ? '✅ Copied to clipboard!' : '⚠️ Copy failed — long-press to copy';
-    btn.classList.toggle('copied', ok);
-    setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 1800);
-  };
-  try {
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(shareText).then(() => flash(true), () => _fallbackCopy(shareText, flash));
-      return;
-    }
-  } catch(e) {}
-  _fallbackCopy(shareText, flash);
-}
-function _fallbackCopy(shareText, flash){
-  // execCommand('copy') fallback for older browsers
-  try {
-    const ta = document.createElement('textarea');
-    ta.value = shareText;
-    ta.style.position = 'fixed'; ta.style.left = '-9999px';
-    document.body.appendChild(ta); ta.select();
-    const ok = document.execCommand('copy');
-    document.body.removeChild(ta);
-    flash(ok);
-  } catch(e) { flash(false); }
 }
 // Restart flashcards for the current note, but pre-load only the verbs the user
 // rated 1 (No idea) or 2 (Almost). Reuses the deck-session machinery so the
@@ -15573,44 +15323,17 @@ function reviewToughCardsFromComplete(){
   renderCard();
   showScreen('flashcards');
 }
-// Continue handler. Reads the dataset stamped by _populateCompletionSuggestions:
-//   • target="activity" → jump to the next activity in the SAME unit (flashcards
-//     → particle → spelling → fill → builder → situation)
-//   • target="note"     → jump to the NEXT unit's flashcards (after situation)
+// Open flashcards for the next note in NOTES order. Pulled off the dataset that
+// _populateCompletionSuggestions stamped on the button so we don't recompute.
 function continueToNextUnitFromComplete(){
   const btn = document.getElementById('complete-next-btn');
-  if (!btn || !btn.dataset) { showScreen('notes'); return; }
-  const target = btn.dataset.target;
-  const noteId = btn.dataset.targetNoteId;
-  if (target === 'activity') {
-    const act = btn.dataset.targetActivity;
-    // Make sure currentNoteId points at the unit we're advancing within so the
-    // start function reads from the right verbs[].
-    if (noteId) state.currentNoteId = noteId;
-    _startActivityByName(act);
-  } else if (target === 'note') {
-    // Jump straight into the next unit's flashcards. openNote sets up the
-    // note-detail screen and metadata, then we fire flashcards from there.
-    if (typeof openNote === 'function') openNote(noteId);
-    state.currentNoteId = noteId;
-    if (typeof startFlashcards === 'function') startFlashcards();
-  } else {
-    showScreen('notes');
+  const nextId = btn && btn.dataset ? btn.dataset.nextNoteId : null;
+  if (!nextId) { showScreen('notes'); return; }
+  if (typeof openNote === 'function') openNote(nextId);
+  else if (typeof openFlashcardsForVerb === 'function') {
+    const next = NOTES.find(n => n.id === nextId);
+    if (next) openFlashcardsForVerb(nextId, 0);
   }
-}
-// Dispatch to the matching start* function for an activity name. Kept here so
-// the completion screen and any other "advance to activity" callers share the
-// same routing.
-function _startActivityByName(act){
-  if (act === 'flashcards' && typeof startFlashcards === 'function') return startFlashcards();
-  if (act === 'particle'   && typeof startParticle   === 'function') return startParticle();
-  if (act === 'spelling'   && typeof startSpelling   === 'function') return startSpelling();
-  if (act === 'fill'       && typeof startFill       === 'function') return startFill();
-  if (act === 'builder'    && typeof startBuilder    === 'function') return startBuilder();
-  if (act === 'situation'  && typeof startSituation  === 'function') return startSituation();
-  if (act === 'convo'      && typeof startConvo      === 'function') return startConvo();
-  // Fallback: send the user to the unit's activity menu
-  if (typeof goToNote === 'function') goToNote();
 }
 function restartActivity() {
   // Resume whichever activity we just finished
@@ -15627,7 +15350,6 @@ function restartActivity() {
 ========================================================================= */
 function startBuilder() {
   state.lastActivity = "builder";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "builder");
   const verbs = currentNote().verbs;
   state.bd.order = shuffle(verbs.map((_, i) => i));
@@ -16952,7 +16674,6 @@ const sitState = { order: [], current: 0, correct: 0, answered: false };
 
 function startSituation() {
   state.lastActivity = "situation";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "situation");
   const verbs = currentNote().verbs;
   sitState.order = shuffle([...Array(verbs.length).keys()]);
@@ -17138,7 +16859,6 @@ function startParticle() {
   ptState.correct = 0;
   document.getElementById('pt-total').textContent = total;
   state.lastActivity = 'particle';
-  _markActivityStart();
   setLastSession(n.id, 'particle');
   renderParticle();
   showScreen('particle');
@@ -17472,16 +17192,20 @@ function filterUnits(){
   const topicsHeader = document.getElementById('topics-section-header');
   const topicsCount = document.getElementById('topics-count');
   if(clr) clr.classList.toggle('show', q.length>0);
-  // Hide the 3-card home row (WOTD · Mixed Challenge · My Progress) while a
-  // search is active so the verb hits show right under the search bar without
-  // competing UI in the way. Also collapse the Continue banner and the legacy
-  // (now-hidden) Master English connect card.
-  const homeRow3 = document.getElementById('home-row3');
-  const connectCard = document.getElementById('cc-connect');
+  // Hide the marketing card and mixed-review section while a search is active so the
+  // verb hits show right under the search bar.
+  const connectCard = document.querySelector('.connect-card');
+  const mixedReviewSection = document.querySelector('.mixed-review-section');
+  const homeRowlet = document.querySelector('.home-rowlet');
   const continueRow = document.getElementById('continue-row');
-  if(homeRow3) homeRow3.style.display = q ? 'none' : '';
-  if(connectCard) connectCard.style.display = 'none'; // always hidden — moved to menu bar
+  if(connectCard) connectCard.style.display = q ? 'none' : '';
+  if(mixedReviewSection) mixedReviewSection.style.display = q ? 'none' : '';
+  if(homeRowlet) homeRowlet.style.display = q ? 'none' : '';
   if(continueRow && q) continueRow.style.display = 'none';
+  // Hide the progress dashboard while a search is active so the verb hits
+  // sit right under the search bar without competing UI in the way.
+  const progressSection = document.getElementById('cc-progress');
+  if(progressSection) progressSection.style.display = q ? 'none' : '';
   if(!q){
     if(verbHeader) verbHeader.classList.remove('show');
     if(verbList) verbList.innerHTML = '';

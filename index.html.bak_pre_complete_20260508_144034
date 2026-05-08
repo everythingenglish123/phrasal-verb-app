@@ -1490,38 +1490,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .complete-card .complete-tough-btn:hover{background:rgba(220,38,38,.06);border-color:rgba(220,38,38,.65);}
   body.dark .complete-card .complete-tough-btn{background:transparent;color:#fca5a5;border-color:rgba(248,113,113,.45);}
   body.dark .complete-card .complete-tough-btn:hover{background:rgba(248,113,113,.10);}
-  /* Time spent line — small, subtle, sits between the score and the action buttons. */
-  .complete-card .complete-time{font-size:13px;color:var(--soft);margin:-6px 0 14px;font-variant-numeric:tabular-nums;}
-  .complete-card .complete-time .ct-num{color:var(--ink);font-weight:700;}
-  body.dark .complete-card .complete-time .ct-num{color:#f1f5f9;}
-
-  /* Skip-ahead chip row — six little buttons (one per activity) below the
-     primary continue/tough buttons. Tapping a chip jumps to that activity in
-     the current unit. Completed activities get a green dot. */
-  .complete-card .complete-skip-row{margin:14px auto 6px;width:100%;max-width:380px;text-align:center;}
-  .complete-card .complete-skip-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);font-weight:700;margin-bottom:8px;}
-  .complete-card .complete-skip-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;}
-  .complete-card .complete-skip-chip{display:inline-flex;align-items:center;gap:5px;padding:6px 10px;font-size:12px;border:1px solid #e5e7eb;border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;transition:background .12s,border-color .12s,transform .12s;}
-  .complete-card .complete-skip-chip:hover{background:#f8fafc;border-color:#cbd5e1;transform:translateY(-1px);}
-  .complete-card .complete-skip-chip.done{background:#ecfdf5;border-color:#86efac;color:#065f46;}
-  .complete-card .complete-skip-chip.done:hover{background:#d1fae5;}
-  .complete-card .complete-skip-chip.current{background:#fff7ed;border-color:#fdba74;color:#9a3412;font-weight:700;cursor:default;}
-  .complete-card .complete-skip-chip.current:hover{transform:none;}
-  .complete-card .complete-skip-chip .csc-emoji{font-size:13px;line-height:1;}
-  body.dark .complete-card .complete-skip-chip{background:#1e293b;border-color:#334155;color:#f1f5f9;}
-  body.dark .complete-card .complete-skip-chip:hover{background:#162033;border-color:#475569;}
-  body.dark .complete-card .complete-skip-chip.done{background:rgba(16,185,129,.12);border-color:rgba(110,231,183,.4);color:#6ee7b7;}
-  body.dark .complete-card .complete-skip-chip.current{background:rgba(249,115,22,.14);border-color:rgba(253,186,116,.4);color:#fdba74;}
-
-  /* Share button — text-style, sits right below the skip chips. Pulses green
-     briefly when "Copied!" is shown. */
-  .complete-card .complete-share-btn{display:flex;width:100%;max-width:340px;margin:6px auto 0;justify-content:center;font-size:14px;padding:11px 16px;background:transparent;color:var(--accent);border:1px dashed rgba(37,99,235,.35);}
-  .complete-card .complete-share-btn:hover{background:rgba(37,99,235,.06);border-color:rgba(37,99,235,.55);}
-  .complete-card .complete-share-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.55);color:#065f46;}
-  body.dark .complete-card .complete-share-btn{color:#93c5fd;border-color:rgba(147,197,253,.35);}
-  body.dark .complete-card .complete-share-btn:hover{background:rgba(147,197,253,.10);}
-  body.dark .complete-card .complete-share-btn.copied{background:rgba(16,185,129,.18);color:#6ee7b7;border-color:rgba(110,231,183,.5);}
-
   /* Visual separator between the Continue/Tough action pair and the secondary
      Do it again / Back to activities row below. */
   .complete-card .complete-divider{border:none;border-top:1px solid #e5e7eb;margin:18px auto 14px;width:100%;max-width:340px;}
@@ -3513,23 +3481,12 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <div class="trophy">🎉</div>
       <h3 id="complete-title">Nice work!</h3>
       <div class="score" id="complete-score">You finished the activity.</div>
-      <!-- Time spent — populated by _populateCompletionSuggestions from
-           state.activityStartTs. Hidden when the start timestamp wasn't set. -->
-      <div class="complete-time" id="complete-time" style="display:none;">⏱ <span class="ct-num" id="complete-time-num">0s</span> on this activity</div>
       <!-- Suggest re-running tough cards (rating 1 or 2) when there are any.
            Populated by completeActivity, hidden when the rating tally is all 3s/4s. -->
       <button class="btn complete-tough-btn" id="complete-tough-btn" onclick="reviewToughCardsFromComplete()" style="display:none;">🔥 Review tough cards (<span id="complete-tough-count">0</span>)</button>
       <!-- Suggest the next activity (or next unit) so the learner has somewhere to go after a deck.
            Populated by completeActivity, hidden when there is no next target. -->
       <button class="btn primary complete-next-btn" id="complete-next-btn" onclick="continueToNextUnitFromComplete()" style="display:none;">Continue to <span id="complete-next-title">next unit</span> →</button>
-      <!-- Skip-ahead chip row — jump to any activity in the current unit.
-           Populated by _populateCompletionSuggestions. Hidden in mixed/deck mode. -->
-      <div class="complete-skip-row" id="complete-skip-row" style="display:none;">
-        <div class="complete-skip-label">Skip to another activity</div>
-        <div class="complete-skip-chips" id="complete-skip-chips"></div>
-      </div>
-      <!-- Share button — copies a small progress summary to clipboard. -->
-      <button class="btn complete-share-btn" id="complete-share-btn" onclick="shareProgressFromComplete()">📋 Share my progress</button>
       <!-- Visual divider separates the primary continuation buttons above
            from the secondary "do it again / back" pair below. -->
       <hr class="complete-divider">
@@ -14085,7 +14042,6 @@ function startFlashcards() {
   // Leaving deck mode if we entered via "Back to activities" then re-clicked flashcards
   state.deckSession = null;
   state.lastActivity = "flashcards";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "flashcards");
   const verbs = currentNote().verbs;
   const indices = verbs.map((_, i) => i);
@@ -14609,7 +14565,6 @@ function _spHintBudgetFor(verbCount){
 }
 function startSpelling() {
   state.lastActivity = "spelling";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "spelling");
   const verbs = currentNote().verbs;
   state.sp.order = shuffle(verbs.map((_, i) => i));
@@ -15087,7 +15042,6 @@ function skipSpelling() {
 ========================================================================= */
 function startFill() {
   state.lastActivity = "fill";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "fill");
   const verbs = currentNote().verbs;
   state.fb.order = shuffle(verbs.map((_, i) => i));
@@ -15339,31 +15293,6 @@ function completeActivity(title, score) {
 // builder → situation. After situation finishes, we advance to the NEXT note's
 // flashcards so the learner moves through the curriculum without bouncing home.
 const ACTIVITY_SEQUENCE = ['flashcards', 'particle', 'spelling', 'fill', 'builder', 'situation'];
-// Lightweight metadata for the skip-ahead chips on the completion screen.
-const ACTIVITY_META = {
-  flashcards: { emoji: '🃏', label: 'Flashcards' },
-  particle:   { emoji: '🧠', label: 'Find the Particle' },
-  spelling:   { emoji: '😈', label: 'Spelling' },
-  fill:       { emoji: '📝', label: 'Fill in the Blank' },
-  builder:    { emoji: '🧱', label: 'Sentence Builder' },
-  situation:  { emoji: '✅', label: 'Find the Correct Verb' },
-};
-// Mark the start of an activity so we can display elapsed time on completion.
-// Called from each start* function. The timestamp lives on state but is not
-// persisted; resuming a saved activity resets it (a fresh "session" timer).
-function _markActivityStart(){ state.activityStartTs = Date.now(); }
-// Format milliseconds as a short human string: "42s", "3m 04s", "1h 12m".
-function _formatElapsed(ms){
-  if (!ms || ms < 0) return '';
-  const s = Math.floor(ms / 1000);
-  if (s < 60) return s + 's';
-  const m = Math.floor(s / 60);
-  const rs = s % 60;
-  if (m < 60) return m + 'm ' + String(rs).padStart(2, '0') + 's';
-  const h = Math.floor(m / 60);
-  const rm = m % 60;
-  return h + 'h ' + String(rm).padStart(2, '0') + 'm';
-}
 function _nextActivityAfter(act){
   const i = ACTIVITY_SEQUENCE.indexOf(act);
   if (i < 0) return null;
@@ -15411,127 +15340,26 @@ function _populateCompletionSuggestions(){
 
   // Continue button: figure out next activity in this unit, or fall through to
   // the next unit's flashcards.
-  if (nextBtn && nextTitle) {
-    const nextAct = _nextActivityAfter(act);
-    if (nextAct) {
-      nextBtn.dataset.target = 'activity';
-      nextBtn.dataset.targetActivity = nextAct;
-      nextBtn.dataset.targetNoteId = noteId;
-      nextTitle.textContent = _activityLabel(nextAct);
+  if (!nextBtn || !nextTitle) return;
+  const nextAct = _nextActivityAfter(act);
+  if (nextAct) {
+    nextBtn.dataset.target = 'activity';
+    nextBtn.dataset.targetActivity = nextAct;
+    nextBtn.dataset.targetNoteId = noteId;
+    nextTitle.textContent = _activityLabel(nextAct);
+    nextBtn.style.display = '';
+  } else {
+    // End of activity sequence — advance to next note in NOTES order
+    const idx = NOTES.findIndex(n => n.id === noteId);
+    if (idx >= 0 && idx + 1 < NOTES.length) {
+      const next = NOTES[idx + 1];
+      const emoji = next.emoji ? next.emoji + ' ' : '';
+      nextBtn.dataset.target = 'note';
+      nextBtn.dataset.targetNoteId = next.id;
+      nextTitle.textContent = emoji + next.title;
       nextBtn.style.display = '';
-    } else {
-      // End of activity sequence — advance to next note in NOTES order
-      const idx = NOTES.findIndex(n => n.id === noteId);
-      if (idx >= 0 && idx + 1 < NOTES.length) {
-        const next = NOTES[idx + 1];
-        const emoji = next.emoji ? next.emoji + ' ' : '';
-        nextBtn.dataset.target = 'note';
-        nextBtn.dataset.targetNoteId = next.id;
-        nextTitle.textContent = emoji + next.title;
-        nextBtn.style.display = '';
-      }
     }
   }
-
-  // Time spent — only show if we have a start timestamp for this activity.
-  const timeEl = document.getElementById('complete-time');
-  const timeNum = document.getElementById('complete-time-num');
-  if (timeEl && timeNum) {
-    if (state.activityStartTs) {
-      timeNum.textContent = _formatElapsed(Date.now() - state.activityStartTs);
-      timeEl.style.display = '';
-    } else {
-      timeEl.style.display = 'none';
-    }
-  }
-
-  // Skip-ahead chips — render one per activity in this unit. Show progress
-  // dots for completed activities (state.progress[noteId][act]) and highlight
-  // the activity we just finished.
-  const skipRow = document.getElementById('complete-skip-row');
-  const skipChips = document.getElementById('complete-skip-chips');
-  if (skipRow && skipChips) {
-    const progress = (state.progress && state.progress[noteId]) || {};
-    const html = ACTIVITY_SEQUENCE.map(a => {
-      const meta = ACTIVITY_META[a] || { emoji: '•', label: a };
-      const isCurrent = a === act;
-      const isDone = !!progress[a];
-      const cls = isCurrent ? 'complete-skip-chip current' : (isDone ? 'complete-skip-chip done' : 'complete-skip-chip');
-      const tick = (isDone && !isCurrent) ? ' ✓' : '';
-      const star = isCurrent ? ' ★' : '';
-      const onclick = isCurrent ? '' : ' onclick="_skipToActivityFromComplete(\'' + a + '\')"';
-      return '<span class="' + cls + '"' + onclick + '><span class="csc-emoji">' + meta.emoji + '</span>' + meta.label + star + tick + '</span>';
-    }).join('');
-    skipChips.innerHTML = html;
-    skipRow.style.display = '';
-  }
-}
-// Jump to a specific activity in the CURRENT unit (called from the completion
-// screen's skip chips). Reuses the same routing as the Continue button.
-function _skipToActivityFromComplete(act){
-  if (!ACTIVITY_SEQUENCE.includes(act)) return;
-  // Make sure currentNoteId is still pointing at the current unit (it should be)
-  if (!state.currentNoteId || state.currentNoteId === '__mixed__' || state.currentNoteId === '__deck__') return;
-  _startActivityByName(act);
-}
-// Build a short, brag-worthy summary of the user's progress and either copy
-// it to the clipboard (with visual feedback) or hand it to the native share
-// sheet on platforms that support navigator.share. Stays cute and short so
-// it's easy to paste into a chat.
-function shareProgressFromComplete(){
-  const btn = document.getElementById('complete-share-btn');
-  if (!btn) return;
-  const noteId = state.currentNoteId;
-  const note = NOTES.find(n => n.id === noteId);
-  const title = note ? note.title : 'this set';
-  const ratings = state.cardRatings || {};
-  const totalReviewed = Object.keys(ratings).length;
-  let mastered = 0;
-  Object.values(ratings).forEach(r => { if (r === 4) mastered++; });
-  let streak = 0;
-  try { if (streakData) streak = streakData.currentStreak || 0; } catch(e) {}
-  const lines = [
-    'Just finished ' + title + ' on Everything English with John 🎉',
-    '📚 ' + totalReviewed + ' phrasal verbs reviewed · ✅ ' + mastered + ' mastered',
-  ];
-  if (streak > 0) lines.push('🔥 ' + streak + '-day study streak');
-  lines.push('Practice with me at https://everythingenglish123.github.io/phrasal-verb-app/');
-  const shareText = lines.join('\n');
-  // Prefer native share where possible (mobile)
-  if (typeof navigator !== 'undefined' && navigator.share) {
-    navigator.share({ title: 'Everything English with John', text: shareText })
-      .catch(() => _copyShareToClipboard(shareText, btn));
-    return;
-  }
-  _copyShareToClipboard(shareText, btn);
-}
-function _copyShareToClipboard(shareText, btn){
-  const flash = (ok) => {
-    if (!btn) return;
-    const original = btn.innerHTML;
-    btn.innerHTML = ok ? '✅ Copied to clipboard!' : '⚠️ Copy failed — long-press to copy';
-    btn.classList.toggle('copied', ok);
-    setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 1800);
-  };
-  try {
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(shareText).then(() => flash(true), () => _fallbackCopy(shareText, flash));
-      return;
-    }
-  } catch(e) {}
-  _fallbackCopy(shareText, flash);
-}
-function _fallbackCopy(shareText, flash){
-  // execCommand('copy') fallback for older browsers
-  try {
-    const ta = document.createElement('textarea');
-    ta.value = shareText;
-    ta.style.position = 'fixed'; ta.style.left = '-9999px';
-    document.body.appendChild(ta); ta.select();
-    const ok = document.execCommand('copy');
-    document.body.removeChild(ta);
-    flash(ok);
-  } catch(e) { flash(false); }
 }
 // Restart flashcards for the current note, but pre-load only the verbs the user
 // rated 1 (No idea) or 2 (Almost). Reuses the deck-session machinery so the
@@ -15627,7 +15455,6 @@ function restartActivity() {
 ========================================================================= */
 function startBuilder() {
   state.lastActivity = "builder";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "builder");
   const verbs = currentNote().verbs;
   state.bd.order = shuffle(verbs.map((_, i) => i));
@@ -16952,7 +16779,6 @@ const sitState = { order: [], current: 0, correct: 0, answered: false };
 
 function startSituation() {
   state.lastActivity = "situation";
-  _markActivityStart();
   setLastSession(state.currentNoteId, "situation");
   const verbs = currentNote().verbs;
   sitState.order = shuffle([...Array(verbs.length).keys()]);
@@ -17138,7 +16964,6 @@ function startParticle() {
   ptState.correct = 0;
   document.getElementById('pt-total').textContent = total;
   state.lastActivity = 'particle';
-  _markActivityStart();
   setLastSession(n.id, 'particle');
   renderParticle();
   showScreen('particle');
