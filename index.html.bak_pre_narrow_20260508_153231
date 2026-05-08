@@ -1771,19 +1771,16 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .home-row3 > *{margin:0 !important;min-width:0;display:flex;flex-direction:column;position:relative;}
   .home-row3 > * > .collapse-head{flex:1;}
   .home-row3.row-stacked{grid-template-columns:1fr;}
-  /* Stack to single column at any browser width below 820px so narrow windows
-     (tablet portrait, half-width desktop) get the clean strip layout instead
-     of cramped tiny tiles. */
-  @media(max-width:820px){.home-row3{grid-template-columns:1fr;}}
+  @media(max-width:760px){.home-row3{grid-template-columns:1fr;}}
 
   /* Tile-style collapse head — applied ONLY when:
        1. The card is collapsed
        2. The home row is in its 3-column "tiles" mode (NOT row-stacked)
-       3. We're at a width where the 3-column grid is actually showing (≥821px)
+       3. We're at desktop width (>760px — narrow viewports collapse to 1 col)
      When any card expands, the row gets .row-stacked added, which means the
      siblings should revert to the original compact horizontal layout so the
      row doesn't look jumbled. The same applies on narrow mobile widths.    */
-  @media(min-width:821px){
+  @media(min-width:761px){
     .home-row3:not(.row-stacked) > .collapsed .collapse-head{
       flex-direction:column;
       align-items:center;
@@ -1805,8 +1802,8 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   /* WOTD tile in tile mode — vertical card by default. */
   .home-row3 > .wotd-tile{display:flex;flex-direction:column;}
   /* Desktop only: when the row is stacked (a sibling expanded), shrink WOTD to
-     a compact horizontal strip. Narrow widths get their own grid layout below. */
-  @media(min-width:821px){
+     a compact horizontal strip. Mobile gets its own grid layout further below. */
+  @media(min-width:761px){
     .home-row3.row-stacked > .wotd-tile{
       flex-direction:row;
       align-items:center;
@@ -1820,7 +1817,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     .home-row3.row-stacked > .wotd-tile .wt-title{font-size:14px;margin:0;}
     .home-row3.row-stacked > .wotd-tile .wt-defn{font-size:11px;margin:0;flex:1;text-align:right;-webkit-line-clamp:1;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;}
   }
-  @media(max-width:820px){
+  @media(max-width:760px){
     /* Mobile WOTD strip: 2-row grid with the emoji spanning both rows on the
        left and the title/defn stacked on the right. Cleaner than the previous
        single-line all-elements-in-a-row attempt that ran out of width. */
@@ -1897,10 +1894,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
      emoji icon on top and the activity name below it. The legacy mr-arrow is
      hidden in this layout (no arrow needed when tile == button). */
   .mixed-review-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  /* When the home row stacks (narrow viewport, ≤820px), Mixed Challenge
-     spans the whole page width — drop to 3 columns then 2 so cubes stay
-     a comfortable size for tapping at all widths. */
-  @media(max-width:820px){.mixed-review-grid{grid-template-columns:repeat(3,1fr);gap:8px;}}
+  @media(max-width:760px){.mixed-review-grid{grid-template-columns:repeat(3,1fr);gap:8px;}}
   @media(max-width:520px){.mixed-review-grid{grid-template-columns:repeat(2,1fr);gap:8px;}}
   .mr-card{border-radius:14px;padding:14px 8px 12px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 14px rgba(0,0,0,.15);text-align:center;aspect-ratio:1/1;min-height:0;}
   .mr-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.22);}
