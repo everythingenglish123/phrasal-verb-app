@@ -1773,63 +1773,26 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .home-row3.row-stacked{grid-template-columns:1fr;}
   @media(max-width:760px){.home-row3{grid-template-columns:1fr;}}
 
-  /* Tile-style collapse head — applied ONLY when:
-       1. The card is collapsed
-       2. The home row is in its 3-column "tiles" mode (NOT row-stacked)
-       3. We're at desktop width (>760px — narrow viewports collapse to 1 col)
-     When any card expands, the row gets .row-stacked added, which means the
-     siblings should revert to the original compact horizontal layout so the
-     row doesn't look jumbled. The same applies on narrow mobile widths.    */
-  @media(min-width:761px){
-    .home-row3:not(.row-stacked) > .collapsed .collapse-head{
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-      gap:4px;
-      padding:18px 14px 16px;
-      min-height:118px;
-      justify-content:center;
-    }
-    .home-row3:not(.row-stacked) > .collapsed .collapse-emoji{font-size:30px;line-height:1;margin-bottom:2px;}
-    .home-row3:not(.row-stacked) > .collapsed .collapse-title{font-size:17px;font-weight:800;letter-spacing:0;text-transform:none;color:var(--ink);line-height:1.2;}
-    .home-row3:not(.row-stacked) > .collapsed .collapse-sub{font-size:12px;font-weight:500;color:var(--soft);margin:0;flex:none;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;}
-    .home-row3:not(.row-stacked) > .collapsed .collapse-chevron{position:absolute;top:10px;right:12px;font-size:12px;color:var(--soft);opacity:.55;}
-    .home-row3:not(.row-stacked) > .collapsed:hover .collapse-chevron{opacity:1;}
-    body.dark .home-row3:not(.row-stacked) > .collapsed .collapse-title{color:#f1f5f9;}
-    body.dark .home-row3:not(.row-stacked) > .collapsed .collapse-sub{color:#94a3b8;}
-  }
-
-  /* WOTD tile in tile mode — vertical card. When the row is stacked (a sibling
-     expanded) or on narrow viewports, shrink to a compact horizontal strip so
-     the page stays clean. */
-  .home-row3.row-stacked > .wotd-tile,
-  .home-row3 > .wotd-tile{display:flex;flex-direction:column;}
-  .home-row3.row-stacked > .wotd-tile{
-    flex-direction:row;
+  /* Tile-style collapse head — only when card is collapsed AND inside the 3-up
+     home row. Stacks vertically (emoji → title → info) so Mixed Challenge and
+     My Progress visually match the WOTD tile. The original horizontal layout
+     is restored when the card is expanded (no .collapsed class). */
+  .home-row3 > .collapsed .collapse-head{
+    flex-direction:column;
     align-items:center;
-    text-align:left;
-    gap:10px;
-    padding:12px 16px;
-    min-height:0;
+    text-align:center;
+    gap:4px;
+    padding:18px 14px 16px;
+    min-height:118px;
+    justify-content:center;
   }
-  .home-row3.row-stacked > .wotd-tile .wt-icon{font-size:22px;margin-bottom:0;flex-shrink:0;}
-  .home-row3.row-stacked > .wotd-tile .wt-label{font-size:9px;margin:0;flex-shrink:0;}
-  .home-row3.row-stacked > .wotd-tile .wt-title{font-size:14px;margin:0;}
-  .home-row3.row-stacked > .wotd-tile .wt-defn{font-size:11px;margin:0;flex:1;text-align:right;-webkit-line-clamp:1;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;}
-  @media(max-width:760px){
-    .home-row3 > .wotd-tile{
-      flex-direction:row;
-      align-items:center;
-      text-align:left;
-      gap:10px;
-      padding:12px 16px;
-      min-height:0;
-    }
-    .home-row3 > .wotd-tile .wt-icon{font-size:22px;margin-bottom:0;flex-shrink:0;}
-    .home-row3 > .wotd-tile .wt-label{font-size:9px;margin:0;flex-shrink:0;}
-    .home-row3 > .wotd-tile .wt-title{font-size:14px;margin:0;}
-    .home-row3 > .wotd-tile .wt-defn{font-size:11px;margin:0;flex:1;text-align:right;-webkit-line-clamp:1;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;}
-  }
+  .home-row3 > .collapsed .collapse-emoji{font-size:30px;line-height:1;margin-bottom:2px;}
+  .home-row3 > .collapsed .collapse-title{font-size:17px;font-weight:800;letter-spacing:0;text-transform:none;color:var(--ink);line-height:1.2;}
+  .home-row3 > .collapsed .collapse-sub{font-size:12px;font-weight:500;color:var(--soft);margin:0;flex:none;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;}
+  .home-row3 > .collapsed .collapse-chevron{position:absolute;top:10px;right:12px;font-size:12px;color:var(--soft);opacity:.55;}
+  .home-row3 > .collapsed:hover .collapse-chevron{opacity:1;}
+  body.dark .home-row3 > .collapsed .collapse-title{color:#f1f5f9;}
+  body.dark .home-row3 > .collapsed .collapse-sub{color:#94a3b8;}
 
   /* Word-of-the-Day tile — vertical card form so it fits a 3-up grid. The
      single-banner version is still styled below for legacy paths. */
@@ -13283,15 +13246,8 @@ function toggleCollapse(id){
   // .home-rowlet and the new .home-row3 (3-up grid: WOTD · Mixed · Progress).
   const row = el.closest('.home-row3, .home-rowlet');
   if (row) {
-    // Only consider COLLAPSIBLE children (those that have a .collapse-head).
-    // The WOTD tile and the retired Master English card are not collapsible
-    // and would otherwise keep row-stacked stuck on forever.
-    const collapsibles = row.querySelectorAll(':scope > .connect-card, :scope > .mixed-review-section, :scope > .progress-section');
-    let anyExpanded = false;
-    collapsibles.forEach(c => {
-      if (c.id === 'cc-connect') return; // hidden/retired card, ignore
-      if (!c.classList.contains('collapsed')) anyExpanded = true;
-    });
+    // Ignore always-collapsed/hidden children (like the retired Master English card)
+    const anyExpanded = !!row.querySelector(':scope > :not(.collapsed):not(#cc-connect)');
     row.classList.toggle('row-stacked', anyExpanded);
   }
 }
