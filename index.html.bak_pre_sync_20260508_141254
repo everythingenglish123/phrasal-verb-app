@@ -13321,12 +13321,8 @@ function renderProgressDashboard(){
   const totalReviewed = ratingKeys.length;
   const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
   ratingKeys.forEach(k => { const r = ratings[k]; if (r >= 1 && r <= 4) counts[r]++; });
-  // streakData is declared with `let` further down in the file. Accessing it via
-  // `typeof` would throw a TDZ ReferenceError if this runs before the declaration
-  // executes (which happens during initial home render). Wrap in try/catch and
-  // default to zeros — the dashboard will repopulate after streakData lands.
-  let streak = 0, longest = 0;
-  try { if (streakData) { streak = streakData.currentStreak || 0; longest = streakData.longestStreak || 0; } } catch(e) {}
+  const streak = (typeof streakData !== 'undefined' && streakData) ? (streakData.currentStreak || 0) : 0;
+  const longest = (typeof streakData !== 'undefined' && streakData) ? (streakData.longestStreak || 0) : 0;
   const mastered = counts[4];
 
   const headline = document.getElementById('pd-headline');
@@ -17787,12 +17783,6 @@ function streakRender(){
   // Update popup contents if it's open
   const popup = document.getElementById('streak-popup');
   if (popup && popup.classList.contains('show')) streakUpdatePopupContents();
-  // Refresh the home progress dashboard headline so it picks up the now-loaded
-  // streakData. The first call from renderHomeBanners ran before streakData was
-  // initialized (TDZ), so defaults of 0 were shown there.
-  if (typeof renderProgressDashboard === 'function') {
-    try { renderProgressDashboard(); } catch(e) {}
-  }
 }
 function streakUpdatePopupContents(){
   const today = _streakToday();
