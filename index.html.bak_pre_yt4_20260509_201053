@@ -205,12 +205,16 @@
   }
   .activity-video-btn[style*="inline-flex"] { display: inline-flex !important; }
   .activity-video-btn:hover { background: #cc0000; color: white; }
-  /* Flashcard YouTube button: sits ABOVE the flashcard (in the wrap) so it
-     never participates in the rotateY(180deg) card flip. Positioned at the
-     top-right to look like it's part of the card, on the same line as the
-     fc-num-badge in the upper-left of whichever face is showing. */
-  .flashcard-wrap{position:relative;}
-  .fc-yt-btn{position:absolute;top:10px;right:12px;margin:0;z-index:5;}
+  /* Flashcard-only YouTube button: positioned at top-right of the FRONT
+     face, on the same line as the .fc-num-badge in the upper-left. The
+     button is hidden whenever the card is flipped so it doesn't bleed
+     through (mirrored) on the back side — absolutely-positioned children
+     of a rotateY(180deg) face render as a separate compositing layer that
+     doesn't respect the parent's backface-visibility:hidden. The back-face
+     copy is also permanently hidden. */
+  .fc-yt-btn{position:absolute;top:10px;right:12px;margin-bottom:0;z-index:2;}
+  .flashcard .face.back .fc-yt-btn{display:none !important;}
+  .flashcard.flipped .fc-yt-btn{display:none !important;}
 
   /* ================= LAYOUT ================= */
   .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 80px; }
@@ -3263,12 +3267,10 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     </div>
 
     <div class="flashcard-wrap">
-      <!-- YouTube button lives OUTSIDE the flashcard so it never flips with
-           the card. Visually it sits at the top-right of the card. -->
-      <a class="activity-video-btn fc-yt-btn" id="fc-yt-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
       <div class="flashcard" id="flashcard" onclick="flipCard()">
         <div class="face front">
           <div class="fc-num-badge" id="fc-front-num"></div>
+          <a class="activity-video-btn fc-yt-btn" id="fc-front-yt" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation();" style="display:none;">▶ Listen on YouTube</a>
           <div class="tag">Phrasal Verb</div>
           <div class="verb" id="fc-front-verb">...</div>
           <div class="defn" id="fc-front-defn" style="display:none"></div>
@@ -3278,6 +3280,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         </div>
         <div class="face back">
           <div class="fc-num-badge" id="fc-back-num"></div>
+          <a class="activity-video-btn fc-yt-btn" id="fc-back-yt" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation();" style="display:none;">▶ Listen on YouTube</a>
           <div class="tag" id="fc-back-tag">Meaning &amp; Example</div>
           <div class="defn" id="fc-back-defn">...</div>
           <div class="example" id="fc-back-example">...</div>
