@@ -205,10 +205,6 @@
   }
   .activity-video-btn[style*="inline-flex"] { display: inline-flex !important; }
   .activity-video-btn:hover { background: #cc0000; color: white; }
-  /* Flashcard-only YouTube button: positioned at top-right of each face,
-     on the same line as the .fc-num-badge in the upper-left. Sits inside
-     the card so it stays visible regardless of which face is showing. */
-  .fc-yt-btn{position:absolute;top:10px;right:12px;margin-bottom:0;z-index:2;}
 
   /* ================= LAYOUT ================= */
   .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 80px; }
@@ -3220,8 +3216,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-flashcards" class="screen">
     <div class="activity-nav">
       <button class="back-btn" id="fc-back-btn" onclick="exitFlashcards()">← Back</button>
-      <!-- Flashcards YouTube button moved INSIDE each card face (top-right,
-           same line as the card-number badge). See .fc-yt-btn below. -->
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
     </div>
 
     <div class="resume-banner" id="resume-banner" style="display:none;" onclick="resumeActivity()">
@@ -3264,7 +3259,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <div class="flashcard" id="flashcard" onclick="flipCard()">
         <div class="face front">
           <div class="fc-num-badge" id="fc-front-num"></div>
-          <a class="activity-video-btn fc-yt-btn" id="fc-front-yt" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation();" style="display:none;">▶ Listen on YouTube</a>
           <div class="tag">Phrasal Verb</div>
           <div class="verb" id="fc-front-verb">...</div>
           <div class="defn" id="fc-front-defn" style="display:none"></div>
@@ -3274,7 +3268,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         </div>
         <div class="face back">
           <div class="fc-num-badge" id="fc-back-num"></div>
-          <a class="activity-video-btn fc-yt-btn" id="fc-back-yt" href="#" target="_blank" rel="noopener" onclick="event.stopPropagation();" style="display:none;">▶ Listen on YouTube</a>
           <div class="tag" id="fc-back-tag">Meaning &amp; Example</div>
           <div class="defn" id="fc-back-defn">...</div>
           <div class="example" id="fc-back-example">...</div>
