@@ -205,10 +205,12 @@
   }
   .activity-video-btn[style*="inline-flex"] { display: inline-flex !important; }
   .activity-video-btn:hover { background: #cc0000; color: white; }
-  /* Flashcard YouTube button: sits in the .fc-order-row, right-aligned next
-     to the Random/Ordered pill. Stays put when the card flips since it's
-     entirely outside the card's transform context. */
-  .fc-yt-btn{margin:0 !important;}
+  /* Flashcard YouTube button: sits ABOVE the flashcard (in the wrap) so it
+     never participates in the rotateY(180deg) card flip. Positioned at the
+     top-right to look like it's part of the card, on the same line as the
+     fc-num-badge in the upper-left of whichever face is showing. */
+  .flashcard-wrap{position:relative;}
+  .fc-yt-btn{position:absolute;top:10px;right:12px;margin:0;z-index:5;}
 
   /* ================= LAYOUT ================= */
   .container { max-width: 820px; margin: 0 auto; padding: 24px 20px 80px; }
@@ -895,7 +897,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   body.dark .srs-btn.b-got    { background: #15803d; }
   body.dark .learned-track    { background: #334155; }
   /* ── ORDER TOGGLE PILL ── */
-  .fc-order-row { display:flex; justify-content:flex-end; align-items:center; gap:10px; margin: 0 0 12px; }
+  .fc-order-row { display:flex; justify-content:flex-end; margin: 0 0 12px; }
   .fc-order-pill { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; border:1.5px solid #e5e7eb; background:#fff; color:var(--ink); font-size:12px; font-weight:700; cursor:pointer; transition:all .12s; }
   .fc-order-pill:hover { border-color:var(--accent); background:#f0f7ff; }
   .fc-order-pill.is-ordered { background:#fff7ed; border-color:#fb923c; color:#9a3412; }
@@ -3254,9 +3256,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <span class="fc-deck-topic" id="fc-deck-topic"></span>
     </div>
     <div class="fc-order-row">
-      <!-- YouTube button sits next to the order pill so it's outside the
-           flashcard's flip transform and stays put. -->
-      <a class="activity-video-btn fc-yt-btn" id="fc-yt-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
       <button type="button" class="fc-order-pill" id="fc-order-pill" onclick="toggleFCOrder()" title="Toggle flashcard order">
         <span id="fc-order-icon">⇅</span>
         <span id="fc-order-text">Random</span>
@@ -3264,6 +3263,9 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     </div>
 
     <div class="flashcard-wrap">
+      <!-- YouTube button lives OUTSIDE the flashcard so it never flips with
+           the card. Visually it sits at the top-right of the card. -->
+      <a class="activity-video-btn fc-yt-btn" id="fc-yt-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
       <div class="flashcard" id="flashcard" onclick="flipCard()">
         <div class="face front">
           <div class="fc-num-badge" id="fc-front-num"></div>
