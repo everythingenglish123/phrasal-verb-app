@@ -23,6 +23,27 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="color-scheme" content="light dark">
+<script>
+  // Apply theme before first paint to prevent white flash.
+  // Default is dark (matches existing app behavior when key is unset).
+  (function(){
+    try {
+      var t = localStorage.getItem('eewj_phrasal_theme');
+      var isDark = (t === null) ? true : (t === 'dark');
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.style.background = '#0f172a';
+      } else {
+        document.documentElement.style.background = '#f5f7fb';
+      }
+    } catch(e) {
+      // If localStorage is unavailable, fall back to dark (app default).
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.background = '#0f172a';
+    }
+  })();
+</script>
 <title>Phrasal Verbs Study App, Everything English with John</title>
 <meta name="author" content="Everything English with John" />
 <meta name="copyright" content="© 2026 Everything English with John · All rights reserved." />
@@ -4041,24 +4062,11 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     .more-quick-tile.mqt-progress-full .mqt-progress-stat .mqt-stat-label { font-size: 9px; }
   }
 
-  /* === Mobile fix: lock brand-logo width during header search ===
-     When body.search-open is set, the logo must NOT shrink — otherwise
-     it competes with the search input + close button on narrow screens. */
+  /* === Mobile fix: hide non-essentials during header search ===
+     When body.search-open is set on mobile, only logo + search + close
+     are visible. The logo's dimensions are enforced by the BULLETPROOF
+     block at the end of this stylesheet. */
   @media (max-width: 520px) {
-    body.search-open .brand-logo {
-      flex: 0 0 auto !important;
-      width: auto !important;
-      max-width: 38px !important;
-      height: 38px !important;
-      min-width: 0;
-    }
-    body.search-open .brand-wrap {
-      flex: 0 0 auto !important;
-      min-width: 0;
-    }
-    body.search-open .brand {
-      flex: 0 0 auto !important;
-    }
     body.search-open .brand-name,
     body.search-open .bsub-wrap,
     body.search-open .streak-badge,
@@ -4236,6 +4244,79 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     .onboarding-wrap { padding: 20px 16px 32px; }
     .onboarding-emoji { font-size: 54px; }
     .onboarding-title { font-size: 20px; }
+  }
+
+  /* =========================================================================
+     BULLETPROOF: logo never scrunches under any circumstance
+     This block lives at the END of the stylesheet so it overrides every
+     earlier rule (including .brand-logo { flex-shrink: 1; min-width: 0 }
+     and any body.search-open compression rules).
+  ========================================================================= */
+  .brand-logo,
+  .site-header .brand-logo,
+  header .brand-logo,
+  .brand .brand-logo,
+  .brand-wrap .brand-logo,
+  body .brand-logo,
+  body.search-open .brand-logo,
+  body.dark .brand-logo {
+    width: auto !important;
+    height: 56px !important;
+    max-width: none !important;
+    min-width: 56px !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    object-fit: contain !important;
+  }
+
+  @media (max-width: 560px) {
+    .brand-logo,
+    body.search-open .brand-logo {
+      height: 42px !important;
+      min-width: 42px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-logo,
+    body.search-open .brand-logo {
+      height: 38px !important;
+      min-width: 38px !important;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .brand-logo,
+    body.search-open .brand-logo {
+      height: 34px !important;
+      min-width: 34px !important;
+    }
+  }
+
+  /* The logo's parent containers must not shrink the logo */
+  .brand,
+  .brand-wrap,
+  body.search-open .brand,
+  body.search-open .brand-wrap {
+    flex-shrink: 0 !important;
+    min-width: 0 !important;
+  }
+
+  body.search-open .site-header .brand,
+  body.search-open .hrow .brand {
+    flex: 0 0 auto !important;
+  }
+
+  /* When search is open on mobile, let the input shrink instead of the logo */
+  @media (max-width: 520px) {
+    body.search-open .header-search-inline {
+      min-width: 0 !important;
+    }
+    body.search-open #header-search-inline-input {
+      min-width: 0 !important;
+      width: auto !important;
+      flex: 1 1 0 !important;
+    }
   }
 </style>
 </head>
