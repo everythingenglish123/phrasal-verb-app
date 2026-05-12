@@ -3801,28 +3801,13 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .activity-card.no-step .step { display: none !important; }
   body.dark .activity-card.no-step { border-color: #334155 !important; }
 
-  /* Speaking Practice (STEP 7) card — teal/cyan glow, distinct from
-     the other STEP colors and from the brand purple. */
-  .activity-card.speaking-card {
-    border-color: rgba(6, 182, 212, 0.55) !important;
-    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.45);
-    animation: sp-pulse 2.2s ease-in-out infinite;
-  }
-  .activity-card.speaking-card:hover {
-    border-color: rgba(6, 182, 212, 0.95) !important;
-    transform: translateY(-1px);
-  }
+  /* Speaking Practice (STEP 7) card — neutral card styling (no colored glow).
+     The STEP 7 badge keeps its teal gradient below. */
   .activity-card.speaking-card .step {
     background: linear-gradient(135deg, #22d3ee, #0e7490) !important;
     color: #fff !important;
     border-color: transparent !important;
   }
-  @keyframes sp-pulse {
-    0%   { box-shadow: 0 0 0 0   rgba(6, 182, 212, 0.45); }
-    60%  { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
-    100% { box-shadow: 0 0 0 0   rgba(6, 182, 212, 0); }
-  }
-  body.dark .activity-card.speaking-card { border-color: rgba(34, 211, 238, 0.75) !important; }
 
   /* Speaking screen layout */
   #screen-speaking .sp-card {
@@ -3966,24 +3951,43 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   body.dark #screen-speaking #sp-status { background: #334155; color: #e2e8f0; }
 
   /* === Mobile fix: Your Progress full-width tile (More page) ===
-     On narrow screens the icon + title + 3 stats fight for one row and
-     scrunch. Stack into 2 rows: row 1 = icon + title (left-aligned),
-     row 2 = stats spread evenly across the full width. */
+     On narrow screens use a 2-col / 2-row CSS Grid:
+     row 1 col 1 = icon, row 1 col 2 = title (single line, left-aligned),
+     row 2 spans both cols = stats spread horizontally. */
   @media (max-width: 520px) {
     .more-quick-tile.mqt-progress-full {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
+      display: grid !important;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      gap: 4px 12px;
       padding: 12px 14px;
+      text-align: left;
+      align-items: center;
+      justify-items: start;
     }
-    .more-quick-tile.mqt-progress-full .mqt-icon { font-size: 28px; }
-    .more-quick-tile.mqt-progress-full .mqt-title { white-space: normal; }
-    .more-quick-tile.mqt-progress-full .mqt-progress-stats {
-      width: 100%;
+    .more-quick-tile.mqt-progress-full .mqt-icon {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      font-size: 28px;
       margin: 0;
-      justify-content: space-around;
+    }
+    .more-quick-tile.mqt-progress-full .mqt-title {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+      text-align: left !important;
+      white-space: nowrap !important;
+      font-size: 15px !important;
+      margin: 0 !important;
+    }
+    .more-quick-tile.mqt-progress-full .mqt-progress-stats {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      width: 100%;
+      margin: 4px 0 0;
+      justify-content: space-around !important;
       flex-wrap: nowrap;
-      gap: 8px;
     }
     .more-quick-tile.mqt-progress-full .mqt-progress-stat { min-width: 0; flex: 1 1 0; }
     .more-quick-tile.mqt-progress-full .mqt-progress-stat .mqt-stat-num { font-size: 16px; }
