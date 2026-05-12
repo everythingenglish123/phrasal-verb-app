@@ -3187,7 +3187,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     gap: 14px;
   }
   .more-quick-tile.mqt-progress-full .mqt-icon { font-size: 30px; margin-bottom: 0; line-height: 1; }
-  .more-quick-tile.mqt-progress-full .mqt-title { font-size: 17px; color: #047857; margin-bottom: 0; text-align: left; }
+  .more-quick-tile.mqt-progress-full .mqt-title { font-size: 14px; color: #047857; margin-bottom: 0; text-align: left; white-space: nowrap; }
   .more-quick-tile.mqt-progress-full .mqt-sub { display: none; }
   .more-quick-tile.mqt-progress-full > .mqt-icon,
   .more-quick-tile.mqt-progress-full > .mqt-title { flex: 0 0 auto; }
@@ -3777,6 +3777,184 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     grid-auto-rows: 1fr;
     align-items: stretch;
   }
+
+  /* ================= SPEAKING PRACTICE ================= */
+  /* "No step" modifier for the Read the News card — visually consistent
+     with other activity cards but no STEP badge and no glow / pulse. */
+  .activity-card.no-step {
+    border-color: transparent !important;
+    box-shadow: var(--shadow) !important;
+    animation: none !important;
+  }
+  .activity-card.no-step:hover {
+    border-color: var(--accent-soft) !important;
+    transform: translateY(-1px);
+  }
+  .activity-card.no-step .step { display: none !important; }
+
+  /* Speaking Practice (STEP 7) card — purple-ish glow to match the
+     pedagogical step pattern. */
+  .activity-card.speaking-card {
+    border-color: rgba(124, 58, 237, 0.55) !important;
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.45);
+    animation: sp-pulse 2.2s ease-in-out infinite;
+  }
+  .activity-card.speaking-card:hover {
+    border-color: rgba(124, 58, 237, 0.95) !important;
+    transform: translateY(-1px);
+  }
+  .activity-card.speaking-card .step {
+    background: linear-gradient(135deg, #a78bfa, #7c3aed) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+  }
+  @keyframes sp-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(124, 58, 237, 0.45); }
+    60%  { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(124, 58, 237, 0); }
+  }
+  body.dark .activity-card.speaking-card { border-color: rgba(167, 139, 250, 0.75) !important; }
+
+  /* Speaking screen layout */
+  #screen-speaking .sp-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px 18px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+  #screen-speaking #sp-verb {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--brand-dark);
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  #screen-speaking #sp-defn {
+    color: var(--ink-soft);
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  #screen-speaking #sp-target {
+    font-size: 19px;
+    line-height: 1.45;
+    background: var(--brand-soft);
+    color: var(--ink);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+  #screen-speaking .sp-listen-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  #screen-speaking .sp-listen-btn {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  #screen-speaking .sp-listen-btn:hover { background: #c7d8ff; }
+  #screen-speaking .sp-mic-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 6px 0 18px;
+  }
+  #screen-speaking #sp-mic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: #fff;
+    font-size: 42px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  #screen-speaking #sp-mic:hover { transform: scale(1.04); }
+  #screen-speaking #sp-mic:active { transform: scale(0.96); }
+  #screen-speaking #sp-mic.recording {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    animation: sp-mic-pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes sp-mic-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(220, 38, 38, 0.55); }
+    70%  { box-shadow: 0 0 0 22px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(220, 38, 38, 0); }
+  }
+  #screen-speaking .sp-mic-hint {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  #screen-speaking #sp-status {
+    min-height: 56px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    text-align: center;
+    background: #f3f4f6;
+    color: var(--ink);
+    margin: 8px 0 14px;
+    display: none;
+  }
+  #screen-speaking #sp-status.show { display: block; }
+  #screen-speaking #sp-status.good {
+    background: var(--correct-soft);
+    color: #166534;
+    border: 1px solid #86efac;
+  }
+  #screen-speaking #sp-status.close {
+    background: var(--select-soft);
+    color: #92400e;
+    border: 1px solid #fcd34d;
+  }
+  #screen-speaking #sp-status.bad {
+    background: var(--wrong-soft);
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+  }
+  #screen-speaking #sp-status.listening {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    border: 1px solid #93c5fd;
+  }
+  #screen-speaking #sp-progress {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  #screen-speaking .sp-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  #screen-speaking .sp-controls .btn { min-width: 110px; }
+  #screen-speaking .sp-fallback {
+    background: var(--wrong-soft);
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    padding: 16px 18px;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  body.dark #screen-speaking .sp-card { background: #1e293b; }
+  body.dark #screen-speaking #sp-target { background: rgba(124,58,237,.18); color: #e2e8f0; }
+  body.dark #screen-speaking #sp-status { background: #334155; color: #e2e8f0; }
 </style>
 </head>
 <body>
@@ -4127,6 +4305,21 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           </div>
           <div class="desc">Choose the correct phrasal verb which matches the situations.</div>
           <span class="step">STEP 6</span>
+        </div>
+        <div class="activity-card speaking-card" data-activity="speaking" onclick="openActivity('speaking')">
+          <div class="top-row">
+            <div class="icon">🗣️</div>
+            <div class="name">Speaking Practice</div>
+          </div>
+          <div class="desc">Read sentences out loud and check your pronunciation.</div>
+          <span class="step">STEP 7</span>
+        </div>
+        <div class="activity-card no-step" data-activity="news" onclick="openActivity('news')">
+          <div class="top-row">
+            <div class="icon">📰</div>
+            <div class="name">Read the News</div>
+          </div>
+          <div class="desc">Read real news stories featuring each verb.</div>
         </div>
       </div>
       <div class="activity-card listen-news-card" data-activity="listennews" onclick="startListenToNews()">
@@ -4827,7 +5020,55 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div class="mr-arrow">→</div>
         </div>
 
+        <div class="mr-card" data-activity="speaking" onclick="startMixedSpeaking()" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">
+          <div class="mr-icon">🗣️</div>
+          <div class="mr-body"><div class="mr-title">Speaking Practice</div><div class="mr-card-desc">Read example sentences out loud</div></div>
+          <div class="mr-arrow">→</div>
+        </div>
+
       </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SPEAKING PRACTICE ====== -->
+  <section id="screen-speaking" class="screen">
+    <div class="activity-nav">
+      <button class="back-btn" onclick="goBackFromSpeaking()">← Back</button>
+    </div>
+
+    <div class="activity-header">
+      <h2 class="activity-title">🗣️ Speaking Practice</h2>
+    </div>
+    <p class="splash-sub" style="margin:0 0 16px;">Read the sentence out loud — we'll check your pronunciation.</p>
+
+    <div id="sp-fallback" class="sp-fallback" style="display:none;">
+      Sorry, your browser doesn't support speech recognition.<br>
+      Try <strong>Chrome on Android</strong> or <strong>Safari on iOS</strong>.
+    </div>
+
+    <div id="sp-main" class="sp-card">
+      <div id="sp-verb">verb here</div>
+      <div id="sp-defn"></div>
+
+      <div id="sp-target">"You'll have to back up your car so I can get out."</div>
+
+      <div class="sp-listen-row">
+        <button type="button" class="sp-listen-btn" onclick="speechPlayTarget()">🔊 Listen first</button>
+      </div>
+
+      <div class="sp-mic-wrap">
+        <button id="sp-mic" type="button" onclick="speechStartRecord()" aria-label="Tap to speak">🎤</button>
+      </div>
+      <div class="sp-mic-hint">Tap the mic and read the sentence out loud.</div>
+
+      <div id="sp-status">Tap the mic to start.</div>
+
+      <div id="sp-progress">1 of 10</div>
+
+      <div class="sp-controls">
+        <button class="btn ghost" onclick="speechNext(true)">Skip</button>
+        <button class="btn primary" id="sp-next" onclick="speechNext()" style="display:none;">Next →</button>
       </div>
     </div>
   </section>
@@ -16546,6 +16787,8 @@ function _runActivityFresh(name){
   else if (name === "situation") startSituation();
   else if (name === "particle") startParticle();
   else if (name === "convo") startConvo();
+  else if (name === "speaking") startSpeakingForNote(state.currentNoteId);
+  else if (name === "news") startNewsForNote(state.currentNoteId);
 }
 function _runActivityResume(name){
   const noteId = state.currentNoteId;
@@ -18037,6 +18280,7 @@ const ACTIVITY_META = {
   fill:       { emoji: '📝', label: 'Fill in the Blank' },
   builder:    { emoji: '🧱', label: 'Sentence Builder' },
   situation:  { emoji: '✅', label: 'Find the Correct Verb' },
+  speaking:   { emoji: '🗣️', label: 'Speaking' },
 };
 // Mark the start of an activity so we can display elapsed time on completion.
 // Called from each start* function. The timestamp lives on state but is not
@@ -22370,6 +22614,298 @@ function _moreRefresh(){
   // Also try after a short delay in case state/screen is set after load
   setTimeout(function(){ syncBottomNav(); _moreRefreshToggles(); }, 500);
 })();
+
+/* =========================================================================
+   READ THE NEWS — per-note entry point. Sister of startMixedNews() which
+   pulls 30 random verbs across all units. This one only uses verbs from
+   the currently-open note so it slots cleanly into the unit activity grid.
+========================================================================= */
+function startNewsForNote(noteId){
+  const note = NOTES.find(function(n){ return n.id === noteId; });
+  if (!note || !note.verbs) return;
+  const pool = [];
+  note.verbs.forEach(function(v){
+    if (v && v.newsSnippet){
+      pool.push({ noteId: note.id, noteEmoji: note.emoji, noteTitle: note.title, verb: v });
+    }
+  });
+  if (!pool.length){
+    if (typeof toast === 'function') toast('No news articles in this unit yet.');
+    else if (typeof alert === 'function') alert('No news articles in this unit yet.');
+    return;
+  }
+  if (typeof ndState === 'undefined') { window.ndState = { items: [], idx: 0 }; }
+  ndState.items = pool;
+  ndState.idx = 0;
+  showScreen('news-deck');
+  if (typeof renderNDCard === 'function') renderNDCard();
+}
+
+/* =========================================================================
+   SPEAKING PRACTICE — Web Speech API powered pronunciation drill.
+   Uses speechSynthesis for the "Listen first" playback and
+   SpeechRecognition (webkit-prefixed on Safari) for the user's recording.
+   The score is a Levenshtein-based fuzzy similarity in [0..1].
+========================================================================= */
+const _speechSupported = (typeof window !== 'undefined') && (window.SpeechRecognition || window.webkitSpeechRecognition);
+
+function _normalizeForMatch(s){
+  return String(s||'').toLowerCase().replace(/[^a-z0-9\s']/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function _levenshteinSimilarity(a, b){
+  const m = a.length, n = b.length;
+  if (!m && !n) return 1;
+  if (!m || !n) return 0;
+  const dp = Array.from({length: m+1}, () => new Array(n+1).fill(0));
+  for (let i=0;i<=m;i++) dp[i][0] = i;
+  for (let j=0;j<=n;j++) dp[0][j] = j;
+  for (let i=1;i<=m;i++) for (let j=1;j<=n;j++){
+    dp[i][j] = a[i-1]===b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  }
+  const d = dp[m][n];
+  return 1 - d / Math.max(m, n);
+}
+
+function speechScore(target, heard){
+  const t = _normalizeForMatch(target), h = _normalizeForMatch(heard);
+  return _levenshteinSimilarity(t, h);
+}
+
+/* Session state for speaking practice. items[] = [{verb, target, noteId}]. */
+const spkState = {
+  items: [],
+  idx: 0,
+  prevScreen: 'note',
+  recognition: null,
+  recording: false,
+};
+
+function _spkPickExample(verb){
+  if (!verb) return '';
+  return verb.flashExample || (verb.examples && verb.examples[0]) || verb.example || verb.defn || '';
+}
+
+function _spkBuildItemsFromNote(note, max){
+  const out = [];
+  if (!note || !note.verbs) return out;
+  note.verbs.forEach(function(v){
+    const ex = _spkPickExample(v);
+    if (ex) out.push({ verb: v, target: ex, noteId: note.id });
+  });
+  // Keep natural order for per-note (matches the rest of the activities)
+  return max ? out.slice(0, max) : out;
+}
+
+function _spkBuildMixedItems(max){
+  const pool = [];
+  NOTES.forEach(function(n){
+    (n.verbs || []).forEach(function(v){
+      const ex = _spkPickExample(v);
+      if (ex) pool.push({ verb: v, target: ex, noteId: n.id });
+    });
+  });
+  for (let i = pool.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, Math.min(max || 30, pool.length));
+}
+
+function startSpeakingForNote(noteId){
+  if (typeof clearForwardTarget === 'function') clearForwardTarget();
+  const note = NOTES.find(function(n){ return n.id === noteId; });
+  if (!note){
+    if (typeof alert === 'function') alert('Open a unit first.');
+    return;
+  }
+  spkState.items = _spkBuildItemsFromNote(note);
+  spkState.idx = 0;
+  spkState.prevScreen = 'note';
+  if (!spkState.items.length){
+    if (typeof toast === 'function') toast('No example sentences in this unit yet.');
+    else if (typeof alert === 'function') alert('No example sentences in this unit yet.');
+    return;
+  }
+  _spkShowFallbackIfNeeded();
+  showScreen('speaking');
+  _spkRender();
+}
+
+function startMixedSpeaking(){
+  if (typeof clearForwardTarget === 'function') clearForwardTarget();
+  spkState.items = _spkBuildMixedItems(30);
+  spkState.idx = 0;
+  spkState.prevScreen = 'mixed';
+  if (!spkState.items.length){
+    if (typeof toast === 'function') toast('No example sentences available.');
+    else if (typeof alert === 'function') alert('No example sentences available.');
+    return;
+  }
+  _spkShowFallbackIfNeeded();
+  showScreen('speaking');
+  _spkRender();
+}
+
+function _spkShowFallbackIfNeeded(){
+  const fb = document.getElementById('sp-fallback');
+  const main = document.getElementById('sp-main');
+  if (!fb || !main) return;
+  if (_speechSupported){
+    fb.style.display = 'none';
+    main.style.display = '';
+  } else {
+    fb.style.display = '';
+    main.style.display = 'none';
+  }
+}
+
+function _spkRender(){
+  const item = spkState.items[spkState.idx];
+  if (!item){ speechEnd(); return; }
+  const verbEl = document.getElementById('sp-verb');
+  const defnEl = document.getElementById('sp-defn');
+  const tgtEl  = document.getElementById('sp-target');
+  const prog   = document.getElementById('sp-progress');
+  const status = document.getElementById('sp-status');
+  const nextBtn = document.getElementById('sp-next');
+  const mic    = document.getElementById('sp-mic');
+  if (verbEl) verbEl.textContent = (item.verb && item.verb.verb) || '';
+  if (defnEl) defnEl.textContent = (item.verb && item.verb.defn) || '';
+  if (tgtEl)  tgtEl.textContent  = '"' + (item.target || '') + '"';
+  if (prog)   prog.textContent   = (spkState.idx + 1) + ' of ' + spkState.items.length;
+  if (status){
+    status.textContent = 'Tap the mic to start.';
+    status.className = '';
+  }
+  if (nextBtn) nextBtn.style.display = 'none';
+  if (mic) mic.classList.remove('recording');
+}
+
+function speechPlayTarget(){
+  const item = spkState.items[spkState.idx];
+  if (!item || !item.target) return;
+  if (typeof speechSynthesis === 'undefined') return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(item.target);
+    u.lang = 'en-US';
+    u.rate = 0.95;
+    speechSynthesis.speak(u);
+  } catch(e){}
+}
+
+function speechStartRecord(){
+  if (!_speechSupported){
+    _spkShowFallbackIfNeeded();
+    return;
+  }
+  const item = spkState.items[spkState.idx];
+  if (!item) return;
+  if (spkState.recording){
+    try { if (spkState.recognition) spkState.recognition.stop(); } catch(_){}
+    return;
+  }
+  const mic = document.getElementById('sp-mic');
+  const status = document.getElementById('sp-status');
+  const Ctor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let rec;
+  try { rec = new Ctor(); } catch(e){
+    if (status){ status.className = 'show bad'; status.textContent = '❌ Could not start the microphone.'; }
+    return;
+  }
+  rec.lang = 'en-US';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  rec.continuous = false;
+  spkState.recognition = rec;
+  spkState.recording = true;
+  if (mic) mic.classList.add('recording');
+  if (status){
+    status.className = 'show listening';
+    status.textContent = '🎙️ Listening...';
+  }
+  rec.onresult = function(ev){
+    let transcript = '';
+    try { transcript = ev.results[0][0].transcript || ''; } catch(_){}
+    _spkHandleResult(transcript);
+  };
+  rec.onerror = function(ev){
+    spkState.recording = false;
+    if (mic) mic.classList.remove('recording');
+    if (status){
+      status.className = 'show bad';
+      const err = (ev && ev.error) || 'unknown';
+      if (err === 'not-allowed' || err === 'service-not-allowed'){
+        status.textContent = '🚫 Microphone permission denied. Allow mic access and try again.';
+      } else if (err === 'no-speech'){
+        status.textContent = '🤔 We didn\'t hear anything. Try again.';
+      } else {
+        status.textContent = '❌ Speech recognition error: ' + err;
+      }
+    }
+  };
+  rec.onend = function(){
+    spkState.recording = false;
+    if (mic) mic.classList.remove('recording');
+  };
+  try { rec.start(); } catch(e){
+    spkState.recording = false;
+    if (mic) mic.classList.remove('recording');
+    if (status){ status.className = 'show bad'; status.textContent = '❌ Could not start the microphone.'; }
+  }
+}
+
+function _spkHandleResult(transcript){
+  const item = spkState.items[spkState.idx];
+  if (!item) return;
+  const score = speechScore(item.target, transcript);
+  const status = document.getElementById('sp-status');
+  const nextBtn = document.getElementById('sp-next');
+  const heard = (transcript || '').trim();
+  const heardEsc = (typeof escapeHtml === 'function') ? escapeHtml(heard) : heard;
+  if (status){
+    status.classList.add('show');
+    status.classList.remove('good', 'close', 'bad', 'listening');
+    if (score >= 0.85){
+      status.classList.add('good');
+      status.innerHTML = '✅ <strong>Great!</strong> We heard: "' + heardEsc + '"';
+    } else if (score >= 0.65){
+      status.classList.add('close');
+      status.innerHTML = '🙂 <strong>Close — try again.</strong> We heard: "' + heardEsc + '"';
+    } else {
+      status.classList.add('bad');
+      status.innerHTML = '❌ We heard: "' + heardEsc + '" — try again.';
+    }
+  }
+  if (nextBtn) nextBtn.style.display = '';
+}
+
+function speechNext(skip){
+  spkState.idx++;
+  if (spkState.idx >= spkState.items.length){
+    speechEnd();
+    return;
+  }
+  _spkRender();
+}
+
+function speechEnd(){
+  if (typeof completeActivity === 'function'){
+    completeActivity('Speaking practice done!',
+      'You practiced ' + spkState.items.length + ' sentence' + (spkState.items.length === 1 ? '' : 's') + '.');
+  } else {
+    showScreen(spkState.prevScreen || 'note');
+  }
+}
+
+function goBackFromSpeaking(){
+  try { if (spkState.recognition) spkState.recognition.abort(); } catch(_){}
+  spkState.recording = false;
+  try { if (typeof speechSynthesis !== 'undefined') speechSynthesis.cancel(); } catch(_){}
+  const prev = spkState.prevScreen || 'note';
+  showScreen(prev);
+}
 
 </script>
 
