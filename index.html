@@ -3539,6 +3539,32 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       line-height: 1.25;
     }
   }
+
+  /* Mobile header layout fix when search is expanded */
+  @media (max-width: 520px) {
+    body.search-open .brand-name,
+    body.search-open .bsub-wrap {
+      display: none !important;
+    }
+    body.search-open .streak-badge {
+      display: none !important;
+    }
+    body.search-open .hrow {
+      gap: 6px !important;
+      flex-wrap: nowrap !important;
+    }
+    body.search-open .header-actions {
+      gap: 6px !important;
+    }
+    body.search-open .header-search-inline {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+    }
+    body.search-open #header-search-inline-input {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -4373,7 +4399,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             <div class="more-row-icon">👤</div>
             <div class="more-row-text">
               <div class="more-row-title">Your name</div>
-              <div class="more-row-sub">Shows the current student name from localStorage</div>
+              <div class="more-row-sub">Personalize your experience</div>
             </div>
             <span class="more-row-value" id="more-name-value">Tap to set</span>
             <span class="more-row-chev">›</span>
