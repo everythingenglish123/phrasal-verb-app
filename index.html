@@ -5315,8 +5315,15 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
 
   <!-- ====== SPEAKING PRACTICE ====== -->
   <section id="screen-speaking" class="screen">
-    <div class="activity-nav">
+    <div class="activity-nav" id="sp-nav-default">
       <button class="back-btn" onclick="goBackFromSpeaking()">← Back</button>
+    </div>
+
+    <!-- Return-to-flashcards banner (shown only when launched from a flashcard) -->
+    <div class="resume-banner" id="sp-return-banner" style="display:none;" onclick="goBackFromSpeaking()">
+      <span>↩</span>
+      <span>Back to Flashcards</span>
+      <span class="rb-arrow">→</span>
     </div>
 
     <div class="activity-header">
@@ -23241,9 +23248,11 @@ function _spkRender(){
   const nextBtn = document.getElementById('sp-next');
   const mic    = document.getElementById('sp-mic');
   const controls = document.querySelector('#screen-speaking .sp-controls');
+  const defaultNav = document.getElementById('sp-nav-default');
+  const returnBanner = document.getElementById('sp-return-banner');
   // Single-shot mode: launched from a flashcard with one sentence only. We
-  // hide Skip / Next / progress so the user's only exit path is the Back
-  // button (which returns to flashcards via spkState.prevScreen).
+  // hide Skip / Next / progress / default back-button so the user's only exit
+  // path is the big return-banner at the top, which goes back to flashcards.
   const singleShot = spkState.prevScreen === 'flashcards';
   if (verbEl) verbEl.textContent = (item.verb && item.verb.verb) || '';
   if (defnEl) defnEl.textContent = (item.verb && item.verb.defn) || '';
@@ -23257,6 +23266,8 @@ function _spkRender(){
     }
   }
   if (controls) controls.style.display = singleShot ? 'none' : '';
+  if (defaultNav) defaultNav.style.display = singleShot ? 'none' : '';
+  if (returnBanner) returnBanner.style.display = singleShot ? 'flex' : 'none';
   if (status){
     status.textContent = 'Tap the mic to start.';
     status.className = '';
