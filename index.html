@@ -3581,6 +3581,20 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       width: 100% !important;
     }
   }
+  /* ── My Vocabulary: collapsible section headers ── */
+  .decks-section-head { cursor: pointer; user-select: none; }
+  .decks-section-head .decks-section-chev {
+    margin-left: auto;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--ink-soft);
+    transition: transform 200ms;
+    transform: rotate(90deg); /* expanded state */
+  }
+  .decks-section.collapsed .decks-section-head { margin-bottom: 0; }
+  .decks-section.collapsed .decks-section-chev { transform: rotate(0deg); }
+  .decks-section.collapsed > *:not(.decks-section-head) { display: none; }
+  body.dark .decks-section-head .decks-section-chev { color: #94a3b8; }
 </style>
 </head>
 <body>
@@ -15975,6 +15989,12 @@ function resumeLastSession(){
 function goToDecks(){ clearResume(); clearForwardTarget(); renderDecks(); showScreen('decks'); }
 function goToSavedWords(){ clearResume(); clearForwardTarget(); renderSavedWords(); showScreen('savedwords'); }
 let _pendingExpandSavedKey = null;
+function _toggleDecksSection(headEl){
+  if (!headEl) return;
+  const sec = headEl.closest('.decks-section');
+  if (!sec) return;
+  sec.classList.toggle('collapsed');
+}
 function _toggleSavedWordCard(el){
   if (!el) return;
   const card = el.closest('.saved-word-card');
@@ -16102,10 +16122,11 @@ function _renderSavedWordsPreviewSection(){
     inner += '<div class="decks-section-cta"><button class="decks-study-all-btn" onclick="goToSavedWords()">View all saved words →</button></div>';
   }
   return '<div class="decks-section decks-section-saved">'
-       +   '<div class="decks-section-head">'
+       +   '<div class="decks-section-head" onclick="_toggleDecksSection(this)">'
        +     '<span class="decks-section-emoji">⭐</span>'
        +     '<span class="decks-section-title">Saved Words</span>'
        +     '<span class="decks-section-count">' + count + '</span>'
+       +     '<span class="decks-section-chev">›</span>'
        +   '</div>'
        +   inner
        + '</div>';
@@ -16154,7 +16175,7 @@ function renderDecks(){
           + '</div>';
   }
   if (stats.needCount > 0) {
-    html += '<div class="decks-section"><div class="decks-section-head"><span class="decks-section-emoji">📝</span><span class="decks-section-title">Need More Practice</span><span class="decks-section-count">' + stats.needCount + '</span></div>';
+    html += '<div class="decks-section collapsed"><div class="decks-section-head" onclick="_toggleDecksSection(this)"><span class="decks-section-emoji">📝</span><span class="decks-section-title">Need More Practice</span><span class="decks-section-count">' + stats.needCount + '</span><span class="decks-section-chev">›</span></div>';
     html += '<div class="decks-section-cta"><button class="decks-study-all-btn" onclick="startDeckSession({type:\'section-need\'})">▶ Study all ' + stats.needCount + ' verb' + (stats.needCount===1?'':'s') + '</button></div>';
     stats.needTopics.forEach(t => {
       const tcount = t.verbs.length;
@@ -16171,7 +16192,7 @@ function renderDecks(){
     html += '</div>';
   }
   if (stats.gotCount > 0) {
-    html += '<div class="decks-section"><div class="decks-section-head"><span class="decks-section-emoji">✅</span><span class="decks-section-title">Got It!</span><span class="decks-section-count">' + stats.gotCount + '</span></div>';
+    html += '<div class="decks-section collapsed"><div class="decks-section-head" onclick="_toggleDecksSection(this)"><span class="decks-section-emoji">✅</span><span class="decks-section-title">Got It!</span><span class="decks-section-count">' + stats.gotCount + '</span><span class="decks-section-chev">›</span></div>';
     html += '<div class="decks-section-cta"><button class="decks-study-all-btn b-got" onclick="startDeckSession({type:\'section-got\'})">▶ Study all ' + stats.gotCount + ' verb' + (stats.gotCount===1?'':'s') + '</button></div>';
     stats.gotTopics.forEach(t => {
       const tcount = t.verbs.length;
