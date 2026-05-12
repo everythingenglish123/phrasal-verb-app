@@ -3600,7 +3600,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   body { font-size: 17px; }
   .page-sub { font-size: 17px; }
   .note-card .name { font-size: 18px; }
-  .note-card .count { font-size: 15px; }
+  .note-card .count { font-size: 14px; }
   .topic-hero .sub { font-size: 17px; }
   .activity-card.listen-news-card .name { font-size: 18px; }
   .activity-card.listen-news-card .desc { font-size: 16px; }
@@ -3608,10 +3608,9 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .news-vocab-item { font-size: 16px; }
   .savedword-w { font-size: 18px; }
   .savedword-d { font-size: 17px; }
-  .savedword-meta { font-size: 14px; }
   .decks-section-title { font-size: 20px; }
   .decks-button .db-title { font-size: 18px; }
-  .decks-button .db-sub { font-size: 15px; }
+  .decks-button .db-sub { font-size: 14px; }
   .decks-topic-name { font-size: 16px; }
   .decks-verb-chip { font-size: 16px; }
   .decks-saved-text { font-size: 16px; }
@@ -3624,7 +3623,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .cv-defn-tag { font-size: 16px; }
   .sit-text { font-size: 18px; }
   .more-row-title { font-size: 18px; }
-  .more-row-sub { font-size: 15px; }
+  .more-row-sub { font-size: 14px; }
   .more-row-value { font-size: 16px; font-weight: 700; }
   .resume-card p { font-size: 17px; }
   .name-modal-card p { font-size: 17px; }
@@ -3632,7 +3631,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .wotd-banner .wb-title { font-size: 18px; }
   .wotd-banner .wb-defn { font-size: 14px; }
   .review-due-card .rd-title { font-size: 18px; }
-  .review-due-card .rd-sub { font-size: 15px; }
+  .review-due-card .rd-sub { font-size: 14px; }
   .verb-result .vr-name { font-size: 18px; }
   .verb-result .vr-defn { font-size: 16px; }
   .welcome-line { font-size: 24px; }
@@ -3646,29 +3645,46 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .cl-text span { font-size: 14px; }
   .page-title { font-size: 24px; }
   .activity-title { font-size: 20px; }
+
   /* Additional subtitle / secondary text bumps for readability */
+  .note-card .count { font-size: 15px; }
+  .more-row-sub { font-size: 15px; }
+  .decks-button .db-sub { font-size: 15px; }
+  .review-due-card .rd-sub { font-size: 15px; }
+  #bottom-nav .bn-item { font-size: 12px; }
+  .savedword-meta { font-size: 14px; }
   .saved-word-card .swc-preview { font-size: 14px; }
   .saved-word-card .swc-meta { font-size: 14px; }
-  .saved-word-card .swc-def { font-size: 15px; }
+  .saved-word-card .swc-def,
   .saved-word-card .swc-snippet { font-size: 15px; }
   .mr-card-desc { font-size: 13px; }
-  .activity-card .desc { font-size: 14px; }
-  .deck-summary-stat-lbl { font-size: 13px; }
-  .deck-resume-banner .drb-sub { font-size: 13px; }
-  .pd-stat-lbl { font-size: 12px; }
-  .pd-section-title { font-size: 14px; }
-  .pd-unit-title { font-size: 14px; }
-  .pd-unit-count { font-size: 12px; }
   .continue-banner .cb-title { font-size: 15px; }
   .continue-banner .cb-sub { font-size: 13px; }
   .more-profile-greeting { font-size: 18px; }
   .more-profile-sub { font-size: 14px; }
-  .decks-button .db-stats { font-size: 13px; }
-  .decks-topic-name { font-size: 16px; }
   .me-menu-text { font-size: 14px; }
   .me-menu-text span { font-size: 12px; }
-  /* Bottom navigation labels */
-  #bottom-nav .bn-item { font-size: 12px; }
+  .pd-section-title { font-size: 14px; }
+  .pd-unit-title { font-size: 14px; }
+  .pd-stat-lbl { font-size: 12px; }
+  .pd-unit-count { font-size: 12px; }
+  .deck-summary-stat-lbl { font-size: 13px; }
+  .deck-resume-banner .drb-sub { font-size: 13px; }
+
+  /* Home screen unit blocks — uniform size regardless of name length */
+  #screen-notes #note-grid .note-card,
+  #screen-notes #note-grid-featured .note-card {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #screen-notes .note-grid,
+  #screen-notes .note-grid-featured {
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+  }
 </style>
 </head>
 <body>
