@@ -3141,24 +3141,112 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
      the More page. */
   #welcome-line { display: none !important; }
 
-  /* Quick Practice section on the More page — three call-to-action tiles */
+  /* Quick Practice section on the More page — two call-to-action tiles */
   .more-quick {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin: 0 0 18px;
   }
+  /* Two-tile layout: centered vertical (matches home-screen unit cards) */
+  .more-quick .more-quick-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0;
+    padding: 14px 12px;
+    min-height: 120px;
+  }
+  .more-quick .more-quick-tile .mqt-icon {
+    font-size: 34px;
+    margin-bottom: 6px;
+  }
+  .more-quick .more-quick-tile .mqt-title {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+  .more-quick .more-quick-tile .mqt-sub {
+    font-size: 12px;
+    text-align: center;
+  }
+  /* Featured full-width Your Progress tile (own section) */
+  .more-quick-tile.mqt-progress-full {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    padding: 14px 18px;
+    min-height: 80px;
+    background: linear-gradient(135deg, #ecfdf5, #fff);
+    border-color: #a7f3d0;
+    gap: 14px;
+  }
+  .more-quick-tile.mqt-progress-full .mqt-icon { font-size: 30px; margin-bottom: 0; line-height: 1; }
+  .more-quick-tile.mqt-progress-full .mqt-title { font-size: 17px; color: #047857; margin-bottom: 0; text-align: left; }
+  .more-quick-tile.mqt-progress-full .mqt-sub { display: none; }
+  .more-quick-tile.mqt-progress-full > .mqt-icon,
+  .more-quick-tile.mqt-progress-full > .mqt-title { flex: 0 0 auto; }
+  body.dark .more-quick-tile.mqt-progress-full {
+    background: linear-gradient(135deg, #064e3b33, #1e293b);
+    border-color: #047857;
+  }
+  body.dark .more-quick-tile.mqt-progress-full .mqt-title { color: #6ee7b7; }
+  /* Progress tile — live stats row (now sits on the right side of the tile) */
+  .mqt-progress-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    width: auto;
+    margin-top: 0;
+    margin-left: auto;
+    padding-top: 0;
+    border-top: 0;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+  }
+  .mqt-progress-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+  }
+  .mqt-progress-stat .mqt-stat-num {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #047857;
+  }
+  .mqt-progress-stat .mqt-stat-label {
+    font-size: 10px;
+    line-height: 1.2;
+    margin-top: 2px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  body.dark .mqt-progress-stats { border-top-color: #047857; }
+  body.dark .mqt-progress-stat .mqt-stat-num { color: #6ee7b7; }
+  body.dark .mqt-progress-stat .mqt-stat-label { color: #94a3b8; }
   @media(max-width:520px){
     .more-quick{gap:8px;}
   }
   .more-quick-tile {
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     text-align: left;
-    padding: 18px 16px;
+    gap: 14px;
+    padding: 14px 16px;
     border-radius: 18px;
     border: 1px solid var(--accent-soft);
     background: #fff;
@@ -3167,7 +3255,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     text-decoration: none;
     box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08);
     transition: transform .15s, box-shadow .15s, border-color .15s;
-    min-height: 132px;
+    min-height: 0;
     overflow: hidden;
   }
   .more-quick-tile:hover {
@@ -3176,21 +3264,24 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     border-color: var(--accent);
   }
   .more-quick-tile .mqt-icon {
-    font-size: 30px;
+    font-size: 32px;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 0;
+    flex: 0 0 auto;
   }
   .more-quick-tile .mqt-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     line-height: 1.2;
     color: var(--ink);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+    text-align: left;
   }
   .more-quick-tile .mqt-sub {
     font-size: 12px;
     line-height: 1.35;
     color: var(--soft);
+    text-align: left;
   }
   .more-quick-tile.mqt-wotd {
     background: linear-gradient(135deg, var(--accent-soft), #fff);
@@ -3982,7 +4073,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       </div>
       <div>
         <a id="note-video-link" class="video-btn" href="#" target="_blank" rel="noopener" style="display:none;">
-          ▶ Watch the lesson on YouTube
+          ▶ Listen on YouTube
         </a>
       </div>
     </div>
@@ -3991,7 +4082,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <div class="activity-grid">
         <div class="activity-card flashcards-card" data-activity="flashcards" onclick="openActivity('flashcards')">
           <div class="top-row">
-            <div class="icon">🃏</div>
+            <div class="icon">📚</div>
             <div class="name">Flashcards</div>
           </div>
           <div class="desc">Start studying here! Learn the meanings and practice!</div>
@@ -4065,7 +4156,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
 
     <div class="lang-picker-wrap" id="lang-picker-wrap">
       <button class="lang-trigger" id="lang-trigger" type="button" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false">
-        <span>🌐 Translation:</span>
+        <span>🌐</span>
         <span class="lang-current" id="lang-current">Off</span>
         <span class="lang-caret">▾</span>
       </button>
@@ -4073,7 +4164,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     </div>
 
     <div class="activity-header">
-      <h2 class="activity-title">🃏 Flashcards</h2>
+      <h2 class="activity-title">📚 Flashcards</h2>
       <div class="counter">
         <!-- "Card X / Y" position counter intentionally removed — the same
              position is shown on the card itself via the .fc-num-badge in the
@@ -4179,7 +4270,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-spelling" class="screen">
     <div class="activity-nav">
       <button class="back-btn" onclick="goToNote()">← Back</button>
-      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
     </div>
 
     <div class="activity-header">
@@ -4219,7 +4310,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-fill" class="screen">
     <div class="activity-nav">
       <button class="back-btn" onclick="goToNote()">← Back</button>
-      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
     </div>
 
     <div class="activity-header">
@@ -4278,7 +4369,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-builder" class="screen">
     <div class="activity-nav">
       <button class="back-btn" onclick="goToNote()">← Back</button>
-      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
     </div>
 
     <div class="activity-header">
@@ -4317,7 +4408,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-situation" class="screen">
     <div class="activity-nav">
       <button class="back-btn" onclick="goToNote()">← Back</button>
-      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
     </div>
 
     <div class="activity-header">
@@ -4346,7 +4437,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-particle" class="screen">
     <div class="activity-nav">
       <button class="back-btn" onclick="goToNote()">← Back</button>
-      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
     </div>
 
     <div class="activity-header">
@@ -4380,7 +4471,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-convo" class="screen">
     <div class="activity-nav">
       <button class="back-btn" onclick="goToNote()">← Back</button>
-      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Watch on YouTube</a>
+      <a class="activity-video-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
     </div>
 
     <div class="activity-header">
@@ -4479,7 +4570,32 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   <section id="screen-more" class="screen">
     <div class="more-container">
 
-      <!-- 1. Quick Practice — three tiles: WOTD, Mixed Practice, Your Progress.
+      <!-- 1. Your Progress — featured full-width tile (own section). -->
+      <div class="more-section">
+        <div class="more-section-title">Your Progress</div>
+        <button type="button" class="more-quick-tile mqt-progress mqt-progress-full"
+                onclick="if(typeof renderProgressDashboard==='function'){ try{ renderProgressDashboard(); }catch(e){} } showScreen('progress');">
+          <div class="mqt-icon">📊</div>
+          <div class="mqt-title">Your Progress</div>
+          <div class="mqt-sub">See full breakdown</div>
+          <div class="mqt-progress-stats">
+            <div class="mqt-progress-stat">
+              <span class="mqt-stat-num" id="mqt-stat-streak">🔥 0</span>
+              <span class="mqt-stat-label">streak</span>
+            </div>
+            <div class="mqt-progress-stat">
+              <span class="mqt-stat-num" id="mqt-stat-reviewed">📚 0</span>
+              <span class="mqt-stat-label">reviewed</span>
+            </div>
+            <div class="mqt-progress-stat">
+              <span class="mqt-stat-num" id="mqt-stat-mastered">✅ 0</span>
+              <span class="mqt-stat-label">mastered</span>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- 2. Quick Practice — two tiles: WOTD, Mixed Practice.
            Each tile fires the SAME JS handlers used by the original home-screen
            cards, so existing behaviour is preserved. -->
       <div class="more-section">
@@ -4496,12 +4612,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             <div class="mqt-icon">🎲</div>
             <div class="mqt-title">Mixed Practice</div>
             <div class="mqt-sub">Practice 1,000+ phrasal verbs</div>
-          </button>
-          <button type="button" class="more-quick-tile mqt-progress"
-                  onclick="if(typeof renderProgressDashboard==='function'){ try{ renderProgressDashboard(); }catch(e){} } showScreen('progress');">
-            <div class="mqt-icon">📊</div>
-            <div class="mqt-title">Your Progress</div>
-            <div class="mqt-sub">Streak, mastery &amp; stats</div>
           </button>
         </div>
       </div>
@@ -4670,50 +4780,50 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <div class="mixed-review-grid">
 
         <div class="mr-card" onclick="startMixedReview()" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">
-          <div class="mr-icon">🃏</div>
-          <div class="mr-body"><div class="mr-title">Flashcards</div><div class="mr-card-desc">Classic flip-and-rate practice on every verb</div></div>
+          <div class="mr-icon">📚</div>
+          <div class="mr-body"><div class="mr-title">Flashcards</div><div class="mr-card-desc">Study 30 random phrasal verbs</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startMixedParticle()" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6);">
           <div class="mr-icon">🧠</div>
-          <div class="mr-body"><div class="mr-title">Find the Particle</div><div class="mr-card-desc">Pick the correct preposition to finish the verb</div></div>
+          <div class="mr-body"><div class="mr-title">Find the Particle</div><div class="mr-card-desc">Can you pick the correct preposition?</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startMixedSpelling()" style="background:linear-gradient(135deg,#be185d,#db2777);">
-          <div class="mr-icon">😈</div>
-          <div class="mr-body"><div class="mr-title">Spelling Challenge</div><div class="mr-card-desc">Type the verb from memory using a tricky hint</div></div>
+          <div class="mr-icon">✏️</div>
+          <div class="mr-body"><div class="mr-title">Spelling Challenge</div><div class="mr-card-desc">Type the verb from memory!</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startMixedFill()" style="background:linear-gradient(135deg,#0369a1,#0891b2);">
           <div class="mr-icon">📝</div>
-          <div class="mr-body"><div class="mr-title">Fill in the Blank</div><div class="mr-card-desc">Drop the right verb into a real-world sentence</div></div>
+          <div class="mr-body"><div class="mr-title">Fill in the Blank</div><div class="mr-card-desc">Use the phrasal verbs in a real situation</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startMixedBuilder()" style="background:linear-gradient(135deg,#b45309,#d97706);">
           <div class="mr-icon">🧱</div>
-          <div class="mr-body"><div class="mr-title">Sentence Builder</div><div class="mr-card-desc">Drag the scrambled words into the right order</div></div>
+          <div class="mr-body"><div class="mr-title">Sentence Builder</div><div class="mr-card-desc">The perfect way to practice your English skills</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startMixedSituation()" style="background:linear-gradient(135deg,#059669,#0d9488);">
           <div class="mr-icon">✅</div>
-          <div class="mr-body"><div class="mr-title">Find the Correct Verb</div><div class="mr-card-desc">Read a scene and choose the verb that fits</div></div>
+          <div class="mr-body"><div class="mr-title">Find the Correct Verb</div><div class="mr-card-desc">Choose the best verb for each situation</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startMixedNews()" style="background:linear-gradient(135deg,#1e293b,#475569);">
           <div class="mr-icon">📰</div>
-          <div class="mr-body"><div class="mr-title">Read the News!</div><div class="mr-card-desc">Spot the verb live inside a real news story</div></div>
+          <div class="mr-body"><div class="mr-title">Read the News!</div><div class="mr-card-desc">Listen to 30 random phrasal verbs in context</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
         <div class="mr-card" onclick="startListeningPractice()" style="background:linear-gradient(135deg,#ff0000,#cc0000);">
           <div class="mr-icon">🎬</div>
-          <div class="mr-body"><div class="mr-title">Listening Practice</div><div class="mr-card-desc">Catch the verb by ear from a real video clip</div></div>
+          <div class="mr-body"><div class="mr-title">Listening Practice</div><div class="mr-card-desc">See real people using phrasal verbs in video clips</div></div>
           <div class="mr-arrow">→</div>
         </div>
 
@@ -16364,6 +16474,11 @@ function openNote(noteId) {
   const n = currentNote();
   document.getElementById("crumb-note-name").textContent = n.title;
   document.getElementById("note-title").textContent = n.title + " " + n.emoji;
+  // Flashcards activity card icon mirrors the current unit's emoji
+  try {
+    const _flashIcon = document.querySelector(".activity-card.flashcards-card .icon");
+    if (_flashIcon) _flashIcon.textContent = n.emoji;
+  } catch(_){}
   document.getElementById("note-sub").textContent =
     n.subtitle + " · " + n.verbs.length + " phrasal verbs";
   // Video link, show only if the note has one
@@ -17916,9 +18031,9 @@ function completeActivity(title, score) {
 const ACTIVITY_SEQUENCE = ['flashcards', 'particle', 'spelling', 'fill', 'builder', 'situation'];
 // Lightweight metadata for the skip-ahead chips on the completion screen.
 const ACTIVITY_META = {
-  flashcards: { emoji: '🃏', label: 'Flashcards' },
+  flashcards: { emoji: '📚', label: 'Flashcards' },
   particle:   { emoji: '🧠', label: 'Find the Particle' },
-  spelling:   { emoji: '😈', label: 'Spelling' },
+  spelling:   { emoji: '✏️', label: 'Spelling' },
   fill:       { emoji: '📝', label: 'Fill in the Blank' },
   builder:    { emoji: '🧱', label: 'Sentence Builder' },
   situation:  { emoji: '✅', label: 'Find the Correct Verb' },
@@ -22160,6 +22275,42 @@ function _moreRefreshToggles(){
   } catch(e){}
 }
 
+function _renderProgressTileStats(){
+  // Live numbers for the More-page "Your Progress" tile.
+  // Pulls from state.streakData (streak) and state.cardRatings
+  // (reviewed = any rating, mastered = rating 4). Falls back to
+  // _collectDeckStats() if available so the counts match the rest
+  // of the app exactly (only ratings on verbs that still live in
+  // NOTES are counted).
+  var streak = 0, reviewed = 0, mastered = 0;
+  try {
+    var sd = (typeof state !== 'undefined' && state && state.streakData) ? state.streakData : null;
+    if (!sd && typeof streakData !== 'undefined' && streakData) sd = streakData;
+    if (sd) streak = sd.currentStreak || 0;
+  } catch(e){}
+  try {
+    if (typeof _collectDeckStats === 'function') {
+      var s = _collectDeckStats();
+      mastered = s.gotCount || 0;
+      reviewed = (s.gotCount || 0) + (s.needCount || 0);
+    } else if (typeof state !== 'undefined' && state && state.cardRatings) {
+      var keys = Object.keys(state.cardRatings);
+      reviewed = keys.length;
+      for (var i = 0; i < keys.length; i++) {
+        if (state.cardRatings[keys[i]] === 4) mastered++;
+      }
+    }
+  } catch(e){}
+  try {
+    var elS = document.getElementById('mqt-stat-streak');
+    if (elS) elS.textContent = '🔥 ' + streak;
+    var elR = document.getElementById('mqt-stat-reviewed');
+    if (elR) elR.textContent = '📚 ' + reviewed;
+    var elM = document.getElementById('mqt-stat-mastered');
+    if (elM) elM.textContent = '✅ ' + mastered;
+  } catch(e){}
+}
+
 function _moreRefresh(){
   // Update streak number, lang value, toggles
   try {
@@ -22168,6 +22319,7 @@ function _moreRefresh(){
     var el = document.getElementById('more-streak-num');
     if (el) el.textContent = String(n || 0);
   } catch(e){}
+  try { _renderProgressTileStats(); } catch(e){}
   try {
     var lang = (typeof state !== 'undefined' && state && state.translateLang) ? state.translateLang : 'off';
     var lv = document.getElementById('more-lang-value');
