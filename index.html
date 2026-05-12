@@ -3780,40 +3780,49 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
 
   /* ================= SPEAKING PRACTICE ================= */
   /* "No step" modifier for the Read the News card — visually consistent
-     with other activity cards but no STEP badge and no glow / pulse. */
-  .activity-card.no-step {
-    border-color: transparent !important;
-    box-shadow: var(--shadow) !important;
+     with other activity cards but no STEP badge and no glow / pulse.
+     We explicitly null out all animation properties and override box-shadow
+     in case a sibling rule tries to animate one in. */
+  .activity-card.no-step,
+  .activity-card.no-step:hover,
+  .activity-card.no-step:focus,
+  .activity-card.no-step:active {
     animation: none !important;
+    animation-name: none !important;
+    box-shadow: var(--shadow) !important;
+  }
+  .activity-card.no-step {
+    border-color: var(--border) !important;
   }
   .activity-card.no-step:hover {
     border-color: var(--accent-soft) !important;
     transform: translateY(-1px);
   }
   .activity-card.no-step .step { display: none !important; }
+  body.dark .activity-card.no-step { border-color: #334155 !important; }
 
-  /* Speaking Practice (STEP 7) card — purple-ish glow to match the
-     pedagogical step pattern. */
+  /* Speaking Practice (STEP 7) card — teal/cyan glow, distinct from
+     the other STEP colors and from the brand purple. */
   .activity-card.speaking-card {
-    border-color: rgba(124, 58, 237, 0.55) !important;
-    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.45);
+    border-color: rgba(6, 182, 212, 0.55) !important;
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.45);
     animation: sp-pulse 2.2s ease-in-out infinite;
   }
   .activity-card.speaking-card:hover {
-    border-color: rgba(124, 58, 237, 0.95) !important;
+    border-color: rgba(6, 182, 212, 0.95) !important;
     transform: translateY(-1px);
   }
   .activity-card.speaking-card .step {
-    background: linear-gradient(135deg, #a78bfa, #7c3aed) !important;
+    background: linear-gradient(135deg, #22d3ee, #0e7490) !important;
     color: #fff !important;
     border-color: transparent !important;
   }
   @keyframes sp-pulse {
-    0%   { box-shadow: 0 0 0 0   rgba(124, 58, 237, 0.45); }
-    60%  { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
-    100% { box-shadow: 0 0 0 0   rgba(124, 58, 237, 0); }
+    0%   { box-shadow: 0 0 0 0   rgba(6, 182, 212, 0.45); }
+    60%  { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(6, 182, 212, 0); }
   }
-  body.dark .activity-card.speaking-card { border-color: rgba(167, 139, 250, 0.75) !important; }
+  body.dark .activity-card.speaking-card { border-color: rgba(34, 211, 238, 0.75) !important; }
 
   /* Speaking screen layout */
   #screen-speaking .sp-card {
@@ -3873,11 +3882,11 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     height: 120px;
     border-radius: 50%;
     border: none;
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    background: linear-gradient(135deg, #06b6d4, #0e7490);
     color: #fff;
     font-size: 42px;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 8px 24px rgba(6, 182, 212, 0.4);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   #screen-speaking #sp-mic:hover { transform: scale(1.04); }
@@ -3953,8 +3962,64 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     line-height: 1.5;
   }
   body.dark #screen-speaking .sp-card { background: #1e293b; }
-  body.dark #screen-speaking #sp-target { background: rgba(124,58,237,.18); color: #e2e8f0; }
+  body.dark #screen-speaking #sp-target { background: rgba(6,182,212,.18); color: #e2e8f0; }
   body.dark #screen-speaking #sp-status { background: #334155; color: #e2e8f0; }
+
+  /* === Mobile fix: Your Progress full-width tile (More page) ===
+     On narrow screens the icon + title + 3 stats fight for one row and
+     scrunch. Stack into 2 rows: row 1 = icon + title (left-aligned),
+     row 2 = stats spread evenly across the full width. */
+  @media (max-width: 520px) {
+    .more-quick-tile.mqt-progress-full {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 12px 14px;
+    }
+    .more-quick-tile.mqt-progress-full .mqt-icon { font-size: 28px; }
+    .more-quick-tile.mqt-progress-full .mqt-title { white-space: normal; }
+    .more-quick-tile.mqt-progress-full .mqt-progress-stats {
+      width: 100%;
+      margin: 0;
+      justify-content: space-around;
+      flex-wrap: nowrap;
+      gap: 8px;
+    }
+    .more-quick-tile.mqt-progress-full .mqt-progress-stat { min-width: 0; flex: 1 1 0; }
+    .more-quick-tile.mqt-progress-full .mqt-progress-stat .mqt-stat-num { font-size: 16px; }
+    .more-quick-tile.mqt-progress-full .mqt-progress-stat .mqt-stat-label { font-size: 9px; }
+  }
+
+  /* === Mobile fix: lock brand-logo width during header search ===
+     When body.search-open is set, the logo must NOT shrink — otherwise
+     it competes with the search input + close button on narrow screens. */
+  @media (max-width: 520px) {
+    body.search-open .brand-logo {
+      flex: 0 0 auto !important;
+      width: auto !important;
+      max-width: 38px !important;
+      height: 38px !important;
+      min-width: 0;
+    }
+    body.search-open .brand-wrap {
+      flex: 0 0 auto !important;
+      min-width: 0;
+    }
+    body.search-open .brand {
+      flex: 0 0 auto !important;
+    }
+    body.search-open .brand-name,
+    body.search-open .bsub-wrap,
+    body.search-open .streak-badge,
+    body.search-open .hbtn,
+    body.search-open .newshell-more-btn {
+      display: none !important;
+    }
+    body.search-open .header-search-inline {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -5020,7 +5085,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div class="mr-arrow">→</div>
         </div>
 
-        <div class="mr-card" data-activity="speaking" onclick="startMixedSpeaking()" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">
+        <div class="mr-card" data-activity="speaking" onclick="startMixedSpeaking()" style="background:linear-gradient(135deg,#06b6d4,#0e7490);">
           <div class="mr-icon">🗣️</div>
           <div class="mr-body"><div class="mr-title">Speaking Practice</div><div class="mr-card-desc">Read example sentences out loud</div></div>
           <div class="mr-arrow">→</div>
@@ -22727,6 +22792,8 @@ function startSpeakingForNote(noteId){
     else if (typeof alert === 'function') alert('No example sentences in this unit yet.');
     return;
   }
+  if (typeof state !== 'undefined') state.lastActivity = 'speaking';
+  if (typeof _markActivityStart === 'function') _markActivityStart();
   _spkShowFallbackIfNeeded();
   showScreen('speaking');
   _spkRender();
@@ -22742,6 +22809,8 @@ function startMixedSpeaking(){
     else if (typeof alert === 'function') alert('No example sentences available.');
     return;
   }
+  if (typeof state !== 'undefined') state.lastActivity = 'speaking';
+  if (typeof _markActivityStart === 'function') _markActivityStart();
   _spkShowFallbackIfNeeded();
   showScreen('speaking');
   _spkRender();
