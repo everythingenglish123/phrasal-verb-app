@@ -3486,6 +3486,59 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     border-radius: 0 !important;
     color: var(--ink-soft) !important;
   }
+
+  /* ============================================================
+     MOBILE COMPACT OVERRIDES — shrink overly tall cards/tiles
+     on narrow phones. Desktop layout is unchanged.
+     ============================================================ */
+  @media (max-width: 520px) {
+    /* Home (Learn) screen — unit/section note cards */
+    .note-card {
+      padding: 12px 12px;
+    }
+    .note-card .emoji {
+      font-size: 32px;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .note-card .name {
+      font-size: 14px;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .note-card .count {
+      font-size: 11px;
+      line-height: 1.2;
+    }
+    .note-card .dots {
+      margin-top: 6px;
+      gap: 4px;
+    }
+    .note-card .dots span {
+      width: 8px;
+      height: 8px;
+    }
+
+    /* More page — Quick Practice tiles (WOTD / Mixed / Progress) */
+    .more-quick-tile {
+      padding: 12px 10px;
+      min-height: 90px;
+      border-radius: 14px;
+    }
+    .more-quick-tile .mqt-icon {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    .more-quick-tile .mqt-title {
+      font-size: 13px;
+      line-height: 1.15;
+      margin-bottom: 2px;
+    }
+    .more-quick-tile .mqt-sub {
+      font-size: 11px;
+      line-height: 1.25;
+    }
+  }
 </style>
 </head>
 <body>
