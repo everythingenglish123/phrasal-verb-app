@@ -842,50 +842,48 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     border-radius: 10px;
   }
 
-  /* Listen + Speak pills below the example sentence on the flashcard back face */
+  /* Small squarish icon-only Listen + Speak buttons on the flashcard front face */
   .flashcard .ab-row {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     margin-top: 14px;
-    width: 100%;
-    max-width: 520px;
+    justify-content: center;
   }
-  .flashcard .ab-row .pill-btn {
-    flex: 1;
-    display: flex;
+  .flashcard .ab-row .icon-btn {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 9px;
+    font-size: 15px;
+    line-height: 1;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 11px 14px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
     border: none;
     cursor: pointer;
-    box-shadow: var(--shadow);
-    transition: transform 0.08s, background 0.15s;
+    box-shadow: 0 1px 3px rgba(31,41,55,0.12);
+    transition: transform 0.08s, background 0.15s, border-color 0.15s;
   }
-  .flashcard .ab-row .pill-btn:active { transform: scale(0.97); }
-  .flashcard .ab-row .pill-listen {
+  .flashcard .ab-row .icon-btn:active { transform: scale(0.94); }
+  .flashcard .ab-row .icon-listen {
     background: var(--accent);
     color: #fff;
   }
-  .flashcard .ab-row .pill-listen:hover { background: var(--accent-dark); }
-  .flashcard .ab-row .pill-listen.playing {
-    background: var(--accent-dark);
-  }
-  .flashcard .ab-row .pill-speak {
+  .flashcard .ab-row .icon-listen:hover { background: var(--accent-dark); }
+  .flashcard .ab-row .icon-listen.playing { background: var(--accent-dark); }
+  .flashcard .ab-row .icon-speak {
     background: #fff;
     color: #0e7490;
     border: 1.5px solid #06b6d4;
+    font-size: 14px;
   }
-  .flashcard .ab-row .pill-speak:hover { background: #cffafe; }
-  body.dark .flashcard .ab-row .pill-speak {
+  .flashcard .ab-row .icon-speak:hover { background: #cffafe; }
+  body.dark .flashcard .ab-row .icon-speak {
     background: #1e293b;
     color: #67e8f9;
     border-color: #22d3ee;
   }
-  body.dark .flashcard .ab-row .pill-speak:hover { background: #155e75; }
+  body.dark .flashcard .ab-row .icon-speak:hover { background: #155e75; }
 
   .flash-controls {
     display: flex;
@@ -4667,6 +4665,10 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div class="tag">Phrasal Verb</div>
           <div class="verb" id="fc-front-verb">...</div>
           <div class="defn" id="fc-front-defn" style="display:none"></div>
+          <div class="ab-row" id="fc-front-audio-row" style="display:none;">
+            <button type="button" class="icon-btn icon-listen" id="fc-front-listen-btn" onclick="event.stopPropagation();playFlashExampleAudio();" aria-label="Listen to example" title="Listen">▶</button>
+            <button type="button" class="icon-btn icon-speak" id="fc-front-speak-btn" onclick="event.stopPropagation();openSpeakingForCurrentFlashcard();" aria-label="Speaking practice" title="Speak">🎤</button>
+          </div>
           <button class="fc-translate-btn" id="fc-translate-btn-example" type="button" onclick="event.stopPropagation();toggleFlashTranslation('example');" style="display:none;">🌐 Translate</button>
           <div class="fc-translation" id="fc-front-translation" style="display:none;"></div>
           <div class="tap-hint" id="fc-front-hint">Tap the card to reveal the definition, then rate yourself</div>
@@ -4676,10 +4678,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div class="tag" id="fc-back-tag">Meaning &amp; Example</div>
           <div class="defn" id="fc-back-defn">...</div>
           <div class="example" id="fc-back-example">...</div>
-          <div class="ab-row" id="fc-back-audio-row" style="display:none;">
-            <button type="button" class="pill-btn pill-listen" id="fc-back-listen-btn" onclick="event.stopPropagation();playFlashExampleAudio();">▶ Listen</button>
-            <button type="button" class="pill-btn pill-speak" id="fc-back-speak-btn" onclick="event.stopPropagation();openSpeakingForCurrentFlashcard();">🎤 Speak</button>
-          </div>
           <div class="fc-dialogue" id="fc-back-dialogue" style="display:none"></div>
           <button class="fc-translate-btn" id="fc-translate-btn-dialogue" type="button" onclick="event.stopPropagation();toggleFlashTranslation('dialogue');" style="display:none;">🌐 Translate dialogue</button>
           <div class="fc-translation" id="fc-back-translation" style="display:none;"></div>
@@ -17673,24 +17671,13 @@ function renderCard() {
   frontDefnEl.style.display = "block";
   frontHintEl.textContent = "Tap to show the meaning";
   backDefnEl.style.display = "";
-  // Show the example sentence on the back face too (this is what the
-  // Listen/Speak pills are attached to). The front still shows it as a
-  // recall prompt.
-  (function _refreshFcBackExample(){
-    const exEl = document.getElementById("fc-back-example");
-    if (!exEl) return;
-    if (v && v.flashExample){
-      exEl.textContent = "\u201c" + v.flashExample + "\u201d";
-      exEl.style.display = "";
-    } else {
-      exEl.style.display = "none";
-    }
-  })();
-  // Show the Listen/Speak pills on the back face whenever a verb is loaded;
-  // they degrade gracefully (Listen falls back to speechSynthesis when no MP3,
-  // Speak relies on flashExample being present, which is true for every verb).
+  document.getElementById("fc-back-example").style.display = "none";
+  // Show the Listen/Speak icon buttons on the front face whenever a verb is
+  // loaded; they degrade gracefully (Listen falls back to speechSynthesis when
+  // no MP3, Speak relies on flashExample being present, which is true for
+  // every verb).
   (function _refreshFcAudioRow(){
-    const row = document.getElementById('fc-back-audio-row');
+    const row = document.getElementById('fc-front-audio-row');
     if (!row) return;
     row.style.display = v && v.flashExample ? 'flex' : 'none';
   })();
@@ -23253,10 +23240,23 @@ function _spkRender(){
   const status = document.getElementById('sp-status');
   const nextBtn = document.getElementById('sp-next');
   const mic    = document.getElementById('sp-mic');
+  const controls = document.querySelector('#screen-speaking .sp-controls');
+  // Single-shot mode: launched from a flashcard with one sentence only. We
+  // hide Skip / Next / progress so the user's only exit path is the Back
+  // button (which returns to flashcards via spkState.prevScreen).
+  const singleShot = spkState.prevScreen === 'flashcards';
   if (verbEl) verbEl.textContent = (item.verb && item.verb.verb) || '';
   if (defnEl) defnEl.textContent = (item.verb && item.verb.defn) || '';
   if (tgtEl)  tgtEl.textContent  = '"' + (item.target || '') + '"';
-  if (prog)   prog.textContent   = (spkState.idx + 1) + ' of ' + spkState.items.length;
+  if (prog){
+    if (singleShot){
+      prog.style.display = 'none';
+    } else {
+      prog.style.display = '';
+      prog.textContent = (spkState.idx + 1) + ' of ' + spkState.items.length;
+    }
+  }
+  if (controls) controls.style.display = singleShot ? 'none' : '';
   if (status){
     status.textContent = 'Tap the mic to start.';
     status.className = '';
@@ -23340,7 +23340,7 @@ function _currentFlashcardVerb(){
 function playFlashExampleAudio(){
   const v = _currentFlashcardVerb();
   if (!v) return;
-  const btn = document.getElementById('fc-back-listen-btn');
+  const btn = document.getElementById('fc-front-listen-btn');
   if (btn) btn.classList.add('playing');
   _playExampleAudio(v, v.exampleAudio || '', {
     onEnd(){ if (btn) btn.classList.remove('playing'); }
@@ -23467,7 +23467,9 @@ function _spkHandleResult(transcript){
       status.innerHTML = '❌ We heard: "' + heardEsc + '" — try again.';
     }
   }
-  if (nextBtn) nextBtn.style.display = '';
+  // In single-shot mode (launched from flashcard) we never auto-show Next —
+  // the user just goes back to flashcards via the Back button.
+  if (nextBtn && spkState.prevScreen !== 'flashcards') nextBtn.style.display = '';
 }
 
 function speechNext(skip){
