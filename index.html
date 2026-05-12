@@ -27,11 +27,18 @@
 <script>
   // Apply theme before first paint to prevent white flash.
   // Default is dark (matches existing app behavior when key is unset).
+  // Supports 'light' | 'dark' | 'auto' (auto = dark 7 PM - 7 AM local).
   (function(){
     try {
       var t = localStorage.getItem('eewj_phrasal_theme');
-      var isDark = (t === null) ? true : (t === 'dark');
-      if (isDark) {
+      var resolved;
+      if (t === 'light') resolved = 'light';
+      else if (t === 'dark') resolved = 'dark';
+      else if (t === 'auto') {
+        var h = new Date().getHours();
+        resolved = (h >= 19 || h < 7) ? 'dark' : 'light';
+      } else resolved = 'dark'; // default when key is unset
+      if (resolved === 'dark') {
         document.documentElement.classList.add('dark');
         document.documentElement.style.background = '#0f172a';
       } else {
@@ -3132,6 +3139,41 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   body.dark .more-toggle { background: #475569; }
   body.dark .more-toggle.on { background: #60a5fa; }
 
+  /* 3-option theme picker (segmented control) — used in More page & onboarding */
+  .theme-picker {
+    display: inline-flex;
+    gap: 0;
+    border: 1.5px solid var(--border, #e5e7eb);
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: transparent;
+  }
+  .theme-opt {
+    background: transparent;
+    border: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft, #64748b);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.2;
+    transition: background .15s ease, color .15s ease;
+  }
+  .theme-opt + .theme-opt { border-left: 1px solid var(--border, #e5e7eb); }
+  .theme-opt:hover { color: var(--ink, #1f2937); }
+  .theme-opt.active { background: var(--accent, #2563eb); color: #fff; }
+  .theme-opt.active:hover { color: #fff; }
+  body.dark .theme-picker { border-color: #334155; }
+  body.dark .theme-opt { color: #94a3b8; }
+  body.dark .theme-opt + .theme-opt { border-left-color: #334155; }
+  body.dark .theme-opt:hover { color: #e2e8f0; }
+  body.dark .theme-opt.active { background: var(--accent, #2563eb); color: #fff; }
+  /* Onboarding variant: full-width row, slightly bigger touch targets */
+  .ob-theme-picker { display: flex; width: 100%; }
+  .ob-theme-picker .theme-opt { flex: 1; padding: 10px 12px; font-size: 13px; text-align: center; }
+
   .more-version {
     text-align: center;
     font-size: 12px;
@@ -5198,14 +5240,18 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             <span class="more-row-value" id="more-lang-value">Off</span>
             <span class="more-row-chev">›</span>
           </button>
-          <button type="button" class="more-row" onclick="_moreToggleTheme()">
-            <div class="more-row-icon icon-purple">🌙</div>
+          <div class="more-row more-row-theme">
+            <div class="more-row-icon icon-purple">🌓</div>
             <div class="more-row-text">
-              <div class="more-row-title">Dark mode</div>
-              <div class="more-row-sub">Easy on the eyes</div>
+              <div class="more-row-title">Theme</div>
+              <div class="more-row-sub">Light, dark, or auto by time</div>
             </div>
-            <span class="more-toggle" id="more-theme-toggle"></span>
-          </button>
+            <div class="theme-picker" id="more-theme-picker" role="group" aria-label="Theme">
+              <button type="button" class="theme-opt" data-mode="light" onclick="_setThemeMode('light')">Light</button>
+              <button type="button" class="theme-opt" data-mode="dark" onclick="_setThemeMode('dark')">Dark</button>
+              <button type="button" class="theme-opt" data-mode="auto" onclick="_setThemeMode('auto')">Auto</button>
+            </div>
+          </div>
           <button type="button" class="more-row" onclick="_moreToggleSound()">
             <div class="more-row-icon icon-yellow">🔊</div>
             <div class="more-row-text">
@@ -5241,7 +5287,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             <div class="more-row-icon icon-red">🤫</div>
             <div class="more-row-text">
               <div class="more-row-title">Secrets Playlist</div>
-              <div class="more-row-sub">English tips on YouTube</div>
+              <div class="more-row-sub">Learn the secrets of English phrasal verbs</div>
             </div>
             <span class="more-row-chev">›</span>
           </a>
@@ -5509,12 +5555,14 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div class="ob-hint">Choose "Off" to learn entirely in English.</div>
         </div>
 
-        <div class="ob-field ob-toggle-field">
-          <div>
-            <div class="ob-label">🌙 Dark mode</div>
-            <div class="ob-hint">Easier on the eyes at night</div>
+        <div class="ob-field">
+          <div class="ob-label">🌓 Theme</div>
+          <div class="ob-hint">Light, dark, or auto (dark at night)</div>
+          <div class="theme-picker ob-theme-picker" id="ob-theme-picker" role="group" aria-label="Theme">
+            <button type="button" class="theme-opt" data-mode="light">Light</button>
+            <button type="button" class="theme-opt" data-mode="dark">Dark</button>
+            <button type="button" class="theme-opt" data-mode="auto">Auto</button>
           </div>
-          <div id="ob-dark-toggle" class="ob-toggle" data-on="false"></div>
         </div>
 
         <div class="ob-field ob-toggle-field">
@@ -15853,7 +15901,7 @@ function _hashStr(s){
 }
 // Translation language picker — extend this list as you add translations
 const TRANSLATE_LANGS = [
-  { code: 'off', flag: '🚫',  label: 'Off (English only)' },
+  { code: 'off', flag: '🇺🇸',  label: 'Off (English only)' },
   { code: 'ar',  flag: '🇸🇦', label: 'العربية' },
   { code: 'zh',  flag: '🇨🇳', label: '中文' },
   { code: 'tl',  flag: '🇵🇭', label: 'Tagalog' },
@@ -20338,12 +20386,22 @@ function _wireOnboardingToggles() {
 function _onboardingStart() {
   const nameEl = document.getElementById('ob-name');
   const langEl = document.getElementById('ob-lang');
-  const darkEl = document.getElementById('ob-dark-toggle');
+  const themePickerEl = document.getElementById('ob-theme-picker');
   const soundEl = document.getElementById('ob-sound-toggle');
 
   const name = nameEl ? (nameEl.value || '').trim() : '';
   const lang = langEl ? langEl.value : 'off';
-  const darkOn = darkEl ? darkEl.getAttribute('data-on') === 'true' : false;
+  // Read selected theme mode from the picker; default 'dark' (matches app default).
+  let themeMode = 'dark';
+  try {
+    if (themePickerEl) {
+      const active = themePickerEl.querySelector('.theme-opt.active');
+      if (active) {
+        const m = active.getAttribute('data-mode');
+        if (m === 'light' || m === 'dark' || m === 'auto') themeMode = m;
+      }
+    }
+  } catch(e){}
   const soundOn = soundEl ? soundEl.getAttribute('data-on') === 'true' : true;
 
   if (name) {
@@ -20360,20 +20418,23 @@ function _onboardingStart() {
     try { localStorage.setItem('eewj_phrasal_translate_lang', lang || 'off'); } catch(e){}
   }
 
-  // Apply dark mode
-  if (darkOn) {
-    document.body.classList.add('dark');
-    try { localStorage.setItem('eewj_phrasal_theme', 'dark'); } catch(e){}
-    if (typeof darkMode !== 'undefined') darkMode = true;
+  // Apply theme (light / dark / auto)
+  try { localStorage.setItem('eewj_phrasal_theme', themeMode); } catch(e){}
+  if (typeof applyTheme === 'function') {
+    try { applyTheme(); } catch(e){}
   } else {
-    document.body.classList.remove('dark');
-    try { localStorage.setItem('eewj_phrasal_theme', 'light'); } catch(e){}
-    if (typeof darkMode !== 'undefined') darkMode = false;
+    // Fallback: resolve inline
+    const h = new Date().getHours();
+    const effDark = (themeMode === 'dark') || (themeMode === 'auto' && (h >= 19 || h < 7));
+    document.body.classList.toggle('dark', effDark);
+    document.documentElement.classList.toggle('dark', effDark);
+    if (typeof darkMode !== 'undefined') darkMode = effDark;
   }
   // Update the header theme button glyph if present
   try {
     const tb = document.getElementById('theme-toggle');
-    if (tb) tb.textContent = darkOn ? '☀️' : '🌙';
+    const effDark = (typeof darkMode !== 'undefined') ? !!darkMode : document.body.classList.contains('dark');
+    if (tb) tb.textContent = effDark ? '☀️' : '🌙';
   } catch(e){}
 
   // Apply sound
@@ -20405,11 +20466,29 @@ function _initOnboarding() {
     if (nameEl && existingName) nameEl.value = existingName;
   } catch(e){}
 
-  // Pre-fill dark toggle from current state if available
-  const darkT = document.getElementById('ob-dark-toggle');
-  if (darkT) {
-    const isDark = document.body.classList.contains('dark') || (function(){ try{return localStorage.getItem('eewj_phrasal_theme')==='dark';}catch(e){return false;} })();
-    if (isDark) { darkT.classList.add('on'); darkT.setAttribute('data-on','true'); }
+  // Pre-fill theme picker from current stored value (default 'dark').
+  const obThemePicker = document.getElementById('ob-theme-picker');
+  if (obThemePicker) {
+    let stored = 'dark';
+    try {
+      const v = localStorage.getItem('eewj_phrasal_theme');
+      if (v === 'light' || v === 'dark' || v === 'auto') stored = v;
+    } catch(e){}
+    obThemePicker.querySelectorAll('.theme-opt').forEach(function(btn){
+      const isActive = (btn.getAttribute('data-mode') === stored);
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      // Clicking an option just updates the picker selection here; the
+      // preference is committed when the user presses "Let's start".
+      btn.addEventListener('click', function(){
+        obThemePicker.querySelectorAll('.theme-opt').forEach(function(b){
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
   }
 
   // Pre-fill sound toggle from saved pref
@@ -20791,23 +20870,90 @@ function showParticleComplete() {
 }
 
 /* =========================================================================
-   DARK MODE
+   THEME (light / dark / auto)
+   Stored at localStorage['eewj_phrasal_theme'] as 'light' | 'dark' | 'auto'.
+   'auto' resolves to dark from 7 PM to 7 AM local time.
 ========================================================================= */
 let darkMode = false;
+
+// True when local clock falls into "night" hours (auto = dark).
+function _isNightTime(){
+  const h = new Date().getHours();
+  return (h >= 19 || h < 7); // dark from 7 PM to 7 AM
+}
+
+// Read stored mode ('light' | 'dark' | 'auto'). Defaults to 'dark'.
+function _getThemeMode(){
+  try {
+    const v = localStorage.getItem('eewj_phrasal_theme');
+    if (v === 'light' || v === 'dark' || v === 'auto') return v;
+  } catch(e){}
+  return 'dark';
+}
+
+// Resolve stored mode to the effective theme ('light' or 'dark').
+function _resolveTheme(){
+  const m = _getThemeMode();
+  if (m === 'light') return 'light';
+  if (m === 'dark') return 'dark';
+  if (m === 'auto') return _isNightTime() ? 'dark' : 'light';
+  return 'dark';
+}
+
 function loadTheme(){
-  try{ const t = localStorage.getItem('eewj_phrasal_theme'); darkMode = t === null ? true : t === 'dark'; }catch(e){ darkMode=true; }
+  darkMode = (_resolveTheme() === 'dark');
   applyTheme();
 }
+
 function applyTheme(){
+  // Re-resolve in case stored mode is 'auto' and the hour has crossed a boundary.
+  darkMode = (_resolveTheme() === 'dark');
   document.body.classList.toggle('dark', darkMode);
+  document.documentElement.classList.toggle('dark', darkMode);
   const t = document.getElementById('theme-toggle');
   if(t) t.textContent = darkMode ? '☀️' : '🌙';
+  _syncThemePickers();
 }
+
+// Legacy binary toggle (used by the header button). Cycles light <-> dark
+// and clears 'auto' so the explicit choice sticks.
 function toggleTheme(){
-  darkMode = !darkMode;
-  try{ localStorage.setItem('eewj_phrasal_theme', darkMode ? 'dark' : 'light'); }catch(e){}
+  const next = darkMode ? 'light' : 'dark';
+  try{ localStorage.setItem('eewj_phrasal_theme', next); }catch(e){}
   applyTheme();
 }
+
+// Set theme mode from the 3-option picker. Public.
+function _setThemeMode(mode){
+  if (mode !== 'light' && mode !== 'dark' && mode !== 'auto') return;
+  try { localStorage.setItem('eewj_phrasal_theme', mode); } catch(e){}
+  applyTheme();
+}
+
+// Sync active state on every theme picker present in the DOM.
+function _syncThemePickers(){
+  const mode = _getThemeMode();
+  try {
+    document.querySelectorAll('.theme-picker .theme-opt').forEach(function(btn){
+      const isActive = (btn.getAttribute('data-mode') === mode);
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  } catch(e){}
+}
+
+// Re-apply on a schedule so 'auto' switches across the 7 AM / 7 PM boundary.
+function _scheduleAutoThemeCheck(){
+  try {
+    if (_getThemeMode() === 'auto') applyTheme();
+  } catch(e){}
+}
+try {
+  setInterval(_scheduleAutoThemeCheck, 15 * 60 * 1000); // every 15 minutes
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden) _scheduleAutoThemeCheck();
+  });
+} catch(e){}
 
 /* Master English popover (teacher emoji button in the menu bar) */
 function toggleMasterEnglishMenu(ev){
@@ -23044,6 +23190,8 @@ function _moreOpenLang(){
 }
 
 function _moreToggleTheme(){
+  // Legacy entry point — the More page now uses the 3-option theme picker.
+  // Kept for backwards compat: cycles light <-> dark.
   var b = document.getElementById('theme-toggle');
   if (b) { try { b.click(); } catch(e){} }
   _moreRefreshToggles();
@@ -23065,10 +23213,14 @@ function _moreResetProgress(){
 }
 
 function _moreRefreshToggles(){
+  // Sync legacy switch (if it still exists in DOM) AND the 3-option theme picker.
   try {
     var darkOn = document.body.classList.contains('dark') || document.documentElement.classList.contains('dark');
     var tt = document.getElementById('more-theme-toggle');
     if (tt) tt.classList.toggle('on', !!darkOn);
+  } catch(e){}
+  try {
+    if (typeof _syncThemePickers === 'function') _syncThemePickers();
   } catch(e){}
   try {
     var soundOn = (typeof soundEnabled !== 'undefined') ? !!soundEnabled : true;
