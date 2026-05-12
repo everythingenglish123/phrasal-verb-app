@@ -4492,13 +4492,13 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             <div class="mqt-sub">Today's featured phrasal verb</div>
           </button>
           <button type="button" class="more-quick-tile mqt-mixed"
-                  onclick="showScreen('mixed');">
+                  onclick="if(typeof renderHomeBanners==='function'){ try{ renderHomeBanners(); }catch(e){} } showScreen('mixed');">
             <div class="mqt-icon">🎲</div>
             <div class="mqt-title">Mixed Practice</div>
             <div class="mqt-sub">Practice 1,000+ phrasal verbs</div>
           </button>
           <button type="button" class="more-quick-tile mqt-progress"
-                  onclick="showScreen('progress'); if(typeof renderProgressDashboard==='function'){ try{ renderProgressDashboard(); }catch(e){} }">
+                  onclick="if(typeof renderProgressDashboard==='function'){ try{ renderProgressDashboard(); }catch(e){} } showScreen('progress');">
             <div class="mqt-icon">📊</div>
             <div class="mqt-title">Your Progress</div>
             <div class="mqt-sub">Streak, mastery &amp; stats</div>
@@ -16167,7 +16167,7 @@ function _renderSavedWordsPreviewSection(){
   const count = list.length;
   let inner = '';
   if (count === 0) {
-    inner = '<div class="decks-saved-empty">Save vocabulary from news articles to see it here.</div>';
+    inner = '<div class="decks-saved-empty">No saved words yet — tap any unfamiliar word while reading a news article to save it here.</div>';
   } else {
     const preview = list.slice(0, 5);
     inner += '<div class="savedwords-list decks-saved-cards">';
@@ -16230,10 +16230,19 @@ function renderDecks(){
   if (stats.needCount + stats.gotCount === 0) {
     // No rated flashcards yet — but still surface saved words if the user has any.
     if (savedCount === 0) {
-      container.innerHTML = '<div class="decks-empty">You haven\'t rated any flashcards yet.<br>Start a flashcards activity in any topic to fill up your deck!</div>';
+      // Neither ratings nor saved words yet — a single friendly combined empty state.
+      container.innerHTML = '<div class="decks-empty">'
+        + '<div style="font-size:32px;line-height:1;margin-bottom:8px;">📚</div>'
+        + '<strong>Nothing here yet</strong><br>'
+        + 'Rate some flashcards or save words from news articles, and they\'ll appear here.'
+        + '</div>';
       return;
     }
-    container.innerHTML = '<div class="decks-empty" style="padding:24px 20px;">You haven\'t rated any flashcards yet.<br>Start a flashcards activity in any topic to fill up your deck!</div>' + savedWordsHtml;
+    // Has saved words but no ratings — show an inline "decks" hint above the saved words.
+    container.innerHTML = '<div class="decks-empty" style="padding:24px 20px;">'
+      + '<strong>No rated flashcards yet</strong><br>'
+      + 'Start a flashcards activity in any topic and rate the cards — they\'ll collect here.'
+      + '</div>' + savedWordsHtml;
     return;
   }
   let html = '';
@@ -21802,11 +21811,20 @@ function _navTo(tab, el){
     if (el) el.classList.add('active');
     if (tab === 'home') {
       if (typeof goToNotes === 'function') goToNotes();
-      else if (typeof showScreen === 'function') showScreen('notes');
+      else {
+        if (typeof renderNotes === 'function') { try { renderNotes(); } catch(e){} }
+        if (typeof renderHomeBanners === 'function') { try { renderHomeBanners(); } catch(e){} }
+        if (typeof showScreen === 'function') showScreen('notes');
+      }
     } else if (tab === 'decks') {
+      // Always pre-render the My Vocabulary content so the screen never flashes empty
+      // for one frame while the transition starts.
+      if (typeof renderDecks === 'function') { try { renderDecks(); } catch(e){} }
       if (typeof goToDecks === 'function') goToDecks();
       else if (typeof showScreen === 'function') showScreen('decks');
     } else if (tab === 'more') {
+      // Render the More page dynamic bits (streak, lang, toggles) BEFORE the slide
+      // transition starts so the screen looks complete the moment it appears.
       if (typeof _moreRefresh === 'function') _moreRefresh();
       if (typeof showScreen === 'function') showScreen('more');
     }
@@ -22180,9 +22198,14 @@ function _moreRefresh(){
     if (typeof window.showScreen === 'function') {
       var _origShowScreen = window.showScreen;
       window.showScreen = function(id){
+        // Run per-screen renderers BEFORE the transition starts, so the screen
+        // never appears empty for one frame while the slide-in is in flight.
+        if (id === 'more') { try { _moreRefresh(); } catch(e){} }
+        else if (id === 'decks') { try { if (typeof renderDecks === 'function') renderDecks(); } catch(e){} }
+        else if (id === 'savedwords') { try { if (typeof renderSavedWords === 'function') renderSavedWords(); } catch(e){} }
+        else if (id === 'progress') { try { if (typeof renderProgressDashboard === 'function') renderProgressDashboard(); } catch(e){} }
         var r = _origShowScreen.apply(this, arguments);
         syncBottomNav();
-        if (id === 'more') { try { _moreRefresh(); } catch(e){} }
         return r;
       };
     }
