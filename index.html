@@ -51,6 +51,14 @@
     }
   })();
 </script>
+<script>
+  // Service worker registration — caches the app shell + audio for instant repeat loads
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
+    });
+  }
+</script>
 <title>Phrasal Verbs Study App, Everything English with John</title>
 <meta name="author" content="Everything English with John" />
 <meta name="copyright" content="© 2026 Everything English with John · All rights reserved." />
