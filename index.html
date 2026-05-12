@@ -22,7 +22,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Phrasal Verbs Study App, Everything English with John</title>
 <meta name="author" content="Everything English with John" />
 <meta name="copyright" content="© 2026 Everything English with John · All rights reserved." />
@@ -3613,7 +3613,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             <a class="me-menu-link" href="https://www.italki.com/en/teacher/5138727" target="_blank" rel="noopener">
               <span class="me-menu-icon">👨🏻‍🏫</span><span class="me-menu-text"><b>Meet me on italki</b><span>Book a lesson with me</span></span>
             </a>
-            <a class="me-menu-link" href="https://youtu.be/oGrd0xxk4oc" target="_blank" rel="noopener">
+            <a class="me-menu-link" href="https://youtu.be/oGrd0xxk4oc" onclick="showVideoModal('https://youtu.be/oGrd0xxk4oc', {sourceLabel: '1,000 Phrasal Verbs · Everything English with John'}); return false;">
               <span class="me-menu-icon">🔥</span><span class="me-menu-text"><b>1,000 Phrasal Verbs</b><span>Free YouTube series</span></span>
             </a>
             <a class="me-menu-link" href="https://www.youtube.com/playlist?list=PLFmInC8__4Ud-TijvXbz0zqY4bYhcyaxz" target="_blank" rel="noopener">
@@ -3724,7 +3724,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         <a class="connect-link" href="https://www.italki.com/en/teacher/5138727" target="_blank" rel="noopener">
           <span class="cl-icon">👨🏻‍🏫</span><span class="cl-text"><b>Meet me on italki</b><span>Book a lesson with me</span></span>
         </a>
-        <a class="connect-link" href="https://youtu.be/oGrd0xxk4oc" target="_blank" rel="noopener">
+        <a class="connect-link" href="https://youtu.be/oGrd0xxk4oc" onclick="showVideoModal('https://youtu.be/oGrd0xxk4oc', {sourceLabel: '1,000 Phrasal Verbs · Everything English with John'}); return false;">
           <span class="cl-icon">🔥</span><span class="cl-text"><b>1,000 Phrasal Verbs</b><span>Free YouTube series</span></span>
         </a>
         <a class="connect-link" href="https://www.youtube.com/playlist?list=PLFmInC8__4Ud-TijvXbz0zqY4bYhcyaxz" target="_blank" rel="noopener">
@@ -4444,7 +4444,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
             </div>
             <span class="more-row-chev">›</span>
           </a>
-          <a class="more-row" href="https://youtu.be/oGrd0xxk4oc" target="_blank" rel="noopener">
+          <a class="more-row" href="https://youtu.be/oGrd0xxk4oc" onclick="showVideoModal('https://youtu.be/oGrd0xxk4oc', {sourceLabel: '1,000 Phrasal Verbs · Everything English with John'}); return false;">
             <div class="more-row-icon icon-red">📺</div>
             <div class="more-row-text">
               <div class="more-row-title">1,000 Phrasal Verbs series</div>
@@ -15620,8 +15620,7 @@ function reviewVerbOnFlashcard(noteId, verbIdx, fromActivity, fromIdx){
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
   document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
-  const vl = document.getElementById('note-video-link');
-  if (note.videoUrl) { vl.href = note.videoUrl; vl.style.display = 'inline-flex'; } else { vl.style.display = 'none'; }
+  _wireInAppVideoLink(document.getElementById('note-video-link'), note.videoUrl, 'Everything English with John · ' + note.title);
   updateNoteProgress();
   startFlashcards();
   // Move requested verb to front of the line
@@ -15940,8 +15939,7 @@ function resumeLastSession(){
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
   document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
-  const vl = document.getElementById('note-video-link');
-  if (note.videoUrl) { vl.href = note.videoUrl; vl.style.display = 'inline-flex'; } else { vl.style.display = 'none'; }
+  _wireInAppVideoLink(document.getElementById('note-video-link'), note.videoUrl, 'Everything English with John · ' + note.title);
   updateNoteProgress();
   // If a saved activity state exists, resume from where the user left off (question, hints, slots, etc.).
   // Only fall back to a fresh start when there's nothing to resume.
@@ -16177,8 +16175,7 @@ function openFlashcardsForVerb(noteId, verbIdx, fromContext){
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
   document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
-  const vl = document.getElementById('note-video-link');
-  if (note.videoUrl) { vl.href = note.videoUrl; vl.style.display = 'inline-flex'; } else { vl.style.display = 'none'; }
+  _wireInAppVideoLink(document.getElementById('note-video-link'), note.videoUrl, 'Everything English with John · ' + note.title);
   updateNoteProgress();
   startFlashcards();
   const i = state.fc.line.indexOf(verbIdx);
@@ -16228,13 +16225,7 @@ function openNote(noteId) {
   document.getElementById("note-sub").textContent =
     n.subtitle + " · " + n.verbs.length + " phrasal verbs";
   // Video link, show only if the note has one
-  const vl = document.getElementById("note-video-link");
-  if (n.videoUrl && n.videoUrl.length > 0) {
-    vl.href = n.videoUrl;
-    vl.style.display = "inline-flex";
-  } else {
-    vl.style.display = "none";
-  }
+  _wireInAppVideoLink(document.getElementById("note-video-link"), (n.videoUrl && n.videoUrl.length > 0) ? n.videoUrl : "", 'Everything English with John · ' + n.title);
   updateNoteProgress();
   showScreen("note");
 }
@@ -16495,10 +16486,11 @@ function restartChosenActivity(){
   }
 }
 function openActivity(name) {
-  const _url = currentNote().videoUrl || "";
+  const _curNote = currentNote();
+  const _url = _curNote.videoUrl || "";
+  const _srcLabel = 'Everything English with John · ' + _curNote.title;
   document.querySelectorAll(".activity-video-btn").forEach(function(btn) {
-    if (_url) { btn.href = _url; btn.style.display = "inline-flex"; }
-    else { btn.style.display = "none"; }
+    _wireInAppVideoLink(btn, _url, _srcLabel);
   });
 
   if (state.currentNoteId !== '__mixed__' && hasResumableActivity(state.currentNoteId, name)) {
@@ -16517,7 +16509,18 @@ function startFlashcards() {
   state.lastActivity = "flashcards";
   _markActivityStart();
   setLastSession(state.currentNoteId, "flashcards");
-  const verbs = currentNote().verbs;
+  const _curNote = currentNote();
+  // Wire activity-video buttons (e.g. flashcard "▶ Listen on YouTube" pill) so
+  // they open the in-app player. Done here so every entry-point into flashcards
+  // (fresh, resume, deck mode) gets the right URL+handler.
+  try {
+    const _url = _curNote.videoUrl || "";
+    const _srcLabel = 'Everything English with John · ' + (_curNote.title || '');
+    document.querySelectorAll(".activity-video-btn").forEach(function(btn){
+      _wireInAppVideoLink(btn, _url, _srcLabel);
+    });
+  } catch(_){}
+  const verbs = _curNote.verbs;
   const indices = verbs.map((_, i) => i);
   state.fc.line    = (state.fcOrder === 'ordered') ? indices : shuffle(indices);
   state.fc.known    = new Set();
@@ -19998,14 +20001,12 @@ function openNoteAtVerb(noteId, verbIndex){
   document.getElementById("crumb-note-name").textContent = n.title;
   document.getElementById("note-title").textContent = n.title + " " + n.emoji;
   document.getElementById("note-sub").textContent = n.subtitle + " · " + n.verbs.length + " phrasal verbs";
-  const vl = document.getElementById("note-video-link");
-  if(n.videoUrl && n.videoUrl.length > 0){ vl.href = n.videoUrl; vl.style.display = "inline-flex"; }
-  else { vl.style.display = "none"; }
+  const _vlSrcLabel = 'Everything English with John · ' + n.title;
+  _wireInAppVideoLink(document.getElementById("note-video-link"), (n.videoUrl && n.videoUrl.length > 0) ? n.videoUrl : "", _vlSrcLabel);
   // Wire activity-video buttons (used inside the flashcard screen)
   const _url = n.videoUrl || "";
   document.querySelectorAll(".activity-video-btn").forEach(function(btn){
-    if(_url){ btn.href = _url; btn.style.display = "inline-flex"; }
-    else { btn.style.display = "none"; }
+    _wireInAppVideoLink(btn, _url, _vlSrcLabel);
   });
   // Set up flashcards starting at the requested verb
   state.lastActivity = "flashcards";
@@ -21463,6 +21464,182 @@ function showVideoExample(idx){
     document.getElementById('video-modal').classList.add('show');
   } catch(e){}
 }
+
+/* --------------------------------------------------------------------------
+   showVideoModal — single-video in-app player
+   Reuses the existing #video-modal infrastructure to play one YouTube video
+   (full-length, no clip range). Used for "Watch on YouTube" / "Listen on
+   YouTube" links that point at a single video (not a playlist or channel).
+
+   Parameters:
+     videoUrl  — full YouTube URL, e.g.
+                   https://youtu.be/VIDEO_ID
+                   https://www.youtube.com/watch?v=VIDEO_ID
+                   https://www.youtube.com/embed/VIDEO_ID
+     options   — { sourceLabel?: string }
+   If a videoId can't be extracted (playlist/channel URL), falls back to
+   opening the URL externally via window.open(...).
+--------------------------------------------------------------------------- */
+// Helper: wire a single anchor element so it opens the in-app player instead
+// of navigating to youtube.com. Pass null/empty url to hide the anchor.
+function _wireInAppVideoLink(el, url, sourceLabel){
+  if (!el) return;
+  if (url) {
+    el.href = url;
+    el.removeAttribute('target');
+    el.onclick = (function(u, lbl){
+      return function(ev){
+        try { ev.preventDefault(); } catch(_){}
+        showVideoModal(u, {sourceLabel: lbl});
+        return false;
+      };
+    })(url, sourceLabel || '');
+    el.style.display = 'inline-flex';
+  } else {
+    el.style.display = 'none';
+    el.onclick = null;
+  }
+}
+
+function showVideoModal(videoUrl, options){
+  options = options || {};
+  if (!videoUrl) return;
+  // Extract videoId from the supported URL shapes
+  let videoId = '';
+  try {
+    const u = String(videoUrl);
+    let m = u.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+    if (m) videoId = m[1];
+    if (!videoId) { m = u.match(/[?&]v=([A-Za-z0-9_-]{6,})/); if (m) videoId = m[1]; }
+    if (!videoId) { m = u.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/); if (m) videoId = m[1]; }
+    if (!videoId) { m = u.match(/youtube\.com\/shorts\/([A-Za-z0-9_-]{6,})/); if (m) videoId = m[1]; }
+  } catch(_){}
+  if (!videoId) {
+    // Playlist / channel / unknown — open externally
+    try { window.open(videoUrl, '_blank', 'noopener'); } catch(_){}
+    return;
+  }
+  try {
+    // Source label under the player
+    const _srcEl = document.getElementById('video-modal-source');
+    if (_srcEl) _srcEl.textContent = options.sourceLabel ? String(options.sourceLabel) : '';
+
+    // Clear any leftover bits from a previous (multi-clip) open
+    const _oldStudyRow = document.getElementById('video-modal-studyrow');
+    if (_oldStudyRow && _oldStudyRow.parentNode) _oldStudyRow.parentNode.removeChild(_oldStudyRow);
+    const _oldCap = document.getElementById('video-modal-caption');
+    if (_oldCap && _oldCap.parentNode) _oldCap.parentNode.removeChild(_oldCap);
+    const _oldClipTabs = document.getElementById('video-modal-cliptabs');
+    if (_oldClipTabs && _oldClipTabs.parentNode) _oldClipTabs.parentNode.removeChild(_oldClipTabs);
+    const _oldFb = document.getElementById('video-modal-fallback-link');
+    if (_oldFb && _oldFb.parentNode) _oldFb.parentNode.removeChild(_oldFb);
+    const _oldCtrl = document.getElementById('video-modal-controls');
+    if (_oldCtrl && _oldCtrl.parentNode) _oldCtrl.parentNode.removeChild(_oldCtrl);
+
+    _destroyYTPlayer();
+
+    const frame = document.getElementById('video-modal-frame');
+    const card  = frame ? frame.parentNode : null;
+    if (!frame || !card) return;
+
+    const directUrl = 'https://youtu.be/' + encodeURIComponent(videoId);
+    const thumb = 'https://img.youtube.com/vi/' + encodeURIComponent(videoId) + '/hqdefault.jpg';
+    const isHosted = location.protocol === 'http:' || location.protocol === 'https:';
+
+    if (isHosted) {
+      frame.innerHTML = '<div id="video-modal-yt-player" style="width:100%;height:100%;"></div>';
+      // Full-length playback, no clip start/end, no ENDED auto-advance
+      _ytClipStart = 0;
+      _ytClipEnd = 0;
+      _ensureYouTubeAPI(function(){
+        if (!document.getElementById('video-modal-yt-player')) return;
+        _ytPlayer = new YT.Player('video-modal-yt-player', {
+          videoId: videoId,
+          host: 'https://www.youtube-nocookie.com',
+          playerVars: {
+            autoplay: 1,
+            rel: 0,
+            modestbranding: 1,
+            controls: 1,
+            playsinline: 1,
+            cc_load_policy: 1,
+            cc_lang_pref: 'en',
+            hl: 'en',
+            iv_load_policy: 3,
+            enablejsapi: 1
+          }
+          // intentionally no onStateChange — single-video mode does not auto-advance
+        });
+      });
+
+      // Speed + jump controls (reuse the same UI used by clip mode, sans clip-tab nav)
+      const ctrl = document.createElement('div');
+      ctrl.className = 'video-modal-controls';
+      ctrl.id = 'video-modal-controls';
+      ctrl.innerHTML =
+          '<button type="button" class="ctrl-btn jump-btn" data-jump="-10" title="Back 10 seconds">⏪ 10s</button>'
+        + '<button type="button" class="ctrl-btn jump-btn" data-jump="-5" title="Back 5 seconds">⏪ 5s</button>'
+        + '<button type="button" class="ctrl-btn jump-btn" data-jump="5" title="Forward 5 seconds">5s ⏩</button>'
+        + '<button type="button" class="ctrl-btn jump-btn" data-jump="10" title="Forward 10 seconds">10s ⏩</button>'
+        + '<span class="ctrl-divider"></span>'
+        + '<span class="speed-label">Speed</span>'
+        + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.7">0.7x</button>'
+        + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.8">0.8x</button>'
+        + '<button type="button" class="ctrl-btn speed-btn" data-rate="0.9">0.9x</button>'
+        + '<button type="button" class="ctrl-btn speed-btn active" data-rate="1">1x</button>'
+        + '<span class="ctrl-divider"></span>'
+        + '<button type="button" class="ctrl-btn" id="video-replay-btn" title="Replay from start">🔁 Replay</button>';
+      if (frame.nextSibling) {
+        card.insertBefore(ctrl, frame.nextSibling);
+      } else {
+        card.appendChild(ctrl);
+      }
+      ctrl.addEventListener('click', function(evt){
+        const tgt = evt.target.closest('button');
+        if (!tgt) return;
+        if (tgt.classList.contains('speed-btn')) {
+          const rate = parseFloat(tgt.getAttribute('data-rate'));
+          try {
+            if (_ytPlayer && typeof _ytPlayer.setPlaybackRate === 'function') {
+              _ytPlayer.setPlaybackRate(rate);
+            }
+          } catch(_){}
+          ctrl.querySelectorAll('.speed-btn').forEach(function(b){ b.classList.remove('active'); });
+          tgt.classList.add('active');
+        } else if (tgt.classList.contains('jump-btn')) {
+          const jump = parseFloat(tgt.getAttribute('data-jump'));
+          try {
+            if (_ytPlayer && typeof _ytPlayer.getCurrentTime === 'function') {
+              const cur = _ytPlayer.getCurrentTime();
+              const base = (typeof cur === 'number' && !isNaN(cur)) ? cur : 0;
+              _ytPlayer.seekTo(Math.max(0, base + jump), true);
+              _ytPlayer.playVideo();
+            }
+          } catch(_){}
+        } else if (tgt.id === 'video-replay-btn') {
+          try {
+            if (_ytPlayer) {
+              _ytPlayer.seekTo(0, true);
+              _ytPlayer.playVideo();
+            }
+          } catch(_){}
+        }
+      });
+    } else {
+      // file:// fallback: clickable thumbnail that opens YouTube
+      frame.innerHTML = '<a class="video-modal-thumb" href="' + directUrl + '" target="_blank" rel="noopener">'
+           + '<img src="' + thumb + '" alt="Video preview">'
+           + '<span class="video-modal-thumb-play">▶</span>'
+           + '</a>';
+      frame.insertAdjacentHTML('beforeend',
+        '<a class="video-modal-fallback" href="' + directUrl + '" target="_blank" rel="noopener">'
+        + '▶ Watch on YouTube ↗</a>');
+    }
+
+    document.getElementById('video-modal').classList.add('show');
+  } catch(e){}
+}
+
 function closeVideoModal(){
   const m = document.getElementById('video-modal');
   if (m) m.classList.remove('show');
