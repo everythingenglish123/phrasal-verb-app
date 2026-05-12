@@ -4034,6 +4034,162 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
     color: white !important;
   }
+
+  /* =========================================================================
+     ONBOARDING SCREEN (first-run welcome)
+  ========================================================================= */
+  #screen-onboarding { padding: 0; }
+  #screen-onboarding.active { display: block; }
+  .onboarding-wrap {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 28px 24px 40px;
+    box-sizing: border-box;
+  }
+  .onboarding-hero {
+    text-align: center;
+    padding: 14px 8px 20px;
+    background: linear-gradient(135deg, var(--brand-soft, #ede9fe), var(--accent-soft, #dbeafe));
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+  }
+  .onboarding-emoji {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .onboarding-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 6px;
+    color: var(--ink, #1f2937);
+    line-height: 1.2;
+  }
+  .onboarding-sub {
+    font-size: 14px;
+    color: var(--ink-soft, #6b7280);
+    margin: 0;
+  }
+  .onboarding-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .ob-field {
+    background: var(--card, #fff);
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ob-toggle-field {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .ob-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink, #1f2937);
+  }
+  .ob-hint {
+    font-size: 12px;
+    color: var(--ink-soft, #6b7280);
+  }
+  .ob-input, .ob-select {
+    width: 100%;
+    padding: 11px 12px;
+    font-size: 15px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink, #1f2937);
+    outline: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    margin-top: 4px;
+  }
+  .ob-input:focus, .ob-select:focus {
+    border-color: var(--accent, #2563eb);
+  }
+  .ob-toggle {
+    width: 44px;
+    height: 26px;
+    border-radius: 999px;
+    background: #cbd5e1;
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .ob-toggle::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    transition: transform .15s ease;
+  }
+  .ob-toggle.on { background: var(--accent, #2563eb); }
+  .ob-toggle.on::after { transform: translateX(18px); }
+  .ob-start-btn {
+    width: 100%;
+    background: var(--accent, #2563eb);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: transform .12s ease, box-shadow .15s ease;
+  }
+  .ob-start-btn:hover {
+    background: var(--accent-dark, #1d4ed8);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  }
+  .ob-start-btn:active { transform: scale(.98); }
+  .ob-footnote {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft, #6b7280);
+    margin: 12px 0 0;
+  }
+  body.dark .onboarding-hero {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.18), rgba(37, 99, 235, 0.18));
+  }
+  body.dark .onboarding-title { color: #f1f5f9; }
+  body.dark .onboarding-sub { color: #cbd5e1; }
+  body.dark .ob-field {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  body.dark .ob-label { color: #f1f5f9; }
+  body.dark .ob-hint { color: #94a3b8; }
+  body.dark .ob-input, body.dark .ob-select {
+    background: #0f172a;
+    border-color: #334155;
+    color: #f1f5f9;
+  }
+  body.dark .ob-toggle { background: #475569; }
+  body.dark .ob-toggle.on { background: #60a5fa; }
+  body.dark .ob-footnote { color: #94a3b8; }
+  @media (max-width: 480px) {
+    .onboarding-wrap { padding: 20px 16px 32px; }
+    .onboarding-emoji { font-size: 54px; }
+    .onboarding-title { font-size: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -4387,7 +4543,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         </div>
         <div class="activity-card speaking-card" data-activity="speaking" onclick="openActivity('speaking')">
           <div class="top-row">
-            <div class="icon">🗣️</div>
+            <div class="icon">🎤</div>
             <div class="name">Speaking Practice</div>
           </div>
           <div class="desc">Read sentences out loud and check your pronunciation.</div>
@@ -5100,7 +5256,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         </div>
 
         <div class="mr-card" data-activity="speaking" onclick="startMixedSpeaking()" style="background:linear-gradient(135deg,#06b6d4,#0e7490);">
-          <div class="mr-icon">🗣️</div>
+          <div class="mr-icon">🎤</div>
           <div class="mr-body"><div class="mr-title">Speaking Practice</div><div class="mr-card-desc">Read example sentences out loud</div></div>
           <div class="mr-arrow">→</div>
         </div>
@@ -5117,7 +5273,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     </div>
 
     <div class="activity-header">
-      <h2 class="activity-title">🗣️ Speaking Practice</h2>
+      <h2 class="activity-title">🎤 Speaking Practice</h2>
     </div>
     <p class="splash-sub" style="margin:0 0 16px;">Read the sentence out loud — we'll check your pronunciation.</p>
 
@@ -5191,6 +5347,48 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div class="pd-units-list" id="pd-units-list"></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="screen-onboarding" class="screen">
+    <div class="onboarding-wrap">
+      <div class="onboarding-hero">
+        <div class="onboarding-emoji">👋</div>
+        <h1 class="onboarding-title">Welcome to Everything English with John!</h1>
+        <p class="onboarding-sub">Let's set up your learning experience.</p>
+      </div>
+
+      <div class="onboarding-form">
+        <div class="ob-field">
+          <label class="ob-label">Your name</label>
+          <input type="text" id="ob-name" class="ob-input" placeholder="Type your name" maxlength="40">
+        </div>
+
+        <div class="ob-field">
+          <label class="ob-label">Native language (for translations)</label>
+          <select id="ob-lang" class="ob-select"></select>
+          <div class="ob-hint">Choose "Off" to learn entirely in English.</div>
+        </div>
+
+        <div class="ob-field ob-toggle-field">
+          <div>
+            <div class="ob-label">🌙 Dark mode</div>
+            <div class="ob-hint">Easier on the eyes at night</div>
+          </div>
+          <div id="ob-dark-toggle" class="ob-toggle" data-on="false"></div>
+        </div>
+
+        <div class="ob-field ob-toggle-field">
+          <div>
+            <div class="ob-label">🔊 Sound effects</div>
+            <div class="ob-hint">Card flips and feedback chimes</div>
+          </div>
+          <div id="ob-sound-toggle" class="ob-toggle on" data-on="true"></div>
+        </div>
+      </div>
+
+      <button id="ob-start-btn" class="ob-start-btn">Let's start →</button>
+      <p class="ob-footnote">You can change these anytime in More → Preferences.</p>
     </div>
   </section>
 
@@ -18359,7 +18557,7 @@ const ACTIVITY_META = {
   fill:       { emoji: '📝', label: 'Fill in the Blank' },
   builder:    { emoji: '🧱', label: 'Sentence Builder' },
   situation:  { emoji: '✅', label: 'Find the Correct Verb' },
-  speaking:   { emoji: '🗣️', label: 'Speaking' },
+  speaking:   { emoji: '🎤', label: 'Speaking' },
 };
 // Mark the start of an activity so we can display elapsed time on completion.
 // Called from each start* function. The timestamp lives on state but is not
@@ -19938,10 +20136,7 @@ function correctMsg(){
 }
 function loadName(){
   try{ studentName = localStorage.getItem('eewj_phrasal_name') || ''; }catch(e){ studentName=''; }
-  try{
-    const skipped = localStorage.getItem('eewj_phrasal_name_skipped');
-    if(!studentName && !skipped){ setTimeout(showNameModal, 600); }
-  }catch(e){}
+  // First-run name prompt now handled by the onboarding screen — do not auto-show modal here.
 }
 function showNameModal(){
   const m = document.getElementById('name-modal'); if(!m) return;
@@ -19957,6 +20152,134 @@ function saveName(){
 }
 function skipName(){ try{ localStorage.setItem('eewj_phrasal_name_skipped','1'); }catch(e){} hideNameModal(); }
 function promptName(){ showNameModal(); }
+
+/* =========================================================================
+   ONBOARDING (first-run welcome screen)
+========================================================================= */
+function _shouldShowOnboarding() {
+  try { return !localStorage.getItem('eewj_phrasal_onboarded'); } catch(e) { return false; }
+}
+
+function _populateOnboardingLangs() {
+  const sel = document.getElementById('ob-lang');
+  if (!sel) return;
+  sel.innerHTML = '';
+  // First option = Off
+  const off = document.createElement('option');
+  off.value = 'off';
+  off.textContent = 'Off (English only)';
+  sel.appendChild(off);
+  (typeof TRANSLATE_LANGS !== 'undefined' ? TRANSLATE_LANGS : []).forEach(L => {
+    if (L.code === 'off') return;
+    const o = document.createElement('option');
+    o.value = L.code;
+    o.textContent = (L.flag ? L.flag + ' ' : '') + L.label;
+    sel.appendChild(o);
+  });
+}
+
+function _wireOnboardingToggles() {
+  document.querySelectorAll('#screen-onboarding .ob-toggle').forEach(t => {
+    t.addEventListener('click', () => {
+      const on = t.classList.toggle('on');
+      t.setAttribute('data-on', on ? 'true' : 'false');
+    });
+  });
+}
+
+function _onboardingStart() {
+  const nameEl = document.getElementById('ob-name');
+  const langEl = document.getElementById('ob-lang');
+  const darkEl = document.getElementById('ob-dark-toggle');
+  const soundEl = document.getElementById('ob-sound-toggle');
+
+  const name = nameEl ? (nameEl.value || '').trim() : '';
+  const lang = langEl ? langEl.value : 'off';
+  const darkOn = darkEl ? darkEl.getAttribute('data-on') === 'true' : false;
+  const soundOn = soundEl ? soundEl.getAttribute('data-on') === 'true' : true;
+
+  if (name) {
+    try { localStorage.setItem('eewj_phrasal_name', name); } catch(e){}
+    if (typeof studentName !== 'undefined') studentName = name;
+    if (typeof state !== 'undefined' && state) state.studentName = name;
+  }
+  // Mark name as not "skipped" so legacy flag doesn't interfere
+  try { localStorage.removeItem('eewj_phrasal_name_skipped'); } catch(e){}
+
+  if (typeof setTranslateLang === 'function') {
+    try { setTranslateLang(lang || 'off'); } catch(e){}
+  } else {
+    try { localStorage.setItem('eewj_phrasal_translate_lang', lang || 'off'); } catch(e){}
+  }
+
+  // Apply dark mode
+  if (darkOn) {
+    document.body.classList.add('dark');
+    try { localStorage.setItem('eewj_phrasal_theme', 'dark'); } catch(e){}
+    if (typeof darkMode !== 'undefined') darkMode = true;
+  } else {
+    document.body.classList.remove('dark');
+    try { localStorage.setItem('eewj_phrasal_theme', 'light'); } catch(e){}
+    if (typeof darkMode !== 'undefined') darkMode = false;
+  }
+  // Update the header theme button glyph if present
+  try {
+    const tb = document.getElementById('theme-toggle');
+    if (tb) tb.textContent = darkOn ? '☀️' : '🌙';
+  } catch(e){}
+
+  // Apply sound
+  try { localStorage.setItem('eewj_phrasal_sound', soundOn ? '1' : '0'); } catch(e){}
+  if (typeof soundEnabled !== 'undefined') soundEnabled = soundOn;
+  try {
+    const sb = document.getElementById('sound-toggle');
+    if (sb) sb.textContent = soundOn ? '🔊' : '🔇';
+  } catch(e){}
+
+  try { localStorage.setItem('eewj_phrasal_onboarded', '1'); } catch(e){}
+
+  // Hide onboarding, show home
+  if (typeof renderHomeBanners === 'function') { try { renderHomeBanners(); } catch(e){} }
+  if (typeof renderNotes === 'function') { try { renderNotes(); } catch(e){} }
+  if (typeof showScreen === 'function') showScreen('notes');
+}
+
+function _initOnboarding() {
+  _populateOnboardingLangs();
+  _wireOnboardingToggles();
+  const btn = document.getElementById('ob-start-btn');
+  if (btn) btn.addEventListener('click', _onboardingStart);
+
+  // Pre-fill name input if any prior value exists
+  try {
+    const existingName = localStorage.getItem('eewj_phrasal_name') || '';
+    const nameEl = document.getElementById('ob-name');
+    if (nameEl && existingName) nameEl.value = existingName;
+  } catch(e){}
+
+  // Pre-fill dark toggle from current state if available
+  const darkT = document.getElementById('ob-dark-toggle');
+  if (darkT) {
+    const isDark = document.body.classList.contains('dark') || (function(){ try{return localStorage.getItem('eewj_phrasal_theme')==='dark';}catch(e){return false;} })();
+    if (isDark) { darkT.classList.add('on'); darkT.setAttribute('data-on','true'); }
+  }
+
+  // Pre-fill sound toggle from saved pref
+  const soundT = document.getElementById('ob-sound-toggle');
+  if (soundT) {
+    let soundOn = true;
+    try { const v = localStorage.getItem('eewj_phrasal_sound'); if (v !== null) soundOn = (v === '1'); } catch(e){}
+    if (soundOn) { soundT.classList.add('on'); soundT.setAttribute('data-on','true'); }
+    else { soundT.classList.remove('on'); soundT.setAttribute('data-on','false'); }
+  }
+
+  // Pre-fill language picker
+  try {
+    const savedLang = localStorage.getItem('eewj_phrasal_translate_lang') || 'off';
+    const langEl = document.getElementById('ob-lang');
+    if (langEl) langEl.value = savedLang;
+  } catch(e){}
+}
 
 /* =========================================================================
    FIND THE CORRECT VERB
@@ -20954,6 +21277,14 @@ if (typeof applyTranslateLangUi === 'function') { try { applyTranslateLangUi(); 
 renderHomeBanners();
 loadName();
 renderNotes();
+
+// First-run onboarding: show welcome/preferences screen instead of the home screen
+if (typeof _shouldShowOnboarding === 'function' && _shouldShowOnboarding()) {
+  try {
+    _initOnboarding();
+    if (typeof showScreen === 'function') showScreen('onboarding');
+  } catch(e) { console.warn('Onboarding init failed:', e); }
+}
 
 /* =========================================================================
    STREAK SYSTEM (daily goal, celebration, progress badge)
