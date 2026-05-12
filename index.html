@@ -4289,50 +4289,22 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   }
 
   /* =========================================================================
-     BULLETPROOF: logo never scrunches under any circumstance
+     BULLETPROOF: logo never scrunches, but inherits its size from existing rules
      This block lives at the END of the stylesheet so it overrides every
      earlier rule (including .brand-logo { flex-shrink: 1; min-width: 0 }
-     and any body.search-open compression rules).
+     and any body.search-open compression rules). Heights are intentionally
+     NOT set here — they come from the original .brand-logo / .hrow .brand-logo
+     CSS earlier in the stylesheet.
   ========================================================================= */
   .brand-logo,
   .site-header .brand-logo,
-  header .brand-logo,
   .brand .brand-logo,
-  .brand-wrap .brand-logo,
-  body .brand-logo,
-  body.search-open .brand-logo,
-  body.dark .brand-logo {
+  body.search-open .brand-logo {
     width: auto !important;
-    height: 56px !important;
     max-width: none !important;
-    min-width: 56px !important;
     flex: 0 0 auto !important;
     flex-shrink: 0 !important;
     object-fit: contain !important;
-  }
-
-  @media (max-width: 560px) {
-    .brand-logo,
-    body.search-open .brand-logo {
-      height: 42px !important;
-      min-width: 42px !important;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .brand-logo,
-    body.search-open .brand-logo {
-      height: 38px !important;
-      min-width: 38px !important;
-    }
-  }
-
-  @media (max-width: 380px) {
-    .brand-logo,
-    body.search-open .brand-logo {
-      height: 34px !important;
-      min-width: 34px !important;
-    }
   }
 
   /* The logo's parent containers must not shrink the logo */
@@ -4341,15 +4313,9 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   body.search-open .brand,
   body.search-open .brand-wrap {
     flex-shrink: 0 !important;
-    min-width: 0 !important;
   }
 
-  body.search-open .site-header .brand,
-  body.search-open .hrow .brand {
-    flex: 0 0 auto !important;
-  }
-
-  /* When search is open on mobile, let the input shrink instead of the logo */
+  /* When search is open on mobile, let the input absorb all shrinkage */
   @media (max-width: 520px) {
     body.search-open .header-search-inline {
       min-width: 0 !important;
