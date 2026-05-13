@@ -340,7 +340,7 @@
     letter-spacing: 0.6px;
     margin-bottom: 6px;
   }
-  .topic-hero h2 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.3px; }
+  .topic-hero h2 { font-size: 38px; margin: 0 0 8px; letter-spacing: -0.3px; line-height: 1.15; }
   .topic-hero .sub { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
   .topic-progress {
     display: inline-flex;
@@ -1713,7 +1713,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   @media (max-width: 560px) {
     .container { padding: 18px 14px 60px; }
     .page-title { font-size: 22px; }
-    .topic-hero h2 { font-size: 22px; }
+    .topic-hero h2 { font-size: 30px; }
     .flashcard .verb { font-size: 26px; }
     .flashcard .face { padding: 24px 20px; min-height: 360px; }
     .flashcard, .flashcard .face { min-height: 360px; }
@@ -16534,7 +16534,7 @@ function reviewVerbOnFlashcard(noteId, verbIdx, fromActivity, fromIdx){
   state.currentNoteId = noteId;
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
-  document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
+  document.getElementById('note-sub').textContent = note.verbs.length + ' phrasal verbs';
   _wireInAppVideoLink(document.getElementById('note-video-link'), note.videoUrl, 'Everything English with John · ' + note.title);
   updateNoteProgress();
   startFlashcards();
@@ -16612,7 +16612,7 @@ function resumeActivity(){
   if (!note) return;
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
-  document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
+  document.getElementById('note-sub').textContent = note.verbs.length + ' phrasal verbs';
   updateNoteProgress();
   // Prefer the saved activity state (preserves order, correct count, skipped, etc.).
   // We restore from save whenever one exists, even at idx 0, so the user comes
@@ -16853,7 +16853,7 @@ function resumeLastSession(){
   state.currentNoteId = noteId;
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
-  document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
+  document.getElementById('note-sub').textContent = note.verbs.length + ' phrasal verbs';
   _wireInAppVideoLink(document.getElementById('note-video-link'), note.videoUrl, 'Everything English with John · ' + note.title);
   updateNoteProgress();
   // If a saved activity state exists, resume from where the user left off (question, hints, slots, etc.).
@@ -17105,7 +17105,7 @@ function openFlashcardsForVerb(noteId, verbIdx, fromContext){
   state.currentNoteId = noteId;
   document.getElementById('crumb-note-name').textContent = note.title;
   document.getElementById('note-title').textContent = note.title + ' ' + note.emoji;
-  document.getElementById('note-sub').textContent = note.subtitle + ' · ' + note.verbs.length + ' phrasal verbs';
+  document.getElementById('note-sub').textContent = note.verbs.length + ' phrasal verbs';
   _wireInAppVideoLink(document.getElementById('note-video-link'), note.videoUrl, 'Everything English with John · ' + note.title);
   updateNoteProgress();
   startFlashcards();
@@ -17159,7 +17159,7 @@ function openNote(noteId) {
     if (_flashIcon) _flashIcon.textContent = n.emoji;
   } catch(_){}
   document.getElementById("note-sub").textContent =
-    n.subtitle + " · " + n.verbs.length + " phrasal verbs";
+    n.verbs.length + " phrasal verbs";
   // Video link, show only if the note has one
   _wireInAppVideoLink(document.getElementById("note-video-link"), (n.videoUrl && n.videoUrl.length > 0) ? n.videoUrl : "", 'Everything English with John · ' + n.title);
   updateNoteProgress();
@@ -21182,7 +21182,7 @@ function openNoteAtVerb(noteId, verbIndex){
   // Update note-detail metadata so breadcrumbs/progress are right when the user comes back
   document.getElementById("crumb-note-name").textContent = n.title;
   document.getElementById("note-title").textContent = n.title + " " + n.emoji;
-  document.getElementById("note-sub").textContent = n.subtitle + " · " + n.verbs.length + " phrasal verbs";
+  document.getElementById("note-sub").textContent = n.verbs.length + " phrasal verbs";
   const _vlSrcLabel = 'Everything English with John · ' + n.title;
   _wireInAppVideoLink(document.getElementById("note-video-link"), (n.videoUrl && n.videoUrl.length > 0) ? n.videoUrl : "", _vlSrcLabel);
   // Wire activity-video buttons (used inside the flashcard screen)
