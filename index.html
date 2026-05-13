@@ -2261,8 +2261,14 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
   .pd-stat-icon{font-size:20px;line-height:1;}
   .pd-stat-num{font-size:22px;font-weight:800;color:var(--ink);margin-top:4px;line-height:1.1;}
   .pd-stat-lbl{font-size:11px;color:var(--soft);margin-top:2px;text-transform:uppercase;letter-spacing:0.04em;font-weight:600;}
+  .pd-stat-desc{font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.35;}
+  .pd-howto{font-size:13px;color:var(--ink-soft);line-height:1.45;background:#f0f7ff;border:1px solid #dbeafe;border-radius:10px;padding:10px 12px;margin-bottom:14px;}
+  .pd-howto strong{color:var(--ink);}
+  body.dark .pd-howto{background:#172554;border-color:#1e3a8a;color:#cbd5e1;}
+  body.dark .pd-howto strong{color:#e2e8f0;}
   body.dark .pd-stat{background:#0f172a;border-color:#334155;}
   body.dark .pd-stat-num{color:#f1f5f9;}
+  body.dark .pd-stat-desc{color:#94a3b8;}
 
   .pd-section-title{font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.05em;margin:18px 0 10px;}
   body.dark .pd-section-title{color:#cbd5e1;}
@@ -5488,11 +5494,12 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div style="margin-top:6px;">Rate any flashcard and your stats will appear here.</div>
         </div>
         <div id="pd-content">
+          <div class="pd-howto"><strong>How it works:</strong> As you study flashcards, rate each card with 🤯 No Idea, 😬 Almost, 🤔 I Think So, or ✅ Got It! Your ratings are saved and shown in the stats below.</div>
           <div class="pd-stats-grid">
-            <div class="pd-stat"><div class="pd-stat-icon">🔥</div><div class="pd-stat-num" id="pd-streak">0</div><div class="pd-stat-lbl">Streak</div></div>
-            <div class="pd-stat"><div class="pd-stat-icon">🏆</div><div class="pd-stat-num" id="pd-longest">0</div><div class="pd-stat-lbl">Best</div></div>
-            <div class="pd-stat"><div class="pd-stat-icon">📚</div><div class="pd-stat-num" id="pd-reviewed">0</div><div class="pd-stat-lbl">Reviewed</div></div>
-            <div class="pd-stat"><div class="pd-stat-icon">✅</div><div class="pd-stat-num" id="pd-mastered">0</div><div class="pd-stat-lbl">Mastered</div></div>
+            <div class="pd-stat"><div class="pd-stat-icon">🔥</div><div class="pd-stat-num" id="pd-streak">0</div><div class="pd-stat-lbl">Streak</div><div class="pd-stat-desc">Days in a row you've studied.</div></div>
+            <div class="pd-stat"><div class="pd-stat-icon">🏆</div><div class="pd-stat-num" id="pd-longest">0</div><div class="pd-stat-lbl">Best</div><div class="pd-stat-desc">Your longest streak ever.</div></div>
+            <div class="pd-stat"><div class="pd-stat-icon">📚</div><div class="pd-stat-num" id="pd-reviewed">0</div><div class="pd-stat-lbl">Reviewed</div><div class="pd-stat-desc">Verbs you've rated at least once.</div></div>
+            <div class="pd-stat"><div class="pd-stat-icon">✅</div><div class="pd-stat-num" id="pd-mastered">0</div><div class="pd-stat-lbl">Mastered</div><div class="pd-stat-desc">Verbs currently rated "Got It!"</div></div>
           </div>
           <div class="pd-section-title">Mastery breakdown</div>
           <div class="pd-mastery-bar" id="pd-mastery-bar">
