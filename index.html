@@ -246,9 +246,10 @@
   }
   .activity-video-btn[style*="inline-flex"] { display: inline-flex !important; }
   .activity-video-btn:hover { background: #cc0000; color: white; }
-  /* Flashcard YouTube button: sits in the .fc-order-row, right-aligned next
-     to the Random/Ordered pill. Stays put when the card flips since it's
-     entirely outside the card's transform context. */
+  /* Flashcard YouTube button: lives in its own centered row above the
+     flashcard. Stays put when the card flips since it's entirely outside
+     the card's transform context. */
+  .fc-yt-row{display:flex;justify-content:center;align-items:center;margin:0 0 12px;}
   .fc-yt-btn{margin:0 !important;}
 
   /* ================= LAYOUT ================= */
@@ -4749,10 +4750,12 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
       <span class="fc-deck-label" id="fc-deck-label"></span>
       <span class="fc-deck-topic" id="fc-deck-topic"></span>
     </div>
-    <div class="fc-order-row">
-      <!-- YouTube button sits next to the order pill so it's outside the
-           flashcard's flip transform and stays put. -->
+    <!-- YouTube button: centered row above the flashcard. Sits OUTSIDE the
+         flip transform so it doesn't move when the card flips. -->
+    <div class="fc-yt-row">
       <a class="activity-video-btn fc-yt-btn" id="fc-yt-btn" href="#" target="_blank" rel="noopener" style="display:none;">▶ Listen on YouTube</a>
+    </div>
+    <div class="fc-order-row">
       <button type="button" class="fc-order-pill" id="fc-order-pill" onclick="toggleFCOrder()" title="Toggle flashcard order">
         <span id="fc-order-icon">⇅</span>
         <span id="fc-order-text">Random</span>
@@ -22272,6 +22275,10 @@ function _destroyYTPlayer(){
 
 function showVideoExample(idx){
   try {
+    // Make sure the "starts a few seconds before the phrase" hint is visible
+    // for clip mode (showVideoModal hides it for the full-length player).
+    const _hintEl = document.querySelector('#video-modal .video-modal-hint');
+    if (_hintEl) _hintEl.style.display = '';
     const v = currentNote().verbs[state.fc.line[0]];
     const list = (v && v.videoExamples) ? v.videoExamples : null;
     if (!list || !list.length) return;
@@ -22727,6 +22734,12 @@ function showVideoModal(videoUrl, options){
     if (_oldCtrl && _oldCtrl.parentNode) _oldCtrl.parentNode.removeChild(_oldCtrl);
 
     _destroyYTPlayer();
+
+    // Hide the "video starts a few seconds before the phrase" hint for the
+    // full-length "Listen on YouTube" player — that hint only makes sense
+    // for per-verb clipped video examples. showVideoExample restores it.
+    const _hintEl = document.querySelector('#video-modal .video-modal-hint');
+    if (_hintEl) _hintEl.style.display = 'none';
 
     const frame = document.getElementById('video-modal-frame');
     const card  = frame ? frame.parentNode : null;
