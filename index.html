@@ -5328,7 +5328,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
         <div class="more-section-title">Data</div>
         <div class="more-card">
           <button type="button" class="more-row" onclick="_moreResetProgress()">
-            <div class="more-row-icon icon-red">🔄</div>
+            <div class="more-row-icon icon-red">⚠️</div>
             <div class="more-row-text">
               <div class="more-row-title">Reset all progress</div>
               <div class="more-row-sub">Clears ratings, streak, and saves</div>
@@ -5484,7 +5484,7 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
     <div class="activity-header">
       <h2 class="activity-title">📊 Your Progress</h2>
     </div>
-    <p class="splash-sub" style="margin:0 0 22px;">Streak, mastery and study stats.</p>
+    <p class="splash-sub" style="margin:0 0 22px;">As you study flashcards, rate each card with 🤯 No Idea, 😬 Almost, 🤔 I Think So, or ✅ Got It! Your ratings are saved and shown in the stats below.</p>
 
     <div class="progress-section" id="cc-progress">
       <div class="collapse-body">
@@ -5494,7 +5494,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
           <div style="margin-top:6px;">Rate any flashcard and your stats will appear here.</div>
         </div>
         <div id="pd-content">
-          <div class="pd-howto"><strong>How it works:</strong> As you study flashcards, rate each card with 🤯 No Idea, 😬 Almost, 🤔 I Think So, or ✅ Got It! Your ratings are saved and shown in the stats below.</div>
           <div class="pd-stats-grid">
             <div class="pd-stat"><div class="pd-stat-icon">🔥</div><div class="pd-stat-num" id="pd-streak">0</div><div class="pd-stat-lbl">Streak</div><div class="pd-stat-desc">Days in a row you've studied.</div></div>
             <div class="pd-stat"><div class="pd-stat-icon">🏆</div><div class="pd-stat-num" id="pd-longest">0</div><div class="pd-stat-lbl">Best</div><div class="pd-stat-desc">Your longest streak ever.</div></div>
@@ -17139,16 +17138,31 @@ function openFlashcardsForVerb(noteId, verbIdx, fromContext){
   }
 }
 function resetAllProgress(){
-  if (!confirm('Reset all progress? This will clear your activity completion, flashcard ratings, and where you left off. This cannot be undone.')) return;
+  if (!confirm('Reset all progress? This will clear your activity completion, flashcard ratings, streak, and where you left off. This cannot be undone.')) return;
   try { localStorage.removeItem('eewj_phrasal_progress'); } catch(e){}
   try { localStorage.removeItem('eewj_phrasal_card_ratings'); } catch(e){}
   try { localStorage.removeItem('eewj_phrasal_last_session'); } catch(e){}
   try { localStorage.removeItem('eewj_phrasal_activity_saves'); } catch(e){}
   try { localStorage.removeItem('eewj_phrasal_section_hints'); } catch(e){}
+  try { localStorage.removeItem(STREAK_KEY); } catch(e){}
   state.sectionHints = {};
   state.activitySaves = {};
   state.cardRatings = {};
   state.lastSession = null;
+  // Wipe the in-memory streak too so the dashboard updates immediately
+  try {
+    streakData = {
+      currentStreak: 0,
+      longestStreak: 0,
+      lastActiveDate: null,
+      lastGoalMetDate: null,
+      todayDate: _streakToday(),
+      todayVerbs: [],
+      totalVerbsStudied: 0
+    };
+    saveStreak();
+    if (typeof streakRender === 'function') streakRender();
+  } catch(e){}
   NOTES.forEach((n) => { state.progress[n.id] = { flashcards: false, builder: false, fill: false, spelling: false, situation: false, particle: false }; });
   goToNotes();
 }
