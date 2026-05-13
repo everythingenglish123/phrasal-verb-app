@@ -4837,8 +4837,6 @@ body.dark .fc-translate-btn.active { background: #1e3a8a40; color: #bfdbfe; bord
 
     <div class="flash-controls">
       <button class="btn" id="fc-prev" onclick="prevCard()">← Previous</button>
-      <button class="btn ghost" onclick="shuffleCards()">🔀 Shuffle</button>
-      <button class="btn primary" id="fc-next" onclick="nextCard()">Next →</button>
     </div>
   </section>
 
@@ -12826,8 +12824,8 @@ const NOTE_FALL = {
   verbs: [
     { verb: "rake up", defn: "to gather leaves using a rake", separable: true, fillParts: ["rake", "up"], flashExample: "The neighborhood kids helped rake up the leaves in the park.", fillSentence: "Before mowing the lawn, the gardener had to ___ all the fallen leaves ___.", hint: "gather leaves using a rake", dialogue: "A: The fall is here, and the leaves are everywhere in the yard!\nB: Time to get to work then.\nA: Yeah, we need to rake them up before it gets worse.\nB: It's going to be a long day!", situations: ["A man gathers all the fallen leaves in his garden into large piles.", "A woman collects the fall leaves from the lawn every Saturday morning.", "A child helps his grandfather gather the leaves from the garden path."], excludeFromBank: [], fillFeedback: {'layer up': 'means to add layers of clothes.', 'wrap up': 'means to bundle in warm clothes.', 'bundle up': 'means to dress warmly.', 'cozy up': 'means to settle close for warmth.', 'snuggle up': 'means to hold close warmly.', 'curl up': 'means to settle in a small position.', 'stock up': 'means to gather supplies.', 'store away': 'means to put away for later.'},
       findParticle: { correct: "up", wrong: ["out", "in", "off"] },
-      newsSnippet: 'A small village volunteer group is helping older residents [[rake up]] fallen fall leaves from their gardens. The group meets every Saturday for two hours. Many older residents say the simple help has changed their season. Several other villages are now planning similar groups. Local newspapers have featured the warm community spirit.',
-      newsWords: [{w:"residents",d:"people who live in a place"}, {w:"fall",d:"the season between summer and winter"}, {w:"gardens",d:"pieces of land used for plants"}, {w:"community",d:"a group of people living in the same area"}],
+      newsSnippet: 'A high school soccer team in Massachusetts has earned over twelve hundred dollars in two weekends by helping older neighbors [[rake up]] their fall leaves. The team offers a quick, friendly service for a small donation. The money will go toward new team jerseys. Many local parents have praised the kind project. The team plans to offer snow shoveling later this winter.',
+      newsWords: [{w:"soccer",d:"a sport played with a ball and goals"}, {w:"donation",d:"money given to help"}, {w:"jerseys",d:"shirts worn by a sports team"}, {w:"project",d:"a planned piece of work"}, {w:"shoveling",d:"moving snow with a shovel"}],
       convoChoices:{prompt:'What are you doing in the yard?',choices:[{text:'I need to rake up the leaves.',correct:true,feedback:'Correct! \'Rake up\' means to gather leaves using a rake'},{text:'I need to rake the leaves up.',correct:false,feedback:'While \'rake up\' can separate, with a phrase like \'the leaves\' the more natural phrasing is \'rake up the leaves\'.'},{text:'I need to rake on the leaves.',correct:false,feedback:'The phrasal verb is \'rake up\', not \'rake on\'.'}]}                ,
       newsAudio: 'audio/67 - fall/01-rake-up.mp3'
     },
@@ -12868,8 +12866,8 @@ const NOTE_FALL = {
     },
     { verb: "curl up", defn: "to sit or lie in a relaxed, rounded position", separable: false, flashExample: "The cat curled up on the floor and fell asleep.", fillSentence: "On rainy days, he prefers to ___ on the couch with a good novel.", hint: "sit or lie in a relaxed rounded position", dialogue: "A: It's a rainy, gloomy day.\nB: Sounds perfect for a movie.\nA: I was thinking the same thing!\nB: Let's watch our favorites and curl up on the couch!", situations: ["A cat positions itself into a tight ball on the sofa by the window.", "A woman wraps herself into a comfortable position on the armchair with her book.", "A man tucks his legs up under himself on the sofa and watches a movie."], excludeFromBank: ['cozy up', 'snuggle up'], fillFeedback: {'rake up': 'means to gather with a rake.', 'layer up': 'means to add layers of clothes.', 'wrap up': 'means to bundle in warm clothes.', 'bundle up': 'means to dress warmly.', 'cozy up': 'means to settle close for warmth.', 'snuggle up': 'means to hold close warmly.', 'stock up': 'means to gather supplies.', 'store away': 'means to put away for later.'},
       findParticle: { correct: "up", wrong: ["out", "in", "off"] },
-      newsSnippet: 'A new wellness book is teaching readers how to [[curl up]] with a good book each evening as a healthy daily habit. The author says even fifteen minutes a day can change a week. Many readers have welcomed the gentle, simple message. Many doctors have praised the approach. The book has now been a bestseller for six weeks.',
-      newsWords: [{w:"wellness",d:"being healthy in body and mind"}, {w:"author",d:"a person who writes books"}, {w:"gentle",d:"calm and kind"}, {w:"approach",d:"a way of doing something"}, {w:"bestseller",d:"a very popular book"}],
+      newsSnippet: 'A small independent bookstore in Asheville has added six warm reading nooks for the fall season. Customers can [[curl up]] with any book for as long as they like, with no purchase needed. The owner says quiet readers often become her best regulars. Many other small bookstores are now copying the idea. The shop plans to host short evening reading hours through November.',
+      newsWords: [{w:"bookstore",d:"a shop that sells books"}, {w:"nooks",d:"small cozy corners"}, {w:"purchase",d:"something bought"}, {w:"regulars",d:"frequent customers"}, {w:"evening",d:"the part of day after afternoon"}],
       convoChoices:{prompt:'It\'s a rainy day and you want to relax with a book on the couch. How do you describe your plan?',choices:[{text:'I\'m going to curl up with a good book.',correct:true,feedback:'Correct! \'Curl up\' means to sit or lie in a relaxed, rounded position'},{text:'I\'m going to curl me up with a good book.',correct:false,feedback:'Don\'t add \'me\', \'curl up\' is intransitive when describing yourself.'},{text:'I\'m going to curl on up with a good book.',correct:false,feedback:'The phrasal verb is \'curl up\', not \'curl on up\'.'}]}                ,
       newsAudio: 'audio/67 - fall/07-curl-up.mp3'
     },
@@ -17789,7 +17787,6 @@ function renderCard() {
   const fcEl = document.getElementById("flashcard");
   fcEl.classList.remove("flipped"); fcEl.style.minHeight = "";
   document.getElementById("fc-prev").disabled = state.fc.history.length === 0;
-  document.getElementById("fc-next").textContent = "Next →";
   document.getElementById("fc-news-card").classList.remove("show");
   const frontDefnEl = document.getElementById("fc-front-defn");
   const frontHintEl = document.getElementById("fc-front-hint");
