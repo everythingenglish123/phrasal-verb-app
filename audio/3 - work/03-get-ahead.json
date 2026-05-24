@@ -1,0 +1,428 @@
+{
+  "verb": "get ahead",
+  "audio": "audio/3 - work/03-get-ahead.mp3",
+  "duration": 29.727,
+  "transcript": "A major report on careers was released this morning by a leading research center. It looked at how workers get ahead in today\\'s competitive job market by following five thousand professionals across twelve countries. The study found that people who keep learning new skills tend to advance much faster than those who do not. Many companies are now being asked to fund staff training programs to help younger workers grow.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.983
+    },
+    {
+      "word": "major",
+      "start": 0.22,
+      "end": 0.561,
+      "score": 0.835
+    },
+    {
+      "word": "report",
+      "start": 0.621,
+      "end": 1.002,
+      "score": 0.829
+    },
+    {
+      "word": "on",
+      "start": 1.122,
+      "end": 1.202,
+      "score": 0.84
+    },
+    {
+      "word": "careers",
+      "start": 1.262,
+      "end": 1.643,
+      "score": 0.844
+    },
+    {
+      "word": "was",
+      "start": 1.763,
+      "end": 1.923,
+      "score": 0.956
+    },
+    {
+      "word": "released",
+      "start": 2.003,
+      "end": 2.404,
+      "score": 0.849
+    },
+    {
+      "word": "this",
+      "start": 2.584,
+      "end": 2.764,
+      "score": 0.885
+    },
+    {
+      "word": "morning",
+      "start": 2.824,
+      "end": 3.165,
+      "score": 0.831
+    },
+    {
+      "word": "by",
+      "start": 3.305,
+      "end": 3.486,
+      "score": 0.782
+    },
+    {
+      "word": "a",
+      "start": 3.546,
+      "end": 3.586,
+      "score": 0.5
+    },
+    {
+      "word": "leading",
+      "start": 3.686,
+      "end": 4.006,
+      "score": 0.903
+    },
+    {
+      "word": "research",
+      "start": 4.127,
+      "end": 4.547,
+      "score": 0.886
+    },
+    {
+      "word": "center.",
+      "start": 4.587,
+      "end": 4.928,
+      "score": 0.879
+    },
+    {
+      "word": "It",
+      "start": 5.729,
+      "end": 5.789,
+      "score": 0.75
+    },
+    {
+      "word": "looked",
+      "start": 5.869,
+      "end": 6.13,
+      "score": 0.896
+    },
+    {
+      "word": "at",
+      "start": 6.19,
+      "end": 6.25,
+      "score": 0.75
+    },
+    {
+      "word": "how",
+      "start": 6.31,
+      "end": 6.49,
+      "score": 0.887
+    },
+    {
+      "word": "workers",
+      "start": 6.57,
+      "end": 6.971,
+      "score": 0.868
+    },
+    {
+      "word": "get",
+      "start": 7.051,
+      "end": 7.211,
+      "score": 0.785
+    },
+    {
+      "word": "ahead",
+      "start": 7.272,
+      "end": 7.572,
+      "score": 0.79
+    },
+    {
+      "word": "in",
+      "start": 7.732,
+      "end": 7.832,
+      "score": 0.936
+    },
+    {
+      "word": "today\\'s",
+      "start": 7.873,
+      "end": 8.233,
+      "score": 0.843
+    },
+    {
+      "word": "competitive",
+      "start": 8.313,
+      "end": 8.894,
+      "score": 0.849
+    },
+    {
+      "word": "job",
+      "start": 8.934,
+      "end": 9.195,
+      "score": 0.93
+    },
+    {
+      "word": "market",
+      "start": 9.235,
+      "end": 9.555,
+      "score": 0.864
+    },
+    {
+      "word": "by",
+      "start": 9.916,
+      "end": 10.056,
+      "score": 0.724
+    },
+    {
+      "word": "following",
+      "start": 10.176,
+      "end": 10.657,
+      "score": 0.816
+    },
+    {
+      "word": "five",
+      "start": 11.038,
+      "end": 11.318,
+      "score": 0.869
+    },
+    {
+      "word": "thousand",
+      "start": 11.378,
+      "end": 11.799,
+      "score": 0.847
+    },
+    {
+      "word": "professionals",
+      "start": 11.859,
+      "end": 12.5,
+      "score": 0.889
+    },
+    {
+      "word": "across",
+      "start": 12.881,
+      "end": 13.341,
+      "score": 0.888
+    },
+    {
+      "word": "twelve",
+      "start": 13.642,
+      "end": 14.022,
+      "score": 0.822
+    },
+    {
+      "word": "countries.",
+      "start": 14.323,
+      "end": 14.784,
+      "score": 0.855
+    },
+    {
+      "word": "The",
+      "start": 16.126,
+      "end": 16.246,
+      "score": 0.847
+    },
+    {
+      "word": "study",
+      "start": 16.286,
+      "end": 16.606,
+      "score": 0.876
+    },
+    {
+      "word": "found",
+      "start": 16.667,
+      "end": 16.907,
+      "score": 0.914
+    },
+    {
+      "word": "that",
+      "start": 17.027,
+      "end": 17.187,
+      "score": 0.756
+    },
+    {
+      "word": "people",
+      "start": 17.247,
+      "end": 17.548,
+      "score": 0.693
+    },
+    {
+      "word": "who",
+      "start": 17.608,
+      "end": 17.748,
+      "score": 0.831
+    },
+    {
+      "word": "keep",
+      "start": 17.808,
+      "end": 18.029,
+      "score": 0.757
+    },
+    {
+      "word": "learning",
+      "start": 18.109,
+      "end": 18.449,
+      "score": 0.799
+    },
+    {
+      "word": "new",
+      "start": 18.55,
+      "end": 18.71,
+      "score": 0.935
+    },
+    {
+      "word": "skills",
+      "start": 18.77,
+      "end": 19.13,
+      "score": 0.887
+    },
+    {
+      "word": "tend",
+      "start": 19.491,
+      "end": 19.711,
+      "score": 0.79
+    },
+    {
+      "word": "to",
+      "start": 19.751,
+      "end": 19.872,
+      "score": 0.671
+    },
+    {
+      "word": "advance",
+      "start": 19.972,
+      "end": 20.292,
+      "score": 0.988
+    },
+    {
+      "word": "much",
+      "start": 20.533,
+      "end": 20.713,
+      "score": 0.866
+    },
+    {
+      "word": "faster",
+      "start": 20.773,
+      "end": 21.194,
+      "score": 0.888
+    },
+    {
+      "word": "than",
+      "start": 21.354,
+      "end": 21.514,
+      "score": 0.794
+    },
+    {
+      "word": "those",
+      "start": 21.574,
+      "end": 21.835,
+      "score": 0.833
+    },
+    {
+      "word": "who",
+      "start": 22.055,
+      "end": 22.175,
+      "score": 0.862
+    },
+    {
+      "word": "do",
+      "start": 22.235,
+      "end": 22.376,
+      "score": 0.833
+    },
+    {
+      "word": "not.",
+      "start": 22.416,
+      "end": 22.656,
+      "score": 0.894
+    },
+    {
+      "word": "Many",
+      "start": 23.397,
+      "end": 23.638,
+      "score": 0.806
+    },
+    {
+      "word": "companies",
+      "start": 23.698,
+      "end": 24.158,
+      "score": 0.85
+    },
+    {
+      "word": "are",
+      "start": 24.339,
+      "end": 24.439,
+      "score": 0.676
+    },
+    {
+      "word": "now",
+      "start": 24.499,
+      "end": 24.679,
+      "score": 0.913
+    },
+    {
+      "word": "being",
+      "start": 24.739,
+      "end": 25.0,
+      "score": 0.678
+    },
+    {
+      "word": "asked",
+      "start": 25.16,
+      "end": 25.36,
+      "score": 0.951
+    },
+    {
+      "word": "to",
+      "start": 25.561,
+      "end": 25.661,
+      "score": 0.997
+    },
+    {
+      "word": "fund",
+      "start": 25.741,
+      "end": 25.981,
+      "score": 0.781
+    },
+    {
+      "word": "staff",
+      "start": 26.102,
+      "end": 26.402,
+      "score": 0.942
+    },
+    {
+      "word": "training",
+      "start": 26.462,
+      "end": 26.763,
+      "score": 0.782
+    },
+    {
+      "word": "programs",
+      "start": 26.823,
+      "end": 27.263,
+      "score": 0.786
+    },
+    {
+      "word": "to",
+      "start": 27.564,
+      "end": 27.704,
+      "score": 0.778
+    },
+    {
+      "word": "help",
+      "start": 27.764,
+      "end": 27.985,
+      "score": 0.822
+    },
+    {
+      "word": "younger",
+      "start": 28.085,
+      "end": 28.405,
+      "score": 0.817
+    },
+    {
+      "word": "workers",
+      "start": 28.465,
+      "end": 28.846,
+      "score": 0.809
+    },
+    {
+      "word": "grow.",
+      "start": 29.086,
+      "end": 29.387,
+      "score": 0.968
+    }
+  ]
+}

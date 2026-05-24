@@ -1,0 +1,386 @@
+{
+  "verb": "branch out",
+  "audio": "audio/3 - work/17-branch-out.mp3",
+  "duration": 25.783,
+  "transcript": "A family caf\u00e9 in Indianapolis has been a local favorite for over a decade. Now the owners have decided to branch out and open three new locations in nearby towns. Each one will keep the same friendly style but offer different local specialties. Customers from the original caf\u00e9 say they are excited about the news. The first new shop will open in May.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.581
+    },
+    {
+      "word": "family",
+      "start": 0.2,
+      "end": 0.541,
+      "score": 0.784
+    },
+    {
+      "word": "caf\u00e9",
+      "start": 0.581,
+      "end": 1.002,
+      "score": 0.901
+    },
+    {
+      "word": "in",
+      "start": 1.082,
+      "end": 1.162,
+      "score": 0.838
+    },
+    {
+      "word": "Indianapolis",
+      "start": 1.242,
+      "end": 1.963,
+      "score": 0.879
+    },
+    {
+      "word": "has",
+      "start": 2.124,
+      "end": 2.304,
+      "score": 0.854
+    },
+    {
+      "word": "been",
+      "start": 2.344,
+      "end": 2.524,
+      "score": 0.813
+    },
+    {
+      "word": "a",
+      "start": 2.564,
+      "end": 2.604,
+      "score": 0.501
+    },
+    {
+      "word": "local",
+      "start": 2.704,
+      "end": 3.025,
+      "score": 0.738
+    },
+    {
+      "word": "favorite",
+      "start": 3.085,
+      "end": 3.486,
+      "score": 0.742
+    },
+    {
+      "word": "for",
+      "start": 3.586,
+      "end": 3.746,
+      "score": 0.885
+    },
+    {
+      "word": "over",
+      "start": 3.886,
+      "end": 4.107,
+      "score": 0.88
+    },
+    {
+      "word": "a",
+      "start": 4.167,
+      "end": 4.207,
+      "score": 0.563
+    },
+    {
+      "word": "decade.",
+      "start": 4.267,
+      "end": 4.668,
+      "score": 0.921
+    },
+    {
+      "word": "Now",
+      "start": 5.309,
+      "end": 5.509,
+      "score": 0.833
+    },
+    {
+      "word": "the",
+      "start": 5.609,
+      "end": 5.709,
+      "score": 0.899
+    },
+    {
+      "word": "owners",
+      "start": 5.83,
+      "end": 6.11,
+      "score": 0.784
+    },
+    {
+      "word": "have",
+      "start": 6.17,
+      "end": 6.331,
+      "score": 0.817
+    },
+    {
+      "word": "decided",
+      "start": 6.371,
+      "end": 6.831,
+      "score": 0.855
+    },
+    {
+      "word": "to",
+      "start": 6.932,
+      "end": 7.052,
+      "score": 0.736
+    },
+    {
+      "word": "branch",
+      "start": 7.112,
+      "end": 7.432,
+      "score": 0.751
+    },
+    {
+      "word": "out",
+      "start": 7.553,
+      "end": 7.673,
+      "score": 0.872
+    },
+    {
+      "word": "and",
+      "start": 7.833,
+      "end": 7.953,
+      "score": 0.706
+    },
+    {
+      "word": "open",
+      "start": 8.073,
+      "end": 8.314,
+      "score": 0.863
+    },
+    {
+      "word": "three",
+      "start": 8.474,
+      "end": 8.755,
+      "score": 0.74
+    },
+    {
+      "word": "new",
+      "start": 8.835,
+      "end": 8.975,
+      "score": 0.89
+    },
+    {
+      "word": "locations",
+      "start": 9.035,
+      "end": 9.616,
+      "score": 0.776
+    },
+    {
+      "word": "in",
+      "start": 9.876,
+      "end": 9.977,
+      "score": 0.613
+    },
+    {
+      "word": "nearby",
+      "start": 10.037,
+      "end": 10.497,
+      "score": 0.729
+    },
+    {
+      "word": "towns.",
+      "start": 10.558,
+      "end": 10.958,
+      "score": 0.932
+    },
+    {
+      "word": "Each",
+      "start": 11.74,
+      "end": 11.9,
+      "score": 0.872
+    },
+    {
+      "word": "one",
+      "start": 12.04,
+      "end": 12.16,
+      "score": 0.695
+    },
+    {
+      "word": "will",
+      "start": 12.26,
+      "end": 12.441,
+      "score": 0.879
+    },
+    {
+      "word": "keep",
+      "start": 12.481,
+      "end": 12.681,
+      "score": 0.739
+    },
+    {
+      "word": "the",
+      "start": 12.741,
+      "end": 12.841,
+      "score": 0.998
+    },
+    {
+      "word": "same",
+      "start": 12.901,
+      "end": 13.142,
+      "score": 0.842
+    },
+    {
+      "word": "friendly",
+      "start": 13.262,
+      "end": 13.603,
+      "score": 0.793
+    },
+    {
+      "word": "style",
+      "start": 13.643,
+      "end": 14.003,
+      "score": 0.672
+    },
+    {
+      "word": "but",
+      "start": 14.184,
+      "end": 14.344,
+      "score": 0.875
+    },
+    {
+      "word": "offer",
+      "start": 14.484,
+      "end": 14.745,
+      "score": 0.794
+    },
+    {
+      "word": "different",
+      "start": 14.805,
+      "end": 15.145,
+      "score": 0.923
+    },
+    {
+      "word": "local",
+      "start": 15.225,
+      "end": 15.526,
+      "score": 0.843
+    },
+    {
+      "word": "specialties.",
+      "start": 15.586,
+      "end": 16.187,
+      "score": 0.875
+    },
+    {
+      "word": "Customers",
+      "start": 17.669,
+      "end": 18.21,
+      "score": 0.83
+    },
+    {
+      "word": "from",
+      "start": 18.29,
+      "end": 18.471,
+      "score": 0.879
+    },
+    {
+      "word": "the",
+      "start": 18.531,
+      "end": 18.631,
+      "score": 0.69
+    },
+    {
+      "word": "original",
+      "start": 18.711,
+      "end": 19.132,
+      "score": 0.823
+    },
+    {
+      "word": "caf\u00e9",
+      "start": 19.192,
+      "end": 19.593,
+      "score": 0.926
+    },
+    {
+      "word": "say",
+      "start": 19.673,
+      "end": 19.873,
+      "score": 0.887
+    },
+    {
+      "word": "they",
+      "start": 19.933,
+      "end": 20.093,
+      "score": 0.854
+    },
+    {
+      "word": "are",
+      "start": 20.174,
+      "end": 20.294,
+      "score": 0.613
+    },
+    {
+      "word": "excited",
+      "start": 20.374,
+      "end": 20.815,
+      "score": 0.91
+    },
+    {
+      "word": "about",
+      "start": 20.935,
+      "end": 21.175,
+      "score": 0.856
+    },
+    {
+      "word": "the",
+      "start": 21.215,
+      "end": 21.315,
+      "score": 0.891
+    },
+    {
+      "word": "news.",
+      "start": 21.376,
+      "end": 21.656,
+      "score": 0.895
+    },
+    {
+      "word": "The",
+      "start": 23.179,
+      "end": 23.279,
+      "score": 0.999
+    },
+    {
+      "word": "first",
+      "start": 23.339,
+      "end": 23.599,
+      "score": 0.773
+    },
+    {
+      "word": "new",
+      "start": 23.679,
+      "end": 23.84,
+      "score": 0.984
+    },
+    {
+      "word": "shop",
+      "start": 23.88,
+      "end": 24.14,
+      "score": 0.962
+    },
+    {
+      "word": "will",
+      "start": 24.3,
+      "end": 24.501,
+      "score": 0.749
+    },
+    {
+      "word": "open",
+      "start": 24.621,
+      "end": 24.861,
+      "score": 0.876
+    },
+    {
+      "word": "in",
+      "start": 25.062,
+      "end": 25.142,
+      "score": 0.976
+    },
+    {
+      "word": "May.",
+      "start": 25.202,
+      "end": 25.482,
+      "score": 0.978
+    }
+  ]
+}

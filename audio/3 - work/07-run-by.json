@@ -1,0 +1,464 @@
+{
+  "verb": "run by",
+  "audio": "audio/3 - work/07-run-by.mp3",
+  "duration": 30.38,
+  "transcript": "A new podcast for young professionals has become a surprise hit this month. The host, a senior engineer, suggests always running new ideas by a trusted colleague before sharing them with the whole team. Early feedback often helps you find weak points before they become a real problem. The podcast has been downloaded over a hundred thousand times in just two weeks. Many listeners have written in to thank her for the simple but useful advice.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.999
+    },
+    {
+      "word": "new",
+      "start": 0.22,
+      "end": 0.36,
+      "score": 0.947
+    },
+    {
+      "word": "podcast",
+      "start": 0.441,
+      "end": 1.001,
+      "score": 0.94
+    },
+    {
+      "word": "for",
+      "start": 1.081,
+      "end": 1.242,
+      "score": 0.721
+    },
+    {
+      "word": "young",
+      "start": 1.282,
+      "end": 1.482,
+      "score": 0.745
+    },
+    {
+      "word": "professionals",
+      "start": 1.542,
+      "end": 2.183,
+      "score": 0.89
+    },
+    {
+      "word": "has",
+      "start": 2.323,
+      "end": 2.483,
+      "score": 0.811
+    },
+    {
+      "word": "become",
+      "start": 2.543,
+      "end": 2.884,
+      "score": 0.829
+    },
+    {
+      "word": "a",
+      "start": 2.964,
+      "end": 3.004,
+      "score": 0.506
+    },
+    {
+      "word": "surprise",
+      "start": 3.064,
+      "end": 3.545,
+      "score": 0.804
+    },
+    {
+      "word": "hit",
+      "start": 3.585,
+      "end": 3.805,
+      "score": 0.779
+    },
+    {
+      "word": "this",
+      "start": 3.985,
+      "end": 4.166,
+      "score": 0.828
+    },
+    {
+      "word": "month.",
+      "start": 4.246,
+      "end": 4.526,
+      "score": 0.743
+    },
+    {
+      "word": "The",
+      "start": 5.167,
+      "end": 5.287,
+      "score": 0.889
+    },
+    {
+      "word": "host,",
+      "start": 5.327,
+      "end": 5.627,
+      "score": 0.887
+    },
+    {
+      "word": "a",
+      "start": 5.868,
+      "end": 5.908,
+      "score": 0.998
+    },
+    {
+      "word": "senior",
+      "start": 5.968,
+      "end": 6.348,
+      "score": 0.794
+    },
+    {
+      "word": "engineer,",
+      "start": 6.429,
+      "end": 6.889,
+      "score": 0.847
+    },
+    {
+      "word": "suggests",
+      "start": 7.25,
+      "end": 7.73,
+      "score": 0.849
+    },
+    {
+      "word": "always",
+      "start": 7.991,
+      "end": 8.351,
+      "score": 0.806
+    },
+    {
+      "word": "running",
+      "start": 8.511,
+      "end": 8.792,
+      "score": 0.835
+    },
+    {
+      "word": "new",
+      "start": 8.912,
+      "end": 9.072,
+      "score": 0.854
+    },
+    {
+      "word": "ideas",
+      "start": 9.192,
+      "end": 9.613,
+      "score": 0.818
+    },
+    {
+      "word": "by",
+      "start": 9.813,
+      "end": 9.953,
+      "score": 0.846
+    },
+    {
+      "word": "a",
+      "start": 9.973,
+      "end": 9.993,
+      "score": 0.0
+    },
+    {
+      "word": "trusted",
+      "start": 10.154,
+      "end": 10.554,
+      "score": 0.852
+    },
+    {
+      "word": "colleague",
+      "start": 10.614,
+      "end": 11.055,
+      "score": 0.771
+    },
+    {
+      "word": "before",
+      "start": 11.235,
+      "end": 11.615,
+      "score": 0.723
+    },
+    {
+      "word": "sharing",
+      "start": 11.696,
+      "end": 12.056,
+      "score": 0.819
+    },
+    {
+      "word": "them",
+      "start": 12.116,
+      "end": 12.296,
+      "score": 0.911
+    },
+    {
+      "word": "with",
+      "start": 12.477,
+      "end": 12.657,
+      "score": 0.72
+    },
+    {
+      "word": "the",
+      "start": 12.717,
+      "end": 12.817,
+      "score": 0.998
+    },
+    {
+      "word": "whole",
+      "start": 12.877,
+      "end": 13.117,
+      "score": 0.854
+    },
+    {
+      "word": "team.",
+      "start": 13.218,
+      "end": 13.518,
+      "score": 0.778
+    },
+    {
+      "word": "Early",
+      "start": 14.339,
+      "end": 14.619,
+      "score": 0.767
+    },
+    {
+      "word": "feedback",
+      "start": 14.68,
+      "end": 15.18,
+      "score": 0.924
+    },
+    {
+      "word": "often",
+      "start": 15.38,
+      "end": 15.641,
+      "score": 0.932
+    },
+    {
+      "word": "helps",
+      "start": 15.721,
+      "end": 15.961,
+      "score": 0.892
+    },
+    {
+      "word": "you",
+      "start": 15.981,
+      "end": 16.121,
+      "score": 0.917
+    },
+    {
+      "word": "find",
+      "start": 16.182,
+      "end": 16.442,
+      "score": 0.701
+    },
+    {
+      "word": "weak",
+      "start": 16.522,
+      "end": 16.722,
+      "score": 0.914
+    },
+    {
+      "word": "points",
+      "start": 16.782,
+      "end": 17.083,
+      "score": 0.767
+    },
+    {
+      "word": "before",
+      "start": 17.303,
+      "end": 17.684,
+      "score": 0.75
+    },
+    {
+      "word": "they",
+      "start": 17.744,
+      "end": 17.904,
+      "score": 0.717
+    },
+    {
+      "word": "become",
+      "start": 17.944,
+      "end": 18.304,
+      "score": 0.839
+    },
+    {
+      "word": "a",
+      "start": 18.465,
+      "end": 18.485,
+      "score": 0.998
+    },
+    {
+      "word": "real",
+      "start": 18.565,
+      "end": 18.805,
+      "score": 0.828
+    },
+    {
+      "word": "problem.",
+      "start": 18.885,
+      "end": 19.306,
+      "score": 0.806
+    },
+    {
+      "word": "The",
+      "start": 19.947,
+      "end": 20.067,
+      "score": 0.732
+    },
+    {
+      "word": "podcast",
+      "start": 20.107,
+      "end": 20.647,
+      "score": 0.869
+    },
+    {
+      "word": "has",
+      "start": 20.688,
+      "end": 20.848,
+      "score": 0.914
+    },
+    {
+      "word": "been",
+      "start": 20.908,
+      "end": 21.088,
+      "score": 0.71
+    },
+    {
+      "word": "downloaded",
+      "start": 21.128,
+      "end": 21.689,
+      "score": 0.808
+    },
+    {
+      "word": "over",
+      "start": 21.909,
+      "end": 22.129,
+      "score": 0.79
+    },
+    {
+      "word": "a",
+      "start": 22.149,
+      "end": 22.169,
+      "score": 0.0
+    },
+    {
+      "word": "hundred",
+      "start": 22.35,
+      "end": 22.65,
+      "score": 0.826
+    },
+    {
+      "word": "thousand",
+      "start": 22.71,
+      "end": 23.091,
+      "score": 0.883
+    },
+    {
+      "word": "times",
+      "start": 23.151,
+      "end": 23.491,
+      "score": 0.68
+    },
+    {
+      "word": "in",
+      "start": 23.712,
+      "end": 23.792,
+      "score": 0.846
+    },
+    {
+      "word": "just",
+      "start": 23.832,
+      "end": 24.072,
+      "score": 0.762
+    },
+    {
+      "word": "two",
+      "start": 24.252,
+      "end": 24.453,
+      "score": 0.894
+    },
+    {
+      "word": "weeks.",
+      "start": 24.513,
+      "end": 24.813,
+      "score": 0.902
+    },
+    {
+      "word": "Many",
+      "start": 25.514,
+      "end": 25.754,
+      "score": 0.836
+    },
+    {
+      "word": "listeners",
+      "start": 25.834,
+      "end": 26.295,
+      "score": 0.88
+    },
+    {
+      "word": "have",
+      "start": 26.375,
+      "end": 26.515,
+      "score": 0.884
+    },
+    {
+      "word": "written",
+      "start": 26.575,
+      "end": 26.896,
+      "score": 0.794
+    },
+    {
+      "word": "in",
+      "start": 26.976,
+      "end": 27.096,
+      "score": 0.632
+    },
+    {
+      "word": "to",
+      "start": 27.256,
+      "end": 27.376,
+      "score": 0.833
+    },
+    {
+      "word": "thank",
+      "start": 27.436,
+      "end": 27.677,
+      "score": 0.903
+    },
+    {
+      "word": "her",
+      "start": 27.717,
+      "end": 27.837,
+      "score": 0.961
+    },
+    {
+      "word": "for",
+      "start": 27.957,
+      "end": 28.077,
+      "score": 0.979
+    },
+    {
+      "word": "the",
+      "start": 28.137,
+      "end": 28.238,
+      "score": 0.994
+    },
+    {
+      "word": "simple",
+      "start": 28.298,
+      "end": 28.618,
+      "score": 0.925
+    },
+    {
+      "word": "but",
+      "start": 28.778,
+      "end": 28.938,
+      "score": 0.889
+    },
+    {
+      "word": "useful",
+      "start": 29.099,
+      "end": 29.399,
+      "score": 0.853
+    },
+    {
+      "word": "advice.",
+      "start": 29.579,
+      "end": 29.98,
+      "score": 0.927
+    }
+  ]
+}

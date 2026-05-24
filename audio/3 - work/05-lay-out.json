@@ -1,0 +1,464 @@
+{
+  "verb": "lay out",
+  "audio": "audio/3 - work/05-lay-out.mp3",
+  "duration": 31.634,
+  "transcript": "The chief executive of a major tech company held an unusual all-staff meeting this week. For two hours, she stood in front of employees to lay out a clear plan for the next three years. She explained the new product goals, the changes to the team structure, and the budget for each major area. Many employees said her honest, direct style was a welcome change. The full plan was also shared on the company\\'s internal website.",
+  "words": [
+    {
+      "word": "The",
+      "start": 0.12,
+      "end": 0.24,
+      "score": 0.713
+    },
+    {
+      "word": "chief",
+      "start": 0.28,
+      "end": 0.521,
+      "score": 0.582
+    },
+    {
+      "word": "executive",
+      "start": 0.601,
+      "end": 1.161,
+      "score": 0.841
+    },
+    {
+      "word": "of",
+      "start": 1.321,
+      "end": 1.402,
+      "score": 0.81
+    },
+    {
+      "word": "a",
+      "start": 1.462,
+      "end": 1.502,
+      "score": 0.503
+    },
+    {
+      "word": "major",
+      "start": 1.562,
+      "end": 1.862,
+      "score": 0.906
+    },
+    {
+      "word": "tech",
+      "start": 1.922,
+      "end": 2.122,
+      "score": 0.727
+    },
+    {
+      "word": "company",
+      "start": 2.162,
+      "end": 2.543,
+      "score": 0.923
+    },
+    {
+      "word": "held",
+      "start": 2.683,
+      "end": 2.923,
+      "score": 0.836
+    },
+    {
+      "word": "an",
+      "start": 3.043,
+      "end": 3.103,
+      "score": 0.974
+    },
+    {
+      "word": "unusual",
+      "start": 3.203,
+      "end": 3.704,
+      "score": 0.76
+    },
+    {
+      "word": "all-staff",
+      "start": 3.884,
+      "end": 4.365,
+      "score": 0.936
+    },
+    {
+      "word": "meeting",
+      "start": 4.405,
+      "end": 4.705,
+      "score": 0.935
+    },
+    {
+      "word": "this",
+      "start": 4.785,
+      "end": 4.965,
+      "score": 0.84
+    },
+    {
+      "word": "week.",
+      "start": 5.045,
+      "end": 5.306,
+      "score": 0.92
+    },
+    {
+      "word": "For",
+      "start": 6.447,
+      "end": 6.587,
+      "score": 0.864
+    },
+    {
+      "word": "two",
+      "start": 6.667,
+      "end": 6.827,
+      "score": 0.732
+    },
+    {
+      "word": "hours,",
+      "start": 6.867,
+      "end": 7.228,
+      "score": 0.833
+    },
+    {
+      "word": "she",
+      "start": 7.488,
+      "end": 7.648,
+      "score": 0.543
+    },
+    {
+      "word": "stood",
+      "start": 7.708,
+      "end": 7.989,
+      "score": 0.716
+    },
+    {
+      "word": "in",
+      "start": 8.089,
+      "end": 8.169,
+      "score": 0.806
+    },
+    {
+      "word": "front",
+      "start": 8.229,
+      "end": 8.469,
+      "score": 0.682
+    },
+    {
+      "word": "of",
+      "start": 8.509,
+      "end": 8.569,
+      "score": 0.75
+    },
+    {
+      "word": "employees",
+      "start": 8.669,
+      "end": 9.23,
+      "score": 0.831
+    },
+    {
+      "word": "to",
+      "start": 9.39,
+      "end": 9.53,
+      "score": 0.779
+    },
+    {
+      "word": "lay",
+      "start": 9.59,
+      "end": 9.771,
+      "score": 0.717
+    },
+    {
+      "word": "out",
+      "start": 9.851,
+      "end": 9.991,
+      "score": 0.833
+    },
+    {
+      "word": "a",
+      "start": 10.051,
+      "end": 10.091,
+      "score": 0.5
+    },
+    {
+      "word": "clear",
+      "start": 10.171,
+      "end": 10.451,
+      "score": 0.833
+    },
+    {
+      "word": "plan",
+      "start": 10.511,
+      "end": 10.812,
+      "score": 0.843
+    },
+    {
+      "word": "for",
+      "start": 10.892,
+      "end": 11.032,
+      "score": 0.672
+    },
+    {
+      "word": "the",
+      "start": 11.072,
+      "end": 11.172,
+      "score": 0.747
+    },
+    {
+      "word": "next",
+      "start": 11.232,
+      "end": 11.492,
+      "score": 0.825
+    },
+    {
+      "word": "three",
+      "start": 11.713,
+      "end": 12.013,
+      "score": 0.718
+    },
+    {
+      "word": "years.",
+      "start": 12.073,
+      "end": 12.433,
+      "score": 0.807
+    },
+    {
+      "word": "She",
+      "start": 13.214,
+      "end": 13.354,
+      "score": 0.728
+    },
+    {
+      "word": "explained",
+      "start": 13.435,
+      "end": 13.855,
+      "score": 0.864
+    },
+    {
+      "word": "the",
+      "start": 13.995,
+      "end": 14.115,
+      "score": 0.769
+    },
+    {
+      "word": "new",
+      "start": 14.155,
+      "end": 14.316,
+      "score": 0.835
+    },
+    {
+      "word": "product",
+      "start": 14.396,
+      "end": 14.796,
+      "score": 0.849
+    },
+    {
+      "word": "goals,",
+      "start": 14.856,
+      "end": 15.196,
+      "score": 0.916
+    },
+    {
+      "word": "the",
+      "start": 15.557,
+      "end": 15.657,
+      "score": 0.957
+    },
+    {
+      "word": "changes",
+      "start": 15.717,
+      "end": 16.117,
+      "score": 0.806
+    },
+    {
+      "word": "to",
+      "start": 16.198,
+      "end": 16.338,
+      "score": 0.722
+    },
+    {
+      "word": "the",
+      "start": 16.378,
+      "end": 16.458,
+      "score": 0.836
+    },
+    {
+      "word": "team",
+      "start": 16.518,
+      "end": 16.738,
+      "score": 0.936
+    },
+    {
+      "word": "structure,",
+      "start": 16.798,
+      "end": 17.239,
+      "score": 0.943
+    },
+    {
+      "word": "and",
+      "start": 17.699,
+      "end": 17.839,
+      "score": 0.723
+    },
+    {
+      "word": "the",
+      "start": 17.959,
+      "end": 18.08,
+      "score": 0.718
+    },
+    {
+      "word": "budget",
+      "start": 18.12,
+      "end": 18.5,
+      "score": 0.827
+    },
+    {
+      "word": "for",
+      "start": 18.66,
+      "end": 18.82,
+      "score": 0.785
+    },
+    {
+      "word": "each",
+      "start": 18.961,
+      "end": 19.141,
+      "score": 0.716
+    },
+    {
+      "word": "major",
+      "start": 19.241,
+      "end": 19.581,
+      "score": 0.863
+    },
+    {
+      "word": "area.",
+      "start": 19.761,
+      "end": 20.122,
+      "score": 0.874
+    },
+    {
+      "word": "Many",
+      "start": 21.383,
+      "end": 21.643,
+      "score": 0.821
+    },
+    {
+      "word": "employees",
+      "start": 21.744,
+      "end": 22.264,
+      "score": 0.876
+    },
+    {
+      "word": "said",
+      "start": 22.444,
+      "end": 22.645,
+      "score": 0.917
+    },
+    {
+      "word": "her",
+      "start": 22.705,
+      "end": 22.865,
+      "score": 0.675
+    },
+    {
+      "word": "honest,",
+      "start": 22.925,
+      "end": 23.325,
+      "score": 0.875
+    },
+    {
+      "word": "direct",
+      "start": 23.586,
+      "end": 23.966,
+      "score": 0.909
+    },
+    {
+      "word": "style",
+      "start": 24.066,
+      "end": 24.467,
+      "score": 0.722
+    },
+    {
+      "word": "was",
+      "start": 24.607,
+      "end": 24.787,
+      "score": 0.627
+    },
+    {
+      "word": "a",
+      "start": 24.807,
+      "end": 24.827,
+      "score": 0.0
+    },
+    {
+      "word": "welcome",
+      "start": 25.027,
+      "end": 25.408,
+      "score": 0.819
+    },
+    {
+      "word": "change.",
+      "start": 25.468,
+      "end": 25.888,
+      "score": 0.851
+    },
+    {
+      "word": "The",
+      "start": 27.37,
+      "end": 27.49,
+      "score": 0.709
+    },
+    {
+      "word": "full",
+      "start": 27.55,
+      "end": 27.77,
+      "score": 0.942
+    },
+    {
+      "word": "plan",
+      "start": 27.83,
+      "end": 28.13,
+      "score": 0.852
+    },
+    {
+      "word": "was",
+      "start": 28.211,
+      "end": 28.351,
+      "score": 0.917
+    },
+    {
+      "word": "also",
+      "start": 28.511,
+      "end": 28.811,
+      "score": 0.786
+    },
+    {
+      "word": "shared",
+      "start": 28.871,
+      "end": 29.192,
+      "score": 0.744
+    },
+    {
+      "word": "on",
+      "start": 29.372,
+      "end": 29.452,
+      "score": 0.816
+    },
+    {
+      "word": "the",
+      "start": 29.492,
+      "end": 29.572,
+      "score": 0.869
+    },
+    {
+      "word": "company\\'s",
+      "start": 29.632,
+      "end": 30.113,
+      "score": 0.914
+    },
+    {
+      "word": "internal",
+      "start": 30.293,
+      "end": 30.733,
+      "score": 0.83
+    },
+    {
+      "word": "website.",
+      "start": 30.813,
+      "end": 31.314,
+      "score": 0.953
+    }
+  ]
+}

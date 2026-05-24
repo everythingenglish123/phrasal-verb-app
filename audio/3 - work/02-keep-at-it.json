@@ -1,0 +1,416 @@
+{
+  "verb": "keep at it",
+  "audio": "audio/3 - work/02-keep-at-it.mp3",
+  "duration": 29.544,
+  "transcript": "A new survey on career change has been published this month. The most surprising finding: workers who keep at it for at least six months in a tough new role are far more likely to succeed long term. Researchers say small daily improvements add up faster than people expect. The study followed two thousand professionals for three years. Many readers say the findings have given them fresh motivation.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.993
+    },
+    {
+      "word": "new",
+      "start": 0.2,
+      "end": 0.381,
+      "score": 0.766
+    },
+    {
+      "word": "survey",
+      "start": 0.441,
+      "end": 0.821,
+      "score": 0.836
+    },
+    {
+      "word": "on",
+      "start": 0.981,
+      "end": 1.062,
+      "score": 0.833
+    },
+    {
+      "word": "career",
+      "start": 1.122,
+      "end": 1.522,
+      "score": 0.85
+    },
+    {
+      "word": "change",
+      "start": 1.582,
+      "end": 1.883,
+      "score": 0.835
+    },
+    {
+      "word": "has",
+      "start": 2.003,
+      "end": 2.183,
+      "score": 0.914
+    },
+    {
+      "word": "been",
+      "start": 2.223,
+      "end": 2.404,
+      "score": 0.754
+    },
+    {
+      "word": "published",
+      "start": 2.484,
+      "end": 2.924,
+      "score": 0.806
+    },
+    {
+      "word": "this",
+      "start": 3.105,
+      "end": 3.305,
+      "score": 0.908
+    },
+    {
+      "word": "month.",
+      "start": 3.405,
+      "end": 3.686,
+      "score": 0.906
+    },
+    {
+      "word": "The",
+      "start": 4.827,
+      "end": 4.907,
+      "score": 0.953
+    },
+    {
+      "word": "most",
+      "start": 4.967,
+      "end": 5.188,
+      "score": 0.756
+    },
+    {
+      "word": "surprising",
+      "start": 5.348,
+      "end": 5.869,
+      "score": 0.885
+    },
+    {
+      "word": "finding:",
+      "start": 5.949,
+      "end": 6.31,
+      "score": 0.856
+    },
+    {
+      "word": "workers",
+      "start": 6.79,
+      "end": 7.191,
+      "score": 0.807
+    },
+    {
+      "word": "who",
+      "start": 7.291,
+      "end": 7.431,
+      "score": 0.903
+    },
+    {
+      "word": "keep",
+      "start": 7.511,
+      "end": 7.752,
+      "score": 0.74
+    },
+    {
+      "word": "at",
+      "start": 7.872,
+      "end": 7.972,
+      "score": 0.69
+    },
+    {
+      "word": "it",
+      "start": 8.012,
+      "end": 8.092,
+      "score": 0.502
+    },
+    {
+      "word": "for",
+      "start": 8.192,
+      "end": 8.393,
+      "score": 0.721
+    },
+    {
+      "word": "at",
+      "start": 8.473,
+      "end": 8.533,
+      "score": 0.75
+    },
+    {
+      "word": "least",
+      "start": 8.573,
+      "end": 8.833,
+      "score": 0.72
+    },
+    {
+      "word": "six",
+      "start": 9.054,
+      "end": 9.274,
+      "score": 0.928
+    },
+    {
+      "word": "months",
+      "start": 9.334,
+      "end": 9.594,
+      "score": 0.918
+    },
+    {
+      "word": "in",
+      "start": 9.815,
+      "end": 9.915,
+      "score": 0.863
+    },
+    {
+      "word": "a",
+      "start": 9.955,
+      "end": 9.995,
+      "score": 0.503
+    },
+    {
+      "word": "tough",
+      "start": 10.075,
+      "end": 10.336,
+      "score": 0.771
+    },
+    {
+      "word": "new",
+      "start": 10.456,
+      "end": 10.616,
+      "score": 0.913
+    },
+    {
+      "word": "role",
+      "start": 10.676,
+      "end": 10.936,
+      "score": 0.762
+    },
+    {
+      "word": "are",
+      "start": 11.397,
+      "end": 11.497,
+      "score": 0.775
+    },
+    {
+      "word": "far",
+      "start": 11.597,
+      "end": 11.838,
+      "score": 0.614
+    },
+    {
+      "word": "more",
+      "start": 11.898,
+      "end": 12.098,
+      "score": 0.624
+    },
+    {
+      "word": "likely",
+      "start": 12.178,
+      "end": 12.539,
+      "score": 0.871
+    },
+    {
+      "word": "to",
+      "start": 12.639,
+      "end": 12.759,
+      "score": 0.879
+    },
+    {
+      "word": "succeed",
+      "start": 12.819,
+      "end": 13.24,
+      "score": 0.801
+    },
+    {
+      "word": "long",
+      "start": 13.48,
+      "end": 13.761,
+      "score": 0.838
+    },
+    {
+      "word": "term.",
+      "start": 13.841,
+      "end": 14.161,
+      "score": 0.904
+    },
+    {
+      "word": "Researchers",
+      "start": 15.023,
+      "end": 15.563,
+      "score": 0.798
+    },
+    {
+      "word": "say",
+      "start": 15.624,
+      "end": 15.864,
+      "score": 0.798
+    },
+    {
+      "word": "small",
+      "start": 16.064,
+      "end": 16.365,
+      "score": 0.904
+    },
+    {
+      "word": "daily",
+      "start": 16.445,
+      "end": 16.765,
+      "score": 0.912
+    },
+    {
+      "word": "improvements",
+      "start": 16.845,
+      "end": 17.406,
+      "score": 0.846
+    },
+    {
+      "word": "add",
+      "start": 17.747,
+      "end": 17.867,
+      "score": 0.445
+    },
+    {
+      "word": "up",
+      "start": 17.967,
+      "end": 18.047,
+      "score": 0.955
+    },
+    {
+      "word": "faster",
+      "start": 18.187,
+      "end": 18.608,
+      "score": 0.849
+    },
+    {
+      "word": "than",
+      "start": 18.688,
+      "end": 18.848,
+      "score": 0.916
+    },
+    {
+      "word": "people",
+      "start": 18.929,
+      "end": 19.269,
+      "score": 0.743
+    },
+    {
+      "word": "expect.",
+      "start": 19.349,
+      "end": 19.75,
+      "score": 0.921
+    },
+    {
+      "word": "The",
+      "start": 21.212,
+      "end": 21.312,
+      "score": 0.997
+    },
+    {
+      "word": "study",
+      "start": 21.352,
+      "end": 21.673,
+      "score": 0.878
+    },
+    {
+      "word": "followed",
+      "start": 21.753,
+      "end": 22.113,
+      "score": 0.9
+    },
+    {
+      "word": "two",
+      "start": 22.233,
+      "end": 22.394,
+      "score": 0.915
+    },
+    {
+      "word": "thousand",
+      "start": 22.454,
+      "end": 22.834,
+      "score": 0.821
+    },
+    {
+      "word": "professionals",
+      "start": 22.894,
+      "end": 23.535,
+      "score": 0.806
+    },
+    {
+      "word": "for",
+      "start": 23.716,
+      "end": 23.876,
+      "score": 0.878
+    },
+    {
+      "word": "three",
+      "start": 23.956,
+      "end": 24.216,
+      "score": 0.669
+    },
+    {
+      "word": "years.",
+      "start": 24.297,
+      "end": 24.637,
+      "score": 0.72
+    },
+    {
+      "word": "Many",
+      "start": 25.398,
+      "end": 25.639,
+      "score": 0.841
+    },
+    {
+      "word": "readers",
+      "start": 25.719,
+      "end": 26.079,
+      "score": 0.706
+    },
+    {
+      "word": "say",
+      "start": 26.26,
+      "end": 26.44,
+      "score": 0.757
+    },
+    {
+      "word": "the",
+      "start": 26.5,
+      "end": 26.6,
+      "score": 0.885
+    },
+    {
+      "word": "findings",
+      "start": 26.66,
+      "end": 27.101,
+      "score": 0.863
+    },
+    {
+      "word": "have",
+      "start": 27.181,
+      "end": 27.361,
+      "score": 0.809
+    },
+    {
+      "word": "given",
+      "start": 27.421,
+      "end": 27.682,
+      "score": 0.805
+    },
+    {
+      "word": "them",
+      "start": 27.742,
+      "end": 27.922,
+      "score": 0.835
+    },
+    {
+      "word": "fresh",
+      "start": 28.122,
+      "end": 28.423,
+      "score": 0.766
+    },
+    {
+      "word": "motivation.",
+      "start": 28.563,
+      "end": 29.144,
+      "score": 0.989
+    }
+  ]
+}
