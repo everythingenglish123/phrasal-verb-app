@@ -1,7 +1,7 @@
 // Phrasal Verb App — Service Worker
 // Cache strategy: stale-while-revalidate for HTML, cache-first for static assets
 
-const CACHE_NAME = 'eewj-phrasal-v1';
+const CACHE_NAME = 'eewj-phrasal-v2';
 
 // Pre-cache the shell on install
 const SHELL_FILES = [
