@@ -1,0 +1,398 @@
+{
+  "verb": "work towards",
+  "audio": "audio/3 - work/01-work-towards.mp3",
+  "duration": 29.179,
+  "transcript": "A national survey of office workers was released this week with surprising results. Nearly seventy percent of staff are actively working towards a promotion or new role this year. Younger workers are the most ambitious, with many planning to switch companies if they see no progress within twelve months. Career experts point to steady learning and clear communication with managers as the most important steps.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.98
+    },
+    {
+      "word": "national",
+      "start": 0.2,
+      "end": 0.641,
+      "score": 0.873
+    },
+    {
+      "word": "survey",
+      "start": 0.721,
+      "end": 1.101,
+      "score": 0.781
+    },
+    {
+      "word": "of",
+      "start": 1.182,
+      "end": 1.262,
+      "score": 0.826
+    },
+    {
+      "word": "office",
+      "start": 1.402,
+      "end": 1.662,
+      "score": 0.984
+    },
+    {
+      "word": "workers",
+      "start": 1.702,
+      "end": 2.043,
+      "score": 0.781
+    },
+    {
+      "word": "was",
+      "start": 2.223,
+      "end": 2.403,
+      "score": 0.791
+    },
+    {
+      "word": "released",
+      "start": 2.463,
+      "end": 2.864,
+      "score": 0.829
+    },
+    {
+      "word": "this",
+      "start": 3.044,
+      "end": 3.224,
+      "score": 0.828
+    },
+    {
+      "word": "week",
+      "start": 3.304,
+      "end": 3.525,
+      "score": 0.927
+    },
+    {
+      "word": "with",
+      "start": 3.685,
+      "end": 3.865,
+      "score": 0.698
+    },
+    {
+      "word": "surprising",
+      "start": 3.945,
+      "end": 4.526,
+      "score": 0.86
+    },
+    {
+      "word": "results.",
+      "start": 4.586,
+      "end": 5.027,
+      "score": 0.86
+    },
+    {
+      "word": "Nearly",
+      "start": 5.688,
+      "end": 6.008,
+      "score": 0.809
+    },
+    {
+      "word": "seventy",
+      "start": 6.088,
+      "end": 6.509,
+      "score": 0.725
+    },
+    {
+      "word": "percent",
+      "start": 6.569,
+      "end": 6.949,
+      "score": 0.754
+    },
+    {
+      "word": "of",
+      "start": 6.989,
+      "end": 7.049,
+      "score": 0.976
+    },
+    {
+      "word": "staff",
+      "start": 7.129,
+      "end": 7.45,
+      "score": 0.815
+    },
+    {
+      "word": "are",
+      "start": 7.65,
+      "end": 7.77,
+      "score": 0.569
+    },
+    {
+      "word": "actively",
+      "start": 7.971,
+      "end": 8.411,
+      "score": 0.869
+    },
+    {
+      "word": "working",
+      "start": 8.491,
+      "end": 8.832,
+      "score": 0.874
+    },
+    {
+      "word": "towards",
+      "start": 8.932,
+      "end": 9.292,
+      "score": 0.796
+    },
+    {
+      "word": "a",
+      "start": 9.332,
+      "end": 9.372,
+      "score": 0.506
+    },
+    {
+      "word": "promotion",
+      "start": 9.413,
+      "end": 9.913,
+      "score": 0.855
+    },
+    {
+      "word": "or",
+      "start": 10.314,
+      "end": 10.434,
+      "score": 0.738
+    },
+    {
+      "word": "new",
+      "start": 10.554,
+      "end": 10.734,
+      "score": 0.721
+    },
+    {
+      "word": "role",
+      "start": 10.794,
+      "end": 11.075,
+      "score": 0.735
+    },
+    {
+      "word": "this",
+      "start": 11.215,
+      "end": 11.395,
+      "score": 0.821
+    },
+    {
+      "word": "year.",
+      "start": 11.455,
+      "end": 11.696,
+      "score": 0.734
+    },
+    {
+      "word": "Younger",
+      "start": 12.497,
+      "end": 12.797,
+      "score": 0.823
+    },
+    {
+      "word": "workers",
+      "start": 12.877,
+      "end": 13.258,
+      "score": 0.863
+    },
+    {
+      "word": "are",
+      "start": 13.498,
+      "end": 13.598,
+      "score": 0.758
+    },
+    {
+      "word": "the",
+      "start": 13.658,
+      "end": 13.758,
+      "score": 0.728
+    },
+    {
+      "word": "most",
+      "start": 13.858,
+      "end": 14.079,
+      "score": 0.791
+    },
+    {
+      "word": "ambitious,",
+      "start": 14.219,
+      "end": 14.7,
+      "score": 0.91
+    },
+    {
+      "word": "with",
+      "start": 15.12,
+      "end": 15.28,
+      "score": 0.712
+    },
+    {
+      "word": "many",
+      "start": 15.38,
+      "end": 15.621,
+      "score": 0.824
+    },
+    {
+      "word": "planning",
+      "start": 15.721,
+      "end": 16.081,
+      "score": 0.878
+    },
+    {
+      "word": "to",
+      "start": 16.161,
+      "end": 16.282,
+      "score": 0.916
+    },
+    {
+      "word": "switch",
+      "start": 16.382,
+      "end": 16.662,
+      "score": 0.887
+    },
+    {
+      "word": "companies",
+      "start": 16.762,
+      "end": 17.203,
+      "score": 0.837
+    },
+    {
+      "word": "if",
+      "start": 17.443,
+      "end": 17.543,
+      "score": 0.584
+    },
+    {
+      "word": "they",
+      "start": 17.603,
+      "end": 17.784,
+      "score": 0.754
+    },
+    {
+      "word": "see",
+      "start": 17.864,
+      "end": 18.064,
+      "score": 0.806
+    },
+    {
+      "word": "no",
+      "start": 18.144,
+      "end": 18.304,
+      "score": 0.781
+    },
+    {
+      "word": "progress",
+      "start": 18.384,
+      "end": 18.865,
+      "score": 0.788
+    },
+    {
+      "word": "within",
+      "start": 19.065,
+      "end": 19.406,
+      "score": 0.829
+    },
+    {
+      "word": "twelve",
+      "start": 19.526,
+      "end": 19.866,
+      "score": 0.859
+    },
+    {
+      "word": "months.",
+      "start": 19.987,
+      "end": 20.307,
+      "score": 0.929
+    },
+    {
+      "word": "Career",
+      "start": 21.809,
+      "end": 22.169,
+      "score": 0.724
+    },
+    {
+      "word": "experts",
+      "start": 22.27,
+      "end": 22.67,
+      "score": 0.858
+    },
+    {
+      "word": "point",
+      "start": 22.87,
+      "end": 23.111,
+      "score": 0.836
+    },
+    {
+      "word": "to",
+      "start": 23.271,
+      "end": 23.391,
+      "score": 0.995
+    },
+    {
+      "word": "steady",
+      "start": 23.491,
+      "end": 23.852,
+      "score": 0.933
+    },
+    {
+      "word": "learning",
+      "start": 23.912,
+      "end": 24.272,
+      "score": 0.804
+    },
+    {
+      "word": "and",
+      "start": 24.513,
+      "end": 24.613,
+      "score": 0.859
+    },
+    {
+      "word": "clear",
+      "start": 24.713,
+      "end": 24.993,
+      "score": 0.821
+    },
+    {
+      "word": "communication",
+      "start": 25.073,
+      "end": 25.894,
+      "score": 0.86
+    },
+    {
+      "word": "with",
+      "start": 25.995,
+      "end": 26.175,
+      "score": 0.677
+    },
+    {
+      "word": "managers",
+      "start": 26.275,
+      "end": 26.756,
+      "score": 0.872
+    },
+    {
+      "word": "as",
+      "start": 27.056,
+      "end": 27.156,
+      "score": 0.75
+    },
+    {
+      "word": "the",
+      "start": 27.236,
+      "end": 27.356,
+      "score": 0.787
+    },
+    {
+      "word": "most",
+      "start": 27.436,
+      "end": 27.677,
+      "score": 0.832
+    },
+    {
+      "word": "important",
+      "start": 27.817,
+      "end": 28.318,
+      "score": 0.914
+    },
+    {
+      "word": "steps.",
+      "start": 28.418,
+      "end": 28.758,
+      "score": 0.976
+    }
+  ]
+}

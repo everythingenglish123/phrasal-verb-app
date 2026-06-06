@@ -1,0 +1,416 @@
+{
+  "verb": "run through",
+  "audio": "audio/3 - work/10-run-through.mp3",
+  "duration": 32.888,
+  "transcript": "A new aviation study has examined how airline crews avoid mistakes during takeoff. Before every major flight, pilots and their copilot run through a long safety checklist together. The study found that this simple habit catches small errors that could otherwise become serious problems. The checklist is updated every few years based on what airlines learn from real flights. Other industries are now starting to use similar checklists.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.998
+    },
+    {
+      "word": "new",
+      "start": 0.22,
+      "end": 0.361,
+      "score": 0.888
+    },
+    {
+      "word": "aviation",
+      "start": 0.461,
+      "end": 1.001,
+      "score": 0.86
+    },
+    {
+      "word": "study",
+      "start": 1.062,
+      "end": 1.362,
+      "score": 0.872
+    },
+    {
+      "word": "has",
+      "start": 1.522,
+      "end": 1.682,
+      "score": 0.968
+    },
+    {
+      "word": "examined",
+      "start": 1.783,
+      "end": 2.203,
+      "score": 0.795
+    },
+    {
+      "word": "how",
+      "start": 2.283,
+      "end": 2.444,
+      "score": 0.939
+    },
+    {
+      "word": "airline",
+      "start": 2.624,
+      "end": 2.984,
+      "score": 0.913
+    },
+    {
+      "word": "crews",
+      "start": 3.044,
+      "end": 3.345,
+      "score": 0.873
+    },
+    {
+      "word": "avoid",
+      "start": 3.725,
+      "end": 4.126,
+      "score": 0.83
+    },
+    {
+      "word": "mistakes",
+      "start": 4.246,
+      "end": 4.747,
+      "score": 0.807
+    },
+    {
+      "word": "during",
+      "start": 5.027,
+      "end": 5.368,
+      "score": 0.817
+    },
+    {
+      "word": "takeoff.",
+      "start": 5.448,
+      "end": 5.929,
+      "score": 0.86
+    },
+    {
+      "word": "Before",
+      "start": 6.73,
+      "end": 7.09,
+      "score": 0.761
+    },
+    {
+      "word": "every",
+      "start": 7.251,
+      "end": 7.471,
+      "score": 0.702
+    },
+    {
+      "word": "major",
+      "start": 7.531,
+      "end": 7.831,
+      "score": 0.879
+    },
+    {
+      "word": "flight,",
+      "start": 7.892,
+      "end": 8.212,
+      "score": 0.841
+    },
+    {
+      "word": "pilots",
+      "start": 8.452,
+      "end": 8.873,
+      "score": 0.854
+    },
+    {
+      "word": "and",
+      "start": 9.013,
+      "end": 9.093,
+      "score": 0.837
+    },
+    {
+      "word": "their",
+      "start": 9.133,
+      "end": 9.294,
+      "score": 0.948
+    },
+    {
+      "word": "copilot",
+      "start": 9.334,
+      "end": 9.894,
+      "score": 0.85
+    },
+    {
+      "word": "run",
+      "start": 10.255,
+      "end": 10.455,
+      "score": 0.867
+    },
+    {
+      "word": "through",
+      "start": 10.495,
+      "end": 10.796,
+      "score": 0.754
+    },
+    {
+      "word": "a",
+      "start": 10.816,
+      "end": 10.836,
+      "score": 0.0
+    },
+    {
+      "word": "long",
+      "start": 11.036,
+      "end": 11.357,
+      "score": 0.736
+    },
+    {
+      "word": "safety",
+      "start": 11.457,
+      "end": 11.837,
+      "score": 0.744
+    },
+    {
+      "word": "checklist",
+      "start": 11.897,
+      "end": 12.398,
+      "score": 0.813
+    },
+    {
+      "word": "together.",
+      "start": 12.578,
+      "end": 12.999,
+      "score": 0.892
+    },
+    {
+      "word": "The",
+      "start": 13.88,
+      "end": 13.98,
+      "score": 0.995
+    },
+    {
+      "word": "study",
+      "start": 14.021,
+      "end": 14.321,
+      "score": 0.838
+    },
+    {
+      "word": "found",
+      "start": 14.381,
+      "end": 14.661,
+      "score": 0.813
+    },
+    {
+      "word": "that",
+      "start": 14.782,
+      "end": 14.922,
+      "score": 0.846
+    },
+    {
+      "word": "this",
+      "start": 14.962,
+      "end": 15.142,
+      "score": 0.767
+    },
+    {
+      "word": "simple",
+      "start": 15.342,
+      "end": 15.663,
+      "score": 0.791
+    },
+    {
+      "word": "habit",
+      "start": 15.723,
+      "end": 16.043,
+      "score": 0.913
+    },
+    {
+      "word": "catches",
+      "start": 16.264,
+      "end": 16.644,
+      "score": 0.874
+    },
+    {
+      "word": "small",
+      "start": 16.865,
+      "end": 17.185,
+      "score": 0.864
+    },
+    {
+      "word": "errors",
+      "start": 17.305,
+      "end": 17.626,
+      "score": 0.811
+    },
+    {
+      "word": "that",
+      "start": 17.866,
+      "end": 18.006,
+      "score": 0.876
+    },
+    {
+      "word": "could",
+      "start": 18.066,
+      "end": 18.227,
+      "score": 0.729
+    },
+    {
+      "word": "otherwise",
+      "start": 18.327,
+      "end": 18.828,
+      "score": 0.774
+    },
+    {
+      "word": "become",
+      "start": 19.008,
+      "end": 19.348,
+      "score": 0.901
+    },
+    {
+      "word": "serious",
+      "start": 19.448,
+      "end": 19.889,
+      "score": 0.892
+    },
+    {
+      "word": "problems.",
+      "start": 19.969,
+      "end": 20.47,
+      "score": 0.848
+    },
+    {
+      "word": "The",
+      "start": 21.972,
+      "end": 22.072,
+      "score": 0.998
+    },
+    {
+      "word": "checklist",
+      "start": 22.132,
+      "end": 22.633,
+      "score": 0.81
+    },
+    {
+      "word": "is",
+      "start": 22.793,
+      "end": 22.873,
+      "score": 0.74
+    },
+    {
+      "word": "updated",
+      "start": 22.994,
+      "end": 23.414,
+      "score": 0.917
+    },
+    {
+      "word": "every",
+      "start": 23.715,
+      "end": 23.975,
+      "score": 0.717
+    },
+    {
+      "word": "few",
+      "start": 24.055,
+      "end": 24.276,
+      "score": 0.889
+    },
+    {
+      "word": "years",
+      "start": 24.336,
+      "end": 24.656,
+      "score": 0.611
+    },
+    {
+      "word": "based",
+      "start": 24.856,
+      "end": 25.137,
+      "score": 0.949
+    },
+    {
+      "word": "on",
+      "start": 25.257,
+      "end": 25.337,
+      "score": 0.831
+    },
+    {
+      "word": "what",
+      "start": 25.397,
+      "end": 25.577,
+      "score": 0.784
+    },
+    {
+      "word": "airlines",
+      "start": 25.718,
+      "end": 26.118,
+      "score": 0.872
+    },
+    {
+      "word": "learn",
+      "start": 26.218,
+      "end": 26.479,
+      "score": 0.771
+    },
+    {
+      "word": "from",
+      "start": 26.579,
+      "end": 26.759,
+      "score": 0.766
+    },
+    {
+      "word": "real",
+      "start": 26.859,
+      "end": 27.1,
+      "score": 0.89
+    },
+    {
+      "word": "flights.",
+      "start": 27.18,
+      "end": 27.58,
+      "score": 0.902
+    },
+    {
+      "word": "Other",
+      "start": 28.922,
+      "end": 29.123,
+      "score": 0.791
+    },
+    {
+      "word": "industries",
+      "start": 29.203,
+      "end": 29.724,
+      "score": 0.708
+    },
+    {
+      "word": "are",
+      "start": 29.904,
+      "end": 30.004,
+      "score": 0.677
+    },
+    {
+      "word": "now",
+      "start": 30.044,
+      "end": 30.224,
+      "score": 0.972
+    },
+    {
+      "word": "starting",
+      "start": 30.304,
+      "end": 30.685,
+      "score": 0.886
+    },
+    {
+      "word": "to",
+      "start": 30.745,
+      "end": 30.865,
+      "score": 0.692
+    },
+    {
+      "word": "use",
+      "start": 31.005,
+      "end": 31.166,
+      "score": 0.662
+    },
+    {
+      "word": "similar",
+      "start": 31.406,
+      "end": 31.847,
+      "score": 0.842
+    },
+    {
+      "word": "checklists.",
+      "start": 31.927,
+      "end": 32.508,
+      "score": 0.846
+    }
+  ]
+}

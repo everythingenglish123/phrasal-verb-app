@@ -1,0 +1,386 @@
+{
+  "verb": "walk through",
+  "audio": "audio/3 - work/09-walk-through.mp3",
+  "duration": 25.966,
+  "transcript": "A large city hospital has launched a new training program for nurses this month. It uses short videos that walk new staff through every step of common medical tasks. The videos are clear and made by experienced nurses themselves. Managers say the program has reduced training time by almost a third. New nurses also report feeling much more confident in their first weeks.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.901
+    },
+    {
+      "word": "large",
+      "start": 0.2,
+      "end": 0.481,
+      "score": 0.787
+    },
+    {
+      "word": "city",
+      "start": 0.561,
+      "end": 0.821,
+      "score": 0.912
+    },
+    {
+      "word": "hospital",
+      "start": 0.862,
+      "end": 1.342,
+      "score": 0.803
+    },
+    {
+      "word": "has",
+      "start": 1.443,
+      "end": 1.623,
+      "score": 0.88
+    },
+    {
+      "word": "launched",
+      "start": 1.703,
+      "end": 2.044,
+      "score": 0.826
+    },
+    {
+      "word": "a",
+      "start": 2.164,
+      "end": 2.224,
+      "score": 0.666
+    },
+    {
+      "word": "new",
+      "start": 2.284,
+      "end": 2.444,
+      "score": 0.888
+    },
+    {
+      "word": "training",
+      "start": 2.524,
+      "end": 2.845,
+      "score": 0.834
+    },
+    {
+      "word": "program",
+      "start": 2.905,
+      "end": 3.306,
+      "score": 0.687
+    },
+    {
+      "word": "for",
+      "start": 3.406,
+      "end": 3.566,
+      "score": 0.786
+    },
+    {
+      "word": "nurses",
+      "start": 3.626,
+      "end": 4.007,
+      "score": 0.729
+    },
+    {
+      "word": "this",
+      "start": 4.087,
+      "end": 4.268,
+      "score": 0.714
+    },
+    {
+      "word": "month.",
+      "start": 4.348,
+      "end": 4.608,
+      "score": 0.842
+    },
+    {
+      "word": "It",
+      "start": 5.289,
+      "end": 5.349,
+      "score": 0.95
+    },
+    {
+      "word": "uses",
+      "start": 5.49,
+      "end": 5.77,
+      "score": 0.792
+    },
+    {
+      "word": "short",
+      "start": 5.89,
+      "end": 6.131,
+      "score": 0.85
+    },
+    {
+      "word": "videos",
+      "start": 6.191,
+      "end": 6.672,
+      "score": 0.824
+    },
+    {
+      "word": "that",
+      "start": 6.772,
+      "end": 6.932,
+      "score": 0.874
+    },
+    {
+      "word": "walk",
+      "start": 7.032,
+      "end": 7.313,
+      "score": 0.946
+    },
+    {
+      "word": "new",
+      "start": 7.413,
+      "end": 7.553,
+      "score": 0.996
+    },
+    {
+      "word": "staff",
+      "start": 7.613,
+      "end": 7.914,
+      "score": 0.898
+    },
+    {
+      "word": "through",
+      "start": 8.034,
+      "end": 8.295,
+      "score": 0.828
+    },
+    {
+      "word": "every",
+      "start": 8.455,
+      "end": 8.675,
+      "score": 0.673
+    },
+    {
+      "word": "step",
+      "start": 8.715,
+      "end": 8.976,
+      "score": 0.779
+    },
+    {
+      "word": "of",
+      "start": 9.136,
+      "end": 9.196,
+      "score": 0.75
+    },
+    {
+      "word": "common",
+      "start": 9.296,
+      "end": 9.657,
+      "score": 0.793
+    },
+    {
+      "word": "medical",
+      "start": 9.717,
+      "end": 10.098,
+      "score": 0.8
+    },
+    {
+      "word": "tasks.",
+      "start": 10.158,
+      "end": 10.579,
+      "score": 0.878
+    },
+    {
+      "word": "The",
+      "start": 11.26,
+      "end": 11.36,
+      "score": 0.976
+    },
+    {
+      "word": "videos",
+      "start": 11.4,
+      "end": 11.841,
+      "score": 0.818
+    },
+    {
+      "word": "are",
+      "start": 11.941,
+      "end": 12.061,
+      "score": 0.744
+    },
+    {
+      "word": "clear",
+      "start": 12.161,
+      "end": 12.462,
+      "score": 0.795
+    },
+    {
+      "word": "and",
+      "start": 12.722,
+      "end": 12.823,
+      "score": 0.671
+    },
+    {
+      "word": "made",
+      "start": 12.883,
+      "end": 13.123,
+      "score": 0.748
+    },
+    {
+      "word": "by",
+      "start": 13.203,
+      "end": 13.364,
+      "score": 0.798
+    },
+    {
+      "word": "experienced",
+      "start": 13.464,
+      "end": 14.105,
+      "score": 0.811
+    },
+    {
+      "word": "nurses",
+      "start": 14.265,
+      "end": 14.646,
+      "score": 0.78
+    },
+    {
+      "word": "themselves.",
+      "start": 14.866,
+      "end": 15.447,
+      "score": 0.852
+    },
+    {
+      "word": "Managers",
+      "start": 16.269,
+      "end": 16.729,
+      "score": 0.756
+    },
+    {
+      "word": "say",
+      "start": 16.81,
+      "end": 17.01,
+      "score": 0.796
+    },
+    {
+      "word": "the",
+      "start": 17.07,
+      "end": 17.17,
+      "score": 0.968
+    },
+    {
+      "word": "program",
+      "start": 17.21,
+      "end": 17.631,
+      "score": 0.684
+    },
+    {
+      "word": "has",
+      "start": 17.691,
+      "end": 17.871,
+      "score": 0.812
+    },
+    {
+      "word": "reduced",
+      "start": 17.952,
+      "end": 18.352,
+      "score": 0.849
+    },
+    {
+      "word": "training",
+      "start": 18.553,
+      "end": 18.913,
+      "score": 0.83
+    },
+    {
+      "word": "time",
+      "start": 18.953,
+      "end": 19.214,
+      "score": 0.704
+    },
+    {
+      "word": "by",
+      "start": 19.374,
+      "end": 19.514,
+      "score": 0.778
+    },
+    {
+      "word": "almost",
+      "start": 19.675,
+      "end": 20.035,
+      "score": 0.693
+    },
+    {
+      "word": "a",
+      "start": 20.176,
+      "end": 20.216,
+      "score": 0.912
+    },
+    {
+      "word": "third.",
+      "start": 20.296,
+      "end": 20.616,
+      "score": 0.787
+    },
+    {
+      "word": "New",
+      "start": 21.398,
+      "end": 21.558,
+      "score": 0.807
+    },
+    {
+      "word": "nurses",
+      "start": 21.598,
+      "end": 21.959,
+      "score": 0.813
+    },
+    {
+      "word": "also",
+      "start": 22.119,
+      "end": 22.399,
+      "score": 0.678
+    },
+    {
+      "word": "report",
+      "start": 22.48,
+      "end": 22.86,
+      "score": 0.928
+    },
+    {
+      "word": "feeling",
+      "start": 22.94,
+      "end": 23.281,
+      "score": 0.937
+    },
+    {
+      "word": "much",
+      "start": 23.401,
+      "end": 23.602,
+      "score": 0.74
+    },
+    {
+      "word": "more",
+      "start": 23.682,
+      "end": 23.862,
+      "score": 0.708
+    },
+    {
+      "word": "confident",
+      "start": 23.942,
+      "end": 24.443,
+      "score": 0.986
+    },
+    {
+      "word": "in",
+      "start": 24.623,
+      "end": 24.703,
+      "score": 0.828
+    },
+    {
+      "word": "their",
+      "start": 24.744,
+      "end": 24.944,
+      "score": 0.767
+    },
+    {
+      "word": "first",
+      "start": 25.004,
+      "end": 25.285,
+      "score": 0.643
+    },
+    {
+      "word": "weeks.",
+      "start": 25.365,
+      "end": 25.645,
+      "score": 0.875
+    }
+  ]
+}

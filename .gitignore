@@ -1,0 +1,5 @@
+.DS_Store
+*.bak
+index.html.bak*
+index.html.backup-*
+_html_backups_archive/

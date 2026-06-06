@@ -1,0 +1,440 @@
+{
+  "verb": "sit in on",
+  "audio": "audio/3 - work/11-sit-in-on.mp3",
+  "duration": 33.176,
+  "transcript": "A new training trend is changing the way young professionals learn about leadership. Junior workers at several large companies are now invited to sit in on meetings with senior managers and observe how big decisions are made. The juniors take notes and ask questions afterwards rather than during the meeting. The companies say the practice has helped younger employees understand the bigger picture much faster. They have also reported stronger team relationships.",
+  "words": [
+    {
+      "word": "A",
+      "start": 0.12,
+      "end": 0.16,
+      "score": 0.953
+    },
+    {
+      "word": "new",
+      "start": 0.2,
+      "end": 0.34,
+      "score": 0.986
+    },
+    {
+      "word": "training",
+      "start": 0.42,
+      "end": 0.741,
+      "score": 0.938
+    },
+    {
+      "word": "trend",
+      "start": 0.801,
+      "end": 1.081,
+      "score": 0.815
+    },
+    {
+      "word": "is",
+      "start": 1.281,
+      "end": 1.361,
+      "score": 0.674
+    },
+    {
+      "word": "changing",
+      "start": 1.442,
+      "end": 1.822,
+      "score": 0.801
+    },
+    {
+      "word": "the",
+      "start": 1.882,
+      "end": 1.962,
+      "score": 0.984
+    },
+    {
+      "word": "way",
+      "start": 2.002,
+      "end": 2.202,
+      "score": 0.674
+    },
+    {
+      "word": "young",
+      "start": 2.383,
+      "end": 2.603,
+      "score": 0.733
+    },
+    {
+      "word": "professionals",
+      "start": 2.683,
+      "end": 3.344,
+      "score": 0.884
+    },
+    {
+      "word": "learn",
+      "start": 3.524,
+      "end": 3.844,
+      "score": 0.713
+    },
+    {
+      "word": "about",
+      "start": 4.004,
+      "end": 4.285,
+      "score": 0.923
+    },
+    {
+      "word": "leadership.",
+      "start": 4.405,
+      "end": 4.925,
+      "score": 0.712
+    },
+    {
+      "word": "Junior",
+      "start": 5.886,
+      "end": 6.227,
+      "score": 0.718
+    },
+    {
+      "word": "workers",
+      "start": 6.267,
+      "end": 6.647,
+      "score": 0.814
+    },
+    {
+      "word": "at",
+      "start": 6.767,
+      "end": 6.847,
+      "score": 0.828
+    },
+    {
+      "word": "several",
+      "start": 6.947,
+      "end": 7.308,
+      "score": 0.793
+    },
+    {
+      "word": "large",
+      "start": 7.368,
+      "end": 7.648,
+      "score": 0.905
+    },
+    {
+      "word": "companies",
+      "start": 7.688,
+      "end": 8.129,
+      "score": 0.927
+    },
+    {
+      "word": "are",
+      "start": 8.489,
+      "end": 8.589,
+      "score": 0.747
+    },
+    {
+      "word": "now",
+      "start": 8.629,
+      "end": 8.809,
+      "score": 0.913
+    },
+    {
+      "word": "invited",
+      "start": 8.89,
+      "end": 9.33,
+      "score": 0.817
+    },
+    {
+      "word": "to",
+      "start": 9.51,
+      "end": 9.65,
+      "score": 0.824
+    },
+    {
+      "word": "sit",
+      "start": 9.73,
+      "end": 9.931,
+      "score": 0.691
+    },
+    {
+      "word": "in",
+      "start": 10.051,
+      "end": 10.151,
+      "score": 0.788
+    },
+    {
+      "word": "on",
+      "start": 10.351,
+      "end": 10.411,
+      "score": 0.999
+    },
+    {
+      "word": "meetings",
+      "start": 10.491,
+      "end": 10.872,
+      "score": 0.824
+    },
+    {
+      "word": "with",
+      "start": 10.972,
+      "end": 11.132,
+      "score": 0.806
+    },
+    {
+      "word": "senior",
+      "start": 11.232,
+      "end": 11.592,
+      "score": 0.812
+    },
+    {
+      "word": "managers",
+      "start": 11.632,
+      "end": 12.133,
+      "score": 0.79
+    },
+    {
+      "word": "and",
+      "start": 12.593,
+      "end": 12.694,
+      "score": 0.779
+    },
+    {
+      "word": "observe",
+      "start": 12.774,
+      "end": 13.154,
+      "score": 0.784
+    },
+    {
+      "word": "how",
+      "start": 13.354,
+      "end": 13.494,
+      "score": 0.945
+    },
+    {
+      "word": "big",
+      "start": 13.575,
+      "end": 13.775,
+      "score": 0.868
+    },
+    {
+      "word": "decisions",
+      "start": 13.855,
+      "end": 14.375,
+      "score": 0.782
+    },
+    {
+      "word": "are",
+      "start": 14.656,
+      "end": 14.756,
+      "score": 0.726
+    },
+    {
+      "word": "made.",
+      "start": 14.836,
+      "end": 15.156,
+      "score": 0.768
+    },
+    {
+      "word": "The",
+      "start": 15.957,
+      "end": 16.057,
+      "score": 0.988
+    },
+    {
+      "word": "juniors",
+      "start": 16.117,
+      "end": 16.518,
+      "score": 0.778
+    },
+    {
+      "word": "take",
+      "start": 16.598,
+      "end": 16.798,
+      "score": 0.712
+    },
+    {
+      "word": "notes",
+      "start": 16.898,
+      "end": 17.138,
+      "score": 0.858
+    },
+    {
+      "word": "and",
+      "start": 17.459,
+      "end": 17.579,
+      "score": 0.814
+    },
+    {
+      "word": "ask",
+      "start": 17.679,
+      "end": 17.899,
+      "score": 0.931
+    },
+    {
+      "word": "questions",
+      "start": 18.019,
+      "end": 18.46,
+      "score": 0.798
+    },
+    {
+      "word": "afterwards",
+      "start": 18.6,
+      "end": 19.1,
+      "score": 0.892
+    },
+    {
+      "word": "rather",
+      "start": 19.421,
+      "end": 19.721,
+      "score": 0.834
+    },
+    {
+      "word": "than",
+      "start": 19.781,
+      "end": 19.961,
+      "score": 0.888
+    },
+    {
+      "word": "during",
+      "start": 20.041,
+      "end": 20.382,
+      "score": 0.733
+    },
+    {
+      "word": "the",
+      "start": 20.462,
+      "end": 20.542,
+      "score": 0.835
+    },
+    {
+      "word": "meeting.",
+      "start": 20.602,
+      "end": 20.922,
+      "score": 0.856
+    },
+    {
+      "word": "The",
+      "start": 22.224,
+      "end": 22.344,
+      "score": 0.776
+    },
+    {
+      "word": "companies",
+      "start": 22.384,
+      "end": 22.844,
+      "score": 0.87
+    },
+    {
+      "word": "say",
+      "start": 23.025,
+      "end": 23.225,
+      "score": 0.872
+    },
+    {
+      "word": "the",
+      "start": 23.305,
+      "end": 23.405,
+      "score": 0.898
+    },
+    {
+      "word": "practice",
+      "start": 23.445,
+      "end": 23.886,
+      "score": 0.979
+    },
+    {
+      "word": "has",
+      "start": 23.946,
+      "end": 24.126,
+      "score": 0.812
+    },
+    {
+      "word": "helped",
+      "start": 24.186,
+      "end": 24.446,
+      "score": 0.833
+    },
+    {
+      "word": "younger",
+      "start": 24.586,
+      "end": 24.907,
+      "score": 0.855
+    },
+    {
+      "word": "employees",
+      "start": 25.007,
+      "end": 25.567,
+      "score": 0.885
+    },
+    {
+      "word": "understand",
+      "start": 25.768,
+      "end": 26.348,
+      "score": 0.838
+    },
+    {
+      "word": "the",
+      "start": 26.488,
+      "end": 26.588,
+      "score": 0.831
+    },
+    {
+      "word": "bigger",
+      "start": 26.629,
+      "end": 26.909,
+      "score": 0.898
+    },
+    {
+      "word": "picture",
+      "start": 26.969,
+      "end": 27.349,
+      "score": 0.789
+    },
+    {
+      "word": "much",
+      "start": 27.549,
+      "end": 27.75,
+      "score": 0.86
+    },
+    {
+      "word": "faster.",
+      "start": 27.85,
+      "end": 28.29,
+      "score": 0.859
+    },
+    {
+      "word": "They",
+      "start": 29.572,
+      "end": 29.712,
+      "score": 0.723
+    },
+    {
+      "word": "have",
+      "start": 29.752,
+      "end": 29.912,
+      "score": 0.89
+    },
+    {
+      "word": "also",
+      "start": 30.032,
+      "end": 30.312,
+      "score": 0.812
+    },
+    {
+      "word": "reported",
+      "start": 30.413,
+      "end": 30.853,
+      "score": 0.911
+    },
+    {
+      "word": "stronger",
+      "start": 31.053,
+      "end": 31.534,
+      "score": 0.808
+    },
+    {
+      "word": "team",
+      "start": 31.634,
+      "end": 31.894,
+      "score": 0.848
+    },
+    {
+      "word": "relationships.",
+      "start": 32.054,
+      "end": 32.795,
+      "score": 0.882
+    }
+  ]
+}
